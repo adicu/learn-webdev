@@ -20,7 +20,7 @@ Flask works with a [client-server model](http://en.wikipedia.org/wiki/Client%E2%
 -------------------
 
 <a id="the-autonomy-of-a-flask-app"></a>
-## 1.1 The Autonomy of a Flask App
+## 1.1 The Anatomy of a Flask App
 
 This is a very basic directory structure for a Flask webapp.
 
