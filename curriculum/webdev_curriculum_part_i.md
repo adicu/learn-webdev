@@ -91,7 +91,7 @@ To run our Hello World app, just type the following command in the Project Direc
 
 	$ python app.py
 	
-If it's working, it should print the line:
+If it's working, it should print the lines:
 
 	* Running on http://127.0.0.1:5000/
 
@@ -114,4 +114,6 @@ Flask is great for development.  It offers very helpful error messages and print
 	if __name__ == "__main__":
 	    app.run()
 
-With this modification, edit the string returned by the `hello()` function and refresh your browser to watch it change!
+With this modification, edit the string returned by the `hello()` function and refresh your browser to watch it change!  When you run the server now, it should also print:
+	
+	* Restarting on reloader
