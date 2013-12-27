@@ -12,6 +12,7 @@ Much of this tutorial is adapted from the [Flask website](flask).  Written by [D
 	-	[1.1 What is Flask](#what-is-flask)
 		-	[1.1.1 How a Flask App Works](#how-a-flask-app-works)
 		-	[1.1.2 The Anatomy of a Flask App](#the-anatomy-of-a-flask-app)
+		-	[1.1.3 Dependancies in Python](#dependancies-in-python)
 	-	[1.2 Hello World](#hello-world-in-flask)
 		-	[1.2.1 Editing app.py](#editing-app-py)
 		-	[1.2.2 Running a Flask App](#running-a-flask-app)
@@ -82,12 +83,17 @@ This is a very basic directory structure for a Flask webapp.
 
 -	`ProjectDirectory/` - Everything for your app goes in this folder.  Rename this to the name of your app.
 -	`app.py` - All of the Python/Flask code and server logic gets written in this file.
--	`requirements.txt` - A list of all of the dependancies for your project.  See more about dependancies and installing them in [Section 0.1]().
+-	`requirements.txt` - A list of all of the dependancies for your project.  See more about dependancies and installing them in [the next section](#dependancies-in-python).
 -	`static/` - This folder holds all your static files.  Static files include:
 	-	`js/` - Javascript files.
 	-	`css/` - CSS files.	
 	-	`img/` - Image fls.
--	`templates/` - This folder holds all your Flask templates.  Our HTML files will go here.  There are special features offered by Flask that make templates different than basic HTML files, explored in [Section 0.2]().
+-	`templates/` - This folder holds all your Flask templates.  Our HTML files will go here.  There are special features offered by Flask that make templates different than basic HTML files, explored in [Section 3.2](#templating-in-flask).
+
+<a id="dependancies-in-python"></a>
+### 1.1.3 Dependancies in Python
+
+TODO: Question: will this section already be covered in the intro to Python workshop on Saturday?
 
 <a id="hello-world-in-flask"></a>
 ## 1.2 Hello World in Flask
