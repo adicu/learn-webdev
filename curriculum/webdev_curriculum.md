@@ -24,6 +24,7 @@ Much of this tutorial is adapted from the [Flask website](flask).  Written by [D
 	-	[2.1 API Basics](#api-basics)
 		-	[2.1.1 What is an API](#what-is-an-api)
 		-	[2.1.2 Data in JSON](#data-in-json)
+		-	[2.1.3 Extension: Types of Requests](#types-of-requests)
 	-	[2.2 The GitHub Search API](#the-github-search-api)
 		-	[2.2.1 Using cURL](#using-curl)
 		-	[2.2.2 Using Python](#using-python)
@@ -32,7 +33,7 @@ Much of this tutorial is adapted from the [Flask website](flask).  Written by [D
 		-	[2.2.5 Extension: Using JavaScript](#using-javascript)
 	-	[2.3 Authentication](#authentication) 
 		-	[2.3.1 Basic Authentication](#basic-authentication)
-		-	[2.3.2 OAuth](#oauth)
+		-	[2.3.2 Extension: OAuth](#oauth)
 -	[3.0 HTML and Templating](#html-and-css)
 	-	[3.1 HTML Basics](#html-basics)
 		-	[3.1.1 What is HTML](#what-is-HTML)
@@ -230,6 +231,9 @@ Save and reload your server as needed, and navigate to `http://localhost:5000/se
 
 <a id="data-in-json"></a>
 ### 2.1.2 Data in JSON
+
+<a id-"types-of-requests"></a>
+### 2.1.3 Extension: Types of Requests
 
 <a id="the-github-search-api"></a>
 ## 2.2 The GitHub Search API
