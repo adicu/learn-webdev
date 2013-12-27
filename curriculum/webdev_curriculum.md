@@ -28,10 +28,10 @@ Much of this tutorial is adapted from the [Flask website](flask).  Written by [D
 	-	[2.2 The GitHub Search API](#the-github-search-api)
 		-	[2.2.1 Using cURL](#using-curl)
 		-	[2.2.2 Using Python](#using-python)
-		-	[2.2.3 Using Flask: Extending the Search Route](#using-flask-extending-the-search-route)	
+		-	[2.2.3 Using Flask: Extending the Search Route](#using-flask-extending-the-search-route)
 		-	[2.2.4 Extension: Parsing JSON in Flask](#parsing-json-in-flask)
 		-	[2.2.5 Extension: Using JavaScript](#using-javascript)
-	-	[2.3 Authentication](#authentication) 
+	-	[2.3 Authentication](#authentication)
 		-	[2.3.1 Basic Authentication](#basic-authentication)
 		-	[2.3.2 Extension: OAuth](#oauth)
 -	[3.0 HTML and Templating](#html-and-css)
@@ -54,7 +54,7 @@ Much of this tutorial is adapted from the [Flask website](flask).  Written by [D
 		-	[4.2.4 Extension: Using Icon Fonts](#using-icon-fonts)
 
 ------------------------
-	
+
 <a id="flask"></a>
 # 1.0 Flask
 
@@ -87,7 +87,7 @@ This is a very basic directory structure for a Flask webapp.
 -	`requirements.txt` - A list of all of the dependancies for your project.  See more about dependancies and installing them in [the next section](#dependancies-in-python).
 -	`static/` - This folder holds all your static files.  Static files include:
 	-	`js/` - Javascript files.
-	-	`css/` - CSS files.	
+	-	`css/` - CSS files.
 	-	`img/` - Image fls.
 -	`templates/` - This folder holds all your Flask templates.  Our HTML files will go here.  There are special features offered by Flask that make templates different than basic HTML files, explored in [Section 3.2](#templating-in-flask).
 
@@ -209,14 +209,14 @@ Dynamic routes are what make using Flask so valuable.  Start off by making a sta
 To make our route dynamic, first we will modify the url to take a variable parameter named `search_query`.
 
 	@app.route("/search/<search_query>")
-	
+
 Then, modify the `search` function to take a string parameter `search_query`, and return that.
 
 	@app.route("/search/<search_query>")
 	def search(search_query):
 		return search_query
 
-Save and reload your server as needed, and navigate to `http://localhost:5000/search/test` and see `test` appear as the returned page.  If you change what comes after the `/search/` in the URL, it will be displayed in the browser.  We will soon modify this route to return actual search results. 
+Save and reload your server as needed, and navigate to `http://localhost:5000/search/test` and see `test` appear as the returned page.  If you change what comes after the `/search/` in the URL, it will be displayed in the browser.  We will soon modify this route to return actual search results.
 
 ------------------------
 
@@ -232,7 +232,7 @@ Save and reload your server as needed, and navigate to `http://localhost:5000/se
 <a id="data-in-json"></a>
 ### 2.1.2 Data in JSON
 
-<a id-"types-of-requests"></a>
+<a id="types-of-requests"></a>
 ### 2.1.3 Extension: Types of Requests
 
 <a id="the-github-search-api"></a>
