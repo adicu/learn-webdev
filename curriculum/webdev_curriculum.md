@@ -61,12 +61,12 @@ Much of this tutorial is adapted from the [Flask website](flask).  Written by [D
 <a id="what-is-flask"></a>
 ## 1.1 What is Flask
 
-[Flask](flask) is a microframework for Python.  It lets you build web apps using Python.  It is very easy to setup and has excellent documentation on it's [website](flask).
+[Flask](flask) is a microframework for Python.  It lets you build web apps using Python.  It is very easy to setup and has excellent documentation on its [website](flask).
 
 <a id="how-a-flask-app-works"></a>
 ### 1.1.1 How a Flask App Works
 
-Flask works with a [client-server model](client-server).  The client, written in Python, has functions that take requests from clients and return web content to be displayed by the client.  Flask servers have the ability of serving [dynamic web pages](dynamic-content), or pages that are generated every time you load the page.  For example, dynamic content could be of such pages include information stored in a database or a user account.
+Flask works with a [client-server model](client-server).  The server, written in Python, has functions that take requests from clients (i.e. your web browser) and return web content to be displayed by the client.  Flask servers have the ability of serving [dynamic web pages](dynamic-content), or pages that are generated every time you load the page.  For example, dynamic content could be of such pages include information stored in a database or a user account.
 
 <a id="the-anatomy-of-a-flask-app"></a>
 ### 1.1.2 The Anatomy of a Flask App
