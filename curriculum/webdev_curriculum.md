@@ -3,7 +3,7 @@
 
 *Building a webapp in Flask.*
 
-Much of this tutorial is adapted from the [Flask website](flask).  Written and developed by [Dan Schlosser](mailto:dan@adicu.com) and [ADI](http://adicu.com).
+Much of this tutorial is adapted from the [Flask website][flask].  Written and developed by [Dan Schlosser](mailto:dan@adicu.com) and [ADI](http://adicu.com).
 
 <a id="about-this-document"></a>
 ## About This Document
@@ -16,7 +16,7 @@ For the purposes of learning to make a web application using [Flask](#flask), we
 <a id="the-end-product"></a>
 ### The End Product
 
-We will be building a web application throughout this series, called "Has it Been Made Yet?".  It should let users type in a few keywords for a hackathon idea, and then it will tell them whether or not someone has made that idea and hosted it on [GitHub](github).  GitHub is a social network for [open-source](open-source) code, and is the most popular place for programmers to host their projects (and therefore, a great place to check for our app).	
+We will be building a web application throughout this series, called "Has it Been Made Yet?".  It should let users type in a few keywords for a hackathon idea, and then it will tell them whether or not someone has made that idea and hosted it on [GitHub][github].  GitHub is a social network for [open-source][open-source] code, and is the most popular place for programmers to host their projects (and therefore, a great place to check for our app).	
 
 <a id="table-of-contents"></a>
 ## Table of Contents
@@ -76,12 +76,12 @@ We will be building a web application throughout this series, called "Has it Bee
 <a id="what-is-flask"></a>
 ## 1.1 What is Flask
 
-[Flask](flask) is a microframework for Python.  It lets you build web apps using Python.  It is very easy to setup and has excellent documentation on its [website](flask).
+[Flask][flask] is a microframework for Python.  It lets you build web apps using Python.  It is very easy to setup and has excellent documentation on its [website][flask].
 
 <a id="how-a-flask-app-works"></a>
 ### 1.1.1 How a Flask App Works
 
-Flask works with a [client-server model](client-server).  The server, written in Python, has functions that take requests from clients (i.e. your web browser) and return web content to be displayed by the client.  Flask servers have the ability of serving [dynamic web pages](dynamic-content), or pages that are generated every time you load the page.  For example, dynamic content could be of such pages include information stored in a database or a user account.
+Flask works with a [client-server model][client-server].  The server, written in Python, has functions that take requests from clients (i.e. your web browser) and return web content to be displayed by the client.  Flask servers have the ability of serving [dynamic web pages][dynamic-content], or pages that are generated every time you load the page.  For example, dynamic content could be of such pages include information stored in a database or a user account.
 
 <a id="the-anatomy-of-a-flask-app"></a>
 ### 1.1.2 The Anatomy of a Flask App
@@ -122,7 +122,7 @@ Then, construct the Flask `app` variable.  We'll pass around this variable whene
 
 	app = Flask(__name__)
 
-Next, apply the `@app.route("/")` [decorator](decorators) to a function called `hello()`.  It returns just the string `"Hello World!"`.  By doing this, we are making a [route](route).  The `route()` decorator binds the URL `http://yourwebapp.com/` to this function, effectively adding a new page to your app.  Functions with the `route()` decorator can return text strings or HTML, and whatever is returned will be displayed by the client.
+Next, apply the `@app.route("/")` [decorator][decorators] to a function called `hello()`.  It returns just the string `"Hello World!"`.  By doing this, we are making a [route][route].  The `route()` decorator binds the URL `http://yourwebapp.com/` to this function, effectively adding a new page to your app.  Functions with the `route()` decorator can return text strings or HTML, and whatever is returned will be displayed by the client.
 
 	@app.route("/")
 	def hello():
@@ -159,7 +159,7 @@ If it's working, it should print the lines:
 
 Point your browser to that URL and bask in the awesomeness!
 
-> Wondering what that weird URL is?  `127.0.0.1` is the IP address for [localhost](localhost), or your local computer.  When we run a Flask server with `python app.py`, it is running only on your machine, not the internet.  The `:5000` bit is the [port](port), or specific place where your app is running.  Developing locally is much easier and safer than publishing your app to the internet every time you want to test something, and is considered good practice.  Also, instead of typing out `http://127.0.0.1:5000` every time you want to see your app, you can also point your browser to `http://localhost:5000`.  The two are equivalent.
+> Wondering what that weird URL is?  `127.0.0.1` is the IP address for [localhost][localhost], or your local computer.  When we run a Flask server with `python app.py`, it is running only on your machine, not the internet.  The `:5000` bit is the [port][port], or specific place where your app is running.  Developing locally is much easier and safer than publishing your app to the internet every time you want to test something, and is considered good practice.  Also, instead of typing out `http://127.0.0.1:5000` every time you want to see your app, you can also point your browser to `http://localhost:5000`.  The two are equivalent.
 
 <a id="developing-with-flask"></a>
 ### 1.2.3 Developing with Flask
@@ -185,7 +185,7 @@ With this modification, edit the string returned by the `hello()` function and r
 <a id="working-with-routes"></a>
 ## 1.3 Working with Routes
 
-Let's define a few more routes for our app. Again, [routes](route) are URLs that are supported by the server. We use the [decorator](decorators) `app.route()` to tie the decorated function to the URL given in the parenthesis.
+Let's define a few more routes for our app. Again, [routes][route] are URLs that are supported by the server. We use the [decorator][decorators] `app.route()` to tie the decorated function to the URL given in the parenthesis.
 
 <a id="static-routes"></a>
 ### 1.3.1 Static Routes
@@ -236,14 +236,14 @@ Save and reload your server as needed, and navigate to `http://localhost:5000/se
 <a id="api-basics"></a>
 ## 2.1 API Basics
 
-At this point, our server can handle searches to our system, but it doesn't do anything with them (it just spits them back out).  What we need next is to search Github for projects with the same keywords and return them to the client.  To do this, we will use Github's [API](api), or Application Programmer Interface.
+At this point, our server can handle searches to our system, but it doesn't do anything with them (it just spits them back out).  What we need next is to search Github for projects with the same keywords and return them to the client.  To do this, we will use Github's [API][api], or Application Programmer Interface.
 
 This section will take a step aside from our Flask project to build a foundation of knowledge around APIs and how they are used.  We will return to our app in [section 2.2](#the-github-search-api).
 
 <a id="rest-apis"></a>
 ### 2.1.1 REST APIs
 
-API's let us access external data in an easy, standardized way.  In the webapp world, when we say API we usually mean [REST (or RESTful) API](rest-api), which can be effectively thought of as an API that is accessible at a series of URL addresses. An extremely simple example of a REST API is [placekitten.com](http://placekitten.com), an API that serves images of kitten.  Here's how it works.  If you point your browser to `http://placekitten.com/<width>/<height>`, it returns an picture of kittens with that width and height. If you go to `/g/<width>/<height>` the image will be grayscale.  Go to these urls to see a very basic REST API in action.
+API's let us access external data in an easy, standardized way.  In the webapp world, when we say API we usually mean [REST (or RESTful) API][rest-api], which can be effectively thought of as an API that is accessible at a series of URL addresses. An extremely simple example of a REST API is [placekitten.com](http://placekitten.com), an API that serves images of kitten.  Here's how it works.  If you point your browser to `http://placekitten.com/<width>/<height>`, it returns an picture of kittens with that width and height. If you go to `/g/<width>/<height>` the image will be grayscale.  Go to these urls to see a very basic REST API in action.
 
 URL | Image
 ------|-----
@@ -258,13 +258,13 @@ The advantage in using a REST API here is that we don't need to remember the URL
 <a id="the-anatomy-of-a-url"></a>
 ### 2.1.2 The Anatomy of a URL
 
-From here out we will be using some increasingly complex [URLs](urls), and it is important to develop a vocabulary for the parts of the url and their purpose.  To do this, we will dissect this url (which we will use in [section 2.2](#the-github-search-api) when we work with Github's API):
+From here out we will be using some increasingly complex [URLs][urls], and it is important to develop a vocabulary for the parts of the url and their purpose.  To do this, we will dissect this url (which we will use in [section 2.2](#the-github-search-api) when we work with Github's API):
 
 	https://api.github.com/search/repositories?q=tetris+language:assembly&sort=stars&order=desc
 	
 This URL breaks up into five parts:
 
-1.	The protocol and separator (`https://`): We are using the [HTTPS](https) protocol, detailed in [section 2.1.5](#http).  
+1.	The protocol and separator (`https://`): We are using the [HTTPS][https] protocol, detailed in [section 2.1.5](#http).  
 2.	The separator (`://`): A colon and two slashes always follow the protocol is used to separate the protocol and the host.
 3.	The host (`api.github.com`): A host is usually a domain name (this is the case for our url), but it could also be an IP Address.
 4.	The path (`/search/repositories`): Everything from the first `/` up to the `?` that starts the query string is the path. When accessing a web page, often these paths will be hierarchical and include a filename at the end, like `/blog/2014/02/post.html`.  When making API calls, these paths are the API method that is being called.  Here, we are searching repositories.
@@ -280,12 +280,12 @@ This URL breaks up into five parts:
 	
 	For the most part, the job of the query string is to specify the details of the data being returned.  While the `q` key is somewhat complicated, we can see clearly that the results of this search are being sorted by stars in descending order.
 	
-> This URL schema is by no means complete; it encompasses the parts of a URL that are most relevant to API programming.  For a more complete view, check out [this blog post](url-google) by Google's Matt Cutts, or this exhaustive [Wikipedia entry](url-wikipedia).
+> This URL schema is by no means complete; it encompasses the parts of a URL that are most relevant to API programming.  For a more complete view, check out [this blog post][url-google] by Google's Matt Cutts, or this exhaustive [Wikipedia entry][url-wikipedia].
 
 <a id="data-in-json"></a>
 ### 2.1.3 Data in JSON
 
-The data that we usually want to get from a RESTful API is text, not images, and to organize this text we use the [JSON](json), or JavaScript Object Notation text format.  JSON is a text format that makes data easy to read and simple to manipulate.  Here's a quick rundown:
+The data that we usually want to get from a RESTful API is text, not images, and to organize this text we use the [JSON][json], or JavaScript Object Notation text format.  JSON is a text format that makes data easy to read and simple to manipulate.  Here's a quick rundown:
 
 Most JSON documents start and end with braces (`{ }`).  We'll learn what these are later.
 
@@ -403,7 +403,7 @@ JSON is the most common data format returned by RESTful APIs.  For example, [col
 	 "a_count": 1, "name": "lilac"}]}, "messages": [], 
 	 "new_color": "e0d1dd"}
 	 
-To view JSON in the browser, use a browser extension like JSONView ([Chrome](json-chrome), [Firefox](json-firefox)) or JSON Formatter ([Safari](json-safari)).  Install the appropriate extension and reload [that url](http://www.colr.org/json/color/e0d1dd).  You should now see the JSON with the proper indentation that we like.  If that didn't work for you or you're using another browser, copy the mess into [jsonprettyprint.com](http://jsonprettyprint.com/) to see it nicely formatted.
+To view JSON in the browser, use a browser extension like JSONView ([Chrome][json-chrome], [Firefox][json-firefox]) or JSON Formatter ([Safari][json-safari]).  Install the appropriate extension and reload [that url](http://www.colr.org/json/color/e0d1dd).  You should now see the JSON with the proper indentation that we like.  If that didn't work for you or you're using another browser, copy the mess into [jsonprettyprint.com](http://jsonprettyprint.com/) to see it nicely formatted.
 
 It should look like this:
 
@@ -471,7 +471,7 @@ Path | Description
 <a id="the-github-search-api"></a>
 ## 2.2 The GitHub Search API
 
-In order to figure out whether or not someone has made the app that was searched for using the our search route (started in [1.3.2](#dynamic-routes)), we'll use the Github Search API.  The first step for using any API is to familiarize yourself with its documentation, and so our first stop is to [developer.github.com/v3/search](github-search-docs).  We know that we want to search for repositories, so we'll focus on the ["Search repositories" section](github-search-docs-repos).
+In order to figure out whether or not someone has made the app that was searched for using the our search route (started in [1.3.2](#dynamic-routes)), we'll use the Github Search API.  The first step for using any API is to familiarize yourself with its documentation, and so our first stop is to [developer.github.com/v3/search][github-search-docs].  We know that we want to search for repositories, so we'll focus on the ["Search repositories" section][github-search-docs-repos].
 
 <a id="using-curl"></a>
 ### 2.2.1 Using cURL

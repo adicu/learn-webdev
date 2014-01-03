@@ -125,6 +125,9 @@ ul, ol {
 ul :first-child, ol :first-child {
   margin-top: 0; }
 
+ul ul {
+  margin: 0; }
+
 dl {
   padding: 0; }
   dl dt {
@@ -312,7 +315,7 @@ sup {
 
 <p><em>Building a webapp in Flask.</em></p>
 
-<p>Much of this tutorial is adapted from the <a href="flask">Flask website</a>.  Written and developed by <a href="mailto:dan@adicu.com">Dan Schlosser</a> and <a href="http://adicu.com">ADI</a>.</p>
+<p>Much of this tutorial is adapted from the <a href="http://flask.pocoo.org/">Flask website</a>.  Written and developed by <a href="mailto:dan@adicu.com">Dan Schlosser</a> and <a href="http://adicu.com">ADI</a>.</p>
 
 <p><a id="about-this-document"></a></p>
 
@@ -328,7 +331,7 @@ sup {
 
 <h3>The End Product</h3>
 
-<p>We will be building a web application throughout this series, called "Has it Been Made Yet?".  It should let users type in a few keywords for a hackathon idea, and then it will tell them whether or not someone has made that idea and hosted it on <a href="github">GitHub</a>.  GitHub is a social network for <a href="open-source">open-source</a> code, and is the most popular place for programmers to host their projects (and therefore, a great place to check for our app).</p>
+<p>We will be building a web application throughout this series, called "Has it Been Made Yet?".  It should let users type in a few keywords for a hackathon idea, and then it will tell them whether or not someone has made that idea and hosted it on [GitHub][github].  GitHub is a social network for <a href="http://en.wikipedia.org/wiki/Open_source">open-source</a> code, and is the most popular place for programmers to host their projects (and therefore, a great place to check for our app).</p>
 
 <p><a id="table-of-contents"></a></p>
 
@@ -370,9 +373,10 @@ sup {
 
 <ul>
 <li><a href="#rest-apis">2.1.1 REST APIs</a></li>
-<li><a href="#data-in-json">2.1.2 Data in JSON</a></li>
-<li><a href="#viewing-json-in-the-browser">2.1.3 Viewing JSON in the Browser</a></li>
-<li><a href="#types-of-requests">2.1.4 Extension: Types of Requests</a></li>
+<li><a href="#the-anatomy-of-a-url">2.1.2 The Anatomy of a URL</a></li>
+<li><a href="#data-in-json">2.1.3 Data in JSON</a></li>
+<li><a href="#viewing-json-in-the-browser">2.1.4 Viewing JSON in the Browser</a></li>
+<li><a href="#http">2.1.5 Extension: HTTP</a></li>
 </ul>
 </li>
 <li><a href="#the-github-search-api">2.2 The GitHub Search API</a>
@@ -449,13 +453,13 @@ sup {
 
 <h2>1.1 What is Flask</h2>
 
-<p><a href="flask">Flask</a> is a microframework for Python.  It lets you build web apps using Python.  It is very easy to setup and has excellent documentation on its <a href="flask">website</a>.</p>
+<p><a href="http://flask.pocoo.org/">Flask</a> is a microframework for Python.  It lets you build web apps using Python.  It is very easy to setup and has excellent documentation on its <a href="http://flask.pocoo.org/">website</a>.</p>
 
 <p><a id="how-a-flask-app-works"></a></p>
 
 <h3>1.1.1 How a Flask App Works</h3>
 
-<p>Flask works with a <a href="client-server">client-server model</a>.  The server, written in Python, has functions that take requests from clients (i.e. your web browser) and return web content to be displayed by the client.  Flask servers have the ability of serving <a href="dynamic-content">dynamic web pages</a>, or pages that are generated every time you load the page.  For example, dynamic content could be of such pages include information stored in a database or a user account.</p>
+<p>Flask works with a <a href="http://en.wikipedia.org/wiki/Client%E2%80%93server_model">client-server model</a>.  The server, written in Python, has functions that take requests from clients (i.e. your web browser) and return web content to be displayed by the client.  Flask servers have the ability of serving <a href="http://en.wikipedia.org/wiki/Dynamic_content">dynamic web pages</a>, or pages that are generated every time you load the page.  For example, dynamic content could be of such pages include information stored in a database or a user account.</p>
 
 <p><a id="the-anatomy-of-a-flask-app"></a></p>
 
@@ -509,7 +513,7 @@ sup {
 <pre><code>app = Flask(__name__)
 </code></pre>
 
-<p>Next, apply the <code>@app.route("/")</code> <a href="decorators">decorator</a> to a function called <code>hello()</code>.  It returns just the string <code>"Hello World!"</code>.  By doing this, we are making a <a href="route">route</a>.  The <code>route()</code> decorator binds the URL <code>http://yourwebapp.com/</code> to this function, effectively adding a new page to your app.  Functions with the <code>route()</code> decorator can return text strings or HTML, and whatever is returned will be displayed by the client.</p>
+<p>Next, apply the <code>@app.route("/")</code> <a href="https://wiki.python.org/moin/PythonDecorators">decorator</a> to a function called <code>hello()</code>.  It returns just the string <code>"Hello World!"</code>.  By doing this, we are making a <a href="http://flask.pocoo.org/docs/quickstart/#routing">route</a>.  The <code>route()</code> decorator binds the URL <code>http://yourwebapp.com/</code> to this function, effectively adding a new page to your app.  Functions with the <code>route()</code> decorator can return text strings or HTML, and whatever is returned will be displayed by the client.</p>
 
 <pre><code>@app.route("/")
 def hello():
@@ -552,7 +556,7 @@ if __name__ == "__main__":
 
 <p>Point your browser to that URL and bask in the awesomeness!</p>
 
-<blockquote><p>Wondering what that weird URL is?  <code>127.0.0.1</code> is the IP address for <a href="localhost">localhost</a>, or your local computer.  When we run a Flask server with <code>python app.py</code>, it is running only on your machine, not the internet.  The <code>:5000</code> bit is the <a href="port">port</a>, or specific place where your app is running.  Developing locally is much easier and safer than publishing your app to the internet every time you want to test something, and is considered good practice.  Also, instead of typing out <code>http://127.0.0.1:5000</code> every time you want to see your app, you can also point your browser to <code>http://localhost:5000</code>.  The two are equivalent.</p></blockquote>
+<blockquote><p>Wondering what that weird URL is?  <code>127.0.0.1</code> is the IP address for <a href="http://en.wikipedia.org/wiki/Localhost">localhost</a>, or your local computer.  When we run a Flask server with <code>python app.py</code>, it is running only on your machine, not the internet.  The <code>:5000</code> bit is the <a href="http://en.wikipedia.org/wiki/Port_(computer_networking)">port</a>, or specific place where your app is running.  Developing locally is much easier and safer than publishing your app to the internet every time you want to test something, and is considered good practice.  Also, instead of typing out <code>http://127.0.0.1:5000</code> every time you want to see your app, you can also point your browser to <code>http://localhost:5000</code>.  The two are equivalent.</p></blockquote>
 
 <p><a id="developing-with-flask"></a></p>
 
@@ -582,7 +586,7 @@ if __name__ == "__main__":
 
 <h2>1.3 Working with Routes</h2>
 
-<p>Let's define a few more routes for our app. Again, <a href="route">routes</a> are URLs that are supported by the server. We use the <a href="decorators">decorator</a> <code>app.route()</code> to tie the decorated function to the URL given in the parenthesis.</p>
+<p>Let's define a few more routes for our app. Again, <a href="http://flask.pocoo.org/docs/quickstart/#routing">routes</a> are URLs that are supported by the server. We use the <a href="https://wiki.python.org/moin/PythonDecorators">decorator</a> <code>app.route()</code> to tie the decorated function to the URL given in the parenthesis.</p>
 
 <p><a id="static-routes"></a></p>
 
@@ -642,13 +646,15 @@ def search(search_query):
 
 <h2>2.1 API Basics</h2>
 
-<p>At this point, our server can handle searches to our system, but it doesn't do anything with them (it just spits them back out).  What we need next is to search Github for projects with the same keywords and return them to the client.  To do this, we will use Github's <a href="api">API</a>, or Application Programmer Interface.</p>
+<p>At this point, our server can handle searches to our system, but it doesn't do anything with them (it just spits them back out).  What we need next is to search Github for projects with the same keywords and return them to the client.  To do this, we will use Github's <a href="http://en.wikipedia.org/wiki/Api">API</a>, or Application Programmer Interface.</p>
+
+<p>This section will take a step aside from our Flask project to build a foundation of knowledge around APIs and how they are used.  We will return to our app in <a href="#the-github-search-api">section 2.2</a>.</p>
 
 <p><a id="rest-apis"></a></p>
 
 <h3>2.1.1 REST APIs</h3>
 
-<p>API's let us access external data in an easy, standardized way.  In the webapp world, when we say API we usually mean <a href="rest-api">REST (or RESTful) API</a>, which can be effectively thought of as an API that is accessible at a series of URL addresses. An extremely simple example of a REST API is <a href="http://placekitten.com">placekitten.com</a>, an API that serves images of kitten.  Here's how it works.  If you point your browser to <code>http://placekitten.com/&lt;width&gt;/&lt;height&gt;</code>, it returns an picture of kittens with that width and height. If you go to <code>/g/&lt;width&gt;/&lt;height&gt;</code> the image will be grayscale.  Go to these urls to see a very basic REST API in action.</p>
+<p>API's let us access external data in an easy, standardized way.  In the webapp world, when we say API we usually mean <a href="http://en.wikipedia.org/wiki/REST_API">REST (or RESTful) API</a>, which can be effectively thought of as an API that is accessible at a series of URL addresses. An extremely simple example of a REST API is <a href="http://placekitten.com">placekitten.com</a>, an API that serves images of kitten.  Here's how it works.  If you point your browser to <code>http://placekitten.com/&lt;width&gt;/&lt;height&gt;</code>, it returns an picture of kittens with that width and height. If you go to <code>/g/&lt;width&gt;/&lt;height&gt;</code> the image will be grayscale.  Go to these urls to see a very basic REST API in action.</p>
 
 <table>
 <thead>
@@ -678,11 +684,61 @@ def search(search_query):
 
 <blockquote><p>Many web designers use placeholder image APIs like <a href="http://placekitten.com">placekitten.com</a> or <a href="http://placehold.it">placehold.it</a> in their designs, as they speed up prototyping.</p></blockquote>
 
+<p><a id="the-anatomy-of-a-url"></a></p>
+
+<h3>2.1.2 The Anatomy of a URL</h3>
+
+<p>From here out we will be using some increasingly complex <a href="http://en.wikipedia.org/wiki/Uniform_resource_locator">URLs</a>, and it is important to develop a vocabulary for the parts of the url and their purpose.  To do this, we will dissect this url (which we will use in <a href="#the-github-search-api">section 2.2</a> when we work with Github's API):</p>
+
+<pre><code>https://api.github.com/search/repositories?q=tetris+language:assembly&amp;sort=stars&amp;order=desc
+</code></pre>
+
+<p>This URL breaks up into five parts:</p>
+
+<ol>
+<li>The protocol and separator (<code>https://</code>): We are using the <a href="http://en.wikipedia.org/wiki/Https">HTTPS</a> protocol, detailed in <a href="#http">section 2.1.5</a>.</li>
+<li>The separator (<code>://</code>): A colon and two slashes always follow the protocol is used to separate the protocol and the host.</li>
+<li>The host (<code>api.github.com</code>): A host is usually a domain name (this is the case for our url), but it could also be an IP Address.</li>
+<li>The path (<code>/search/repositories</code>): Everything from the first <code>/</code> up to the <code>?</code> that starts the query string is the path. When accessing a web page, often these paths will be hierarchical and include a filename at the end, like <code>/blog/2014/02/post.html</code>.  When making API calls, these paths are the API method that is being called.  Here, we are searching repositories.</li>
+<li><p>The query string (<code>?q=tetris+language:assembly&amp;sort=stars&amp;order=desc</code>): is a series of key-value pairs of the form <code>&lt;key&gt;=&lt;value&gt;</code>. The query string starts with a <code>?</code> and each key-value pair is separated by <code>&amp;</code>.  The key value pairs here are:</p>
+
+<table>
+<thead>
+<tr>
+<th>Key </th>
+<th> Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>q</code> </td>
+<td> <code>tetris+language:assembly</code></td>
+</tr>
+<tr>
+<td><code>sort</code> </td>
+<td> <code>stars</code></td>
+</tr>
+<tr>
+<td><code>order</code> </td>
+<td> <code>desc</code></td>
+</tr>
+</tbody>
+</table>
+
+
+<blockquote><p>Note that the <code>+</code> and <code>:</code> do not denote keys or values, and are all part of the <code>q</code> value.  The inclusion of these characters is specific to Github's API, and we will learn more about why they are there in <a href="#the-github-search-api">section 2.2</a>.  From a URL standard perspective, <code>tetris+language:assembly</code> is one big value for the <code>q</code> key.</p></blockquote>
+
+<p>For the most part, the job of the query string is to specify the details of the data being returned.  While the <code>q</code> key is somewhat complicated, we can see clearly that the results of this search are being sorted by stars in descending order.</p></li>
+</ol>
+
+
+<blockquote><p>This URL schema is by no means complete; it encompasses the parts of a URL that are most relevant to API programming.  For a more complete view, check out <a href="http://www.mattcutts.com/blog/seo-glossary-url-definitions/">this blog post</a> by Google's Matt Cutts, or this exhaustive <a href="http://en.wikipedia.org/wiki/URI_scheme#Generic_syntax">Wikipedia entry</a>.</p></blockquote>
+
 <p><a id="data-in-json"></a></p>
 
-<h3>2.1.2 Data in JSON</h3>
+<h3>2.1.3 Data in JSON</h3>
 
-<p>The data that we usually want to get from a RESTful API is text, not images, and to organize this text we use the <a href="json">JSON</a>, or JavaScript Object Notation text format.  JSON is a text format that makes data easy to read and simple to manipulate.  Here's a quick rundown:</p>
+<p>The data that we usually want to get from a RESTful API is text, not images, and to organize this text we use the <a href="http://en.wikipedia.org/wiki/Json">JSON</a>, or JavaScript Object Notation text format.  JSON is a text format that makes data easy to read and simple to manipulate.  Here's a quick rundown:</p>
 
 <p>Most JSON documents start and end with braces (<code>{ }</code>).  We'll learn what these are later.</p>
 
@@ -798,7 +854,7 @@ def search(search_query):
 
 <p><a id="viewing-json-in-the-browser"></a></p>
 
-<h3>2.1.3 Viewing JSON in the Browser</h3>
+<h3>2.1.4 Viewing JSON in the Browser</h3>
 
 <p>JSON is the most common data format returned by RESTful APIs.  For example, <a href="http://colr.org">colr.org</a>'s <a href="http://colr.org/api.html">API</a> returns it's responses in JSON format.  Try it: point your browser to <a href="http://www.colr.org/json/color/e0d1dd">http://www.colr.org/json/color/e0d1dd</a>.  You'll probably see some unreadable mess like this:</p>
 
@@ -813,7 +869,7 @@ def search(search_query):
  "new_color": "e0d1dd"}
 </code></pre>
 
-<p>To view JSON in the browser, use a browser extension like JSONView (<a href="json-chrome">Chrome</a>, <a href="json-firefox">Firefox</a>) or JSON Formatter (<a href="json-safari">Safari</a>).  Install the appropriate extension and reload <a href="http://www.colr.org/json/color/e0d1dd">that url</a>.  You should now see the JSON with the proper indentation that we like.  If that didn't work for you or you're using another browser, copy the mess into <a href="http://jsonprettyprint.com/">jsonprettyprint.com</a> to see it nicely formatted.</p>
+<p>To view JSON in the browser, use a browser extension like JSONView (<a href="https://chrome.google.com/webstore/detail/jsonview/chklaanhfefbnpoihckbnefhakgolnmc?hl=en">Chrome</a>, <a href="https://addons.mozilla.org/en-us/firefox/addon/jsonview/">Firefox</a>) or JSON Formatter (<a href="https://github.com/rfletcher/safari-json-formatter">Safari</a>).  Install the appropriate extension and reload <a href="http://www.colr.org/json/color/e0d1dd">that url</a>.  You should now see the JSON with the proper indentation that we like.  If that didn't work for you or you're using another browser, copy the mess into <a href="http://jsonprettyprint.com/">jsonprettyprint.com</a> to see it nicely formatted.</p>
 
 <p>It should look like this:</p>
 
@@ -899,11 +955,13 @@ def search(search_query):
 
 <p><a id="types-of-requests"></a></p>
 
-<h3>2.1.4 Extension: Types of Requests</h3>
+<h3>2.1.5 Extension: HTTP</h3>
 
 <p><a id="the-github-search-api"></a></p>
 
 <h2>2.2 The GitHub Search API</h2>
+
+<p>In order to figure out whether or not someone has made the app that was searched for using the our search route (started in <a href="#dynamic-routes">1.3.2</a>), we'll use the Github Search API.  The first step for using any API is to familiarize yourself with its documentation, and so our first stop is to <a href="http://developer.github.com/v3/search/">developer.github.com/v3/search</a>.  We know that we want to search for repositories, so we'll focus on the <a href="http://developer.github.com/v3/search/#search-repositories">"Search repositories" section</a>.</p>
 
 <p><a id="using-curl"></a></p>
 
@@ -1011,6 +1069,6 @@ def search(search_query):
 
 <p><a id="using-icon-fonts"></a></p>
 
-<h3>4.2.4 Extension: Using Icon Fonts]-</h3>
+<h3>4.2.4 Extension: Using Icon Fonts</h3>
 </body>
 </html>
