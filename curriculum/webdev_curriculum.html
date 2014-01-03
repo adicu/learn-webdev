@@ -1,0 +1,1016 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<style>
+body {
+  font-family: Helvetica, arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  background-color: white;
+  padding: 30px; }
+
+body > *:first-child {
+  margin-top: 0 !important; }
+body > *:last-child {
+  margin-bottom: 0 !important; }
+
+a {
+  color: #4183C4; }
+a.absent {
+  color: #cc0000; }
+a.anchor {
+  display: block;
+  padding-left: 30px;
+  margin-left: -30px;
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0; }
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 20px 0 10px;
+  padding: 0;
+  font-weight: bold;
+  -webkit-font-smoothing: antialiased;
+  cursor: text;
+  position: relative; }
+
+h1:hover a.anchor, h2:hover a.anchor, h3:hover a.anchor, h4:hover a.anchor, h5:hover a.anchor, h6:hover a.anchor {
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA09pVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoMTMuMCAyMDEyMDMwNS5tLjQxNSAyMDEyLzAzLzA1OjIxOjAwOjAwKSAgKE1hY2ludG9zaCkiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6OUM2NjlDQjI4ODBGMTFFMTg1ODlEODNERDJBRjUwQTQiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6OUM2NjlDQjM4ODBGMTFFMTg1ODlEODNERDJBRjUwQTQiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo5QzY2OUNCMDg4MEYxMUUxODU4OUQ4M0REMkFGNTBBNCIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo5QzY2OUNCMTg4MEYxMUUxODU4OUQ4M0REMkFGNTBBNCIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PsQhXeAAAABfSURBVHjaYvz//z8DJYCRUgMYQAbAMBQIAvEqkBQWXI6sHqwHiwG70TTBxGaiWwjCTGgOUgJiF1J8wMRAIUA34B4Q76HUBelAfJYSA0CuMIEaRP8wGIkGMA54bgQIMACAmkXJi0hKJQAAAABJRU5ErkJggg==) no-repeat 10px center;
+  text-decoration: none; }
+
+h1 tt, h1 code {
+  font-size: inherit; }
+
+h2 tt, h2 code {
+  font-size: inherit; }
+
+h3 tt, h3 code {
+  font-size: inherit; }
+
+h4 tt, h4 code {
+  font-size: inherit; }
+
+h5 tt, h5 code {
+  font-size: inherit; }
+
+h6 tt, h6 code {
+  font-size: inherit; }
+
+h1 {
+  font-size: 28px;
+  color: black; }
+
+h2 {
+  font-size: 24px;
+  border-bottom: 1px solid #cccccc;
+  color: black; }
+
+h3 {
+  font-size: 18px; }
+
+h4 {
+  font-size: 16px; }
+
+h5 {
+  font-size: 14px; }
+
+h6 {
+  color: #777777;
+  font-size: 14px; }
+
+p, blockquote, ul, ol, dl, li, table, pre {
+  margin: 15px 0; }
+
+hr {
+  background: transparent url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAYAAAAECAYAAACtBE5DAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNSBNYWNpbnRvc2giIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6OENDRjNBN0E2NTZBMTFFMEI3QjRBODM4NzJDMjlGNDgiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6OENDRjNBN0I2NTZBMTFFMEI3QjRBODM4NzJDMjlGNDgiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo4Q0NGM0E3ODY1NkExMUUwQjdCNEE4Mzg3MkMyOUY0OCIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo4Q0NGM0E3OTY1NkExMUUwQjdCNEE4Mzg3MkMyOUY0OCIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PqqezsUAAAAfSURBVHjaYmRABcYwBiM2QSA4y4hNEKYDQxAEAAIMAHNGAzhkPOlYAAAAAElFTkSuQmCC) repeat-x 0 0;
+  border: 0 none;
+  color: #cccccc;
+  height: 4px;
+  padding: 0;
+}
+
+body > h2:first-child {
+  margin-top: 0;
+  padding-top: 0; }
+body > h1:first-child {
+  margin-top: 0;
+  padding-top: 0; }
+  body > h1:first-child + h2 {
+    margin-top: 0;
+    padding-top: 0; }
+body > h3:first-child, body > h4:first-child, body > h5:first-child, body > h6:first-child {
+  margin-top: 0;
+  padding-top: 0; }
+
+a:first-child h1, a:first-child h2, a:first-child h3, a:first-child h4, a:first-child h5, a:first-child h6 {
+  margin-top: 0;
+  padding-top: 0; }
+
+h1 p, h2 p, h3 p, h4 p, h5 p, h6 p {
+  margin-top: 0; }
+
+li p.first {
+  display: inline-block; }
+li {
+  margin: 0; }
+ul, ol {
+  padding-left: 30px; }
+
+ul :first-child, ol :first-child {
+  margin-top: 0; }
+
+dl {
+  padding: 0; }
+  dl dt {
+    font-size: 14px;
+    font-weight: bold;
+    font-style: italic;
+    padding: 0;
+    margin: 15px 0 5px; }
+    dl dt:first-child {
+      padding: 0; }
+    dl dt > :first-child {
+      margin-top: 0; }
+    dl dt > :last-child {
+      margin-bottom: 0; }
+  dl dd {
+    margin: 0 0 15px;
+    padding: 0 15px; }
+    dl dd > :first-child {
+      margin-top: 0; }
+    dl dd > :last-child {
+      margin-bottom: 0; }
+
+blockquote {
+  border-left: 4px solid #dddddd;
+  padding: 0 15px;
+  color: #777777; }
+  blockquote > :first-child {
+    margin-top: 0; }
+  blockquote > :last-child {
+    margin-bottom: 0; }
+
+table {
+  padding: 0;border-collapse: collapse; }
+  table tr {
+    border-top: 1px solid #cccccc;
+    background-color: white;
+    margin: 0;
+    padding: 0; }
+    table tr:nth-child(2n) {
+      background-color: #f8f8f8; }
+    table tr th {
+      font-weight: bold;
+      border: 1px solid #cccccc;
+      margin: 0;
+      padding: 6px 13px; }
+    table tr td {
+      border: 1px solid #cccccc;
+      margin: 0;
+      padding: 6px 13px; }
+    table tr th :first-child, table tr td :first-child {
+      margin-top: 0; }
+    table tr th :last-child, table tr td :last-child {
+      margin-bottom: 0; }
+
+img {
+  max-width: 100%; }
+
+span.frame {
+  display: block;
+  overflow: hidden; }
+  span.frame > span {
+    border: 1px solid #dddddd;
+    display: block;
+    float: left;
+    overflow: hidden;
+    margin: 13px 0 0;
+    padding: 7px;
+    width: auto; }
+  span.frame span img {
+    display: block;
+    float: left; }
+  span.frame span span {
+    clear: both;
+    color: #333333;
+    display: block;
+    padding: 5px 0 0; }
+span.align-center {
+  display: block;
+  overflow: hidden;
+  clear: both; }
+  span.align-center > span {
+    display: block;
+    overflow: hidden;
+    margin: 13px auto 0;
+    text-align: center; }
+  span.align-center span img {
+    margin: 0 auto;
+    text-align: center; }
+span.align-right {
+  display: block;
+  overflow: hidden;
+  clear: both; }
+  span.align-right > span {
+    display: block;
+    overflow: hidden;
+    margin: 13px 0 0;
+    text-align: right; }
+  span.align-right span img {
+    margin: 0;
+    text-align: right; }
+span.float-left {
+  display: block;
+  margin-right: 13px;
+  overflow: hidden;
+  float: left; }
+  span.float-left span {
+    margin: 13px 0 0; }
+span.float-right {
+  display: block;
+  margin-left: 13px;
+  overflow: hidden;
+  float: right; }
+  span.float-right > span {
+    display: block;
+    overflow: hidden;
+    margin: 13px auto 0;
+    text-align: right; }
+
+code, tt {
+  margin: 0 2px;
+  padding: 0 5px;
+  white-space: nowrap;
+  border: 1px solid #eaeaea;
+  background-color: #f8f8f8;
+  border-radius: 3px; }
+
+pre code {
+  margin: 0;
+  padding: 0;
+  white-space: pre;
+  border: none;
+  background: transparent; }
+
+.highlight pre {
+  background-color: #f8f8f8;
+  border: 1px solid #cccccc;
+  font-size: 13px;
+  line-height: 19px;
+  overflow: auto;
+  padding: 6px 10px;
+  border-radius: 3px; }
+
+pre {
+  background-color: #f8f8f8;
+  border: 1px solid #cccccc;
+  font-size: 13px;
+  line-height: 19px;
+  overflow: auto;
+  padding: 6px 10px;
+  border-radius: 3px; }
+  pre code, pre tt {
+    background-color: transparent;
+    border: none; }
+
+sup {
+    font-size: 0.83em;
+    vertical-align: super;
+    line-height: 0;
+}
+* {
+	-webkit-print-color-adjust: exact;
+}
+@media screen and (min-width: 914px) {
+    body {
+        width: 854px;
+        margin:0 auto;
+    }
+}
+@media print {
+	table, pre {
+		page-break-inside: avoid;
+	}
+	pre {
+		word-wrap: break-word;
+	}
+}
+</style>
+<title>An Accelerated Introduction to Web Development</title>
+
+</head>
+<body>
+<p><a id="top"></a></p>
+
+<h1>An Accelerated Introduction to Web Development</h1>
+
+<p><em>Building a webapp in Flask.</em></p>
+
+<p>Much of this tutorial is adapted from the <a href="flask">Flask website</a>.  Written and developed by <a href="mailto:dan@adicu.com">Dan Schlosser</a> and <a href="http://adicu.com">ADI</a>.</p>
+
+<p><a id="about-this-document"></a></p>
+
+<h2>About This Document</h2>
+
+<p><a id="methodology"></a></p>
+
+<h3>Methodology</h3>
+
+<p>For the purposes of learning to make a web application using <a href="#flask">Flask</a>, we will write an entire web application, taking time to dissect how each piece functions and fits.  Each section is intended to be modular, but working in order is recommended.</p>
+
+<p><a id="the-end-product"></a></p>
+
+<h3>The End Product</h3>
+
+<p>We will be building a web application throughout this series, called "Has it Been Made Yet?".  It should let users type in a few keywords for a hackathon idea, and then it will tell them whether or not someone has made that idea and hosted it on <a href="github">GitHub</a>.  GitHub is a social network for <a href="open-source">open-source</a> code, and is the most popular place for programmers to host their projects (and therefore, a great place to check for our app).</p>
+
+<p><a id="table-of-contents"></a></p>
+
+<h2>Table of Contents</h2>
+
+<ul>
+<li><a href="#flask">1.0 Flask</a>
+
+<ul>
+<li><a href="#what-is-flask">1.1 What is Flask</a>
+
+<ul>
+<li><a href="#how-a-flask-app-works">1.1.1 How a Flask App Works</a></li>
+<li><a href="#the-anatomy-of-a-flask-app">1.1.2 The Anatomy of a Flask App</a></li>
+<li><a href="#dependancies-in-python">1.1.3 Dependancies in Python</a></li>
+</ul>
+</li>
+<li><a href="#hello-world-in-flask">1.2 Hello World</a>
+
+<ul>
+<li><a href="#editing-app-py">1.2.1 Editing app.py</a></li>
+<li><a href="#running-a-flask-app">1.2.2 Running a Flask App</a></li>
+<li><a href="#developing-with-flask">1.2.3 Developing with Flask</a></li>
+</ul>
+</li>
+<li><a href="#working-with-routes">1.3 Working with Routes</a>
+
+<ul>
+<li><a href="#static-routes">1.3.1 Static Routes</a></li>
+<li><a href="#dynamic-routes">1.3.2 Dynamic Routes</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#apis">2.0 APIs</a>
+
+<ul>
+<li><a href="#api-basics">2.1 API Basics</a>
+
+<ul>
+<li><a href="#rest-apis">2.1.1 REST APIs</a></li>
+<li><a href="#data-in-json">2.1.2 Data in JSON</a></li>
+<li><a href="#viewing-json-in-the-browser">2.1.3 Viewing JSON in the Browser</a></li>
+<li><a href="#types-of-requests">2.1.4 Extension: Types of Requests</a></li>
+</ul>
+</li>
+<li><a href="#the-github-search-api">2.2 The GitHub Search API</a>
+
+<ul>
+<li><a href="#using-curl">2.2.1 Using cURL</a></li>
+<li><a href="#using-python">2.2.2 Using Python</a></li>
+<li><a href="#using-flask-extending-the-search-route">2.2.3 Using Flask: Extending the Search Route</a></li>
+<li><a href="#parsing-json-in-flask">2.2.4 Extension: Parsing JSON in Flask</a></li>
+<li><a href="#using-javascript">2.2.5 Extension: Using JavaScript</a></li>
+</ul>
+</li>
+<li><a href="#authentication">2.3 Authentication</a>
+
+<ul>
+<li><a href="#basic-authentication">2.3.1 Basic Authentication</a></li>
+<li><a href="#oauth">2.3.2 Extension: OAuth</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#html-and-css">3.0 HTML and Templating</a>
+
+<ul>
+<li><a href="#html-basics">3.1 HTML Basics</a>
+
+<ul>
+<li><a href="#what-is-HTML">3.1.1 What is HTML</a></li>
+<li><a href="#anatomy-of-an-html-document">3.1.2 Anatomy of an HTML Document</a></li>
+<li><a href="#an-overview-of-common-tags">3.1.3 An Overview of Common Tags</a></li>
+</ul>
+</li>
+<li><a href="#templating-in-flask">3.2 Templating in Flask</a>
+
+<ul>
+<li><a href="#a-simple-example-index-html">3.2.1 A Simple Example: index.html</a></li>
+<li><a href="#extending-templates">3.2.2 Extending Templates</a></li>
+<li><a href="#template-variables">3.2.2 Template Variables</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#css">4.0 CSS</a>
+
+<ul>
+<li><a href="#css-basics">4.1 CSS Basics</a>
+
+<ul>
+<li><a href="#selectors">4.1.1 Selectors</a></li>
+<li><a href="#css-best-practices">4.1.2 CSS Best Practices</a></li>
+</ul>
+</li>
+<li><a href="#external-libraries">4.2 External Libraries</a>
+
+<ul>
+<li><a href="#installation-and-template-setup">4.2.1 Installation and Template Setup</a></li>
+<li><a href="#using-foundation">4.2.2 Using Foundation</a></li>
+<li><a href="#rewriting-templates">4.2.3 Rewriting Templates</a></li>
+<li><a href="#using-icon-fonts">4.2.4 Extension: Using Icon Fonts</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+
+<hr />
+
+<p><a id="flask"></a></p>
+
+<h1>1.0 Flask</h1>
+
+<p><a id="what-is-flask"></a></p>
+
+<h2>1.1 What is Flask</h2>
+
+<p><a href="flask">Flask</a> is a microframework for Python.  It lets you build web apps using Python.  It is very easy to setup and has excellent documentation on its <a href="flask">website</a>.</p>
+
+<p><a id="how-a-flask-app-works"></a></p>
+
+<h3>1.1.1 How a Flask App Works</h3>
+
+<p>Flask works with a <a href="client-server">client-server model</a>.  The server, written in Python, has functions that take requests from clients (i.e. your web browser) and return web content to be displayed by the client.  Flask servers have the ability of serving <a href="dynamic-content">dynamic web pages</a>, or pages that are generated every time you load the page.  For example, dynamic content could be of such pages include information stored in a database or a user account.</p>
+
+<p><a id="the-anatomy-of-a-flask-app"></a></p>
+
+<h3>1.1.2 The Anatomy of a Flask App</h3>
+
+<p>This is a very basic directory structure for a Flask webapp.</p>
+
+<pre><code>ProjectDirectory/
+├── app.py
+├── requirements.txt
+├── static/
+│   ├── css/
+│   ├── img/
+│   └── js/
+└── templates/
+</code></pre>
+
+<ul>
+<li><code>ProjectDirectory/</code> - Everything for your app goes in this folder.  Rename this to the name of your app.</li>
+<li><code>app.py</code> - All of the Python/Flask code and server logic gets written in this file.</li>
+<li><code>requirements.txt</code> - A list of all of the dependancies for your project.  See more about dependancies and installing them in <a href="#dependancies-in-python">SOME UNDETERMINED SECTION</a>.</li>
+<li><code>static/</code> - This folder holds all your static files.  Static files include:
+
+<ul>
+<li><code>js/</code> - Javascript files.</li>
+<li><code>css/</code> - CSS files.</li>
+<li><code>img/</code> - Image fls.</li>
+</ul>
+</li>
+<li><code>templates/</code> - This folder holds all your Flask templates.  Our HTML files will go here.  There are special features offered by Flask that make templates different than basic HTML files, explored in <a href="#templating-in-flask">Section 3.2</a>.</li>
+</ul>
+
+
+<p><a id="hello-world-in-flask"></a></p>
+
+<h2>1.2 Hello World in Flask</h2>
+
+<p>In order to write the Hello World app, we only need to edit one file: <code>app.py</code>.  It's that easy!</p>
+
+<p><a id="editing-app-py"></a></p>
+
+<h3>1.2.1 Editing app.py</h3>
+
+<p>First, import the <code>Flask</code> class from the <code>flask</code> module.</p>
+
+<pre><code>from flask import Flask
+</code></pre>
+
+<p>Then, construct the Flask <code>app</code> variable.  We'll pass around this variable whenever we want to access information about the server. We pass <code>__name__</code> into the <code>Flask()</code> function so that your flask app is associated with the directory structure we created in <a href="#the-anatomy-of-a-flask-app">Section 1.1</a>.</p>
+
+<pre><code>app = Flask(__name__)
+</code></pre>
+
+<p>Next, apply the <code>@app.route("/")</code> <a href="decorators">decorator</a> to a function called <code>hello()</code>.  It returns just the string <code>"Hello World!"</code>.  By doing this, we are making a <a href="route">route</a>.  The <code>route()</code> decorator binds the URL <code>http://yourwebapp.com/</code> to this function, effectively adding a new page to your app.  Functions with the <code>route()</code> decorator can return text strings or HTML, and whatever is returned will be displayed by the client.</p>
+
+<pre><code>@app.route("/")
+def hello():
+    return "Hello World!"
+</code></pre>
+
+<p>Finally, call <code>app.run()</code> when the file is executed.  Once <code>app.run()</code> is called, the server will start accepting requests from the client.</p>
+
+<pre><code>if __name__ == "__main__":
+    app.run()
+</code></pre>
+
+<p>This leaves us with a completed Hello World program in Flask:</p>
+
+<pre><code>from flask import Flask
+
+app = Flask(__name__)
+
+@app.route("/")
+def hello():
+    return "Hello World!"
+
+if __name__ == "__main__":
+    app.run()
+</code></pre>
+
+<p><a id="running-a-flask-app"></a></p>
+
+<h3>1.2.2 Running a Flask App</h3>
+
+<p>To run our Hello World app, just type the following command in the Project Directory folder:</p>
+
+<pre><code>$ python app.py
+</code></pre>
+
+<p>If it's working, it should print the lines:</p>
+
+<pre><code>* Running on http://127.0.0.1:5000/
+</code></pre>
+
+<p>Point your browser to that URL and bask in the awesomeness!</p>
+
+<blockquote><p>Wondering what that weird URL is?  <code>127.0.0.1</code> is the IP address for <a href="localhost">localhost</a>, or your local computer.  When we run a Flask server with <code>python app.py</code>, it is running only on your machine, not the internet.  The <code>:5000</code> bit is the <a href="port">port</a>, or specific place where your app is running.  Developing locally is much easier and safer than publishing your app to the internet every time you want to test something, and is considered good practice.  Also, instead of typing out <code>http://127.0.0.1:5000</code> every time you want to see your app, you can also point your browser to <code>http://localhost:5000</code>.  The two are equivalent.</p></blockquote>
+
+<p><a id="developing-with-flask"></a></p>
+
+<h3>1.2.3 Developing with Flask</h3>
+
+<p>Flask is great for development.  It offers very helpful error messages and prints stack traces well in the browser, if instructed to.  To enable these debugging features and (more importantly) automatic reload, edit <code>app.py</code> and add a statement configuring the <code>app</code> object.</p>
+
+<pre><code>from flask import Flask
+
+app = Flask(__name__)
+app.config["DEBUG"] = True  # Disable this for deployment
+
+@app.route("/")
+def hello():
+    return "Hello World!"
+
+if __name__ == "__main__":
+    app.run()
+</code></pre>
+
+<p>With this modification, edit the string returned by the <code>hello()</code> function and refresh your browser to watch it change!  When you run the server now, it should also print:</p>
+
+<pre><code>* Restarting on reloader
+</code></pre>
+
+<p><a id="working-with-routes"></a></p>
+
+<h2>1.3 Working with Routes</h2>
+
+<p>Let's define a few more routes for our app. Again, <a href="route">routes</a> are URLs that are supported by the server. We use the <a href="decorators">decorator</a> <code>app.route()</code> to tie the decorated function to the URL given in the parenthesis.</p>
+
+<p><a id="static-routes"></a></p>
+
+<h3>1.3.1 Static Routes</h3>
+
+<p>First, lets make a route that lets the client get the name of the creator of this app.  Start by defining a function called <code>name()</code>, and have it return your name as a string.</p>
+
+<pre><code>def name():
+    return "Your Name"
+</code></pre>
+
+<p>Now we'll apply the decorator <code>route()</code>.  inside the parenthesis for the decorator, include the path <code>"/name"</code>.  Paths in Flask always start with a <code>/</code>.</p>
+
+<pre><code>@app.route("/name")
+def name():
+    return "Your Name"
+</code></pre>
+
+<p>Save.  With your server <a href="#running-a-flask-app">running</a> or <a href="#developing-with-flask">reloaded</a>,  point your browser to <code>"http://localhost:5000/name"</code> and your name will appear!  Our <code>/name</code> route is static, because it returns the same string every time.</p>
+
+<p>Now, make another static route accessible at <code>http://localhost:5000/website</code> that returns the URL of your Github, Twitter, or personal website (don't forget the <code>http://</code>!). We'll use this route later.</p>
+
+<blockquote><p>We won't show the code for the website route here, but it's implementation is in the sample code for your reference.</p></blockquote>
+
+<p><a id="dynamic-routes"></a></p>
+
+<h3>1.3.2 Dynamic Routes</h3>
+
+<p>Dynamic routes are what make using Flask so valuable.  Start off by making a static route called <code>search</code>.  It can return any string you want.  We'll edit it to return the results of our web search.</p>
+
+<pre><code>@app.route("/search")
+def search():
+    return "Search"
+</code></pre>
+
+<p>To make our route dynamic, first we will modify the url to take a variable parameter named <code>search_query</code>.</p>
+
+<pre><code>@app.route("/search/&lt;search_query&gt;")
+</code></pre>
+
+<p>Then, modify the <code>search</code> function to take a string parameter <code>search_query</code>, and return that.</p>
+
+<pre><code>@app.route("/search/&lt;search_query&gt;")
+def search(search_query):
+    return search_query
+</code></pre>
+
+<p>Save and reload your server as needed, and navigate to <code>http://localhost:5000/search/test</code> and see <code>test</code> appear as the returned page.  If you change what comes after the <code>/search/</code> in the URL, it will be displayed in the browser.  We will soon modify this route to return actual search results.</p>
+
+<hr />
+
+<p><a id="apis"></a></p>
+
+<h1>2.0 APIs</h1>
+
+<p><a id="api-basics"></a></p>
+
+<h2>2.1 API Basics</h2>
+
+<p>At this point, our server can handle searches to our system, but it doesn't do anything with them (it just spits them back out).  What we need next is to search Github for projects with the same keywords and return them to the client.  To do this, we will use Github's <a href="api">API</a>, or Application Programmer Interface.</p>
+
+<p><a id="rest-apis"></a></p>
+
+<h3>2.1.1 REST APIs</h3>
+
+<p>API's let us access external data in an easy, standardized way.  In the webapp world, when we say API we usually mean <a href="rest-api">REST (or RESTful) API</a>, which can be effectively thought of as an API that is accessible at a series of URL addresses. An extremely simple example of a REST API is <a href="http://placekitten.com">placekitten.com</a>, an API that serves images of kitten.  Here's how it works.  If you point your browser to <code>http://placekitten.com/&lt;width&gt;/&lt;height&gt;</code>, it returns an picture of kittens with that width and height. If you go to <code>/g/&lt;width&gt;/&lt;height&gt;</code> the image will be grayscale.  Go to these urls to see a very basic REST API in action.</p>
+
+<table>
+<thead>
+<tr>
+<th>URL </th>
+<th> Image</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="http://placekitten.com/200/100"><code>http://placekitten.com/200/100</code></a> </td>
+<td> <img src="http://placekitten.com/200/100" alt="http://placekitten.com/200/100" /></td>
+</tr>
+<tr>
+<td><a href="http://placekitten.com/300/250"><code>http://placekitten.com/300/250</code></a> </td>
+<td> <img src="http://placekitten.com/300/250" alt="http://placekitten.com/200/300" /></td>
+</tr>
+<tr>
+<td><a href="http://placekitten.com/g/300/250"><code>http://placekitten.com/g/300/250</code></a> </td>
+<td> <img src="http://placekitten.com/g/300/250" alt="http://placekitten.com/g/200/300" /></td>
+</tr>
+</tbody>
+</table>
+
+
+<p>The advantage in using a REST API here is that we don't need to remember the URL of the image we want, just the qualities (grayscale, 500x500).  Then, using the <em>documentation</em> provided at <a href="http://placekitten.com">placekitten.com</a>, we can derive the URL necessary to find the image we want.</p>
+
+<blockquote><p>Many web designers use placeholder image APIs like <a href="http://placekitten.com">placekitten.com</a> or <a href="http://placehold.it">placehold.it</a> in their designs, as they speed up prototyping.</p></blockquote>
+
+<p><a id="data-in-json"></a></p>
+
+<h3>2.1.2 Data in JSON</h3>
+
+<p>The data that we usually want to get from a RESTful API is text, not images, and to organize this text we use the <a href="json">JSON</a>, or JavaScript Object Notation text format.  JSON is a text format that makes data easy to read and simple to manipulate.  Here's a quick rundown:</p>
+
+<p>Most JSON documents start and end with braces (<code>{ }</code>).  We'll learn what these are later.</p>
+
+<pre><code>{ }
+</code></pre>
+
+<p>The core element of JSON documents are key-value pairs.  A key is a string, and a value can be (amongst other things) a string. Keys and values are separated by a colon (<code>:</code>).</p>
+
+<pre><code>{ "name": "Jane Doe" }
+</code></pre>
+
+<p>Whitespace non-significant, and should be added for readability.</p>
+
+<pre><code>{
+    "name": "Jane Doe"
+}
+</code></pre>
+
+<p>Multiple key-value pairs can be separated by commas (<code>,</code>).</p>
+
+<pre><code>{
+    "name": "Jane Doe",
+    "occupation": "student",
+    "school": "Columbia University"
+}
+</code></pre>
+
+<p>Values can also be decimal numbers, boolean values (<code>true</code> or <code>false</code>), or <code>null</code>.</p>
+
+<pre><code>{
+    "name": "Jane Doe",
+    "age": 20,
+    "female": true,
+    "male": false,
+    "occupation": "student",
+    "school": "Columbia SEAS",
+    "children": null
+}
+</code></pre>
+
+<p>Values can also be arrays.  Arrays are comma-separated values surrounded by brackets (<code>[ ]</code>).  Values in arrays should be all of the same type, but don't have to be.</p>
+
+<pre><code>{
+    "name": "Jane Doe",
+    "age": 20,
+    "female": true,
+    "male": false,
+    "occupation": "student",
+    "school": "Columbia SEAS",
+    "children": null,
+    "hobbies": [
+        "programming",
+        "cello",
+        "painting",
+        "basketball",
+        "REST APIs"
+    ],
+    "luckynumbers" : [
+        10, 25.3, 404
+    ]
+}
+</code></pre>
+
+<p>The final value type is objects.  Objects are a comma-separated key-value pairs surrounded by braces (<code>{ }</code>).  In fact, our entire JSON document is one big object.</p>
+
+<pre><code>{
+    "name": "Jane Doe",
+    "age": 20,
+    "female": true,
+    "male": false,
+    "occupation": "student",
+    "school": {
+        "fullname": "The Fu Foundation School of Engineering &amp; Applied Science",
+        "university": "Columbia University",
+        "undergrad": true
+    },
+    "children": null,
+    "hobbies": [
+        "programming",
+        "cello",
+        "painting",
+        "basketball",
+        "REST APIs"
+    ],
+    "luckynumbers" : [
+        10, 25.3, 404
+    ]
+}
+</code></pre>
+
+<blockquote><p>Most JSON documents are one big object, but they can also be one big array:</p>
+
+<pre><code>[
+    "This",
+    "Is",
+    {
+        "valid": JSON
+    }
+]
+</code></pre></blockquote>
+
+<p>JSON can represent a wide variety of data, just using the simple types:</p>
+
+<ul>
+<li>Objects</li>
+<li>Arrays</li>
+<li>Strings</li>
+<li>Numbers</li>
+<li>Booleans</li>
+<li><code>null</code></li>
+</ul>
+
+
+<p><a id="viewing-json-in-the-browser"></a></p>
+
+<h3>2.1.3 Viewing JSON in the Browser</h3>
+
+<p>JSON is the most common data format returned by RESTful APIs.  For example, <a href="http://colr.org">colr.org</a>'s <a href="http://colr.org/api.html">API</a> returns it's responses in JSON format.  Try it: point your browser to <a href="http://www.colr.org/json/color/e0d1dd">http://www.colr.org/json/color/e0d1dd</a>.  You'll probably see some unreadable mess like this:</p>
+
+<pre><code>{"colors": [{"timestamp": 1187574833, "hex": "e0d1dd", 
+"id": 19425, "tags":    [{"timestamp": 1111913422, "id": 
+11257, "name": "joyful"}, {"timestamp": 1108110854, 
+"id": 2798, "name": "lilac"}]}], "schemes": [], 
+"schemes_history": {}, "success": true, "colors_history": 
+{"e0d1dd": [{"d_count": 0, "id": "11257", "a_count": 1,
+ "name": "joyful"}, {"d_count": 0, "id": "2798", 
+ "a_count": 1, "name": "lilac"}]}, "messages": [], 
+ "new_color": "e0d1dd"}
+</code></pre>
+
+<p>To view JSON in the browser, use a browser extension like JSONView (<a href="json-chrome">Chrome</a>, <a href="json-firefox">Firefox</a>) or JSON Formatter (<a href="json-safari">Safari</a>).  Install the appropriate extension and reload <a href="http://www.colr.org/json/color/e0d1dd">that url</a>.  You should now see the JSON with the proper indentation that we like.  If that didn't work for you or you're using another browser, copy the mess into <a href="http://jsonprettyprint.com/">jsonprettyprint.com</a> to see it nicely formatted.</p>
+
+<p>It should look like this:</p>
+
+<pre><code>{
+  "colors": [
+    {
+      "timestamp": 1187574833,
+      "hex": "e0d1dd",
+      "id": 19425,
+      "tags": [
+        {
+          "timestamp": 1111913422,
+          "id": 11257,
+          "name": "joyful"
+        },
+        {
+          "timestamp": 1108110854,
+          "id": 2798,
+          "name": "lilac"
+        }
+      ]
+    }
+  ],
+  "schemes": [],
+  "schemes_history": {},
+  "success": true,
+  "colors_history": {
+    "e0d1dd": [
+      {
+        "d_count": 0,
+        "id": "11257",
+        "a_count": 1,
+        "name": "joyful"
+      },
+      {
+        "d_count": 0,
+        "id": "2798",
+        "a_count": 1,
+        "name": "lilac"
+      }
+    ]
+  },
+  "messages": [],
+  "new_color": "e0d1dd"
+}
+</code></pre>
+
+<p>So now that we see it nicely formatted, what are we seeing here?</p>
+
+<p>The document is one big object, with keys   <code>colors</code>, <code>schemes</code>, <code>schemes_history</code>, <code>success</code>, <code>colors_history</code>, <code>messages</code>, and <code>new_color</code>.  The value associated with the key <code>colors</code> is an array containing one color object, which has the keys <code>timestamp</code>, <code>hex</code>, <code>id</code>, and <code>tags</code>.  The value associated with the key <code>tags</code> is also an array of objects, where each of these objects is a tag.</p>
+
+<p>So how did we know that the array for <code>colors</code> held color objects and the array for <code>tags</code> holds tag objects?  We don't.  With JSON, we don't have strictly defined object types like many programming languages do.  We have to trust the creator of the JSON document to store their data in a consistent way.  Because the JSON we are reading is written well, the <code>tags</code> key has an array value that holds objects that look very similar and have the attributes of a tag.  The API call we are making is for one specific color, so it makes sense that array associated with the <code>colors</code> key has only color object in it.</p>
+
+<p>Try out these other API calls (<code>http://colr.org&lt;path&gt;</code>) to see how colr.org used this JSON structure to return different types of results:</p>
+
+<table>
+<thead>
+<tr>
+<th>Path </th>
+<th> Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="http://www.colr.org/json/color/e0d1dd"><code>/json/color/e0d1dd</code></a> </td>
+<td> data for the color with hex value <code>e0d1dd</code></td>
+</tr>
+<tr>
+<td><a href="http://www.colr.org/json/colors/e0d1dd,95604a"><code>/json/colors/e0d1dd,95604a</code></a> </td>
+<td> data for the colors <code>e0d1dd</code> and <code>95604a</code></td>
+</tr>
+<tr>
+<td><a href="http://www.colr.org/json/color/random"><code>/json/color/random</code></a> </td>
+<td> data for random color</td>
+</tr>
+<tr>
+<td><a href="http://www.colr.org/json/color/random/3"><code>/json/colors/random/3</code></a> </td>
+<td> data for three random colors</td>
+</tr>
+</tbody>
+</table>
+
+
+<p><a id="types-of-requests"></a></p>
+
+<h3>2.1.4 Extension: Types of Requests</h3>
+
+<p><a id="the-github-search-api"></a></p>
+
+<h2>2.2 The GitHub Search API</h2>
+
+<p><a id="using-curl"></a></p>
+
+<h3>2.2.1 Using cURL</h3>
+
+<p><a id="using-python"></a></p>
+
+<h3>2.2.2 Using Python</h3>
+
+<p><a id="using-flask-extending-the-search-route"></a></p>
+
+<h3>2.2.3 Using Flask: Extending the Search Route</h3>
+
+<p><a id="parsing-json-in-flask"></a></p>
+
+<h3>2.2.4 Extension: Parsing JSON in Flask</h3>
+
+<p><a id="using-javascript"></a></p>
+
+<h3>2.2.5 Extension: Using JavaScript</h3>
+
+<p><a id="authentication"></a></p>
+
+<h2>2.3 Authentication</h2>
+
+<p><a id="basic-authentication"></a></p>
+
+<h3>2.3.1 Basic Authentication</h3>
+
+<p><a id="oauth"></a></p>
+
+<h3>2.3.2 OAuth</h3>
+
+<hr />
+
+<p><a id="html-and-css"></a></p>
+
+<h1>3.0 HTML and Templating</h1>
+
+<p><a id="html-basics"></a></p>
+
+<h2>3.1 HTML Basics</h2>
+
+<p><a id="what-is-HTML"></a></p>
+
+<h3>3.1.1 What is HTML</h3>
+
+<p><a id="anatomy-of-an-html-document"></a></p>
+
+<h3>3.1.2 Anatomy of an HTML Document</h3>
+
+<p><a id="an-overview-of-common-tags"></a></p>
+
+<h3>3.1.3 An Overview of Common Tags</h3>
+
+<p><a id="templating-in-flask"></a></p>
+
+<h2>3.2 Templating in Flask</h2>
+
+<p><a id="a-simple-example-index-html"></a></p>
+
+<h3>3.2.1 A Simple Example: index.html</h3>
+
+<p><a id="extending-templates"></a></p>
+
+<h3>3.2.2 Extending Templates</h3>
+
+<p><a id="template-variables"></a></p>
+
+<h3>3.2.2 Template Variables</h3>
+
+<hr />
+
+<p><a id="css"></a></p>
+
+<h1>4.0 CSS</h1>
+
+<p><a id="css-basics"></a></p>
+
+<h2>4.1 CSS Basics</h2>
+
+<p><a id="selectors"></a></p>
+
+<h3>4.1.1 Selectors</h3>
+
+<p><a id="css-best-practices"></a></p>
+
+<h3>4.1.2 CSS Best Practices</h3>
+
+<p><a id="external-libraries"></a></p>
+
+<h2>4.2 External Libraries</h2>
+
+<p><a id="installation-and-template-setup"></a></p>
+
+<h3>4.2.1 Installation and Template Setup</h3>
+
+<p><a id="using-foundation"></a></p>
+
+<h3>4.2.2 Using Foundation</h3>
+
+<p><a id="rewriting-templates"></a></p>
+
+<h3>4.2.3 Rewriting Templates</h3>
+
+<p><a id="using-icon-fonts"></a></p>
+
+<h3>4.2.4 Extension: Using Icon Fonts]-</h3>
+</body>
+</html>

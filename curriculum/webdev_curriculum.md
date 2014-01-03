@@ -3,7 +3,20 @@
 
 *Building a webapp in Flask.*
 
-Much of this tutorial is adapted from the [Flask website](flask).  Written by [Dan Schlosser](mailto:dan@adicu.com).
+Much of this tutorial is adapted from the [Flask website](flask).  Written and developed by [Dan Schlosser](mailto:dan@adicu.com) and [ADI](http://adicu.com).
+
+<a id="about-this-document"></a>
+## About This Document
+
+<a id="methodology"></a>
+### Methodology
+
+For the purposes of learning to make a web application using [Flask](#flask), we will write an entire web application, taking time to dissect how each piece functions and fits.  Each section is intended to be modular, but working in order is recommended.  
+
+<a id="the-end-product"></a>
+### The End Product
+
+We will be building a web application throughout this series, called "Has it Been Made Yet?".  It should let users type in a few keywords for a hackathon idea, and then it will tell them whether or not someone has made that idea and hosted it on [GitHub](github).  GitHub is a social network for [open-source](open-source) code, and is the most popular place for programmers to host their projects (and therefore, a great place to check for our app).	
 
 <a id="table-of-contents"></a>
 ## Table of Contents
@@ -22,9 +35,11 @@ Much of this tutorial is adapted from the [Flask website](flask).  Written by [D
 		-	[1.3.2 Dynamic Routes](#dynamic-routes)
 -	[2.0 APIs](#apis)
 	-	[2.1 API Basics](#api-basics)
-		-	[2.1.1 What is an API](#what-is-an-api)
-		-	[2.1.2 Data in JSON](#data-in-json)
-		-	[2.1.3 Extension: Types of Requests](#types-of-requests)
+		-	[2.1.1 REST APIs](#rest-apis)
+		-	[2.1.2 The Anatomy of a URL](#the-anatomy-of-a-url)
+		-	[2.1.3 Data in JSON](#data-in-json)
+		-	[2.1.4 Viewing JSON in the Browser](#viewing-json-in-the-browser)
+		-	[2.1.5 Extension: HTTP](#http)
 	-	[2.2 The GitHub Search API](#the-github-search-api)
 		-	[2.2.1 Using cURL](#using-curl)
 		-	[2.2.2 Using Python](#using-python)
@@ -84,17 +99,12 @@ This is a very basic directory structure for a Flask webapp.
 
 -	`ProjectDirectory/` - Everything for your app goes in this folder.  Rename this to the name of your app.
 -	`app.py` - All of the Python/Flask code and server logic gets written in this file.
--	`requirements.txt` - A list of all of the dependancies for your project.  See more about dependancies and installing them in [the next section](#dependancies-in-python).
+-	`requirements.txt` - A list of all of the dependancies for your project.  See more about dependancies and installing them in [SOME UNDETERMINED SECTION](#dependancies-in-python).
 -	`static/` - This folder holds all your static files.  Static files include:
 	-	`js/` - Javascript files.
 	-	`css/` - CSS files.
 	-	`img/` - Image fls.
 -	`templates/` - This folder holds all your Flask templates.  Our HTML files will go here.  There are special features offered by Flask that make templates different than basic HTML files, explored in [Section 3.2](#templating-in-flask).
-
-<a id="dependancies-in-python"></a>
-### 1.1.3 Dependancies in Python
-
-TODO: Question: will this section already be covered in the intro to Python workshop on Saturday?
 
 <a id="hello-world-in-flask"></a>
 ## 1.2 Hello World in Flask
@@ -221,22 +231,247 @@ Save and reload your server as needed, and navigate to `http://localhost:5000/se
 ------------------------
 
 <a id="apis"></a>
-# 2.0 APIs
+# 2.0 APIs 
 
 <a id="api-basics"></a>
 ## 2.1 API Basics
 
-<a id="what-is-an-api"></a>
-### 2.1.1 What is an API
+At this point, our server can handle searches to our system, but it doesn't do anything with them (it just spits them back out).  What we need next is to search Github for projects with the same keywords and return them to the client.  To do this, we will use Github's [API](api), or Application Programmer Interface.
+
+This section will take a step aside from our Flask project to build a foundation of knowledge around APIs and how they are used.  We will return to our app in [section 2.2](#the-github-search-api).
+
+<a id="rest-apis"></a>
+### 2.1.1 REST APIs
+
+API's let us access external data in an easy, standardized way.  In the webapp world, when we say API we usually mean [REST (or RESTful) API](rest-api), which can be effectively thought of as an API that is accessible at a series of URL addresses. An extremely simple example of a REST API is [placekitten.com](http://placekitten.com), an API that serves images of kitten.  Here's how it works.  If you point your browser to `http://placekitten.com/<width>/<height>`, it returns an picture of kittens with that width and height. If you go to `/g/<width>/<height>` the image will be grayscale.  Go to these urls to see a very basic REST API in action.
+
+URL | Image
+------|-----
+[`http://placekitten.com/200/100`](http://placekitten.com/200/100) | ![http://placekitten.com/200/100](http://placekitten.com/200/100)
+[`http://placekitten.com/300/250`](http://placekitten.com/300/250) | ![http://placekitten.com/200/300](http://placekitten.com/300/250)
+[`http://placekitten.com/g/300/250`](http://placekitten.com/g/300/250) | ![http://placekitten.com/g/200/300](http://placekitten.com/g/300/250)
+
+The advantage in using a REST API here is that we don't need to remember the URL of the image we want, just the qualities (grayscale, 500x500).  Then, using the *documentation* provided at [placekitten.com](http://placekitten.com), we can derive the URL necessary to find the image we want.
+
+> Many web designers use placeholder image APIs like [placekitten.com](http://placekitten.com) or [placehold.it](http://placehold.it) in their designs, as they speed up prototyping.  
+
+<a id="the-anatomy-of-a-url"></a>
+### 2.1.2 The Anatomy of a URL
+
+From here out we will be using some increasingly complex [URLs](urls), and it is important to develop a vocabulary for the parts of the url and their purpose.  To do this, we will dissect this url (which we will use in [section 2.2](#the-github-search-api) when we work with Github's API):
+
+	https://api.github.com/search/repositories?q=tetris+language:assembly&sort=stars&order=desc
+	
+This URL breaks up into five parts:
+
+1.	The protocol and separator (`https://`): We are using the [HTTPS](https) protocol, detailed in [section 2.1.5](#http).  
+2.	The separator (`://`): A colon and two slashes always follow the protocol is used to separate the protocol and the host.
+3.	The host (`api.github.com`): A host is usually a domain name (this is the case for our url), but it could also be an IP Address.
+4.	The path (`/search/repositories`): Everything from the first `/` up to the `?` that starts the query string is the path. When accessing a web page, often these paths will be hierarchical and include a filename at the end, like `/blog/2014/02/post.html`.  When making API calls, these paths are the API method that is being called.  Here, we are searching repositories.
+5.	The query string (`?q=tetris+language:assembly&sort=stars&order=desc`): is a series of key-value pairs of the form `<key>=<value>`. The query string starts with a `?` and each key-value pair is separated by `&`.  The key value pairs here are:
+	
+	Key | Value
+	----|--------------------------
+	`q` | `tetris+language:assembly`
+	`sort` | `stars`
+	`order` | `desc`
+	
+	>Note that the `+` and `:` do not denote keys or values, and are all part of the `q` value.  The inclusion of these characters is specific to Github's API, and we will learn more about why they are there in [section 2.2](#the-github-search-api).  From a URL standard perspective, `tetris+language:assembly` is one big value for the `q` key.  
+	
+	For the most part, the job of the query string is to specify the details of the data being returned.  While the `q` key is somewhat complicated, we can see clearly that the results of this search are being sorted by stars in descending order.
+	
+> This URL schema is by no means complete; it encompasses the parts of a URL that are most relevant to API programming.  For a more complete view, check out [this blog post](url-google) by Google's Matt Cutts, or this exhaustive [Wikipedia entry](url-wikipedia).
 
 <a id="data-in-json"></a>
-### 2.1.2 Data in JSON
+### 2.1.3 Data in JSON
+
+The data that we usually want to get from a RESTful API is text, not images, and to organize this text we use the [JSON](json), or JavaScript Object Notation text format.  JSON is a text format that makes data easy to read and simple to manipulate.  Here's a quick rundown:
+
+Most JSON documents start and end with braces (`{ }`).  We'll learn what these are later.
+
+	{ }
+	
+The core element of JSON documents are key-value pairs.  A key is a string, and a value can be (amongst other things) a string. Keys and values are separated by a colon (`:`).
+
+	{ "name": "Jane Doe" }
+	
+Whitespace non-significant, and should be added for readability.
+
+	{
+		"name": "Jane Doe"
+	}
+
+Multiple key-value pairs can be separated by commas (`,`).
+
+	{
+		"name": "Jane Doe",
+		"occupation": "student",
+		"school": "Columbia University"
+	}
+
+Values can also be decimal numbers, boolean values (`true` or `false`), or `null`.
+
+	{
+		"name": "Jane Doe",
+		"age": 20,
+		"female": true,
+		"male": false,
+		"occupation": "student",
+		"school": "Columbia SEAS",
+		"children": null
+	}
+	
+Values can also be arrays.  Arrays are comma-separated values surrounded by brackets (`[ ]`).  Values in arrays should be all of the same type, but don't have to be.
+
+	{
+		"name": "Jane Doe",
+		"age": 20,
+		"female": true,
+		"male": false,
+		"occupation": "student",
+		"school": "Columbia SEAS",
+		"children": null,
+		"hobbies": [
+			"programming",
+			"cello",
+			"painting",
+			"basketball",
+			"REST APIs"
+		],
+		"luckynumbers" : [
+			10, 25.3, 404
+		]
+	}
+
+The final value type is objects.  Objects are a comma-separated key-value pairs surrounded by braces (`{ }`).  In fact, our entire JSON document is one big object.
+
+	{
+		"name": "Jane Doe",
+		"age": 20,
+		"female": true,
+		"male": false,
+		"occupation": "student",
+		"school": {
+			"fullname": "The Fu Foundation School of Engineering & Applied Science",
+			"university": "Columbia University",
+			"undergrad": true
+		},
+		"children": null,
+		"hobbies": [
+			"programming",
+			"cello",
+			"painting",
+			"basketball",
+			"REST APIs"
+		],
+		"luckynumbers" : [
+			10, 25.3, 404
+		]
+	}
+
+> Most JSON documents are one big object, but they can also be one big array:
+>
+>     [
+>         "This",
+>		  "Is",
+>		  {
+>		      "valid": JSON
+>		  }
+>	  ]
+
+JSON can represent a wide variety of data, just using the simple types:
+
+- Objects
+- Arrays
+- Strings
+- Numbers
+- Booleans
+- `null`
+
+<a id="viewing-json-in-the-browser"></a>
+### 2.1.4 Viewing JSON in the Browser
+
+JSON is the most common data format returned by RESTful APIs.  For example, [colr.org](http://colr.org)'s [API](http://colr.org/api.html) returns it's responses in JSON format.  Try it: point your browser to [http://www.colr.org/json/color/e0d1dd](http://www.colr.org/json/color/e0d1dd).  You'll probably see some unreadable mess like this:
+
+	{"colors": [{"timestamp": 1187574833, "hex": "e0d1dd", 
+	"id": 19425, "tags": 	[{"timestamp": 1111913422, "id": 
+	11257, "name": "joyful"}, {"timestamp": 1108110854, 
+	"id": 2798, "name": "lilac"}]}], "schemes": [], 
+	"schemes_history": {}, "success": true, "colors_history": 
+	{"e0d1dd": [{"d_count": 0, "id": "11257", "a_count": 1,
+	 "name": "joyful"}, {"d_count": 0, "id": "2798", 
+	 "a_count": 1, "name": "lilac"}]}, "messages": [], 
+	 "new_color": "e0d1dd"}
+	 
+To view JSON in the browser, use a browser extension like JSONView ([Chrome](json-chrome), [Firefox](json-firefox)) or JSON Formatter ([Safari](json-safari)).  Install the appropriate extension and reload [that url](http://www.colr.org/json/color/e0d1dd).  You should now see the JSON with the proper indentation that we like.  If that didn't work for you or you're using another browser, copy the mess into [jsonprettyprint.com](http://jsonprettyprint.com/) to see it nicely formatted.
+
+It should look like this:
+
+	{
+	  "colors": [
+	    {
+	      "timestamp": 1187574833,
+	      "hex": "e0d1dd",
+	      "id": 19425,
+	      "tags": [
+	        {
+	          "timestamp": 1111913422,
+	          "id": 11257,
+	          "name": "joyful"
+	        },
+	        {
+	          "timestamp": 1108110854,
+	          "id": 2798,
+	          "name": "lilac"
+	        }
+	      ]
+	    }
+	  ],
+	  "schemes": [],
+	  "schemes_history": {},
+	  "success": true,
+	  "colors_history": {
+	    "e0d1dd": [
+	      {
+	        "d_count": 0,
+	        "id": "11257",
+	        "a_count": 1,
+	        "name": "joyful"
+	      },
+	      {
+	        "d_count": 0,
+	        "id": "2798",
+	        "a_count": 1,
+	        "name": "lilac"
+	      }
+	    ]
+	  },
+	  "messages": [],
+	  "new_color": "e0d1dd"
+	}
+	
+So now that we see it nicely formatted, what are we seeing here?  
+
+The document is one big object, with keys 	`colors`, `schemes`, `schemes_history`, `success`, `colors_history`, `messages`, and `new_color`.  The value associated with the key `colors` is an array containing one color object, which has the keys `timestamp`, `hex`, `id`, and `tags`.  The value associated with the key `tags` is also an array of objects, where each of these objects is a tag.
+
+So how did we know that the array for `colors` held color objects and the array for `tags` holds tag objects?  We don't.  With JSON, we don't have strictly defined object types like many programming languages do.  We have to trust the creator of the JSON document to store their data in a consistent way.  Because the JSON we are reading is written well, the `tags` key has an array value that holds objects that look very similar and have the attributes of a tag.  The API call we are making is for one specific color, so it makes sense that array associated with the `colors` key has only color object in it.  
+
+Try out these other API calls (`http://colr.org<path>`) to see how colr.org used this JSON structure to return different types of results:
+
+Path | Description
+----|------------
+[`/json/color/e0d1dd`](http://www.colr.org/json/color/e0d1dd) | data for the color with hex value `e0d1dd`
+[`/json/colors/e0d1dd,95604a`](http://www.colr.org/json/colors/e0d1dd,95604a) | data for the colors `e0d1dd` and `95604a`
+[`/json/color/random`](http://www.colr.org/json/color/random) | data for random color
+[`/json/colors/random/3`](http://www.colr.org/json/color/random/3) | data for three random colors 
 
 <a id="types-of-requests"></a>
-### 2.1.3 Extension: Types of Requests
+### 2.1.5 Extension: HTTP
 
 <a id="the-github-search-api"></a>
 ## 2.2 The GitHub Search API
+
+In order to figure out whether or not someone has made the app that was searched for using the our search route (started in [1.3.2](#dynamic-routes)), we'll use the Github Search API.  The first step for using any API is to familiarize yourself with its documentation, and so our first stop is to [developer.github.com/v3/search](github-search-docs).  We know that we want to search for repositories, so we'll focus on the ["Search repositories" section](github-search-docs-repos).
 
 <a id="using-curl"></a>
 ### 2.2.1 Using cURL
@@ -320,7 +555,6 @@ Save and reload your server as needed, and navigate to `http://localhost:5000/se
 <a id="using-icon-fonts"></a>
 ### 4.2.4 Extension: Using Icon Fonts
 
-
 [route]: http://flask.pocoo.org/docs/quickstart/#routing
 [port]: http://en.wikipedia.org/wiki/Port_(computer_networking)
 [localhost]: http://en.wikipedia.org/wiki/Localhost
@@ -328,4 +562,16 @@ Save and reload your server as needed, and navigate to `http://localhost:5000/se
 [flask]: http://flask.pocoo.org/
 [dynamic-content]: http://en.wikipedia.org/wiki/Dynamic_content
 [decorators]: https://wiki.python.org/moin/PythonDecorators
-
+[api]: http://en.wikipedia.org/wiki/Api
+[rest-api]: http://en.wikipedia.org/wiki/REST_API
+[open-source]: http://en.wikipedia.org/wiki/Open_source
+[json]: http://en.wikipedia.org/wiki/Json
+[json-chrome]: https://chrome.google.com/webstore/detail/jsonview/chklaanhfefbnpoihckbnefhakgolnmc?hl=en
+[json-firefox]: https://addons.mozilla.org/en-us/firefox/addon/jsonview/
+[json-safari]: https://github.com/rfletcher/safari-json-formatter
+[github-search-docs]: http://developer.github.com/v3/search/
+[github-search-docs-repos]: http://developer.github.com/v3/search/#search-repositories
+[https]: http://en.wikipedia.org/wiki/Https
+[urls]: http://en.wikipedia.org/wiki/Uniform_resource_locator
+[url-google]: http://www.mattcutts.com/blog/seo-glossary-url-definitions/
+[url-wikipedia]: http://en.wikipedia.org/wiki/URI_scheme#Generic_syntax
