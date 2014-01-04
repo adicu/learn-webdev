@@ -41,11 +41,12 @@ We will be building a web application throughout this series, called "Has it Bee
 		-	[2.1.4 Viewing JSON in the Browser](#viewing-json-in-the-browser)
 		-	[2.1.5 Extension: HTTP](#http)
 	-	[2.2 The GitHub Search API](#the-github-search-api)
-		-	[2.2.1 Using cURL](#using-curl)
-		-	[2.2.2 Using Python](#using-python)
-		-	[2.2.3 Using Flask: Extending the Search Route](#using-flask-extending-the-search-route)
-		-	[2.2.4 Extension: Parsing JSON in Flask](#parsing-json-in-flask)
-		-	[2.2.5 Extension: Using JavaScript](#using-javascript)
+		-	[2.2.1 Determining the Request URL](#determining-the-request-url)
+		-	[2.2.2 Using cURL](#using-curl)
+		-	[2.2.3 Using Python](#using-python)
+		-	[2.2.4 Using Flask: Extending the Search Route](#using-flask-extending-the-search-route)
+		-	[2.2.5 Extension: Parsing JSON in Flask](#parsing-json-in-flask)
+		-	[2.2.6 Extension: Using JavaScript](#using-javascript)
 	-	[2.3 Authentication](#authentication)
 		-	[2.3.1 Basic Authentication](#basic-authentication)
 		-	[2.3.2 Extension: OAuth](#oauth)
@@ -471,22 +472,143 @@ Path | Description
 <a id="the-github-search-api"></a>
 ## 2.2 The GitHub Search API
 
-In order to figure out whether or not someone has made the app that was searched for using the our search route (started in [1.3.2](#dynamic-routes)), we'll use the Github Search API.  The first step for using any API is to familiarize yourself with its documentation, and so our first stop is to [developer.github.com/v3/search][github-search-docs].  We know that we want to search for repositories, so we'll focus on the ["Search repositories" section][github-search-docs-repos].
+In order to figure out whether or not someone has made the app that was searched for using the our search route (started in [1.3.2](#dynamic-routes)), we'll use the Github Search API.  The first step for using any API is to familiarize yourself with its documentation, and so our first stop is [developer.github.com/v3/search][github-search-docs].  We know that we want to search for repositories, so we'll focus on the ["Search repositories" section][github-search-docs-repos].
+
+<a id="determining-the-request-url"></a>
+### 2.2.1 Determining the Request URL
+
+Before we can try to parse Github search data, we need to determine the correct request URL, including the correct query string.  We know the protocol, domain, and path.  Don't forget the `https`!
+
+	https://api.github.com/search/repositories
+	
+Now let's examine the query string piece by piece.
+
+For the `q` key, we want the search query.   For our testing we'll use `Space Invaders HTML5`.  We have to encode that string to be URL safe, so we'll use `Space%20Invaders%20HTML5` (The space character needs to be encoded to `%20`).
+
+	https://api.github.com/search/repositories?q=Space%20Invaders%20HTML5
+	
+Sorting by best match makes sense, so we'll leave the `sort` key alone.  Descending order also seems fine, so we can leave the `order` key alone as well.
+
+Github also provides search qualifiers, which can be added on to the `q` value.  It makes sense to limit our results to JavaScript projects, given that we're searching for HTML5 projects:
+
+	https://api.github.com/search/repositories?q=Space%20Invaders%20HTML5+language:JavaScript
+	
+If you put that URL into your browser, you should see the JSON response!
+	
 
 <a id="using-curl"></a>
-### 2.2.1 Using cURL
+### 2.2.2 Using cURL
+
+*If you are using Windows, you may have to skip this section.  We will be using the cURL program, which is pre-installed on Mac and Linux machines.  It is possible to [install it on Windows][curl-win], but we won't walk through that process here.*
+
+The most basic way of interaction with an API call programmatically is through the command line.  The [cURL](curl) program runs in Terminal, and is used (most simply) to copy the content at a URL and print it to the screen.  First, open Terminal.  If you are on a Mac, open Finder, click `Applications` on the sidebar, open the `Utilities` folder, and then double click `Terminal`.
+
+Change directory into your *working directory*, or the directory where `app.py` is.
+
+Type the following command:
+
+	$ curl https://api.github.com/search/repositories?q=Space%20Invaders%20HTML5+language:JavaScript
+	
+You should see the entire JSON response (probably pretty long!) print to the console.  Now lets write that response to a file:
+
+	$ curl https://api.github.com/search/repositories?q=Space%20Invaders%20HTML5+language:JavaScript > response.json
+	
+> The `> response.json` section redirects all the output that would normally be sent to the console into the `response.josn` file.
+	
+You should now have a new file in your current directory named `response.json`.  If you open that file in your text editor, you'll see the response!
 
 <a id="using-python"></a>
-### 2.2.2 Using Python
+### 2.2.3 Using Python
+
+Python has several built in libraries for handling REST APIs, but the external library [Requests][py-requests].  To install it, use [Pip][pip]:
+
+	$ pip install requests
+	
+Don't forget to update your `requirements.txt` file to reflect this change!
+
+Create a new python file:
+
+	$ touch github.py
+	
+Editing `github.py`, start by importing requests.
+
+	import requests
+	
+Now all we need to to is call `requests.get()` on the API url we developed in [section 2.2.1](#determining-the-request-url).  This method returns a [Response object][py-response-obj]. Add a print statement to see what the object is. 
+
+	import requests
+	
+	url = "https://api.github.com/search/repositories?q=Space%20Invaders%20HTML5+language:JavaScript"
+	response = requests.get(url)
+	
+	print response
+	
+If you run this script, you should just see the Response object, represented by it's status code (hopefully `200`, or "OK").
+
+	`$ python github.py`
+	<Response [200]>
+	
+The only other thing we need is to get usable data is to convert the response object into a Python dictionary, using the Response object's `.json()` method.  To show that it worked, print it to stdout.
+
+	import requests
+	
+	url = "https://api.github.com/search/repositories?q=Space%20Invaders%20HTML5+language:JavaScript"
+	response = requests.get(url)
+	response_dict = response.json()
+	
+	print response_dict
+
+This gives us, again a very large dictionary, printed to the screen.  
+
+> Try exploring the dictionary!  JSON has analogous structures in Python: objects become dictionaries, arrays become lists, and everything else converts as you expected.  For example, if you modify the print statement like so:
+> 
+>	   print response_dict["items"][0]["language"]
+>
+> You should see it print "JavaScript", the language of the first repository returned from the API call.
 
 <a id="using-flask-extending-the-search-route"></a>
-### 2.2.3 Using Flask: Extending the Search Route
+### 2.2.4 Using Flask: Extending the Search Route
+
+Adapting our Python code to work in our search route will be pretty simple, but there are a few constraints:
+
+-	We want to search Github for the search query that the client sends, not our test string "Space Invaders HTML5"
+-	We need to return valid HTML in our route, not a Python dictionary or a Response object.
+
+Addressing the first issue is simple.  We'll let the `url` string be the base search URL concatenated with the `search_query` variable.  
+
+	from flask import Flask
+	import requests
+	...
+	@app.route("/search/<search_query>")
+	def search(search_query):
+		url = "https://api.github.com/search/repositories?q=" + search_query
+	...
+	
+Then we know how to make a Response object from that url, but how do we make valid HTML?  Enter Flask's [`jsonify()`][flask-jsonify] method.  First, import it.
+
+	from flask import Flask, jsonify
+	import requests
+	...
+
+`josnify` takes in a tree of dictionaries and arrays and converts it into JSON text (which is valid HTML).  Make `response_dict`, and return it jsonified.
+
+	...
+	@app.route("/search/<search_query>")
+	def search(search_query):
+		url = "https://api.github.com/search/repositories?q=" + search_query
+		response_dict = requests.get(url).json()
+		return jsonify(response_dict)
+	...
+
+With your Flask server running, navigate to `localhost:5000/search/Space%20Invaders%20HTML5` and see all the results right in your browser (full circle!).  
+
+Try changing what comes after the `/search/` and see the results change.  Note that Github limits us to five requests per minute because of their [rate limiting][github-rate-limiting], but we will increase that number when we implement Authentication in [section 2.3](#authentication).
 
 <a id="parsing-json-in-flask"></a>
-### 2.2.4 Extension: Parsing JSON in Flask
+### 2.2.5 Extension: Parsing JSON in Flask
 
 <a id="using-javascript"></a>
-### 2.2.5 Extension: Using JavaScript
+### 2.2.6 Extension: Using JavaScript
 
 <a id="authentication"></a>
 ## 2.3 Authentication
@@ -575,3 +697,10 @@ In order to figure out whether or not someone has made the app that was searched
 [urls]: http://en.wikipedia.org/wiki/Uniform_resource_locator
 [url-google]: http://www.mattcutts.com/blog/seo-glossary-url-definitions/
 [url-wikipedia]: http://en.wikipedia.org/wiki/URI_scheme#Generic_syntax
+[curl-win]: http://curl.haxx.se/download.html
+[curl]: http://curl.haxx.se/docs/manpage.html
+[py-requests]: http://docs.python-requests.org/en/latest/
+[pip]: http://www.pip-installer.org/en/latest/
+[py-response-obj]: http://docs.python-requests.org/en/latest/api/#requests.Response
+[flask-jsonify]: http://flask.pocoo.org/docs/api/#flask.json.jsonify
+[github-rate-limiting]: http://developer.github.com/v3/#rate-limiting
