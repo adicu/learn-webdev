@@ -45,7 +45,7 @@ We will be building a web application throughout this series, called "Has it Bee
 		-	[2.2.2 Using cURL](#using-curl)
 		-	[2.2.3 Using Python](#using-python)
 		-	[2.2.4 Using Flask: Extending the Search Route](#using-flask-extending-the-search-route)
-		-	[2.2.5 Extension: Parsing JSON in Flask](#parsing-json-in-flask)
+		-	[2.2.5 Extension: Parsing JSON](#parsing-json)
 		-	[2.2.6 Extension: Using JavaScript](#using-javascript)
 	-	[2.3 Authentication](#authentication)
 		-	[2.3.1 Basic Authentication](#basic-authentication)
@@ -265,7 +265,7 @@ From here out we will be using some increasingly complex [URLs][urls], and it is
 	
 This URL breaks up into five parts:
 
-1.	The protocol and separator (`https://`): We are using the [HTTPS][https] protocol, detailed in [section 2.1.5](#http).  
+1.	The protocol (`https`): We are using the [HTTPS][https] protocol, which is a secure version of HTTP, detailed in [section 2.1.5](#http).  
 2.	The separator (`://`): A colon and two slashes always follow the protocol is used to separate the protocol and the host.
 3.	The host (`api.github.com`): A host is usually a domain name (this is the case for our url), but it could also be an IP Address.
 4.	The path (`/search/repositories`): Everything from the first `/` up to the `?` that starts the query string is the path. When accessing a web page, often these paths will be hierarchical and include a filename at the end, like `/blog/2014/02/post.html`.  When making API calls, these paths are the API method that is being called.  Here, we are searching repositories.
@@ -466,7 +466,7 @@ Path | Description
 [`/json/color/random`](http://www.colr.org/json/color/random) | data for random color
 [`/json/colors/random/3`](http://www.colr.org/json/color/random/3) | data for three random colors 
 
-<a id="types-of-requests"></a>
+<a id="http"></a>
 ### 2.1.5 Extension: HTTP
 
 <a id="the-github-search-api"></a>
@@ -604,14 +604,31 @@ With your Flask server running, navigate to `localhost:5000/search/Space%20Invad
 
 Try changing what comes after the `/search/` and see the results change.  Note that Github limits us to five requests per minute because of their [rate limiting][github-rate-limiting], but we will increase that number when we implement Authentication in [section 2.3](#authentication).
 
-<a id="parsing-json-in-flask"></a>
-### 2.2.5 Extension: Parsing JSON in Flask
+<a id="parsing-json"></a>
+### 2.2.5 Extension: Parsing JSON
+
+The JSON response that Github sends us is extremely long, and full of URLs that we don't need for our app.  We can't do anything about what they send us, but we it would be good practice to minimize the amount of data being sent to the client.  
+
+All we real need from each repo item in the `items` array is:
+	
+-	`name`,
+-	`owner` (with `login`, `avatar_url`, and `html_url`),
+-	`html_url`, and 
+-	`description`
+
+And we should also keep the `total_count` key-value pair.
+
+With just this data we can display an attractive list of the Github repos for the user's search query in [section 3.2](#templating-in-flask).
+
+Write a function that takes in `response_dict` and returns a cleaned up dictionary that maintains the structure of `response_dict` but only has the keys enumerated above.  Pass this `response_dict` through this function before calling `jsonify()` on it.
 
 <a id="using-javascript"></a>
 ### 2.2.6 Extension: Using JavaScript
 
 <a id="authentication"></a>
 ## 2.3 Authentication
+
+If you refresh your web browser enough times, you may see the expected JSON disappear and be replaced by an error message
 
 <a id="basic-authentication"></a>
 ### 2.3.1 Basic Authentication
@@ -678,6 +695,7 @@ Try changing what comes after the `/search/` and see the results change.  Note t
 ### 4.2.4 Extension: Using Icon Fonts
 
 [route]: http://flask.pocoo.org/docs/quickstart/#routing
+[github]: http://github.com
 [port]: http://en.wikipedia.org/wiki/Port_(computer_networking)
 [localhost]: http://en.wikipedia.org/wiki/Localhost
 [client-server]: http://en.wikipedia.org/wiki/Client%E2%80%93server_model
