@@ -125,27 +125,33 @@ Then, construct the Flask `app` variable.  We'll pass around this variable whene
 
 Next, apply the `@app.route("/")` [decorator][decorators] to a function called `hello()`.  It returns just the string `"Hello World!"`.  By doing this, we are making a [route][route].  The `route()` decorator binds the URL `http://yourwebapp.com/` to this function, effectively adding a new page to your app.  Functions with the `route()` decorator can return text strings or HTML, and whatever is returned will be displayed by the client.
 
-	@app.route("/")
-	def hello():
-	    return "Hello World!"
+```python
+@app.route("/")
+def hello():
+    return "Hello World!"
+```
 
 Finally, call `app.run()` when the file is executed.  Once `app.run()` is called, the server will start accepting requests from the client.
 
-	if __name__ == "__main__":
-	    app.run()
+```python
+if __name__ == "__main__":
+    app.run()
+```
 
 This leaves us with a completed Hello World program in Flask:
 
-	from flask import Flask
+```python
+from flask import Flask
 
-	app = Flask(__name__)
+app = Flask(__name__)
 
-	@app.route("/")
-	def hello():
-	    return "Hello World!"
+@app.route("/")
+def hello():
+    return "Hello World!"
 
-	if __name__ == "__main__":
-	    app.run()
+if __name__ == "__main__":
+    app.run()
+```
 
 <a id="running-a-flask-app"></a>
 ### 1.2.2 Running a Flask App
@@ -167,17 +173,19 @@ Point your browser to that URL and bask in the awesomeness!
 
 Flask is great for development.  It offers very helpful error messages and prints stack traces well in the browser, if instructed to.  To enable these debugging features and (more importantly) automatic reload, edit `app.py` and add a statement configuring the `app` object.
 
-	from flask import Flask
+```python
+from flask import Flask
 
-	app = Flask(__name__)
-	app.config["DEBUG"] = True  # Disable this for deployment
+app = Flask(__name__)
+app.config["DEBUG"] = True  # Disable this for deployment
 
-	@app.route("/")
-	def hello():
-	    return "Hello World!"
+@app.route("/")
+def hello():
+    return "Hello World!"
 
-	if __name__ == "__main__":
-	    app.run()
+if __name__ == "__main__":
+    app.run()
+```
 
 With this modification, edit the string returned by the `hello()` function and refresh your browser to watch it change!  When you run the server now, it should also print:
 
@@ -193,14 +201,19 @@ Let's define a few more routes for our app. Again, [routes][route] are URLs that
 
 First, lets make a route that lets the client get the name of the creator of this app.  Start by defining a function called `name()`, and have it return your name as a string.
 
-	def name():
-		return "Your Name"
+
+```python
+def name():
+  return "Your Name"
+```
 
 Now we'll apply the decorator `route()`.  inside the parenthesis for the decorator, include the path `"/name"`.  Paths in Flask always start with a `/`.
 
-	@app.route("/name")
-	def name():
-		return "Your Name"
+```python
+@app.route("/name")
+def name():
+  return "Your Name"
+```
 
 Save.  With your server [running](#running-a-flask-app) or [reloaded](#developing-with-flask),  point your browser to `"http://localhost:5000/name"` and your name will appear!  Our `/name` route is static, because it returns the same string every time.
 
@@ -213,19 +226,25 @@ Now, make another static route accessible at `http://localhost:5000/website` tha
 
 Dynamic routes are what make using Flask so valuable.  Start off by making a static route called `search`.  It can return any string you want.  We'll edit it to return the results of our web search.
 
-	@app.route("/search")
-	def search():
-		return "Search"
+```python
+@app.route("/search")
+def search():
+  return "Search"
+```
 
 To make our route dynamic, first we will modify the url to take a variable parameter named `search_query`.
 
-	@app.route("/search/<search_query>")
+```python
+@app.route("/search/<search_query>")
+```
 
 Then, modify the `search` function to take a string parameter `search_query`, and return that.
 
-	@app.route("/search/<search_query>")
-	def search(search_query):
-		return search_query
+```python
+@app.route("/search/<search_query>")
+def search(search_query):
+  return search_query
+```
 
 Save and reload your server as needed, and navigate to `http://localhost:5000/search/test` and see `test` appear as the returned page.  If you change what comes after the `/search/` in the URL, it will be displayed in the browser.  We will soon modify this route to return actual search results.
 
@@ -513,7 +532,7 @@ You should see the entire JSON response (probably pretty long!) print to the con
 
 	$ curl https://api.github.com/search/repositories?q=Space%20Invaders%20HTML5+language:JavaScript > response.json
 	
-> The `> response.json` section redirects all the output that would normally be sent to the console into the `response.josn` file.
+> The `> response.json` section redirects all the output that would normally be sent to the console into the `response.json` file.
 	
 You should now have a new file in your current directory named `response.json`.  If you open that file in your text editor, you'll see the response!
 
@@ -532,16 +551,20 @@ Create a new python file:
 	
 Editing `github.py`, start by importing requests.
 
-	import requests
+```python
+import requests
+```
 	
 Now all we need to to is call `requests.get()` on the API url we developed in [section 2.2.1](#determining-the-request-url).  This method returns a [Response object][py-response-obj]. Add a print statement to see what the object is. 
 
-	import requests
-	
-	url = "https://api.github.com/search/repositories?q=Space%20Invaders%20HTML5+language:JavaScript"
-	response = requests.get(url)
-	
-	print response
+```python
+import requests
+
+url = "https://api.github.com/search/repositories?q=Space%20Invaders%20HTML5+language:JavaScript"
+response = requests.get(url)
+
+print response
+```
 	
 If you run this script, you should just see the Response object, represented by it's status code (hopefully `200`, or "OK").
 
@@ -550,13 +573,15 @@ If you run this script, you should just see the Response object, represented by 
 	
 The only other thing we need is to get usable data is to convert the response object into a Python dictionary, using the Response object's `.json()` method.  To show that it worked, print it to stdout.
 
-	import requests
-	
-	url = "https://api.github.com/search/repositories?q=Space%20Invaders%20HTML5+language:JavaScript"
-	response = requests.get(url)
-	response_dict = response.json()
-	
-	print response_dict
+```python
+import requests
+
+url = "https://api.github.com/search/repositories?q=Space%20Invaders%20HTML5+language:JavaScript"
+response = requests.get(url)
+response_dict = response.json()
+
+print response_dict
+```
 
 This gives us, again a very large dictionary, printed to the screen.  
 
@@ -576,29 +601,35 @@ Adapting our Python code to work in our search route will be pretty simple, but 
 
 Addressing the first issue is simple.  We'll let the `url` string be the base search URL concatenated with the `search_query` variable.  
 
-	from flask import Flask
-	import requests
-	...
-	@app.route("/search/<search_query>")
-	def search(search_query):
-		url = "https://api.github.com/search/repositories?q=" + search_query
-	...
+```python
+from flask import Flask
+import requests
+...
+@app.route("/search/<search_query>")
+def search(search_query):
+  url = "https://api.github.com/search/repositories?q=" + search_query
+...
+```
 	
 Then we know how to make a Response object from that url, but how do we make valid HTML?  Enter Flask's [`jsonify()`][flask-jsonify] method.  First, import it.
 
-	from flask import Flask, jsonify
-	import requests
-	...
+```python
+from flask import Flask, jsonify
+import requests
+...
+```
 
 `josnify` takes in a tree of dictionaries and arrays and converts it into JSON text (which is valid HTML).  Make `response_dict`, and return it jsonified.
 
-	...
-	@app.route("/search/<search_query>")
-	def search(search_query):
-		url = "https://api.github.com/search/repositories?q=" + search_query
-		response_dict = requests.get(url).json()
-		return jsonify(response_dict)
-	...
+```python
+...
+@app.route("/search/<search_query>")
+def search(search_query):
+  url = "https://api.github.com/search/repositories?q=" + search_query
+  response_dict = requests.get(url).json()
+  return jsonify(response_dict)
+...
+```
 
 With your Flask server running, navigate to `localhost:5000/search/Space%20Invaders%20HTML5` and see all the results right in your browser (full circle!).  
 
