@@ -469,6 +469,74 @@ Path | Description
 <a id="http"></a>
 ### 2.1.5 Extension: HTTP
 
+*If you don't remember the [client-server model][client-server], you should review it before reading this section.*
+
+By now, you've seen "HTTP" in every URL in this document. Let's look a little at what "HTTP" actually means.
+
+"HyperText Transfer Protocol" is the protocol by which your browser asks for and receives web sites (and lots of other
+data). A web server sits around and listens for an *HTTP request*, which is when a web browser or other client asks for
+a particular item (ex. web page or image) that the server has. An HTTP request looks something like this:
+
+    GET /index.html HTTP/1.1
+    Host: www.google.com
+    User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:26.0) Gecko/20100101 Firefox/26.0
+
+There's a lot going on here, but you only need to pay attention to a few parts:
+
+* `GET`: this is what we call an *HTTP verb*. This tells the web server what the client wants it to do. `GET` means
+  "give me a resource"; `POST` means "here is some data"; `DELETE` means "get rid of this resource".
+
+* `/index.html`: this indicates the resource that should be acted upon (using the given verb).
+
+* `HTTP/1.1`: this is the HTTP version; it's almost always 1.1 (which has been
+  around since 1999).
+
+* The lines that begin with a word or phrase followed by a colon are called *headers*. They convey additional
+  information. `Host` is the header that indicates what site the client wanted to access. `User-Agent` is the program
+  that you're using as a client; here, it's Firefox.
+
+Then, the server processes the request and sends back an *HTTP response*:
+
+    HTTP/1.1 200 OK
+    Date: Mon, 23 May 2005 22:38:34 GMT
+    Server: Apache/1.3.3.7 (Unix) (Red-Hat/Linux)
+    Last-Modified: Wed, 08 Jan 2003 23:11:55 GMT
+    ETag: "3f80f-1b6-3e1cb03b"
+    Content-Type: text/html; charset=UTF-8
+    Content-Length: 131
+    Connection: close
+    
+    <html>
+    <head>
+      <title>An Example Page</title>
+    </head>
+    <body>
+      Hello World, this is a very simple HTML document.
+    </body>
+    </html>
+
+The first line includes the HTTP version that the server is using, followed by an *HTTP status code* and reason. Here,
+the status is `200` and the reason is `OK`. This means that all went well.
+
+* Status codes in the 100s are informational messages; you don't need to worry about them most of the time.
+* Status codes in the 200s mean that the request was processed successfully.
+* Status codes in the 300s mean that the client must do something else in order to complete the request successfully; an
+  example is a redirect message (301).
+* Status codes in the 400s mean that the client did something wrong; for example, code 404 means that the resource the
+  client asked for could not be found by the server.
+* Status codes in the 500s mean that something is wrong with the server; code 500 is a generic error message.
+
+Then, there are a bunch of headers. After that is a blank line, then the *body* of the response (that is, the actual
+data requested).
+
+After the body of the response, the server closes the connection. To request another resource, the client must begin the
+whole process again.
+
+Check out the HTTP requests your browser makes! In Firefox, hit `Ctrl-Shift-Q` to open the network tool, or in Chrome,
+hit `Ctrl-Shift-I` to open Developer tools and navigate to the "Network" tab (Mac users should use `Cmd` instead). Then,
+browse the internet a little. Check out [here](http://www.example.com) for an example of a successful request, and
+[here](http://www.adicu.com/notfound) for an example of an unsuccessful request.
+
 <a id="the-github-search-api"></a>
 ## 2.2 The GitHub Search API
 
