@@ -665,26 +665,37 @@ Included is [this link][github-rate-limiting] which details how github does rate
 For the [search-api][github-search-rate-limiting] we're locked out after 5 requests/minute because we have not authenticated with GitHub.
 Once we authenticate we'll be able to do 20 requests/minute.
 
-To authenticate with GitHub, we'll check out [their documentation][github-basic-auth].
-The endpoint given is `https://api.github.com/user`, it implements [Basic HTTP Authentication][basic-http-auth]. 
+To authenticate with GitHub, we'll check out [their documentation][github-new-token] on creating a reusable token.
+Getting a token allows us to have reusable credentials to GitHub's API without saving our credentials in plain-text.
+The endpoint given is `https://api.github.com/authorizations`, it implements [Basic HTTP Authentication][basic-http-auth]. 
 We can test the request using [curl][curl].
+We won't give the token any [scopes][github-token-scopes] since we will be using it for the search API.
 
 ```
-> curl -u <username> https://api.github.com/user
+> curl -X POST \        # the -X flag declares what kind of HTTP request we are making
+  -u <username> \       # the -u flag allows us to pass our username for the Basic HTTP Auth
+  -d '{"scopes": []}' \ # the -d flag passes data for the post request
+  https://api.github.com/authorizations
 Enter host password for user '<username>'
+
 {
-  "login": "<username>",
-  "id": 2801090,
-  ...
-  "plan": {
-    "name": "micro",
-    "space": 614400,
-    "collaborators": 1,
-    "private_repos": 5
-  }
+  "id": 5188246,
+  "url": "https://api.github.com/authorizations/5188246",
+  "app": {
+    "name": "GitHub API",
+    "url": "http://developer.github.com/v3/oauth/#oauth-authorizations-api",
+    "client_id": "00000000000000000000"
+  },
+  "token": "<YOUR TOKEN HERE>",
+  "note": null,
+  "note_url": null,
+  "created_at": "2014-01-10T08:02:44Z",
+  "updated_at": "2014-01-10T08:02:44Z",
+  "scopes": [
+  ]
 }
 # the second step can be skipped
-> curl -u <username>:<password> https://api.github.com/user
+> curl -X POST -u <username>:<password> -d '{"scopes": []}' https://api.github.com/authorizations
 {
   ...
 }
@@ -695,19 +706,23 @@ The [requests library makes HTTP Basic Auth][py-requests-basic-auth] very straig
 
 ```python
 import requests
+import json
 
 gh_username = raw_input('GitHub username: ')
 gh_password = raw_input('GitHub password: ')
+payload = json.dumps({'scopes': []})
 
-gh_response = requests.get('https://api.github.com/user', auth=(gh_username, gh_password))
-print gh_response.json()
+gh_response = requests.post('https://api.github.com/user', auth=(gh_username, gh_password), data=payload)
+print gh_response.json()['token']
 ```
 
-This example returns the data for your account, but we can use the same auth method with our search query.
-Adding the `auth` argument with your credentials will change the rate that GitHub imposes to 20 requests/minute.
+This example will return a new token linked to your account.
+Adding the token to your parameters will change the rate that GitHub imposes to 20 requests/minute.
 
 Try adding this authentication to your app.
-Check that the username and password are valid, then use them with each GET request to search github.
+Generate a GitHub token using the script, add this token to a bash settings file.
+Add the token to your app config on startup.
+Pass the token [as a parameter][github-token-auth] for each request.
 
 <a id="basic-authentication"></a>
 ### 2.3.1 Basic Authentication
@@ -791,6 +806,9 @@ Check that the username and password are valid, then use them with each GET requ
 [github-rate-limiting]: http://developer.github.com/v3/#rate-limiting
 [github-search-rate-limiting]: http://developer.github.com/v3/search/#rate-limit
 [github-basic-auth]: http://developer.github.com/v3/auth/#other-authentication-methods
+[github-new-token]: http://developer.github.com/v3/oauth/#create-a-new-authorization
+[github-token-scopes]: http://developer.github.com/v3/oauth/#scopes
+[github-token-auth]: http://developer.github.com/v3/#oauth2-token-sent-as-a-parameter
 
 <!-- networking -->
 [port]: http://en.wikipedia.org/wiki/Port_(computer_networking)

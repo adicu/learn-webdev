@@ -1,0 +1,4 @@
+#!/bin/bash
+
+export gh_token='INSERT YOUR TOKEN HERE'
+
