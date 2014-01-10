@@ -513,7 +513,7 @@ You should see the entire JSON response (probably pretty long!) print to the con
 
 	$ curl https://api.github.com/search/repositories?q=Space%20Invaders%20HTML5+language:JavaScript > response.json
 	
-> The `> response.json` section redirects all the output that would normally be sent to the console into the `response.josn` file.
+> The `> response.json` section redirects all the output that would normally be sent to the console into the `response.json` file.
 	
 You should now have a new file in your current directory named `response.json`.  If you open that file in your text editor, you'll see the response!
 
@@ -590,7 +590,7 @@ Then we know how to make a Response object from that url, but how do we make val
 	import requests
 	...
 
-`josnify` takes in a tree of dictionaries and arrays and converts it into JSON text (which is valid HTML).  Make `response_dict`, and return it jsonified.
+`jsonify` takes in a tree of dictionaries and arrays and converts it into JSON text (which is valid HTML).  Make `response_dict`, and return it jsonified.
 
 	...
 	@app.route("/search/<search_query>")
