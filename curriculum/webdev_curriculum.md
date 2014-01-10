@@ -625,6 +625,48 @@ Write a function that takes in `response_dict` and returns a cleaned up dictiona
 <a id="using-javascript"></a>
 ### 2.2.6 Extension: Using JavaScript
 
+*If you're familiar with JavaScript and would prefer to interact with the GitHub API using JavaScript, we'll go over how
+to do that in this section. If you don't know JavaScript, feel free to skip it.*
+
+Vanilla JavaScript has a way to interact with external APIs, but [jQuery](http://jquery.com/), a library of common
+functions that simplifies your JavaScript, makes everything much easier. To include it, put the following line on your
+HTML page:
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+After this is run, jQuery will be bound to the `$` object. All calls beginning with `$` are jQuery-related.
+
+jQuery makes selecting DOM elements (that is, the HTML elements on your web page) incredibly simple using
+[selectors](http://api.jquery.com/category/selectors/): to "select" all of the `img` elements on your page, do
+`$("img")`; to select an element with id `example-id`, do `$("#example-id")`. Once an element is selected, you can
+perform a number of actions with it; a fun one is `.fadeOut()`. See more at the
+[jQuery API Documentation](http://api.jquery.com/).
+
+jQuery also lets you perform *AJAX* (Asynchronous JavaScript and XML) requests easily. This is a mechanism that your
+JavaScript can use to fetch new data without loading a new page (it's how your GMail inbox knows you have a new message
+without you refreshing the page). That looks like this:
+
+    $.getJSON("https://api.github.com/search/repositories?q=Space%20Invaders%20HTML5+language:JavaScript&callback=?", function(data) {
+        console.log(data);
+    });
+
+Here (as before), we fetch all repositories that match the string "Space Invaders" and are written in JavaScript; we
+then print it out to the JavaScript console (which can be accessed in the "Developer Tools" for Firefox (`Ctrl-Shift-K`)
+or Chrome (`Ctrl-Shift-J`) (or `Cmd` for OS X).
+
+A couple of gotchas here:
+
+* We add the parameter `callback=?`; this is a [JSONP](https://en.wikipedia.org/wiki/JSONP) callback to get around the
+  [same-origin policy](https://en.wikipedia.org/wiki/Same-origin_policy). It's necessary for security reasons; for more
+  information, see those links.
+
+* We process the data in a *callback* (that's the `function(data) { ... }` bit). This is because loading data over the
+  internet takes time; rather than stop everything up while we're waiting for that to finish, JavaScript moves on and
+  executes the next statement. We tell JavaScript what we want it to do once it's finished loading the data; that's the
+  body of the function we pass to `getJSON`.
+
+That's it! You've successfully queried GitHub's API using JavaScript and jQuery.
+
 <a id="authentication"></a>
 ## 2.3 Authentication
 
