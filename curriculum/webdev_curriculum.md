@@ -659,7 +659,55 @@ Write a function that takes in `response_dict` and returns a cleaned up dictiona
 <a id="authentication"></a>
 ## 2.3 Authentication
 
-If you refresh your web browser enough times, you may see the expected JSON disappear and be replaced by an error message
+If you refresh your web browser enough times, you may see the expected JSON disappear and be replaced by an error message.
+After about 5 requests you should get a rate limiting error.
+Included is [this link][github-rate-limiting] which details how github does rate limiting.
+For the [search-api][github-search-rate-limiting] we're locked out after 5 requests/minute because we have not authenticated with GitHub.
+Once we authenticate we'll be able to do 20 requests/minute.
+
+To authenticate with GitHub, we'll check out [their documentation][github-basic-auth].
+The endpoint given is `https://api.github.com/user`, it implements [Basic HTTP Authentication][basic-http-auth]. 
+We can test the request using [curl][curl].
+
+```
+> curl -u <username> https://api.github.com/user
+Enter host password for user '<username>'
+{
+  "login": "<username>",
+  "id": 2801090,
+  ...
+  "plan": {
+    "name": "micro",
+    "space": 614400,
+    "collaborators": 1,
+    "private_repos": 5
+  }
+}
+# the second step can be skipped
+> curl -u <username>:<password> https://api.github.com/user
+{
+  ...
+}
+```
+
+Now we'll try to do this in Python.
+The [requests library makes HTTP Basic Auth][py-requests-basic-auth] very straightforward.
+
+```python
+import requests
+
+gh_username = raw_input('GitHub username: ')
+gh_password = raw_input('GitHub password: ')
+
+gh_response = requests.get('https://api.github.com/user', auth=(gh_username, gh_password))
+print gh_response.json()
+```
+
+This example returns the data for your account, but we can use the same auth method with our search query.
+Adding the `auth` argument with your credentials will change the rate that GitHub imposes to 20 requests/minute.
+
+Try adding this authentication to your app.
+Check that the username and password are valid, then use them with each GET request to search github.
 
 <a id="basic-authentication"></a>
 ### 2.3.1 Basic Authentication
@@ -725,31 +773,44 @@ If you refresh your web browser enough times, you may see the expected JSON disa
 <a id="using-icon-fonts"></a>
 ### 4.2.4 Extension: Using Icon Fonts
 
+
+<!-- python/flask -->
+[flask]: http://flask.pocoo.org/
 [route]: http://flask.pocoo.org/docs/quickstart/#routing
+[decorators]: https://wiki.python.org/moin/PythonDecorators
+[py-requests]: http://docs.python-requests.org/en/latest/
+[py-requests-basic-auth]: http://docs.python-requests.org/en/latest/user/authentication/#basic-authentication
+[pip]: http://www.pip-installer.org/en/latest/
+[py-response-obj]: http://docs.python-requests.org/en/latest/api/#requests.Response
+[flask-jsonify]: http://flask.pocoo.org/docs/api/#flask.json.jsonify
+
+<!-- github -->
 [github]: http://github.com
+[github-search-docs]: http://developer.github.com/v3/search/
+[github-search-docs-repos]: http://developer.github.com/v3/search/#search-repositories
+[github-rate-limiting]: http://developer.github.com/v3/#rate-limiting
+[github-search-rate-limiting]: http://developer.github.com/v3/search/#rate-limit
+[github-basic-auth]: http://developer.github.com/v3/auth/#other-authentication-methods
+
+<!-- networking -->
 [port]: http://en.wikipedia.org/wiki/Port_(computer_networking)
 [localhost]: http://en.wikipedia.org/wiki/Localhost
 [client-server]: http://en.wikipedia.org/wiki/Client%E2%80%93server_model
-[flask]: http://flask.pocoo.org/
 [dynamic-content]: http://en.wikipedia.org/wiki/Dynamic_content
-[decorators]: https://wiki.python.org/moin/PythonDecorators
 [api]: http://en.wikipedia.org/wiki/Api
 [rest-api]: http://en.wikipedia.org/wiki/REST_API
 [open-source]: http://en.wikipedia.org/wiki/Open_source
 [json]: http://en.wikipedia.org/wiki/Json
-[json-chrome]: https://chrome.google.com/webstore/detail/jsonview/chklaanhfefbnpoihckbnefhakgolnmc?hl=en
-[json-firefox]: https://addons.mozilla.org/en-us/firefox/addon/jsonview/
-[json-safari]: https://github.com/rfletcher/safari-json-formatter
-[github-search-docs]: http://developer.github.com/v3/search/
-[github-search-docs-repos]: http://developer.github.com/v3/search/#search-repositories
 [https]: http://en.wikipedia.org/wiki/Https
 [urls]: http://en.wikipedia.org/wiki/Uniform_resource_locator
 [url-google]: http://www.mattcutts.com/blog/seo-glossary-url-definitions/
 [url-wikipedia]: http://en.wikipedia.org/wiki/URI_scheme#Generic_syntax
+[basic-http-auth]: http://en.wikipedia.org/wiki/Basic_access_authentication
+
+<!-- tools -->
 [curl-win]: http://curl.haxx.se/download.html
 [curl]: http://curl.haxx.se/docs/manpage.html
-[py-requests]: http://docs.python-requests.org/en/latest/
-[pip]: http://www.pip-installer.org/en/latest/
-[py-response-obj]: http://docs.python-requests.org/en/latest/api/#requests.Response
-[flask-jsonify]: http://flask.pocoo.org/docs/api/#flask.json.jsonify
-[github-rate-limiting]: http://developer.github.com/v3/#rate-limiting
+[json-chrome]: https://chrome.google.com/webstore/detail/jsonview/chklaanhfefbnpoihckbnefhakgolnmc?hl=en
+[json-firefox]: https://addons.mozilla.org/en-us/firefox/addon/jsonview/
+[json-safari]: https://github.com/rfletcher/safari-json-formatter
+
