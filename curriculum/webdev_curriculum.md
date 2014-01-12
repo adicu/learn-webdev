@@ -69,7 +69,7 @@ We will be building a web application throughout this series, called "Has it Bee
 		-	[4.2.3 Rewriting Templates](#rewriting-templates)
 		-	[4.2.4 Extension: Using Icon Fonts](#using-icon-fonts)
 
-------------------------
+-------------------------
 
 <a id="flask"></a>
 # 1.0 Flask
@@ -117,11 +117,15 @@ In order to write the Hello World app, we only need to edit one file: `app.py`. 
 
 First, import the `Flask` class from the `flask` module.
 
-	from flask import Flask
+```python
+from flask import Flask
+```
 
 Then, construct the Flask `app` variable.  We'll pass around this variable whenever we want to access information about the server. We pass `__name__` into the `Flask()` function so that your flask app is associated with the directory structure we created in [Section 1.1](#the-anatomy-of-a-flask-app).
 
-	app = Flask(__name__)
+```python
+app = Flask(__name__)
+```
 
 Next, apply the `@app.route("/")` [decorator][decorators] to a function called `hello()`.  It returns just the string `"Hello World!"`.  By doing this, we are making a [route][route].  The `route()` decorator binds the URL `http://yourwebapp.com/` to this function, effectively adding a new page to your app.  Functions with the `route()` decorator can return text strings or HTML, and whatever is returned will be displayed by the client.
 
@@ -158,11 +162,15 @@ if __name__ == "__main__":
 
 To run our Hello World app, just type the following command in the Project Directory folder:
 
-	$ python app.py
+```bash
+$ python app.py
+```
 
 If it's working, it should print the lines:
 
-	* Running on http://127.0.0.1:5000/
+```bash
+* Running on http://127.0.0.1:5000/
+```
 
 Point your browser to that URL and bask in the awesomeness!
 
@@ -309,95 +317,111 @@ The data that we usually want to get from a RESTful API is text, not images, and
 
 Most JSON documents start and end with braces (`{ }`).  We'll learn what these are later.
 
-	{ }
+```javascript
+{ }
+```
 
 The core element of JSON documents are key-value pairs.  A key is a string, and a value can be (amongst other things) a string. Keys and values are separated by a colon (`:`).
 
-	{ "name": "Jane Doe" }
+```javascript
+{ "name": "Jane Doe" }
+```
 
 Whitespace non-significant, and should be added for readability.
 
-	{
-		"name": "Jane Doe"
-	}
+```javascript
+{
+	"name": "Jane Doe"
+}
+```
 
 Multiple key-value pairs can be separated by commas (`,`).
 
-	{
-		"name": "Jane Doe",
-		"occupation": "student",
-		"school": "Columbia University"
-	}
+```javascript
+{
+	"name": "Jane Doe",
+	"occupation": "student",
+	"school": "Columbia University"
+}
+```
 
 Values can also be decimal numbers, boolean values (`true` or `false`), or `null`.
 
-	{
-		"name": "Jane Doe",
-		"age": 20,
-		"female": true,
-		"male": false,
-		"occupation": "student",
-		"school": "Columbia SEAS",
-		"children": null
-	}
+```javascript
+{
+	"name": "Jane Doe",
+	"age": 20,
+	"female": true,
+	"male": false,
+	"occupation": "student",
+	"school": "Columbia SEAS",
+	"children": null
+}
+```
 
 Values can also be arrays.  Arrays are comma-separated values surrounded by brackets (`[ ]`).  Values in arrays should be all of the same type, but don't have to be.
 
-	{
-		"name": "Jane Doe",
-		"age": 20,
-		"female": true,
-		"male": false,
-		"occupation": "student",
-		"school": "Columbia SEAS",
-		"children": null,
-		"hobbies": [
-			"programming",
-			"cello",
-			"painting",
-			"basketball",
-			"REST APIs"
-		],
-		"luckynumbers" : [
-			10, 25.3, 404
-		]
-	}
+```javascript
+{
+	"name": "Jane Doe",
+	"age": 20,
+	"female": true,
+	"male": false,
+	"occupation": "student",
+	"school": "Columbia SEAS",
+	"children": null,
+	"hobbies": [
+		"programming",
+		"cello",
+		"painting",
+		"basketball",
+		"REST APIs"
+	],
+	"luckynumbers" : [
+		10, 25.3, 404
+	]
+}
+```
 
 The final value type is objects.  Objects are a comma-separated key-value pairs surrounded by braces (`{ }`).  In fact, our entire JSON document is one big object.
 
-	{
-		"name": "Jane Doe",
-		"age": 20,
-		"female": true,
-		"male": false,
-		"occupation": "student",
-		"school": {
-			"fullname": "The Fu Foundation School of Engineering & Applied Science",
-			"university": "Columbia University",
-			"undergrad": true
-		},
-		"children": null,
-		"hobbies": [
-			"programming",
-			"cello",
-			"painting",
-			"basketball",
-			"REST APIs"
-		],
-		"luckynumbers" : [
-			10, 25.3, 404
-		]
-	}
+```javascript
+{
+	"name": "Jane Doe",
+	"age": 20,
+	"female": true,
+	"male": false,
+	"occupation": "student",
+	"school": {
+		"fullname": "The Fu Foundation School of Engineering & Applied Science",
+		"university": "Columbia University",
+		"undergrad": true
+	},
+	"children": null,
+	"hobbies": [
+		"programming",
+		"cello",
+		"painting",
+		"basketball",
+		"REST APIs"
+	],
+	"luckynumbers" : [
+		10, 25.3, 404
+	]
+}
+```
 
 > Most JSON documents are one big object, but they can also be one big array:
 >
->     [
->         "This",
->		  "Is",
->		  {
->		      "valid": JSON
->		  }
->	  ]
+> ```javascript
+> [
+>     "This",
+>     "Is",
+>     {
+>	      "valid": JSON
+>	  }
+> ]
+> ```
 
 JSON can represent a wide variety of data, just using the simple types:
 
@@ -413,62 +437,66 @@ JSON can represent a wide variety of data, just using the simple types:
 
 JSON is the most common data format returned by RESTful APIs.  For example, [colr.org](http://colr.org)'s [API](http://colr.org/api.html) returns it's responses in JSON format.  Try it: point your browser to [http://www.colr.org/json/color/e0d1dd](http://www.colr.org/json/color/e0d1dd).  You'll probably see some unreadable mess like this:
 
-	{"colors": [{"timestamp": 1187574833, "hex": "e0d1dd",
-	"id": 19425, "tags": 	[{"timestamp": 1111913422, "id":
-	11257, "name": "joyful"}, {"timestamp": 1108110854,
-	"id": 2798, "name": "lilac"}]}], "schemes": [],
-	"schemes_history": {}, "success": true, "colors_history":
-	{"e0d1dd": [{"d_count": 0, "id": "11257", "a_count": 1,
-	 "name": "joyful"}, {"d_count": 0, "id": "2798",
-	 "a_count": 1, "name": "lilac"}]}, "messages": [],
-	 "new_color": "e0d1dd"}
+```javascript
+{"colors": [{"timestamp": 1187574833, "hex": "e0d1dd",
+"id": 19425, "tags": 	[{"timestamp": 1111913422, "id":
+11257, "name": "joyful"}, {"timestamp": 1108110854,
+"id": 2798, "name": "lilac"}]}], "schemes": [],
+"schemes_history": {}, "success": true, "colors_history":
+{"e0d1dd": [{"d_count": 0, "id": "11257", "a_count": 1,
+ "name": "joyful"}, {"d_count": 0, "id": "2798",
+ "a_count": 1, "name": "lilac"}]}, "messages": [],
+ "new_color": "e0d1dd"}
+```
 
 To view JSON in the browser, use a browser extension like JSONView ([Chrome][json-chrome], [Firefox][json-firefox]) or JSON Formatter ([Safari][json-safari]).  Install the appropriate extension and reload [that url](http://www.colr.org/json/color/e0d1dd).  You should now see the JSON with the proper indentation that we like.  If that didn't work for you or you're using another browser, copy the mess into [jsonprettyprint.com](http://jsonprettyprint.com/) to see it nicely formatted.
 
 It should look like this:
 
-	{
-	  "colors": [
-	    {
-	      "timestamp": 1187574833,
-	      "hex": "e0d1dd",
-	      "id": 19425,
-	      "tags": [
-	        {
-	          "timestamp": 1111913422,
-	          "id": 11257,
-	          "name": "joyful"
-	        },
-	        {
-	          "timestamp": 1108110854,
-	          "id": 2798,
-	          "name": "lilac"
-	        }
-	      ]
-	    }
-	  ],
-	  "schemes": [],
-	  "schemes_history": {},
-	  "success": true,
-	  "colors_history": {
-	    "e0d1dd": [
-	      {
-	        "d_count": 0,
-	        "id": "11257",
-	        "a_count": 1,
-	        "name": "joyful"
-	      },
-	      {
-	        "d_count": 0,
-	        "id": "2798",
-	        "a_count": 1,
-	        "name": "lilac"
-	      }
-	    ]
-	  },
-	  "messages": [],
-	  "new_color": "e0d1dd"
-	}
+```javascript
+{
+  "colors": [
+    {
+      "timestamp": 1187574833,
+      "hex": "e0d1dd",
+      "id": 19425,
+      "tags": [
+        {
+          "timestamp": 1111913422,
+          "id": 11257,
+          "name": "joyful"
+        },
+        {
+          "timestamp": 1108110854,
+          "id": 2798,
+          "name": "lilac"
+        }
+      ]
+    }
+  ],
+  "schemes": [],
+  "schemes_history": {},
+  "success": true,
+  "colors_history": {
+    "e0d1dd": [
+      {
+        "d_count": 0,
+        "id": "11257",
+        "a_count": 1,
+        "name": "joyful"
+      },
+      {
+        "d_count": 0,
+        "id": "2798",
+        "a_count": 1,
+        "name": "lilac"
+      }
+    ]
+  },
+  "messages": [],
+  "new_color": "e0d1dd"
+}
+```
 
 So now that we see it nicely formatted, what are we seeing here?
 
@@ -594,11 +622,15 @@ Change directory into your *working directory*, or the directory where `app.py` 
 
 Type the following command:
 
-	$ curl https://api.github.com/search/repositories?q=Space%20Invaders%20HTML5+language:JavaScript
+```bash
+$ curl https://api.github.com/search/repositories?q=Space%20Invaders%20HTML5+language:JavaScript
+```
 
 You should see the entire JSON response (probably pretty long!) print to the console.  Now lets write that response to a file:
 
-	$ curl https://api.github.com/search/repositories?q=Space%20Invaders%20HTML5+language:JavaScript > response.json
+```bash
+$ curl https://api.github.com/search/repositories?q=Space%20Invaders%20HTML5+language:JavaScript > response.json
+```
 
 > The `> response.json` section redirects all the output that would normally be sent to the console into the `response.json` file.
 
@@ -609,13 +641,17 @@ You should now have a new file in your current directory named `response.json`. 
 
 Python has several built in libraries for handling REST APIs, but the external library [Requests][py-requests].  To install it, use [Pip][pip]:
 
-	$ pip install requests
+```bash
+$ pip install requests
+```
 
 Don't forget to update your `requirements.txt` file to reflect this change!
 
 Create a new python file:
 
-	$ touch github.py
+```bash
+$ touch github.py
+```
 
 Editing `github.py`, start by importing requests.
 
@@ -636,9 +672,10 @@ print response
 
 If you run this script, you should just see the Response object, represented by it's status code (hopefully `200`, or "OK").
 
-	`$ python github.py`
-	<Response [200]>
-
+```bash
+$ python github.py
+<Response [200]>
+```
 The only other thing we need is to get usable data is to convert the response object into a Python dictionary, using the Response object's `.json()` method.  To show that it worked, print it to stdout.
 
 ```python
@@ -747,9 +784,11 @@ jQuery also lets you perform *AJAX* (Asynchronous JavaScript and XML) requests e
 JavaScript can use to fetch new data without loading a new page (it's how your GMail inbox knows you have a new message
 without you refreshing the page). That looks like this:
 
-    $.getJSON("https://api.github.com/search/repositories?q=Space%20Invaders%20HTML5+language:JavaScript&callback=?", function(data) {
-        console.log(data);
-    });
+```javascript
+$.getJSON("https://api.github.com/search/repositories?q=Space%20Invaders%20HTML5+language:JavaScript&callback=?", function(data) {
+    console.log(data);
+});
+```
 
 Here (as before), we fetch all repositories that match the string "Space Invaders" and are written in JavaScript; we
 then print it out to the JavaScript console (which can be accessed in the "Developer Tools" for Firefox (`Ctrl-Shift-K`)
@@ -773,15 +812,13 @@ That's it! You've successfully queried GitHub's API using JavaScript and jQuery.
 
 If you refresh your web browser enough times, you might see an error message instead of the expected JSON data.  This is because we are sending unauthorized requests to Github's API, meaning that we are using their API without logging in first.
 
-
-
 <a id="basic-authentication"></a>
 ### 2.3.1 Basic Authentication
 
 <a id="oauth"></a>
 ### 2.3.2 OAuth
 
-------------------------
+-------------------------
 
 <a id="html-and-css"></a>
 # 3.0 HTML and Templating
@@ -868,3 +905,8 @@ If you refresh your web browser enough times, you might see an error message ins
 [flask-jsonify]: http://flask.pocoo.org/docs/api/#flask.json.jsonify
 [github-rate-limiting]: http://developer.github.com/v3/#rate-limiting
 [github-api-docs-pagination]: http://developer.github.com/v3/#pagination
+
+
+
+
+
