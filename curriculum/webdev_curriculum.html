@@ -331,7 +331,7 @@ sup {
 
 <h3>The End Product</h3>
 
-<p>We will be building a web application throughout this series, called "Has it Been Made Yet?".  It should let users type in a few keywords for a hackathon idea, and then it will tell them whether or not someone has made that idea and hosted it on [GitHub][github].  GitHub is a social network for <a href="http://en.wikipedia.org/wiki/Open_source">open-source</a> code, and is the most popular place for programmers to host their projects (and therefore, a great place to check for our app).</p>
+<p>We will be building a web application throughout this series, called "Has it Been Made Yet?".  It should let users type in a few keywords for a hackathon idea, and then it will tell them whether or not someone has made that idea and hosted it on <a href="http://github.com">GitHub</a>.  GitHub is a social network for <a href="http://en.wikipedia.org/wiki/Open_source">open-source</a> code, and is the most popular place for programmers to host their projects (and therefore, a great place to check for our app).</p>
 
 <p><a id="table-of-contents"></a></p>
 
@@ -386,7 +386,7 @@ sup {
 <li><a href="#using-curl">2.2.2 Using cURL</a></li>
 <li><a href="#using-python">2.2.3 Using Python</a></li>
 <li><a href="#using-flask-extending-the-search-route">2.2.4 Using Flask: Extending the Search Route</a></li>
-<li><a href="#parsing-json-in-flask">2.2.5 Extension: Parsing JSON in Flask</a></li>
+<li><a href="#parsing-json">2.2.5 Extension: Parsing JSON</a></li>
 <li><a href="#using-javascript">2.2.6 Extension: Using JavaScript</a></li>
 </ul>
 </li>
@@ -697,7 +697,7 @@ def search(search_query):
 <p>This URL breaks up into five parts:</p>
 
 <ol>
-<li>The protocol and separator (<code>https://</code>): We are using the <a href="http://en.wikipedia.org/wiki/Https">HTTPS</a> protocol, detailed in <a href="#http">section 2.1.5</a>.</li>
+<li>The protocol (<code>https</code>): We are using the <a href="http://en.wikipedia.org/wiki/Https">HTTPS</a> protocol, which is a secure version of HTTP, detailed in <a href="#http">section 2.1.5</a>.</li>
 <li>The separator (<code>://</code>): A colon and two slashes always follow the protocol is used to separate the protocol and the host.</li>
 <li>The host (<code>api.github.com</code>): A host is usually a domain name (this is the case for our url), but it could also be an IP Address.</li>
 <li>The path (<code>/search/repositories</code>): Everything from the first <code>/</code> up to the <code>?</code> that starts the query string is the path. When accessing a web page, often these paths will be hierarchical and include a filename at the end, like <code>/blog/2014/02/post.html</code>.  When making API calls, these paths are the API method that is being called.  Here, we are searching repositories.</li>
@@ -954,7 +954,7 @@ def search(search_query):
 </table>
 
 
-<p><a id="types-of-requests"></a></p>
+<p><a id="http"></a></p>
 
 <h3>2.1.5 Extension: HTTP</h3>
 
@@ -1115,9 +1115,27 @@ def search(search_query):
 
 <p>Try changing what comes after the <code>/search/</code> and see the results change.  Note that Github limits us to five requests per minute because of their <a href="http://developer.github.com/v3/#rate-limiting">rate limiting</a>, but we will increase that number when we implement Authentication in <a href="#authentication">section 2.3</a>.</p>
 
-<p><a id="parsing-json-in-flask"></a></p>
+<p><a id="parsing-json"></a></p>
 
-<h3>2.2.5 Extension: Parsing JSON in Flask</h3>
+<h3>2.2.5 Extension: Parsing JSON</h3>
+
+<p>The JSON response that Github sends us is extremely long, and full of URLs that we don't need for our app.  We can't do anything about what they send us, but we it would be good practice to minimize the amount of data being sent to the client.</p>
+
+<p>All we real need from each repo item in the <code>items</code> array is:</p>
+
+<ul>
+<li><code>name</code>,</li>
+<li><code>owner</code> (with <code>login</code>, <code>avatar_url</code>, and <code>html_url</code>),</li>
+<li><code>html_url</code>, and</li>
+<li><code>description</code></li>
+</ul>
+
+
+<p>And we should also keep the <code>total_count</code> key-value pair.</p>
+
+<p>With just this data we can display an attractive list of the Github repos for the user's search query in <a href="#templating-in-flask">section 3.2</a>.</p>
+
+<p>Write a function that takes in <code>response_dict</code> and returns a cleaned up dictionary that maintains the structure of <code>response_dict</code> but only has the keys enumerated above.  Pass this <code>response_dict</code> through this function before calling <code>jsonify()</code> on it.</p>
 
 <p><a id="using-javascript"></a></p>
 
@@ -1126,6 +1144,8 @@ def search(search_query):
 <p><a id="authentication"></a></p>
 
 <h2>2.3 Authentication</h2>
+
+<p>If you refresh your web browser enough times, you may see the expected JSON disappear and be replaced by an error message</p>
 
 <p><a id="basic-authentication"></a></p>
 

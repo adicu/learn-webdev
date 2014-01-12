@@ -616,7 +616,9 @@ All we real need from each repo item in the `items` array is:
 -	`html_url`, and 
 -	`description`
 
-And we should also keep the `total_count` key-value pair.
+We should also keep the `total_count` key-value pair.
+
+> Have you noticed that the `total_count` is higher than the size of the `items` array?  That's because there are actually more results that are returned, but Github *paginates* their results, offering 30 results at a time by default to reduce the amount of data being sent per-request.  You can access all the results by passing in some extra information in the query string of the request, a process which is detailed in the ["pagination" section][github-api-docs-pagination] of the Github API documentation.
 
 With just this data we can display an attractive list of the Github repos for the user's search query in [section 3.2](#templating-in-flask).
 
@@ -628,7 +630,9 @@ Write a function that takes in `response_dict` and returns a cleaned up dictiona
 <a id="authentication"></a>
 ## 2.3 Authentication
 
-If you refresh your web browser enough times, you may see the expected JSON disappear and be replaced by an error message
+If you refresh your web browser enough times, you might see an error message instead of the expected JSON data.  This is because we are sending unauthorized requests to Github's API, meaning that we are using their API without logging in first.
+
+
 
 <a id="basic-authentication"></a>
 ### 2.3.1 Basic Authentication
@@ -722,3 +726,4 @@ If you refresh your web browser enough times, you may see the expected JSON disa
 [py-response-obj]: http://docs.python-requests.org/en/latest/api/#requests.Response
 [flask-jsonify]: http://flask.pocoo.org/docs/api/#flask.json.jsonify
 [github-rate-limiting]: http://developer.github.com/v3/#rate-limiting
+[github-api-docs-pagination]: http://developer.github.com/v3/#pagination
