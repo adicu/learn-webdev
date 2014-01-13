@@ -413,7 +413,8 @@ The final value type is objects.  Objects are a comma-separated key-value pairs 
 
 > Most JSON documents are one big object, but they can also be one big array:
 >
-> ```javascript
+> <!--!!!javascript-->
+> ```
 > [
 >     "This",
 >     "Is",
@@ -983,3 +984,5 @@ Pass the token [as a parameter][github-token-auth] for each request.
 [json-chrome]: https://chrome.google.com/webstore/detail/jsonview/chklaanhfefbnpoihckbnefhakgolnmc?hl=en
 [json-firefox]: https://addons.mozilla.org/en-us/firefox/addon/jsonview/
 [json-safari]: https://github.com/rfletcher/safari-json-formatter
+
+
