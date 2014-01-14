@@ -304,7 +304,9 @@ This URL breaks up into five parts:
 	`sort` | `stars`
 	`order` | `desc`
 
+
 	>Note that the `+` and `:` do not denote keys or values, and are all part of the `q` value.  The inclusion of these characters is specific to Github's API, and we will learn more about why they are there in [section 2.2](#the-github-search-api).  From a URL standard perspective, `tetris+language:assembly` is one big value for the `q` key.
+
 
 	For the most part, the job of the query string is to specify the details of the data being returned.  While the `q` key is somewhat complicated, we can see clearly that the results of this search are being sorted by stars in descending order.
 
@@ -414,6 +416,7 @@ The final value type is objects.  Objects are a comma-separated key-value pairs 
 > Most JSON documents are one big object, but they can also be one big array:
 >
 > <!--!!!javascript-->
+> <!--!!!-->
 > ```
 > [
 >     "This",
@@ -817,14 +820,17 @@ Included is [this link][github-rate-limiting] which details how github does rate
 For the [search-api][github-search-rate-limiting] we're locked out after 5 requests/minute because we have not authenticated with GitHub.
 Once we authenticate we'll be able to do 20 requests/minute.
 
+<a id="basic-authentication"></a>
+### 2.3.1 Basic Authentication
+
 To authenticate with GitHub, we'll check out [their documentation][github-new-token] on creating a reusable token.
 Getting a token allows us to have reusable credentials to GitHub's API without saving our credentials in plain-text.
 The endpoint given is `https://api.github.com/authorizations`, it implements [Basic HTTP Authentication][basic-http-auth]. 
 We can test the request using [curl][curl].
 We won't give the token any [scopes][github-token-scopes] since we will be using it for the search API.
 
-```
-> curl -X POST \        # the -X flag declares what kind of HTTP request we are making
+```bash
+$ curl -X POST \        # the -X flag declares what kind of HTTP request we are making
   -u <username> \       # the -u flag allows us to pass our username for the Basic HTTP Auth
   -d '{"scopes": []}' \ # the -d flag passes data for the post request
   https://api.github.com/authorizations
@@ -847,7 +853,7 @@ Enter host password for user '<username>'
   ]
 }
 # the second step can be skipped
-> curl -X POST -u <username>:<password> -d '{"scopes": []}' https://api.github.com/authorizations
+$ curl -X POST -u <username>:<password> -d '{"scopes": []}' https://api.github.com/authorizations
 {
   ...
 }
@@ -876,9 +882,6 @@ Generate a GitHub token using the script, add this token to a bash settings file
 Add the token to your app config on startup.
 Pass the token [as a parameter][github-token-auth] for each request.
 
-<a id="basic-authentication"></a>
-### 2.3.1 Basic Authentication
-
 <a id="oauth"></a>
 ### 2.3.2 OAuth
 
@@ -887,17 +890,213 @@ Pass the token [as a parameter][github-token-auth] for each request.
 <a id="html-and-css"></a>
 # 3.0 HTML and Templating
 
+We've done some really exciting work already, displaying JSON content in all sorts of different ways, and even creating dynamic routes in Flask that return different content based on what URL you visit.  
+
+For our web app, we want more than this, however.  We will display not just the raw JSON content, but a user-friendly search experience and an attractive results page.  To do this, we will use [HTML](#html-basics) and [Flask's templates](#templating-in-flask).
+
 <a id="html-basics"></a>
 ## 3.1 HTML Basics
 
 <a id="what-is-HTML"></a>
 ### 3.1.1 What is HTML
 
+[HTML][html], or HyperText Markup Language is the main lanugage we use for creating content that will be displayed by a browser.  So what is HTML?  Well, at the very core, it's text.  Create a file in your working directory, and call it `hello.html`.  Inside it, just type:
+
+```html
+Hello World!
+```
+
+No funny business, just the two words.  If you open `hello.html` in your browser, you'll see it display `Hello World!`.  Congratulations on writing your first HTML document! Every text document can be interpreted as an HTML document (just add the `.html` extension!), but true HTML documents organize themselves in a structured way, using *elements*.
+
+##### Elements
+
+Elements are made up of the *start tag*, the *content*, and the *end tag* (or *closing tag*). Both the start and end tags are wrapped in angle brackets (`< >`), and contain the element name inside them.  The end tag has slash (`/`) that immediately follows the open angle bracket.  Content of elements can be plain text, or even more HTML. Copy this example element into `hello.html`, and view it in your browser:
+
+```html
+Hello World!
+
+<p>This is a really cool paragraph</p>
+```
+
+The start tag is `<p>`, the content is `This is a really cool paragraph`, and the end tag is `</p>`.  The element name in this case is `p`, for paragraph.  Because the content of an element can be HTML, we can nest tags inside each other.  So for example, if we wanted to **em**phasize that the paragraph is cool, we could wrap the words "really cool" in `<em>` tags, like this:
+
+```html
+Hello World!
+<p>This is a <em>really cool</em> paragraph</p>
+```
+
+Reload `hello.html`.  You'll probably see the words "really cool" italics.  Now lets say we want to put even **strong**er emphasis on the word "really". We can use the `<strong>` tag for that.  Edit `hello.html`:
+
+```html
+Hello World!
+<p>This is a <em><strong>really</strong> cool</em> paragraph</p>
+```
+
+If you reaload `hello.html`, you should see that "really cool" is in italics, and "really" is also in bold.  Does that mean the the `<em>` is used to make words italic and `<strong>` is used to make them bold?  No.  Most web browsers have agreed that emphasis should be expressed using italics, and strong emphasis should be expressed with bold font, but as writers of HTML, we use tags to describe the purpose of the content, not to acheive the format that we see once they're applied.
+
+##### Headings
+
+One rule of thumb for writing good HTML:  All text should be wrapped in tags, and the tags should be meaningful.  Right now, our `Hello World!` text has no tags around it, so let's figure out what tag makes the most sense.  "Hello World!" is the title of our `hello.html` web page, so we'll use the heading tags to indicate this.  The `<h1>`, `<h2>`, `<h3>`, `<h4>`, `<h5>`, and `<h6>` tags are used for headings and subheadings, `<h1>` being the highest level (and usually the largest), and `<h6>` being the lowest level (and usually the smallest).  Let's wrap our page title in `<h1>` tags.
+
+```html
+<h1>Hello World!</h1>
+<p>This is a <em><strong>really</strong> cool</em> paragraph</p>
+```
+
+Reload `hello.html` and see the `<h1>` tag in action!  You might have an instinct to mess around with the different headings 1-6, and you should go ahead!  But remember this, we chose `<h1>` because "Hello World!" was the title of our webpage, not because we wanted it to be large.  So as you switch the `<h1>` tags to `<h2>`, remember that it wouldn't really make any sense to include an `<h2>` element in a website without an `<h1>` element, because that would mean a subheading without a heading.
+
+##### Attributes
+
+HTML elements can also have [attributes][attributes].  Attributes are key-value pairs that modify the contents of HTML elements, or provide additional information about the element itself.  For example, when we use the `<a>` tag to create an **a**nchor, or hyperlink, we have to provide the desitination in the `href` attribute.  Edit `hello.html`:
+
+```html
+<h1>Hello World!</h1>
+<p>This is a <em><strong>really</strong> cool</em> paragraph.  My favorite search engine is <a href="http://www.google.com">Google</a></p>
+```
+
+The `href` is the key, and then we set it `=` to the value `"http://www.google.com"`.  If you reload `hello.html`, you'll see a blue (or maybe purple), underlined link to google.com on your page!
+
+> Wondering what "href" stands for?  So do we.  It's extremely unclear in the community, and while there is some consensus that it *should* mean "**H**ypertext **REF**erence", there is still [confusion][href-confusion].
+
 <a id="anatomy-of-an-html-document"></a>
 ### 3.1.2 Anatomy of an HTML Document
 
+The purpose of HTML documents is to provide a semantic structure that represents the web page that is being displayed.  When talking about HTML, semantic means that all the tags are used for the appropriate purposes, and that all necessary information is included in the HTML source code.
+
+In this section, we'll dissect a boilerplate HTML document that follows HTML5 (the most modern) standards that help ensure that your HTML is rendered as best as possible by all devices and browsers. Here is the document:
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>My Website</title>
+	</head>
+	<body>
+		<!--Page content-->
+	</body>
+</html>
+```
+
+The first line is the our file's [doctype][doctype].  according to the HTML specification, the doctype is a "required preamble", but for our purposes, it's just something you should always include.  
+
+> Wondering how we got away with writing an HTML document without a DOCTYPE, or think you're too cool for one?  Read this [stack overflow response](http://stackoverflow.com/a/7695075) that summarizes it pretty well.  Use it, or be prepared to feel the pain that may or may not eventually result from such hubris. 
+
+Older HTML standards include a much wordier DOCTYPE tag at the beginning of the document, but we only need:
+
+```html
+<!DOCTYPE html>
+```
+
+Note that this is not an element, and is just a tag.  There is an `!` at the beginning of it and there is no closing tag.  This is one of the only cases where this will be true.
+
+Next, we see the line:
+
+```html
+<html lang="en">
+```
+
+This the the opening tag of the `<html>` element.  You can see it's closing tag at the last line.  We use the `<html>` element as the root for all other elements, by convention.  The `lang` attribute is used to indicate that the primary language for this document will be English.
+
+Moving inwards to the *children* of the `<html>` element, or elements one level within it, we see the `<head>` and `<body>` elements.  
+
+The `<head>` element holds all the information about the web page that should not be displayed within the browser window.  The `<body>` tag holds all the elements that should be displayed.  
+
+Within the `<head>` element, we first have a `<meta>` element:
+
+```html
+<meta charset="utf-8">
+```
+
+The `<meta>` element does not have content or a closing tag, tells us extra information about this document.  By default, we indicate that our character set will be `utf-8`, or unicode.
+
+The next line is more straightforward.
+
+```html
+<title>My Website</title>
+```
+
+The `<title>` element tells the browser the name of our website.  If you load this example in your browser, you'll see `My Website` show up as the title of the page (even though it will have no content in the browser window).
+
+Within the `<body>` element, all we have is the line:
+
+```html
+<!--Page content-->
+```
+
+Everything wrapped between the `<!--` and the `-->` is a comment, and won't show up in the page.  Edit `hello.html` to reflect the standard HTML5 template.  We can remove the comment.
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>Hello World!</title>
+	</head>
+	<body>
+		<h1>Hello World!</h1>
+		<p>This is a <em><strong>really</strong> cool</em> paragraph.  My favorite search engine is <a href="http://www.google.com">Google</a></p>
+	</body>
+</html>
+```
+
+When you reload `hello.html`, you may not notice any change.  However, constructing our document in this manner will make it more extensible and cross-device compatible.
+
 <a id="an-overview-of-common-tags"></a>
 ### 3.1.3 An Overview of Common Tags
+
+There are many HTML elements that you will use for your website.  There are some basics you should know, before you dive into it, however.  Most of this section is summarized from the [Mozilla Developer Network (MDN)][mdn], more specifically their [HTML element reference][mdn-elements].  
+
+**DO NOT SKIM THIS NEXT PARAGRAPH**
+
+Please, please, please use MDN.  There is another site, called W3 schools (hyperlink intentionally excluded) that consitently turns up higher in Google search rankings, and consistently has incorrect, outdated, and more confusing information on the same topics.  If you have a question about web development (generally HTML, CSS, or JavaScript), just append "mdn" to the end of your search, to make sure that you get MDN as the top result.  The team at Mozilla has done an excellent job of making an excellent website that has the most up-to-date information about good web development practices. 
+
+##### Structure
+-   `<html>` [(MDN)][mdn-html] - All HTML should be wrapped in the `<html>` element.  It should be the only element at the top level of an HTML document (except `<DOCTYPE>`).
+-   `<body>` [(MDN)][mdn-body] - Represents the content of the HTML document.  All visible elements are descendant from the `<body>` tag.
+-   `<head>` [(MDN)][mdn-head] - Holds all the metadata about the document.  This could include the title, charset, styling, and scripts
+-   `<div>` [(MDN)][mdn-div] - A general purpose container, to be used when no other element has semantic meaning.  Using [CSS](#css), `<div>` elements can be made to server all sorts of stylistic purposes.  There are [a lot of elements][mdn-elements] to choose from, so be sure that nothing else fits before using a `<div>`.  That said, you will find that you end up using `<div>` elements with some frequency.
+-   `<span>` [(MDN)][mdn-span] - Another general purpose container, but specifically for inline content.  For example, if you want to highlight misspelled words in a page, wrapping them in a span that has been configured to highlight its content would be the best solution.  Don't use a `<div>` when a `<span>` would be more appropriate.
+
+##### Text
+-   `<p>` [(MDN)][mdn-p] - A paragraph of text.  
+-   `<a>` [(MDN)][mdn-a] - A link, or anchor.  Be sure to always include the `href` attribute when using `<a>` tags.  If a link doesn't go anywhere, set the `href` attribute equal to `"#"`.
+-   `<h1> - <h6>` [(MDN)][mdn-h1-6] - Headers of various levels, `<h1>` being the highest level (like the title of an article or the title of the page), and `<h6>` being the most low level heading.  For [Search Engine Optimization (SEO)][seo] reasons, you should only include on `<h1>` tag on every page.
+-   `<em>` [(MDN)][mdn-em] - Emphasis.  While on many browsers this will make text italic, do not use `<em>` elements for only this purpose.  Only use emphasis tags when words need emphasis.
+-   `<strong>` [(MDN)][mdn-strong] - Strong emphasis.  Usage rules are similar for the `<em>` element.
+-   `<br>` [(MDN)][mdn-br] - For line breaks.  Using `<br>` tags is only really appropriate when writing a poem, address, or something else where line breakage is important.  Don't use this for the space between two paragraphs (just use two `<p>` tags!).
+
+##### Lists
+-   `<ol>` [(MDN)][mdn-ol] - An ordered list.  Ordered lists should only contain list items (`<li>` elements).  Only use an `<ol>` when the order of the items in the list matters, like a recipe or instructions.
+-   `<ul>` [(MDN)][mdn-ul] - An unordered list.  Unordered lists should also only contain list items (`<li>` elements).  Use this when you have a list of similar items, but the order does not matter.  
+-   `<li>` [(MDN)][mdn-li] - An item in a `<ul>` or an `<ol>`.
+
+##### Meta / Informational
+
+Except the `<DOCTYPE>` tag, all of these elements should be children of the `<head>`.
+
+-   `<DOCTYPE>` [(MDN)][mdn-DOCTYPE] - The declaration of the document type.
+-   `<meta>` [(MDN)][mdn-meta] - Provides extra information about the document.  The `<meta`> tag may serve a bunch of different purposes depending on its attributes.
+-   `<link>` [(MDN)][mdn-link] - Linking this document to an external resource.  For the most part, the `<link>` tag is only used for linking to an external CSS file.  We'll learn more about this syntax in [section 4.1](#css-basics).  Be sure to always include the `href`, `rel`, `type`, and `media` attributes, as follows: 
+```html
+<link href="style.css" rel="stylesheet" type="text/css" media="all">
+```
+-   `<style>` [(MDN)][mdn-style] - Embedded CSS style.  While it is better practice to use `<link>` to an external CSS file, it is also possible to include CSS content in a `<style>` element.
+-   `<title>` [(MDN)][mdn-title] - The title of your page.
+
+##### Other
+-   `<img>` [(MDN)][mdn-img] - Used to include an image on the page.  Always include the `src` attribute, the URL of the image resource, and the `alt` attribute to describe the image if for some reason the image cannot or should not be loaded.  The `<img>` element is one of the only elements that can be used in the without a closing tag, using the `< />` format.  Because an image tag would never have content, we write it as one tag with a slash at the end. For example:
+```html
+<img src="https://developer.cdn.mozilla.net/media/img/mdn-logo-sm.png" alt="MD Logo" />
+```
+-   `<script>` [(MDN)][mdn-script] - Use to either embed JavaScript (in rare occasions) or link to external JavaScript file (more common).  Always include the `type` attribute, and include the `src` attribute if the file is external.  Here is an example of the two different styles of using the `<script>` element:
+```html
+<script type="text/javascript" src="my_script.js"></script>
+<script type="text/javascript">
+	console.log('Hello Console!');
+	alert('Hello World!');
+</script>
+```
 
 <a id="templating-in-flask"></a>
 ## 3.2 Templating in Flask
@@ -978,11 +1177,43 @@ Pass the token [as a parameter][github-token-auth] for each request.
 [url-wikipedia]: http://en.wikipedia.org/wiki/URI_scheme#Generic_syntax
 [basic-http-auth]: http://en.wikipedia.org/wiki/Basic_access_authentication
 
+<!--HTML-->
+[html]: http://en.wikipedia.org/wiki/HTML/
+[attributes]: http://en.wikipedia.org/wiki/HTML_attribute
+[href-confusion]: http://tomayko.com/writings/wtf-is-an-href-anyway
+[doctype]: http://en.wikipedia.org/wiki/Doctype#HTML5_DTD-less_DOCTYPE
+[mdn]: https://developer.mozilla.org/en-US/
+[mdn-elements]: https://developer.mozilla.org/en-US/docs/Web/HTML/Element
+[mdn-body]: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/body
+[mdn-div]: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/div
+[mdn-head]: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/head
+[mdn-link]: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/link
+[mdn-html]: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/html
+[mdn-span]: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/span
+[mdn-p]: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/p
+[mdn-a]: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a
+[mdn-h1-6]: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/h1
+[mdn-em]: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/em
+[mdn-strong]: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/strong
+[mdn-br]: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/br
+[mdn-ol]: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/ol
+[mdn-ul]: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/ul
+[mdn-li]: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/li
+[mdn-meta]: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/meta
+[mdn-DOCTYPE]: https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/HTML5/Introduction_to_HTML5#Declaring_that_the_document_contains_HTML5_mark-up_with_the_HTML5_doctype
+[mdn-style]: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/style
+[mdn-title]: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/title
+[mdn-img]: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img
+[mdn-script]: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script
+
 <!-- tools -->
 [curl-win]: http://curl.haxx.se/download.html
 [curl]: http://curl.haxx.se/docs/manpage.html
 [json-chrome]: https://chrome.google.com/webstore/detail/jsonview/chklaanhfefbnpoihckbnefhakgolnmc?hl=en
 [json-firefox]: https://addons.mozilla.org/en-us/firefox/addon/jsonview/
 [json-safari]: https://github.com/rfletcher/safari-json-formatter
+
+
+
 
 

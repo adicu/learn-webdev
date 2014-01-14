@@ -1,377 +1,291 @@
-<!doctype html>
-<html>
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<style>
-body {
-  font-family: Helvetica, arial, sans-serif;
-  font-size: 14px;
-  line-height: 1.6;
-  padding-top: 10px;
-  padding-bottom: 10px;
-  background-color: white;
-  padding: 30px; }
+<!DOCTYPE html><html><head><meta charset="utf-8"><style>html { font-size: 100%; overflow-y: scroll; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; }
 
-body > *:first-child {
-  margin-top: 0 !important; }
-body > *:last-child {
-  margin-bottom: 0 !important; }
-
-a {
-  color: #4183C4; }
-a.absent {
-  color: #cc0000; }
-a.anchor {
-  display: block;
-  padding-left: 30px;
-  margin-left: -30px;
-  cursor: pointer;
-  position: absolute;
-  top: 0;
-  left: 0;
-  bottom: 0; }
-
-h1, h2, h3, h4, h5, h6 {
-  margin: 20px 0 10px;
-  padding: 0;
-  font-weight: bold;
-  -webkit-font-smoothing: antialiased;
-  cursor: text;
-  position: relative; }
-
-h1:hover a.anchor, h2:hover a.anchor, h3:hover a.anchor, h4:hover a.anchor, h5:hover a.anchor, h6:hover a.anchor {
-  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA09pVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoMTMuMCAyMDEyMDMwNS5tLjQxNSAyMDEyLzAzLzA1OjIxOjAwOjAwKSAgKE1hY2ludG9zaCkiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6OUM2NjlDQjI4ODBGMTFFMTg1ODlEODNERDJBRjUwQTQiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6OUM2NjlDQjM4ODBGMTFFMTg1ODlEODNERDJBRjUwQTQiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo5QzY2OUNCMDg4MEYxMUUxODU4OUQ4M0REMkFGNTBBNCIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo5QzY2OUNCMTg4MEYxMUUxODU4OUQ4M0REMkFGNTBBNCIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PsQhXeAAAABfSURBVHjaYvz//z8DJYCRUgMYQAbAMBQIAvEqkBQWXI6sHqwHiwG70TTBxGaiWwjCTGgOUgJiF1J8wMRAIUA34B4Q76HUBelAfJYSA0CuMIEaRP8wGIkGMA54bgQIMACAmkXJi0hKJQAAAABJRU5ErkJggg==) no-repeat 10px center;
-  text-decoration: none; }
-
-h1 tt, h1 code {
-  font-size: inherit; }
-
-h2 tt, h2 code {
-  font-size: inherit; }
-
-h3 tt, h3 code {
-  font-size: inherit; }
-
-h4 tt, h4 code {
-  font-size: inherit; }
-
-h5 tt, h5 code {
-  font-size: inherit; }
-
-h6 tt, h6 code {
-  font-size: inherit; }
-
-h1 {
-  font-size: 28px;
-  color: black; }
-
-h2 {
-  font-size: 24px;
-  border-bottom: 1px solid #cccccc;
-  color: black; }
-
-h3 {
-  font-size: 18px; }
-
-h4 {
-  font-size: 16px; }
-
-h5 {
-  font-size: 14px; }
-
-h6 {
-  color: #777777;
-  font-size: 14px; }
-
-p, blockquote, ul, ol, dl, li, table, pre {
-  margin: 15px 0; }
-
-hr {
-  background: transparent url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAYAAAAECAYAAACtBE5DAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNSBNYWNpbnRvc2giIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6OENDRjNBN0E2NTZBMTFFMEI3QjRBODM4NzJDMjlGNDgiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6OENDRjNBN0I2NTZBMTFFMEI3QjRBODM4NzJDMjlGNDgiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo4Q0NGM0E3ODY1NkExMUUwQjdCNEE4Mzg3MkMyOUY0OCIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo4Q0NGM0E3OTY1NkExMUUwQjdCNEE4Mzg3MkMyOUY0OCIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PqqezsUAAAAfSURBVHjaYmRABcYwBiM2QSA4y4hNEKYDQxAEAAIMAHNGAzhkPOlYAAAAAElFTkSuQmCC) repeat-x 0 0;
-  border: 0 none;
-  color: #cccccc;
-  height: 4px;
-  padding: 0;
+body{
+  color:#444;
+  font-family:Georgia, Palatino, 'Palatino Linotype', Times, 'Times New Roman',
+              "Hiragino Sans GB", "STXihei", "微软雅黑", serif;
+  font-size:12px;
+  line-height:1.5em;
+  background:#fefefe;
+  width: 45em;
+  margin: 10px auto;
+  padding: 1em;
+  outline: 1300px solid #FAFAFA;
 }
 
-body > h2:first-child {
-  margin-top: 0;
-  padding-top: 0; }
-body > h1:first-child {
-  margin-top: 0;
-  padding-top: 0; }
-  body > h1:first-child + h2 {
-    margin-top: 0;
-    padding-top: 0; }
-body > h3:first-child, body > h4:first-child, body > h5:first-child, body > h6:first-child {
-  margin-top: 0;
-  padding-top: 0; }
+a{ color: #0645ad; text-decoration:none;}
+a:visited{ color: #0b0080; }
+a:hover{ color: #06e; }
+a:active{ color:#faa700; }
+a:focus{ outline: thin dotted; }
+a:hover, a:active{ outline: 0; }
 
-a:first-child h1, a:first-child h2, a:first-child h3, a:first-child h4, a:first-child h5, a:first-child h6 {
-  margin-top: 0;
-  padding-top: 0; }
+span.backtick {
+  border:1px solid #EAEAEA;
+  border-radius:3px;
+  background:#F8F8F8;
+  padding:0 3px 0 3px;
+}
 
-h1 p, h2 p, h3 p, h4 p, h5 p, h6 p {
-  margin-top: 0; }
+::-moz-selection{background:rgba(255,255,0,0.3);color:#000}
+::selection{background:rgba(255,255,0,0.3);color:#000}
 
-li p.first {
-  display: inline-block; }
-li {
-  margin: 0; }
-ul, ol {
-  padding-left: 30px; }
+a::-moz-selection{background:rgba(255,255,0,0.3);color:#0645ad}
+a::selection{background:rgba(255,255,0,0.3);color:#0645ad}
 
-ul :first-child, ol :first-child {
-  margin-top: 0; }
+p{
+margin:1em 0;
+}
 
-ul ul {
-  margin: 0; }
+img{
+max-width:100%;
+}
 
-dl {
-  padding: 0; }
-  dl dt {
-    font-size: 14px;
-    font-weight: bold;
-    font-style: italic;
-    padding: 0;
-    margin: 15px 0 5px; }
-    dl dt:first-child {
-      padding: 0; }
-    dl dt > :first-child {
-      margin-top: 0; }
-    dl dt > :last-child {
-      margin-bottom: 0; }
-  dl dd {
-    margin: 0 0 15px;
-    padding: 0 15px; }
-    dl dd > :first-child {
-      margin-top: 0; }
-    dl dd > :last-child {
-      margin-bottom: 0; }
+h1,h2,h3,h4,h5,h6{
+font-weight:normal;
+color:#111;
+line-height:1em;
+}
+h4,h5,h6{ font-weight: bold; }
+h1{ font-size:2.5em; }
+h2{ font-size:2em; border-bottom:1px solid silver; padding-bottom: 5px; }
+h3{ font-size:1.5em; }
+h4{ font-size:1.2em; }
+h5{ font-size:1em; }
+h6{ font-size:0.9em; }
 
-blockquote {
-  border-left: 4px solid #dddddd;
-  padding: 0 15px;
-  color: #777777; }
-  blockquote > :first-child {
-    margin-top: 0; }
-  blockquote > :last-child {
-    margin-bottom: 0; }
+blockquote{
+color:#666666;
+margin:0;
+padding-left: 3em;
+border-left: 0.5em #EEE solid;
+}
+hr { display: block; height: 2px; border: 0; border-top: 1px solid #aaa;border-bottom: 1px solid #eee; margin: 1em 0; padding: 0; }
 
-table {
-  padding: 0;border-collapse: collapse; }
-  table tr {
-    border-top: 1px solid #cccccc;
-    background-color: white;
-    margin: 0;
-    padding: 0; }
-    table tr:nth-child(2n) {
-      background-color: #f8f8f8; }
-    table tr th {
-      font-weight: bold;
-      border: 1px solid #cccccc;
-      margin: 0;
-      padding: 6px 13px; }
-    table tr td {
-      border: 1px solid #cccccc;
-      margin: 0;
-      padding: 6px 13px; }
-    table tr th :first-child, table tr td :first-child {
-      margin-top: 0; }
-    table tr th :last-child, table tr td :last-child {
-      margin-bottom: 0; }
 
-img {
-  max-width: 100%; }
+pre , code, kbd, samp { 
+  color: #000; 
+  font-family: monospace; 
+  font-size: 0.88em; 
+  border-radius:3px;
+  background-color: #F8F8F8;
+  border: 1px solid #CCC; 
+}
+pre { white-space: pre; white-space: pre-wrap; word-wrap: break-word; padding: 5px 12px;}
+pre code { border: 0px !important; padding: 0;}
+code { padding: 0 3px 0 3px; }
 
-span.frame {
-  display: block;
-  overflow: hidden; }
-  span.frame > span {
-    border: 1px solid #dddddd;
-    display: block;
-    float: left;
-    overflow: hidden;
-    margin: 13px 0 0;
-    padding: 7px;
-    width: auto; }
-  span.frame span img {
-    display: block;
-    float: left; }
-  span.frame span span {
-    clear: both;
-    color: #333333;
-    display: block;
-    padding: 5px 0 0; }
-span.align-center {
-  display: block;
-  overflow: hidden;
-  clear: both; }
-  span.align-center > span {
-    display: block;
-    overflow: hidden;
-    margin: 13px auto 0;
-    text-align: center; }
-  span.align-center span img {
-    margin: 0 auto;
-    text-align: center; }
-span.align-right {
-  display: block;
-  overflow: hidden;
-  clear: both; }
-  span.align-right > span {
-    display: block;
-    overflow: hidden;
-    margin: 13px 0 0;
-    text-align: right; }
-  span.align-right span img {
-    margin: 0;
-    text-align: right; }
-span.float-left {
-  display: block;
-  margin-right: 13px;
-  overflow: hidden;
-  float: left; }
-  span.float-left span {
-    margin: 13px 0 0; }
-span.float-right {
-  display: block;
-  margin-left: 13px;
-  overflow: hidden;
-  float: right; }
-  span.float-right > span {
-    display: block;
-    overflow: hidden;
-    margin: 13px auto 0;
-    text-align: right; }
+b, strong { font-weight: bold; }
 
-code, tt {
-  margin: 0 2px;
-  padding: 0 5px;
-  white-space: nowrap;
-  border: 1px solid #eaeaea;
-  background-color: #f8f8f8;
-  border-radius: 3px; }
+dfn { font-style: italic; }
+
+ins { background: #ff9; color: #000; text-decoration: none; }
+
+mark { background: #ff0; color: #000; font-style: italic; font-weight: bold; }
+
+sub, sup { font-size: 75%; line-height: 0; position: relative; vertical-align: baseline; }
+sup { top: -0.5em; }
+sub { bottom: -0.25em; }
+
+ul, ol { margin: 1em 0; padding: 0 0 0 2em; }
+li p:last-child { margin:0 }
+dd { margin: 0 0 0 2em; }
+
+img { border: 0; -ms-interpolation-mode: bicubic; vertical-align: middle; }
+
+table { border-collapse: collapse; border-spacing: 0; }
+td { vertical-align: top; }
+
+@media only screen and (min-width: 480px) {
+body{font-size:14px;}
+}
+
+@media only screen and (min-width: 768px) {
+body{font-size:16px;}
+}
+
+@media print {
+  * { background: transparent !important; color: black !important; filter:none !important; -ms-filter: none !important; }
+  body{font-size:12pt; max-width:100%; outline:none;}
+  a, a:visited { text-decoration: underline; }
+  hr { height: 1px; border:0; border-bottom:1px solid black; }
+  a[href]:after { content: " (" attr(href) ")"; }
+  abbr[title]:after { content: " (" attr(title) ")"; }
+  .ir a:after, a[href^="javascript:"]:after, a[href^="#"]:after { content: ""; }
+  pre, blockquote { border: 1px solid #999; padding-right: 1em; page-break-inside: avoid; }
+  tr, img { page-break-inside: avoid; }
+  img { max-width: 100% !important; }
+  @page :left { margin: 15mm 20mm 15mm 10mm; }
+  @page :right { margin: 15mm 10mm 15mm 20mm; }
+  p, h2, h3 { orphans: 3; widows: 3; }
+  h2, h3 { page-break-after: avoid; }
+}
+</style><style>/*
+
+github.com style (c) Vasily Polovnyov <vast@whiteants.net>
+
+*/
 
 pre code {
-  margin: 0;
-  padding: 0;
-  white-space: pre;
-  border: none;
-  background: transparent; }
-
-.highlight pre {
-  background-color: #f8f8f8;
-  border: 1px solid #cccccc;
-  font-size: 13px;
-  line-height: 19px;
-  overflow: auto;
-  padding: 6px 10px;
-  border-radius: 3px; }
-
-pre {
-  background-color: #f8f8f8;
-  border: 1px solid #cccccc;
-  font-size: 13px;
-  line-height: 19px;
-  overflow: auto;
-  padding: 6px 10px;
-  border-radius: 3px; }
-  pre code, pre tt {
-    background-color: transparent;
-    border: none; }
-
-sup {
-    font-size: 0.83em;
-    vertical-align: super;
-    line-height: 0;
+  display: block; padding: 0.5em;
+  color: #333;
+  background: #f8f8ff
 }
-* {
-	-webkit-print-color-adjust: exact;
-}
-@media screen and (min-width: 914px) {
-    body {
-        width: 854px;
-        margin:0 auto;
-    }
-}
-@media print {
-	table, pre {
-		page-break-inside: avoid;
-	}
-	pre {
-		word-wrap: break-word;
-	}
-}
-</style>
-<title>An Accelerated Introduction to Web Development</title>
 
-</head>
-<body>
-<p><a id="top"></a></p>
+pre .comment,
+pre .template_comment,
+pre .diff .header,
+pre .javadoc {
+  color: #998;
+  font-style: italic
+}
 
-<h1>An Accelerated Introduction to Web Development</h1>
+pre .keyword,
+pre .css .rule .keyword,
+pre .winutils,
+pre .javascript .title,
+pre .nginx .title,
+pre .subst,
+pre .request,
+pre .status {
+  color: #333;
+  font-weight: bold
+}
 
+pre .number,
+pre .hexcolor,
+pre .ruby .constant {
+  color: #099;
+}
+
+pre .string,
+pre .tag .value,
+pre .phpdoc,
+pre .tex .formula {
+  color: #d14
+}
+
+pre .title,
+pre .id,
+pre .coffeescript .params,
+pre .scss .preprocessor {
+  color: #900;
+  font-weight: bold
+}
+
+pre .javascript .title,
+pre .lisp .title,
+pre .clojure .title,
+pre .subst {
+  font-weight: normal
+}
+
+pre .class .title,
+pre .haskell .type,
+pre .vhdl .literal,
+pre .tex .command {
+  color: #458;
+  font-weight: bold
+}
+
+pre .tag,
+pre .tag .title,
+pre .rules .property,
+pre .django .tag .keyword {
+  color: #000080;
+  font-weight: normal
+}
+
+pre .attribute,
+pre .variable,
+pre .lisp .body {
+  color: #008080
+}
+
+pre .regexp {
+  color: #009926
+}
+
+pre .class {
+  color: #458;
+  font-weight: bold
+}
+
+pre .symbol,
+pre .ruby .symbol .string,
+pre .lisp .keyword,
+pre .tex .special,
+pre .prompt {
+  color: #990073
+}
+
+pre .built_in,
+pre .lisp .title,
+pre .clojure .built_in {
+  color: #0086b3
+}
+
+pre .preprocessor,
+pre .pi,
+pre .doctype,
+pre .shebang,
+pre .cdata {
+  color: #999;
+  font-weight: bold
+}
+
+pre .deletion {
+  background: #fdd
+}
+
+pre .addition {
+  background: #dfd
+}
+
+pre .diff .change {
+  background: #0086b3
+}
+
+pre .chunk {
+  color: #aaa
+}</style><script>var hljs=new function(){function l(o){return o.replace(/&/gm,"&amp;").replace(/</gm,"&lt;").replace(/>/gm,"&gt;")}function b(p){for(var o=p.firstChild;o;o=o.nextSibling){if(o.nodeName=="CODE"){return o}if(!(o.nodeType==3&&o.nodeValue.match(/\s+/))){break}}}function h(p,o){return Array.prototype.map.call(p.childNodes,function(q){if(q.nodeType==3){return o?q.nodeValue.replace(/\n/g,""):q.nodeValue}if(q.nodeName=="BR"){return"\n"}return h(q,o)}).join("")}function a(q){var p=(q.className+" "+q.parentNode.className).split(/\s+/);p=p.map(function(r){return r.replace(/^language-/,"")});for(var o=0;o<p.length;o++){if(e[p[o]]||p[o]=="no-highlight"){return p[o]}}}function c(q){var o=[];(function p(r,s){for(var t=r.firstChild;t;t=t.nextSibling){if(t.nodeType==3){s+=t.nodeValue.length}else{if(t.nodeName=="BR"){s+=1}else{if(t.nodeType==1){o.push({event:"start",offset:s,node:t});s=p(t,s);o.push({event:"stop",offset:s,node:t})}}}}return s})(q,0);return o}function j(x,v,w){var p=0;var y="";var r=[];function t(){if(x.length&&v.length){if(x[0].offset!=v[0].offset){return(x[0].offset<v[0].offset)?x:v}else{return v[0].event=="start"?x:v}}else{return x.length?x:v}}function s(A){function z(B){return" "+B.nodeName+'="'+l(B.value)+'"'}return"<"+A.nodeName+Array.prototype.map.call(A.attributes,z).join("")+">"}while(x.length||v.length){var u=t().splice(0,1)[0];y+=l(w.substr(p,u.offset-p));p=u.offset;if(u.event=="start"){y+=s(u.node);r.push(u.node)}else{if(u.event=="stop"){var o,q=r.length;do{q--;o=r[q];y+=("</"+o.nodeName.toLowerCase()+">")}while(o!=u.node);r.splice(q,1);while(q<r.length){y+=s(r[q]);q++}}}}return y+l(w.substr(p))}function f(q){function o(s,r){return RegExp(s,"m"+(q.cI?"i":"")+(r?"g":""))}function p(y,w){if(y.compiled){return}y.compiled=true;var s=[];if(y.k){var r={};function z(A,t){t.split(" ").forEach(function(B){var C=B.split("|");r[C[0]]=[A,C[1]?Number(C[1]):1];s.push(C[0])})}y.lR=o(y.l||hljs.IR,true);if(typeof y.k=="string"){z("keyword",y.k)}else{for(var x in y.k){if(!y.k.hasOwnProperty(x)){continue}z(x,y.k[x])}}y.k=r}if(w){if(y.bWK){y.b="\\b("+s.join("|")+")\\s"}y.bR=o(y.b?y.b:"\\B|\\b");if(!y.e&&!y.eW){y.e="\\B|\\b"}if(y.e){y.eR=o(y.e)}y.tE=y.e||"";if(y.eW&&w.tE){y.tE+=(y.e?"|":"")+w.tE}}if(y.i){y.iR=o(y.i)}if(y.r===undefined){y.r=1}if(!y.c){y.c=[]}for(var v=0;v<y.c.length;v++){if(y.c[v]=="self"){y.c[v]=y}p(y.c[v],y)}if(y.starts){p(y.starts,w)}var u=[];for(var v=0;v<y.c.length;v++){u.push(y.c[v].b)}if(y.tE){u.push(y.tE)}if(y.i){u.push(y.i)}y.t=u.length?o(u.join("|"),true):{exec:function(t){return null}}}p(q)}function d(D,E){function o(r,M){for(var L=0;L<M.c.length;L++){var K=M.c[L].bR.exec(r);if(K&&K.index==0){return M.c[L]}}}function s(K,r){if(K.e&&K.eR.test(r)){return K}if(K.eW){return s(K.parent,r)}}function t(r,K){return K.i&&K.iR.test(r)}function y(L,r){var K=F.cI?r[0].toLowerCase():r[0];return L.k.hasOwnProperty(K)&&L.k[K]}function G(){var K=l(w);if(!A.k){return K}var r="";var N=0;A.lR.lastIndex=0;var L=A.lR.exec(K);while(L){r+=K.substr(N,L.index-N);var M=y(A,L);if(M){v+=M[1];r+='<span class="'+M[0]+'">'+L[0]+"</span>"}else{r+=L[0]}N=A.lR.lastIndex;L=A.lR.exec(K)}return r+K.substr(N)}function z(){if(A.sL&&!e[A.sL]){return l(w)}var r=A.sL?d(A.sL,w):g(w);if(A.r>0){v+=r.keyword_count;B+=r.r}return'<span class="'+r.language+'">'+r.value+"</span>"}function J(){return A.sL!==undefined?z():G()}function I(L,r){var K=L.cN?'<span class="'+L.cN+'">':"";if(L.rB){x+=K;w=""}else{if(L.eB){x+=l(r)+K;w=""}else{x+=K;w=r}}A=Object.create(L,{parent:{value:A}});B+=L.r}function C(K,r){w+=K;if(r===undefined){x+=J();return 0}var L=o(r,A);if(L){x+=J();I(L,r);return L.rB?0:r.length}var M=s(A,r);if(M){if(!(M.rE||M.eE)){w+=r}x+=J();do{if(A.cN){x+="</span>"}A=A.parent}while(A!=M.parent);if(M.eE){x+=l(r)}w="";if(M.starts){I(M.starts,"")}return M.rE?0:r.length}if(t(r,A)){throw"Illegal"}w+=r;return r.length||1}var F=e[D];f(F);var A=F;var w="";var B=0;var v=0;var x="";try{var u,q,p=0;while(true){A.t.lastIndex=p;u=A.t.exec(E);if(!u){break}q=C(E.substr(p,u.index-p),u[0]);p=u.index+q}C(E.substr(p));return{r:B,keyword_count:v,value:x,language:D}}catch(H){if(H=="Illegal"){return{r:0,keyword_count:0,value:l(E)}}else{throw H}}}function g(s){var o={keyword_count:0,r:0,value:l(s)};var q=o;for(var p in e){if(!e.hasOwnProperty(p)){continue}var r=d(p,s);r.language=p;if(r.keyword_count+r.r>q.keyword_count+q.r){q=r}if(r.keyword_count+r.r>o.keyword_count+o.r){q=o;o=r}}if(q.language){o.second_best=q}return o}function i(q,p,o){if(p){q=q.replace(/^((<[^>]+>|\t)+)/gm,function(r,v,u,t){return v.replace(/\t/g,p)})}if(o){q=q.replace(/\n/g,"<br>")}return q}function m(r,u,p){var v=h(r,p);var t=a(r);if(t=="no-highlight"){return}var w=t?d(t,v):g(v);t=w.language;var o=c(r);if(o.length){var q=document.createElement("pre");q.innerHTML=w.value;w.value=j(o,c(q),v)}w.value=i(w.value,u,p);var s=r.className;if(!s.match("(\\s|^)(language-)?"+t+"(\\s|$)")){s=s?(s+" "+t):t}r.innerHTML=w.value;r.className=s;r.result={language:t,kw:w.keyword_count,re:w.r};if(w.second_best){r.second_best={language:w.second_best.language,kw:w.second_best.keyword_count,re:w.second_best.r}}}function n(){if(n.called){return}n.called=true;Array.prototype.map.call(document.getElementsByTagName("pre"),b).filter(Boolean).forEach(function(o){m(o,hljs.tabReplace)})}function k(){window.addEventListener("DOMContentLoaded",n,false);window.addEventListener("load",n,false)}var e={};this.LANGUAGES=e;this.highlight=d;this.highlightAuto=g;this.fixMarkup=i;this.highlightBlock=m;this.initHighlighting=n;this.initHighlightingOnLoad=k;this.IR="[a-zA-Z][a-zA-Z0-9_]*";this.UIR="[a-zA-Z_][a-zA-Z0-9_]*";this.NR="\\b\\d+(\\.\\d+)?";this.CNR="(\\b0[xX][a-fA-F0-9]+|(\\b\\d+(\\.\\d*)?|\\.\\d+)([eE][-+]?\\d+)?)";this.BNR="\\b(0b[01]+)";this.RSR="!|!=|!==|%|%=|&|&&|&=|\\*|\\*=|\\+|\\+=|,|\\.|-|-=|/|/=|:|;|<|<<|<<=|<=|=|==|===|>|>=|>>|>>=|>>>|>>>=|\\?|\\[|\\{|\\(|\\^|\\^=|\\||\\|=|\\|\\||~";this.BE={b:"\\\\[\\s\\S]",r:0};this.ASM={cN:"string",b:"'",e:"'",i:"\\n",c:[this.BE],r:0};this.QSM={cN:"string",b:'"',e:'"',i:"\\n",c:[this.BE],r:0};this.CLCM={cN:"comment",b:"//",e:"$"};this.CBLCLM={cN:"comment",b:"/\\*",e:"\\*/"};this.HCM={cN:"comment",b:"#",e:"$"};this.NM={cN:"number",b:this.NR,r:0};this.CNM={cN:"number",b:this.CNR,r:0};this.BNM={cN:"number",b:this.BNR,r:0};this.inherit=function(q,r){var o={};for(var p in q){o[p]=q[p]}if(r){for(var p in r){o[p]=r[p]}}return o}}();hljs.LANGUAGES.bash=function(a){var g="true false";var e="if then else elif fi for break continue while in do done echo exit return set declare";var c={cN:"variable",b:"\\$[a-zA-Z0-9_#]+"};var b={cN:"variable",b:"\\${([^}]|\\\\})+}"};var h={cN:"string",b:'"',e:'"',i:"\\n",c:[a.BE,c,b],r:0};var d={cN:"string",b:"'",e:"'",c:[{b:"''"}],r:0};var f={cN:"test_condition",b:"",e:"",c:[h,d,c,b],k:{literal:g},r:0};return{k:{keyword:e,literal:g},c:[{cN:"shebang",b:"(#!\\/bin\\/bash)|(#!\\/bin\\/sh)",r:10},c,b,a.HCM,h,d,a.inherit(f,{b:"\\[ ",e:" \\]",r:0}),a.inherit(f,{b:"\\[\\[ ",e:" \\]\\]"})]}}(hljs);hljs.LANGUAGES.cs=function(a){return{k:"abstract as base bool break byte case catch char checked class const continue decimal default delegate do double else enum event explicit extern false finally fixed float for foreach goto if implicit in int interface internal is lock long namespace new null object operator out override params private protected public readonly ref return sbyte sealed short sizeof stackalloc static string struct switch this throw true try typeof uint ulong unchecked unsafe ushort using virtual volatile void while ascending descending from get group into join let orderby partial select set value var where yield",c:[{cN:"comment",b:"///",e:"$",rB:true,c:[{cN:"xmlDocTag",b:"///|<!--|-->"},{cN:"xmlDocTag",b:"</?",e:">"}]},a.CLCM,a.CBLCLM,{cN:"preprocessor",b:"#",e:"$",k:"if else elif endif define undef warning error line region endregion pragma checksum"},{cN:"string",b:'@"',e:'"',c:[{b:'""'}]},a.ASM,a.QSM,a.CNM]}}(hljs);hljs.LANGUAGES.ruby=function(e){var a="[a-zA-Z_][a-zA-Z0-9_]*(\\!|\\?)?";var j="[a-zA-Z_]\\w*[!?=]?|[-+~]\\@|<<|>>|=~|===?|<=>|[<>]=?|\\*\\*|[-/+%^&*~`|]|\\[\\]=?";var g={keyword:"and false then defined module in return redo if BEGIN retry end for true self when next until do begin unless END rescue nil else break undef not super class case require yield alias while ensure elsif or include"};var c={cN:"yardoctag",b:"@[A-Za-z]+"};var k=[{cN:"comment",b:"#",e:"$",c:[c]},{cN:"comment",b:"^\\=begin",e:"^\\=end",c:[c],r:10},{cN:"comment",b:"^__END__",e:"\\n$"}];var d={cN:"subst",b:"#\\{",e:"}",l:a,k:g};var i=[e.BE,d];var b=[{cN:"string",b:"'",e:"'",c:i,r:0},{cN:"string",b:'"',e:'"',c:i,r:0},{cN:"string",b:"%[qw]?\\(",e:"\\)",c:i},{cN:"string",b:"%[qw]?\\[",e:"\\]",c:i},{cN:"string",b:"%[qw]?{",e:"}",c:i},{cN:"string",b:"%[qw]?<",e:">",c:i,r:10},{cN:"string",b:"%[qw]?/",e:"/",c:i,r:10},{cN:"string",b:"%[qw]?%",e:"%",c:i,r:10},{cN:"string",b:"%[qw]?-",e:"-",c:i,r:10},{cN:"string",b:"%[qw]?\\|",e:"\\|",c:i,r:10}];var h={cN:"function",bWK:true,e:" |$|;",k:"def",c:[{cN:"title",b:j,l:a,k:g},{cN:"params",b:"\\(",e:"\\)",l:a,k:g}].concat(k)};var f=k.concat(b.concat([{cN:"class",bWK:true,e:"$|;",k:"class module",c:[{cN:"title",b:"[A-Za-z_]\\w*(::\\w+)*(\\?|\\!)?",r:0},{cN:"inheritance",b:"<\\s*",c:[{cN:"parent",b:"("+e.IR+"::)?"+e.IR}]}].concat(k)},h,{cN:"constant",b:"(::)?(\\b[A-Z]\\w*(::)?)+",r:0},{cN:"symbol",b:":",c:b.concat([{b:j}]),r:0},{cN:"symbol",b:a+":",r:0},{cN:"number",b:"(\\b0[0-7_]+)|(\\b0x[0-9a-fA-F_]+)|(\\b[1-9][0-9_]*(\\.[0-9_]+)?)|[0_]\\b",r:0},{cN:"number",b:"\\?\\w"},{cN:"variable",b:"(\\$\\W)|((\\$|\\@\\@?)(\\w+))"},{b:"("+e.RSR+")\\s*",c:k.concat([{cN:"regexp",b:"/",e:"/[a-z]*",i:"\\n",c:[e.BE,d]}]),r:0}]));d.c=f;h.c[1].c=f;return{l:a,k:g,c:f}}(hljs);hljs.LANGUAGES.diff=function(a){return{c:[{cN:"chunk",b:"^\\@\\@ +\\-\\d+,\\d+ +\\+\\d+,\\d+ +\\@\\@$",r:10},{cN:"chunk",b:"^\\*\\*\\* +\\d+,\\d+ +\\*\\*\\*\\*$",r:10},{cN:"chunk",b:"^\\-\\-\\- +\\d+,\\d+ +\\-\\-\\-\\-$",r:10},{cN:"header",b:"Index: ",e:"$"},{cN:"header",b:"=====",e:"=====$"},{cN:"header",b:"^\\-\\-\\-",e:"$"},{cN:"header",b:"^\\*{3} ",e:"$"},{cN:"header",b:"^\\+\\+\\+",e:"$"},{cN:"header",b:"\\*{5}",e:"\\*{5}$"},{cN:"addition",b:"^\\+",e:"$"},{cN:"deletion",b:"^\\-",e:"$"},{cN:"change",b:"^\\!",e:"$"}]}}(hljs);hljs.LANGUAGES.javascript=function(a){return{k:{keyword:"in if for while finally var new function do return void else break catch instanceof with throw case default try this switch continue typeof delete let yield const",literal:"true false null undefined NaN Infinity"},c:[a.ASM,a.QSM,a.CLCM,a.CBLCLM,a.CNM,{b:"("+a.RSR+"|\\b(case|return|throw)\\b)\\s*",k:"return throw case",c:[a.CLCM,a.CBLCLM,{cN:"regexp",b:"/",e:"/[gim]*",i:"\\n",c:[{b:"\\\\/"}]},{b:"<",e:">;",sL:"xml"}],r:0},{cN:"function",bWK:true,e:"{",k:"function",c:[{cN:"title",b:"[A-Za-z$_][0-9A-Za-z$_]*"},{cN:"params",b:"\\(",e:"\\)",c:[a.CLCM,a.CBLCLM],i:"[\"'\\(]"}],i:"\\[|%"}]}}(hljs);hljs.LANGUAGES.css=function(a){var b={cN:"function",b:a.IR+"\\(",e:"\\)",c:[a.NM,a.ASM,a.QSM]};return{cI:true,i:"[=/|']",c:[a.CBLCLM,{cN:"id",b:"\\#[A-Za-z0-9_-]+"},{cN:"class",b:"\\.[A-Za-z0-9_-]+",r:0},{cN:"attr_selector",b:"\\[",e:"\\]",i:"$"},{cN:"pseudo",b:":(:)?[a-zA-Z0-9\\_\\-\\+\\(\\)\\\"\\']+"},{cN:"at_rule",b:"@(font-face|page)",l:"[a-z-]+",k:"font-face page"},{cN:"at_rule",b:"@",e:"[{;]",eE:true,k:"import page media charset",c:[b,a.ASM,a.QSM,a.NM]},{cN:"tag",b:a.IR,r:0},{cN:"rules",b:"{",e:"}",i:"[^\\s]",r:0,c:[a.CBLCLM,{cN:"rule",b:"[^\\s]",rB:true,e:";",eW:true,c:[{cN:"attribute",b:"[A-Z\\_\\.\\-]+",e:":",eE:true,i:"[^\\s]",starts:{cN:"value",eW:true,eE:true,c:[b,a.NM,a.QSM,a.ASM,a.CBLCLM,{cN:"hexcolor",b:"\\#[0-9A-F]+"},{cN:"important",b:"!important"}]}}]}]}]}}(hljs);hljs.LANGUAGES.xml=function(a){var c="[A-Za-z0-9\\._:-]+";var b={eW:true,c:[{cN:"attribute",b:c,r:0},{b:'="',rB:true,e:'"',c:[{cN:"value",b:'"',eW:true}]},{b:"='",rB:true,e:"'",c:[{cN:"value",b:"'",eW:true}]},{b:"=",c:[{cN:"value",b:"[^\\s/>]+"}]}]};return{cI:true,c:[{cN:"pi",b:"<\\?",e:"\\?>",r:10},{cN:"doctype",b:"<!DOCTYPE",e:">",r:10,c:[{b:"\\[",e:"\\]"}]},{cN:"comment",b:"<!--",e:"-->",r:10},{cN:"cdata",b:"<\\!\\[CDATA\\[",e:"\\]\\]>",r:10},{cN:"tag",b:"<style(?=\\s|>|$)",e:">",k:{title:"style"},c:[b],starts:{e:"</style>",rE:true,sL:"css"}},{cN:"tag",b:"<script(?=\\s|>|$)",e:">",k:{title:"script"},c:[b],starts:{e:"<\/script>",rE:true,sL:"javascript"}},{b:"<%",e:"%>",sL:"vbscript"},{cN:"tag",b:"</?",e:"/?>",c:[{cN:"title",b:"[^ />]+"},b]}]}}(hljs);hljs.LANGUAGES.http=function(a){return{i:"\\S",c:[{cN:"status",b:"^HTTP/[0-9\\.]+",e:"$",c:[{cN:"number",b:"\\b\\d{3}\\b"}]},{cN:"request",b:"^[A-Z]+ (.*?) HTTP/[0-9\\.]+$",rB:true,e:"$",c:[{cN:"string",b:" ",e:" ",eB:true,eE:true}]},{cN:"attribute",b:"^\\w",e:": ",eE:true,i:"\\n|\\s|=",starts:{cN:"string",e:"$"}},{b:"\\n\\n",starts:{sL:"",eW:true}}]}}(hljs);hljs.LANGUAGES.java=function(a){return{k:"false synchronized int abstract float private char boolean static null if const for true while long throw strictfp finally protected import native final return void enum else break transient new catch instanceof byte super volatile case assert short package default double public try this switch continue throws",c:[{cN:"javadoc",b:"/\\*\\*",e:"\\*/",c:[{cN:"javadoctag",b:"@[A-Za-z]+"}],r:10},a.CLCM,a.CBLCLM,a.ASM,a.QSM,{cN:"class",bWK:true,e:"{",k:"class interface",i:":",c:[{bWK:true,k:"extends implements",r:10},{cN:"title",b:a.UIR}]},a.CNM,{cN:"annotation",b:"@[A-Za-z]+"}]}}(hljs);hljs.LANGUAGES.php=function(a){var e={cN:"variable",b:"\\$+[a-zA-Z_\x7f-\xff][a-zA-Z0-9_\x7f-\xff]*"};var b=[a.inherit(a.ASM,{i:null}),a.inherit(a.QSM,{i:null}),{cN:"string",b:'b"',e:'"',c:[a.BE]},{cN:"string",b:"b'",e:"'",c:[a.BE]}];var c=[a.BNM,a.CNM];var d={cN:"title",b:a.UIR};return{cI:true,k:"and include_once list abstract global private echo interface as static endswitch array null if endwhile or const for endforeach self var while isset public protected exit foreach throw elseif include __FILE__ empty require_once do xor return implements parent clone use __CLASS__ __LINE__ else break print eval new catch __METHOD__ case exception php_user_filter default die require __FUNCTION__ enddeclare final try this switch continue endfor endif declare unset true false namespace trait goto instanceof insteadof __DIR__ __NAMESPACE__ __halt_compiler",c:[a.CLCM,a.HCM,{cN:"comment",b:"/\\*",e:"\\*/",c:[{cN:"phpdoc",b:"\\s@[A-Za-z]+"}]},{cN:"comment",eB:true,b:"__halt_compiler.+?;",eW:true},{cN:"string",b:"<<<['\"]?\\w+['\"]?$",e:"^\\w+;",c:[a.BE]},{cN:"preprocessor",b:"<\\?php",r:10},{cN:"preprocessor",b:"\\?>"},e,{cN:"function",bWK:true,e:"{",k:"function",i:"\\$|\\[|%",c:[d,{cN:"params",b:"\\(",e:"\\)",c:["self",e,a.CBLCLM].concat(b).concat(c)}]},{cN:"class",bWK:true,e:"{",k:"class",i:"[:\\(\\$]",c:[{bWK:true,eW:true,k:"extends",c:[d]},d]},{b:"=>"}].concat(b).concat(c)}}(hljs);hljs.LANGUAGES.python=function(a){var f={cN:"prompt",b:"^(>>>|\\.\\.\\.) "};var c=[{cN:"string",b:"(u|b)?r?'''",e:"'''",c:[f],r:10},{cN:"string",b:'(u|b)?r?"""',e:'"""',c:[f],r:10},{cN:"string",b:"(u|r|ur)'",e:"'",c:[a.BE],r:10},{cN:"string",b:'(u|r|ur)"',e:'"',c:[a.BE],r:10},{cN:"string",b:"(b|br)'",e:"'",c:[a.BE]},{cN:"string",b:'(b|br)"',e:'"',c:[a.BE]}].concat([a.ASM,a.QSM]);var e={cN:"title",b:a.UIR};var d={cN:"params",b:"\\(",e:"\\)",c:["self",a.CNM,f].concat(c)};var b={bWK:true,e:":",i:"[${=;\\n]",c:[e,d],r:10};return{k:{keyword:"and elif is global as in if from raise for except finally print import pass return exec else break not with class assert yield try while continue del or def lambda nonlocal|10",built_in:"None True False Ellipsis NotImplemented"},i:"(</|->|\\?)",c:c.concat([f,a.HCM,a.inherit(b,{cN:"function",k:"def"}),a.inherit(b,{cN:"class",k:"class"}),a.CNM,{cN:"decorator",b:"@",e:"$"},{b:"\\b(print|exec)\\("}])}}(hljs);hljs.LANGUAGES.sql=function(a){return{cI:true,c:[{cN:"operator",b:"(begin|start|commit|rollback|savepoint|lock|alter|create|drop|rename|call|delete|do|handler|insert|load|replace|select|truncate|update|set|show|pragma|grant)\\b(?!:)",e:";",eW:true,k:{keyword:"all partial global month current_timestamp using go revoke smallint indicator end-exec disconnect zone with character assertion to add current_user usage input local alter match collate real then rollback get read timestamp session_user not integer bit unique day minute desc insert execute like ilike|2 level decimal drop continue isolation found where constraints domain right national some module transaction relative second connect escape close system_user for deferred section cast current sqlstate allocate intersect deallocate numeric public preserve full goto initially asc no key output collation group by union session both last language constraint column of space foreign deferrable prior connection unknown action commit view or first into float year primary cascaded except restrict set references names table outer open select size are rows from prepare distinct leading create only next inner authorization schema corresponding option declare precision immediate else timezone_minute external varying translation true case exception join hour default double scroll value cursor descriptor values dec fetch procedure delete and false int is describe char as at in varchar null trailing any absolute current_time end grant privileges when cross check write current_date pad begin temporary exec time update catalog user sql date on identity timezone_hour natural whenever interval work order cascade diagnostics nchar having left call do handler load replace truncate start lock show pragma exists number",aggregate:"count sum min max avg"},c:[{cN:"string",b:"'",e:"'",c:[a.BE,{b:"''"}],r:0},{cN:"string",b:'"',e:'"',c:[a.BE,{b:'""'}],r:0},{cN:"string",b:"`",e:"`",c:[a.BE]},a.CNM]},a.CBLCLM,{cN:"comment",b:"--",e:"$"}]}}(hljs);hljs.LANGUAGES.ini=function(a){return{cI:true,i:"[^\\s]",c:[{cN:"comment",b:";",e:"$"},{cN:"title",b:"^\\[",e:"\\]"},{cN:"setting",b:"^[a-z0-9\\[\\]_-]+[ \\t]*=[ \\t]*",e:"$",c:[{cN:"value",eW:true,k:"on off true false yes no",c:[a.QSM,a.NM]}]}]}}(hljs);hljs.LANGUAGES.perl=function(e){var a="getpwent getservent quotemeta msgrcv scalar kill dbmclose undef lc ma syswrite tr send umask sysopen shmwrite vec qx utime local oct semctl localtime readpipe do return format read sprintf dbmopen pop getpgrp not getpwnam rewinddir qqfileno qw endprotoent wait sethostent bless s|0 opendir continue each sleep endgrent shutdown dump chomp connect getsockname die socketpair close flock exists index shmgetsub for endpwent redo lstat msgctl setpgrp abs exit select print ref gethostbyaddr unshift fcntl syscall goto getnetbyaddr join gmtime symlink semget splice x|0 getpeername recv log setsockopt cos last reverse gethostbyname getgrnam study formline endhostent times chop length gethostent getnetent pack getprotoent getservbyname rand mkdir pos chmod y|0 substr endnetent printf next open msgsnd readdir use unlink getsockopt getpriority rindex wantarray hex system getservbyport endservent int chr untie rmdir prototype tell listen fork shmread ucfirst setprotoent else sysseek link getgrgid shmctl waitpid unpack getnetbyname reset chdir grep split require caller lcfirst until warn while values shift telldir getpwuid my getprotobynumber delete and sort uc defined srand accept package seekdir getprotobyname semop our rename seek if q|0 chroot sysread setpwent no crypt getc chown sqrt write setnetent setpriority foreach tie sin msgget map stat getlogin unless elsif truncate exec keys glob tied closedirioctl socket readlink eval xor readline binmode setservent eof ord bind alarm pipe atan2 getgrent exp time push setgrent gt lt or ne m|0 break given say state when";var d={cN:"subst",b:"[$@]\\{",e:"\\}",k:a,r:10};var b={cN:"variable",b:"\\$\\d"};var i={cN:"variable",b:"[\\$\\%\\@\\*](\\^\\w\\b|#\\w+(\\:\\:\\w+)*|[^\\s\\w{]|{\\w+}|\\w+(\\:\\:\\w*)*)"};var f=[e.BE,d,b,i];var h={b:"->",c:[{b:e.IR},{b:"{",e:"}"}]};var g={cN:"comment",b:"^(__END__|__DATA__)",e:"\\n$",r:5};var c=[b,i,e.HCM,g,{cN:"comment",b:"^\\=\\w",e:"\\=cut",eW:true},h,{cN:"string",b:"q[qwxr]?\\s*\\(",e:"\\)",c:f,r:5},{cN:"string",b:"q[qwxr]?\\s*\\[",e:"\\]",c:f,r:5},{cN:"string",b:"q[qwxr]?\\s*\\{",e:"\\}",c:f,r:5},{cN:"string",b:"q[qwxr]?\\s*\\|",e:"\\|",c:f,r:5},{cN:"string",b:"q[qwxr]?\\s*\\<",e:"\\>",c:f,r:5},{cN:"string",b:"qw\\s+q",e:"q",c:f,r:5},{cN:"string",b:"'",e:"'",c:[e.BE],r:0},{cN:"string",b:'"',e:'"',c:f,r:0},{cN:"string",b:"`",e:"`",c:[e.BE]},{cN:"string",b:"{\\w+}",r:0},{cN:"string",b:"-?\\w+\\s*\\=\\>",r:0},{cN:"number",b:"(\\b0[0-7_]+)|(\\b0x[0-9a-fA-F_]+)|(\\b[1-9][0-9_]*(\\.[0-9_]+)?)|[0_]\\b",r:0},{b:"("+e.RSR+"|\\b(split|return|print|reverse|grep)\\b)\\s*",k:"split return print reverse grep",r:0,c:[e.HCM,g,{cN:"regexp",b:"(s|tr|y)/(\\\\.|[^/])*/(\\\\.|[^/])*/[a-z]*",r:10},{cN:"regexp",b:"(m|qr)?/",e:"/[a-z]*",c:[e.BE],r:0}]},{cN:"sub",bWK:true,e:"(\\s*\\(.*?\\))?[;{]",k:"sub",r:5},{cN:"operator",b:"-\\w\\b",r:0}];d.c=c;h.c[1].c=c;return{k:a,c:c}}(hljs);hljs.LANGUAGES.json=function(a){var e={literal:"true false null"};var d=[a.QSM,a.CNM];var c={cN:"value",e:",",eW:true,eE:true,c:d,k:e};var b={b:"{",e:"}",c:[{cN:"attribute",b:'\\s*"',e:'"\\s*:\\s*',eB:true,eE:true,c:[a.BE],i:"\\n",starts:c}],i:"\\S"};var f={b:"\\[",e:"\\]",c:[a.inherit(c,{cN:null})],i:"\\S"};d.splice(d.length,0,b,f);return{c:d,k:e,i:"\\S"}}(hljs);hljs.LANGUAGES.cpp=function(a){var b={keyword:"false int float while private char catch export virtual operator sizeof dynamic_cast|10 typedef const_cast|10 const struct for static_cast|10 union namespace unsigned long throw volatile static protected bool template mutable if public friend do return goto auto void enum else break new extern using true class asm case typeid short reinterpret_cast|10 default double register explicit signed typename try this switch continue wchar_t inline delete alignof char16_t char32_t constexpr decltype noexcept nullptr static_assert thread_local restrict _Bool complex",built_in:"std string cin cout cerr clog stringstream istringstream ostringstream auto_ptr deque list queue stack vector map set bitset multiset multimap unordered_set unordered_map unordered_multiset unordered_multimap array shared_ptr"};return{k:b,i:"</",c:[a.CLCM,a.CBLCLM,a.QSM,{cN:"string",b:"'\\\\?.",e:"'",i:"."},{cN:"number",b:"\\b(\\d+(\\.\\d*)?|\\.\\d+)(u|U|l|L|ul|UL|f|F)"},a.CNM,{cN:"preprocessor",b:"#",e:"$"},{cN:"stl_container",b:"\\b(deque|list|queue|stack|vector|map|set|bitset|multiset|multimap|unordered_map|unordered_set|unordered_multiset|unordered_multimap|array)\\s*<",e:">",k:b,r:10,c:["self"]}]}}(hljs);
+</script><script>hljs.initHighlightingOnLoad();</script><title>webdev_curriculum</title></head><body><p><a id="top"></a></p>
+<h1 id="an-accelerated-introduction-to-web-development">An Accelerated Introduction to Web Development</h1>
 <p><em>Building a webapp in Flask.</em></p>
-
-<p>Much of this tutorial is adapted from the <a href="http://flask.pocoo.org/">Flask website</a>.  Written and developed by <a href="mailto:dan@adicu.com">Dan Schlosser</a> and <a href="http://adicu.com">ADI</a>.</p>
-
+<p>Much of this tutorial is adapted from the <a href="http://flask.pocoo.org/">Flask website</a>.  Written and developed by <a href="file:///Users/dan/working/devfest-webdev/curriculum/mailto:dan@adicu.com">Dan Schlosser</a> and <a href="http://adicu.com">ADI</a>.</p>
 <p><a id="about-this-document"></a></p>
-
-<h2>About This Document</h2>
-
+<h2 id="about-this-document">About This Document</h2>
 <p><a id="methodology"></a></p>
-
-<h3>Methodology</h3>
-
+<h3 id="methodology">Methodology</h3>
 <p>For the purposes of learning to make a web application using <a href="#flask">Flask</a>, we will write an entire web application, taking time to dissect how each piece functions and fits.  Each section is intended to be modular, but working in order is recommended.</p>
-
 <p><a id="the-end-product"></a></p>
-
-<h3>The End Product</h3>
-
+<h3 id="the-end-product">The End Product</h3>
 <p>We will be building a web application throughout this series, called "Has it Been Made Yet?".  It should let users type in a few keywords for a hackathon idea, and then it will tell them whether or not someone has made that idea and hosted it on <a href="http://github.com">GitHub</a>.  GitHub is a social network for <a href="http://en.wikipedia.org/wiki/Open_source">open-source</a> code, and is the most popular place for programmers to host their projects (and therefore, a great place to check for our app).</p>
-
 <p><a id="table-of-contents"></a></p>
-
-<h2>Table of Contents</h2>
-
+<h2 id="table-of-contents">Table of Contents</h2>
 <ul>
-<li><a href="#flask">1.0 Flask</a>
-
-<ul>
-<li><a href="#what-is-flask">1.1 What is Flask</a>
-
-<ul>
+<li><a href="#flask">1.0 Flask</a><ul>
+<li><a href="#what-is-flask">1.1 What is Flask</a><ul>
 <li><a href="#how-a-flask-app-works">1.1.1 How a Flask App Works</a></li>
 <li><a href="#the-anatomy-of-a-flask-app">1.1.2 The Anatomy of a Flask App</a></li>
 <li><a href="#dependancies-in-python">1.1.3 Dependancies in Python</a></li>
 </ul>
 </li>
-<li><a href="#hello-world-in-flask">1.2 Hello World</a>
-
-<ul>
+<li><a href="#hello-world-in-flask">1.2 Hello World</a><ul>
 <li><a href="#editing-app-py">1.2.1 Editing app.py</a></li>
 <li><a href="#running-a-flask-app">1.2.2 Running a Flask App</a></li>
 <li><a href="#developing-with-flask">1.2.3 Developing with Flask</a></li>
 </ul>
 </li>
-<li><a href="#working-with-routes">1.3 Working with Routes</a>
-
-<ul>
+<li><a href="#working-with-routes">1.3 Working with Routes</a><ul>
 <li><a href="#static-routes">1.3.1 Static Routes</a></li>
 <li><a href="#dynamic-routes">1.3.2 Dynamic Routes</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#apis">2.0 APIs</a>
-
-<ul>
-<li><a href="#api-basics">2.1 API Basics</a>
-
-<ul>
+<li><a href="#apis">2.0 APIs</a><ul>
+<li><a href="#api-basics">2.1 API Basics</a><ul>
 <li><a href="#rest-apis">2.1.1 REST APIs</a></li>
 <li><a href="#the-anatomy-of-a-url">2.1.2 The Anatomy of a URL</a></li>
 <li><a href="#data-in-json">2.1.3 Data in JSON</a></li>
@@ -379,9 +293,7 @@ sup {
 <li><a href="#http">2.1.5 Extension: HTTP</a></li>
 </ul>
 </li>
-<li><a href="#the-github-search-api">2.2 The GitHub Search API</a>
-
-<ul>
+<li><a href="#the-github-search-api">2.2 The GitHub Search API</a><ul>
 <li><a href="#determining-the-request-url">2.2.1 Determining the Request URL</a></li>
 <li><a href="#using-curl">2.2.2 Using cURL</a></li>
 <li><a href="#using-python">2.2.3 Using Python</a></li>
@@ -390,29 +302,21 @@ sup {
 <li><a href="#using-javascript">2.2.6 Extension: Using JavaScript</a></li>
 </ul>
 </li>
-<li><a href="#authentication">2.3 Authentication</a>
-
-<ul>
+<li><a href="#authentication">2.3 Authentication</a><ul>
 <li><a href="#basic-authentication">2.3.1 Basic Authentication</a></li>
 <li><a href="#oauth">2.3.2 Extension: OAuth</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#html-and-css">3.0 HTML and Templating</a>
-
-<ul>
-<li><a href="#html-basics">3.1 HTML Basics</a>
-
-<ul>
+<li><a href="#html-and-css">3.0 HTML and Templating</a><ul>
+<li><a href="#html-basics">3.1 HTML Basics</a><ul>
 <li><a href="#what-is-HTML">3.1.1 What is HTML</a></li>
 <li><a href="#anatomy-of-an-html-document">3.1.2 Anatomy of an HTML Document</a></li>
 <li><a href="#an-overview-of-common-tags">3.1.3 An Overview of Common Tags</a></li>
 </ul>
 </li>
-<li><a href="#templating-in-flask">3.2 Templating in Flask</a>
-
-<ul>
+<li><a href="#templating-in-flask">3.2 Templating in Flask</a><ul>
 <li><a href="#a-simple-example-index-html">3.2.1 A Simple Example: index.html</a></li>
 <li><a href="#extending-templates">3.2.2 Extending Templates</a></li>
 <li><a href="#template-variables">3.2.2 Template Variables</a></li>
@@ -420,19 +324,13 @@ sup {
 </li>
 </ul>
 </li>
-<li><a href="#css">4.0 CSS</a>
-
-<ul>
-<li><a href="#css-basics">4.1 CSS Basics</a>
-
-<ul>
+<li><a href="#css">4.0 CSS</a><ul>
+<li><a href="#css-basics">4.1 CSS Basics</a><ul>
 <li><a href="#selectors">4.1.1 Selectors</a></li>
 <li><a href="#css-best-practices">4.1.2 CSS Best Practices</a></li>
 </ul>
 </li>
-<li><a href="#external-libraries">4.2 External Libraries</a>
-
-<ul>
+<li><a href="#external-libraries">4.2 External Libraries</a><ul>
 <li><a href="#installation-and-template-setup">4.2.1 Installation and Template Setup</a></li>
 <li><a href="#using-foundation">4.2.2 Using Foundation</a></li>
 <li><a href="#rewriting-templates">4.2.3 Rewriting Templates</a></li>
@@ -442,32 +340,18 @@ sup {
 </ul>
 </li>
 </ul>
-
-
 <hr />
-
 <p><a id="flask"></a></p>
-
-<h1>1.0 Flask</h1>
-
+<h1 id="10-flask">1.0 Flask</h1>
 <p><a id="what-is-flask"></a></p>
-
-<h2>1.1 What is Flask</h2>
-
+<h2 id="11-what-is-flask">1.1 What is Flask</h2>
 <p><a href="http://flask.pocoo.org/">Flask</a> is a microframework for Python.  It lets you build web apps using Python.  It is very easy to setup and has excellent documentation on its <a href="http://flask.pocoo.org/">website</a>.</p>
-
 <p><a id="how-a-flask-app-works"></a></p>
-
-<h3>1.1.1 How a Flask App Works</h3>
-
+<h3 id="111-how-a-flask-app-works">1.1.1 How a Flask App Works</h3>
 <p>Flask works with a <a href="http://en.wikipedia.org/wiki/Client%E2%80%93server_model">client-server model</a>.  The server, written in Python, has functions that take requests from clients (i.e. your web browser) and return web content to be displayed by the client.  Flask servers have the ability of serving <a href="http://en.wikipedia.org/wiki/Dynamic_content">dynamic web pages</a>, or pages that are generated every time you load the page.  For example, dynamic content could be of such pages include information stored in a database or a user account.</p>
-
 <p><a id="the-anatomy-of-a-flask-app"></a></p>
-
-<h3>1.1.2 The Anatomy of a Flask App</h3>
-
+<h3 id="112-the-anatomy-of-a-flask-app">1.1.2 The Anatomy of a Flask App</h3>
 <p>This is a very basic directory structure for a Flask webapp.</p>
-
 <pre><code>ProjectDirectory/
 ├── app.py
 ├── requirements.txt
@@ -477,14 +361,11 @@ sup {
 │   └── js/
 └── templates/
 </code></pre>
-
 <ul>
 <li><code>ProjectDirectory/</code> - Everything for your app goes in this folder.  Rename this to the name of your app.</li>
 <li><code>app.py</code> - All of the Python/Flask code and server logic gets written in this file.</li>
 <li><code>requirements.txt</code> - A list of all of the dependancies for your project.  See more about dependancies and installing them in <a href="#dependancies-in-python">SOME UNDETERMINED SECTION</a>.</li>
-<li><code>static/</code> - This folder holds all your static files.  Static files include:
-
-<ul>
+<li><code>static/</code> - This folder holds all your static files.  Static files include:<ul>
 <li><code>js/</code> - Javascript files.</li>
 <li><code>css/</code> - CSS files.</li>
 <li><code>img/</code> - Image fls.</li>
@@ -492,357 +373,294 @@ sup {
 </li>
 <li><code>templates/</code> - This folder holds all your Flask templates.  Our HTML files will go here.  There are special features offered by Flask that make templates different than basic HTML files, explored in <a href="#templating-in-flask">Section 3.2</a>.</li>
 </ul>
-
-
 <p><a id="hello-world-in-flask"></a></p>
-
-<h2>1.2 Hello World in Flask</h2>
-
+<h2 id="12-hello-world-in-flask">1.2 Hello World in Flask</h2>
 <p>In order to write the Hello World app, we only need to edit one file: <code>app.py</code>.  It's that easy!</p>
-
 <p><a id="editing-app-py"></a></p>
-
-<h3>1.2.1 Editing app.py</h3>
-
+<h3 id="121-editing-apppy">1.2.1 Editing app.py</h3>
 <p>First, import the <code>Flask</code> class from the <code>flask</code> module.</p>
-
-<pre><code>from flask import Flask
+<pre><code class="python">from flask import Flask
 </code></pre>
 
 <p>Then, construct the Flask <code>app</code> variable.  We'll pass around this variable whenever we want to access information about the server. We pass <code>__name__</code> into the <code>Flask()</code> function so that your flask app is associated with the directory structure we created in <a href="#the-anatomy-of-a-flask-app">Section 1.1</a>.</p>
-
-<pre><code>app = Flask(__name__)
+<pre><code class="python">app = Flask(__name__)
 </code></pre>
 
 <p>Next, apply the <code>@app.route("/")</code> <a href="https://wiki.python.org/moin/PythonDecorators">decorator</a> to a function called <code>hello()</code>.  It returns just the string <code>"Hello World!"</code>.  By doing this, we are making a <a href="http://flask.pocoo.org/docs/quickstart/#routing">route</a>.  The <code>route()</code> decorator binds the URL <code>http://yourwebapp.com/</code> to this function, effectively adding a new page to your app.  Functions with the <code>route()</code> decorator can return text strings or HTML, and whatever is returned will be displayed by the client.</p>
-
-<pre><code>@app.route("/")
+<pre><code class="python">@app.route(&quot;/&quot;)
 def hello():
-    return "Hello World!"
+    return &quot;Hello World!&quot;
 </code></pre>
 
 <p>Finally, call <code>app.run()</code> when the file is executed.  Once <code>app.run()</code> is called, the server will start accepting requests from the client.</p>
-
-<pre><code>if __name__ == "__main__":
+<pre><code class="python">if __name__ == &quot;__main__&quot;:
     app.run()
 </code></pre>
 
 <p>This leaves us with a completed Hello World program in Flask:</p>
-
-<pre><code>from flask import Flask
+<pre><code class="python">from flask import Flask
 
 app = Flask(__name__)
 
-@app.route("/")
+@app.route(&quot;/&quot;)
 def hello():
-    return "Hello World!"
+    return &quot;Hello World!&quot;
 
-if __name__ == "__main__":
+if __name__ == &quot;__main__&quot;:
     app.run()
 </code></pre>
 
 <p><a id="running-a-flask-app"></a></p>
-
-<h3>1.2.2 Running a Flask App</h3>
-
+<h3 id="122-running-a-flask-app">1.2.2 Running a Flask App</h3>
 <p>To run our Hello World app, just type the following command in the Project Directory folder:</p>
-
-<pre><code>$ python app.py
+<pre><code class="bash">$ python app.py
 </code></pre>
 
 <p>If it's working, it should print the lines:</p>
-
-<pre><code>* Running on http://127.0.0.1:5000/
+<pre><code class="bash">* Running on http://127.0.0.1:5000/
 </code></pre>
 
 <p>Point your browser to that URL and bask in the awesomeness!</p>
-
-<blockquote><p>Wondering what that weird URL is?  <code>127.0.0.1</code> is the IP address for <a href="http://en.wikipedia.org/wiki/Localhost">localhost</a>, or your local computer.  When we run a Flask server with <code>python app.py</code>, it is running only on your machine, not the internet.  The <code>:5000</code> bit is the <a href="http://en.wikipedia.org/wiki/Port_(computer_networking)">port</a>, or specific place where your app is running.  Developing locally is much easier and safer than publishing your app to the internet every time you want to test something, and is considered good practice.  Also, instead of typing out <code>http://127.0.0.1:5000</code> every time you want to see your app, you can also point your browser to <code>http://localhost:5000</code>.  The two are equivalent.</p></blockquote>
-
+<blockquote>
+<p>Wondering what that weird URL is?  <code>127.0.0.1</code> is the IP address for <a href="http://en.wikipedia.org/wiki/Localhost">localhost</a>, or your local computer.  When we run a Flask server with <code>python app.py</code>, it is running only on your machine, not the internet.  The <code>:5000</code> bit is the <a href="http://en.wikipedia.org/wiki/Port_(computer_networking)">port</a>, or specific place where your app is running.  Developing locally is much easier and safer than publishing your app to the internet every time you want to test something, and is considered good practice.  Also, instead of typing out <code>http://127.0.0.1:5000</code> every time you want to see your app, you can also point your browser to <code>http://localhost:5000</code>.  The two are equivalent.</p>
+</blockquote>
 <p><a id="developing-with-flask"></a></p>
-
-<h3>1.2.3 Developing with Flask</h3>
-
+<h3 id="123-developing-with-flask">1.2.3 Developing with Flask</h3>
 <p>Flask is great for development.  It offers very helpful error messages and prints stack traces well in the browser, if instructed to.  To enable these debugging features and (more importantly) automatic reload, edit <code>app.py</code> and add a statement configuring the <code>app</code> object.</p>
-
-<pre><code>from flask import Flask
+<pre><code class="python">from flask import Flask
 
 app = Flask(__name__)
-app.config["DEBUG"] = True  # Disable this for deployment
+app.config[&quot;DEBUG&quot;] = True  # Disable this for deployment
 
-@app.route("/")
+@app.route(&quot;/&quot;)
 def hello():
-    return "Hello World!"
+    return &quot;Hello World!&quot;
 
-if __name__ == "__main__":
+if __name__ == &quot;__main__&quot;:
     app.run()
 </code></pre>
 
 <p>With this modification, edit the string returned by the <code>hello()</code> function and refresh your browser to watch it change!  When you run the server now, it should also print:</p>
-
 <pre><code>* Restarting on reloader
 </code></pre>
-
 <p><a id="working-with-routes"></a></p>
-
-<h2>1.3 Working with Routes</h2>
-
+<h2 id="13-working-with-routes">1.3 Working with Routes</h2>
 <p>Let's define a few more routes for our app. Again, <a href="http://flask.pocoo.org/docs/quickstart/#routing">routes</a> are URLs that are supported by the server. We use the <a href="https://wiki.python.org/moin/PythonDecorators">decorator</a> <code>app.route()</code> to tie the decorated function to the URL given in the parenthesis.</p>
-
 <p><a id="static-routes"></a></p>
-
-<h3>1.3.1 Static Routes</h3>
-
+<h3 id="131-static-routes">1.3.1 Static Routes</h3>
 <p>First, lets make a route that lets the client get the name of the creator of this app.  Start by defining a function called <code>name()</code>, and have it return your name as a string.</p>
-
-<pre><code>def name():
-    return "Your Name"
+<pre><code class="python">def name():
+  return &quot;Your Name&quot;
 </code></pre>
 
 <p>Now we'll apply the decorator <code>route()</code>.  inside the parenthesis for the decorator, include the path <code>"/name"</code>.  Paths in Flask always start with a <code>/</code>.</p>
-
-<pre><code>@app.route("/name")
+<pre><code class="python">@app.route(&quot;/name&quot;)
 def name():
-    return "Your Name"
+  return &quot;Your Name&quot;
 </code></pre>
 
 <p>Save.  With your server <a href="#running-a-flask-app">running</a> or <a href="#developing-with-flask">reloaded</a>,  point your browser to <code>"http://localhost:5000/name"</code> and your name will appear!  Our <code>/name</code> route is static, because it returns the same string every time.</p>
-
 <p>Now, make another static route accessible at <code>http://localhost:5000/website</code> that returns the URL of your Github, Twitter, or personal website (don't forget the <code>http://</code>!). We'll use this route later.</p>
-
-<blockquote><p>We won't show the code for the website route here, but it's implementation is in the sample code for your reference.</p></blockquote>
-
+<blockquote>
+<p>We won't show the code for the website route here, but it's implementation is in the sample code for your reference.</p>
+</blockquote>
 <p><a id="dynamic-routes"></a></p>
-
-<h3>1.3.2 Dynamic Routes</h3>
-
+<h3 id="132-dynamic-routes">1.3.2 Dynamic Routes</h3>
 <p>Dynamic routes are what make using Flask so valuable.  Start off by making a static route called <code>search</code>.  It can return any string you want.  We'll edit it to return the results of our web search.</p>
-
-<pre><code>@app.route("/search")
+<pre><code class="python">@app.route(&quot;/search&quot;)
 def search():
-    return "Search"
+  return &quot;Search&quot;
 </code></pre>
 
 <p>To make our route dynamic, first we will modify the url to take a variable parameter named <code>search_query</code>.</p>
-
-<pre><code>@app.route("/search/&lt;search_query&gt;")
+<pre><code class="python">@app.route(&quot;/search/&lt;search_query&gt;&quot;)
 </code></pre>
 
 <p>Then, modify the <code>search</code> function to take a string parameter <code>search_query</code>, and return that.</p>
-
-<pre><code>@app.route("/search/&lt;search_query&gt;")
+<pre><code class="python">@app.route(&quot;/search/&lt;search_query&gt;&quot;)
 def search(search_query):
-    return search_query
+  return search_query
 </code></pre>
 
 <p>Save and reload your server as needed, and navigate to <code>http://localhost:5000/search/test</code> and see <code>test</code> appear as the returned page.  If you change what comes after the <code>/search/</code> in the URL, it will be displayed in the browser.  We will soon modify this route to return actual search results.</p>
-
 <hr />
-
 <p><a id="apis"></a></p>
-
-<h1>2.0 APIs</h1>
-
+<h1 id="20-apis">2.0 APIs</h1>
 <p><a id="api-basics"></a></p>
-
-<h2>2.1 API Basics</h2>
-
+<h2 id="21-api-basics">2.1 API Basics</h2>
 <p>At this point, our server can handle searches to our system, but it doesn't do anything with them (it just spits them back out).  What we need next is to search Github for projects with the same keywords and return them to the client.  To do this, we will use Github's <a href="http://en.wikipedia.org/wiki/Api">API</a>, or Application Programmer Interface.</p>
-
 <p>This section will take a step aside from our Flask project to build a foundation of knowledge around APIs and how they are used.  We will return to our app in <a href="#the-github-search-api">section 2.2</a>.</p>
-
 <p><a id="rest-apis"></a></p>
-
-<h3>2.1.1 REST APIs</h3>
-
+<h3 id="211-rest-apis">2.1.1 REST APIs</h3>
 <p>API's let us access external data in an easy, standardized way.  In the webapp world, when we say API we usually mean <a href="http://en.wikipedia.org/wiki/REST_API">REST (or RESTful) API</a>, which can be effectively thought of as an API that is accessible at a series of URL addresses. An extremely simple example of a REST API is <a href="http://placekitten.com">placekitten.com</a>, an API that serves images of kitten.  Here's how it works.  If you point your browser to <code>http://placekitten.com/&lt;width&gt;/&lt;height&gt;</code>, it returns an picture of kittens with that width and height. If you go to <code>/g/&lt;width&gt;/&lt;height&gt;</code> the image will be grayscale.  Go to these urls to see a very basic REST API in action.</p>
-
 <table>
 <thead>
 <tr>
-<th>URL </th>
-<th> Image</th>
+<th>URL</th>
+<th>Image</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><a href="http://placekitten.com/200/100"><code>http://placekitten.com/200/100</code></a> </td>
-<td> <img src="http://placekitten.com/200/100" alt="http://placekitten.com/200/100" /></td>
+<td><a href="http://placekitten.com/200/100"><code>http://placekitten.com/200/100</code></a></td>
+<td><img alt="http://placekitten.com/200/100" src="http://placekitten.com/200/100" /></td>
 </tr>
 <tr>
-<td><a href="http://placekitten.com/300/250"><code>http://placekitten.com/300/250</code></a> </td>
-<td> <img src="http://placekitten.com/300/250" alt="http://placekitten.com/200/300" /></td>
+<td><a href="http://placekitten.com/300/250"><code>http://placekitten.com/300/250</code></a></td>
+<td><img alt="http://placekitten.com/200/300" src="http://placekitten.com/300/250" /></td>
 </tr>
 <tr>
-<td><a href="http://placekitten.com/g/300/250"><code>http://placekitten.com/g/300/250</code></a> </td>
-<td> <img src="http://placekitten.com/g/300/250" alt="http://placekitten.com/g/200/300" /></td>
+<td><a href="http://placekitten.com/g/300/250"><code>http://placekitten.com/g/300/250</code></a></td>
+<td><img alt="http://placekitten.com/g/200/300" src="http://placekitten.com/g/300/250" /></td>
 </tr>
 </tbody>
 </table>
-
-
 <p>The advantage in using a REST API here is that we don't need to remember the URL of the image we want, just the qualities (grayscale, 500x500).  Then, using the <em>documentation</em> provided at <a href="http://placekitten.com">placekitten.com</a>, we can derive the URL necessary to find the image we want.</p>
-
-<blockquote><p>Many web designers use placeholder image APIs like <a href="http://placekitten.com">placekitten.com</a> or <a href="http://placehold.it">placehold.it</a> in their designs, as they speed up prototyping.</p></blockquote>
-
+<blockquote>
+<p>Many web designers use placeholder image APIs like <a href="http://placekitten.com">placekitten.com</a> or <a href="http://placehold.it">placehold.it</a> in their designs, as they speed up prototyping.</p>
+</blockquote>
 <p><a id="the-anatomy-of-a-url"></a></p>
-
-<h3>2.1.2 The Anatomy of a URL</h3>
-
+<h3 id="212-the-anatomy-of-a-url">2.1.2 The Anatomy of a URL</h3>
 <p>From here out we will be using some increasingly complex <a href="http://en.wikipedia.org/wiki/Uniform_resource_locator">URLs</a>, and it is important to develop a vocabulary for the parts of the url and their purpose.  To do this, we will dissect this url (which we will use in <a href="#the-github-search-api">section 2.2</a> when we work with Github's API):</p>
-
 <pre><code>https://api.github.com/search/repositories?q=tetris+language:assembly&amp;sort=stars&amp;order=desc
 </code></pre>
-
 <p>This URL breaks up into five parts:</p>
-
 <ol>
 <li>The protocol (<code>https</code>): We are using the <a href="http://en.wikipedia.org/wiki/Https">HTTPS</a> protocol, which is a secure version of HTTP, detailed in <a href="#http">section 2.1.5</a>.</li>
 <li>The separator (<code>://</code>): A colon and two slashes always follow the protocol is used to separate the protocol and the host.</li>
 <li>The host (<code>api.github.com</code>): A host is usually a domain name (this is the case for our url), but it could also be an IP Address.</li>
 <li>The path (<code>/search/repositories</code>): Everything from the first <code>/</code> up to the <code>?</code> that starts the query string is the path. When accessing a web page, often these paths will be hierarchical and include a filename at the end, like <code>/blog/2014/02/post.html</code>.  When making API calls, these paths are the API method that is being called.  Here, we are searching repositories.</li>
-<li><p>The query string (<code>?q=tetris+language:assembly&amp;sort=stars&amp;order=desc</code>): is a series of key-value pairs of the form <code>&lt;key&gt;=&lt;value&gt;</code>. The query string starts with a <code>?</code> and each key-value pair is separated by <code>&amp;</code>.  The key value pairs here are:</p>
-
+<li>
+<p>The query string (<code>?q=tetris+language:assembly&amp;sort=stars&amp;order=desc</code>): is a series of key-value pairs of the form <code>&lt;key&gt;=&lt;value&gt;</code>. The query string starts with a <code>?</code> and each key-value pair is separated by <code>&amp;</code>.  The key value pairs here are:</p>
 <table>
 <thead>
 <tr>
-<th>Key </th>
-<th> Value</th>
+<th>Key</th>
+<th>Value</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><code>q</code> </td>
-<td> <code>tetris+language:assembly</code></td>
+<td><code>q</code></td>
+<td><code>tetris+language:assembly</code></td>
 </tr>
 <tr>
-<td><code>sort</code> </td>
-<td> <code>stars</code></td>
+<td><code>sort</code></td>
+<td><code>stars</code></td>
 </tr>
 <tr>
-<td><code>order</code> </td>
-<td> <code>desc</code></td>
+<td><code>order</code></td>
+<td><code>desc</code></td>
 </tr>
 </tbody>
 </table>
-
-
-<blockquote><p>Note that the <code>+</code> and <code>:</code> do not denote keys or values, and are all part of the <code>q</code> value.  The inclusion of these characters is specific to Github's API, and we will learn more about why they are there in <a href="#the-github-search-api">section 2.2</a>.  From a URL standard perspective, <code>tetris+language:assembly</code> is one big value for the <code>q</code> key.</p></blockquote>
-
-<p>For the most part, the job of the query string is to specify the details of the data being returned.  While the <code>q</code> key is somewhat complicated, we can see clearly that the results of this search are being sorted by stars in descending order.</p></li>
+<blockquote>
+<p>Note that the <code>+</code> and <code>:</code> do not denote keys or values, and are all part of the <code>q</code> value.  The inclusion of these characters is specific to Github's API, and we will learn more about why they are there in <a href="#the-github-search-api">section 2.2</a>.  From a URL standard perspective, <code>tetris+language:assembly</code> is one big value for the <code>q</code> key.</p>
+</blockquote>
+<p>For the most part, the job of the query string is to specify the details of the data being returned.  While the <code>q</code> key is somewhat complicated, we can see clearly that the results of this search are being sorted by stars in descending order.</p>
+</li>
 </ol>
-
-
-<blockquote><p>This URL schema is by no means complete; it encompasses the parts of a URL that are most relevant to API programming.  For a more complete view, check out <a href="http://www.mattcutts.com/blog/seo-glossary-url-definitions/">this blog post</a> by Google's Matt Cutts, or this exhaustive <a href="http://en.wikipedia.org/wiki/URI_scheme#Generic_syntax">Wikipedia entry</a>.</p></blockquote>
-
+<blockquote>
+<p>This URL schema is by no means complete; it encompasses the parts of a URL that are most relevant to API programming.  For a more complete view, check out <a href="http://www.mattcutts.com/blog/seo-glossary-url-definitions/">this blog post</a> by Google's Matt Cutts, or this exhaustive <a href="http://en.wikipedia.org/wiki/URI_scheme#Generic_syntax">Wikipedia entry</a>.</p>
+</blockquote>
 <p><a id="data-in-json"></a></p>
-
-<h3>2.1.3 Data in JSON</h3>
-
+<h3 id="213-data-in-json">2.1.3 Data in JSON</h3>
 <p>The data that we usually want to get from a RESTful API is text, not images, and to organize this text we use the <a href="http://en.wikipedia.org/wiki/Json">JSON</a>, or JavaScript Object Notation text format.  JSON is a text format that makes data easy to read and simple to manipulate.  Here's a quick rundown:</p>
-
 <p>Most JSON documents start and end with braces (<code>{ }</code>).  We'll learn what these are later.</p>
-
-<pre><code>{ }
+<pre><code class="javascript">{ }
 </code></pre>
 
 <p>The core element of JSON documents are key-value pairs.  A key is a string, and a value can be (amongst other things) a string. Keys and values are separated by a colon (<code>:</code>).</p>
-
-<pre><code>{ "name": "Jane Doe" }
+<pre><code class="javascript">{ &quot;name&quot;: &quot;Jane Doe&quot; }
 </code></pre>
 
 <p>Whitespace non-significant, and should be added for readability.</p>
-
-<pre><code>{
-    "name": "Jane Doe"
+<pre><code class="javascript">{
+    &quot;name&quot;: &quot;Jane Doe&quot;
 }
 </code></pre>
 
 <p>Multiple key-value pairs can be separated by commas (<code>,</code>).</p>
-
-<pre><code>{
-    "name": "Jane Doe",
-    "occupation": "student",
-    "school": "Columbia University"
+<pre><code class="javascript">{
+    &quot;name&quot;: &quot;Jane Doe&quot;,
+    &quot;occupation&quot;: &quot;student&quot;,
+    &quot;school&quot;: &quot;Columbia University&quot;
 }
 </code></pre>
 
 <p>Values can also be decimal numbers, boolean values (<code>true</code> or <code>false</code>), or <code>null</code>.</p>
-
-<pre><code>{
-    "name": "Jane Doe",
-    "age": 20,
-    "female": true,
-    "male": false,
-    "occupation": "student",
-    "school": "Columbia SEAS",
-    "children": null
+<pre><code class="javascript">{
+    &quot;name&quot;: &quot;Jane Doe&quot;,
+    &quot;age&quot;: 20,
+    &quot;female&quot;: true,
+    &quot;male&quot;: false,
+    &quot;occupation&quot;: &quot;student&quot;,
+    &quot;school&quot;: &quot;Columbia SEAS&quot;,
+    &quot;children&quot;: null
 }
 </code></pre>
 
 <p>Values can also be arrays.  Arrays are comma-separated values surrounded by brackets (<code>[ ]</code>).  Values in arrays should be all of the same type, but don't have to be.</p>
-
-<pre><code>{
-    "name": "Jane Doe",
-    "age": 20,
-    "female": true,
-    "male": false,
-    "occupation": "student",
-    "school": "Columbia SEAS",
-    "children": null,
-    "hobbies": [
-        "programming",
-        "cello",
-        "painting",
-        "basketball",
-        "REST APIs"
+<pre><code class="javascript">{
+    &quot;name&quot;: &quot;Jane Doe&quot;,
+    &quot;age&quot;: 20,
+    &quot;female&quot;: true,
+    &quot;male&quot;: false,
+    &quot;occupation&quot;: &quot;student&quot;,
+    &quot;school&quot;: &quot;Columbia SEAS&quot;,
+    &quot;children&quot;: null,
+    &quot;hobbies&quot;: [
+        &quot;programming&quot;,
+        &quot;cello&quot;,
+        &quot;painting&quot;,
+        &quot;basketball&quot;,
+        &quot;REST APIs&quot;
     ],
-    "luckynumbers" : [
+    &quot;luckynumbers&quot; : [
         10, 25.3, 404
     ]
 }
 </code></pre>
 
 <p>The final value type is objects.  Objects are a comma-separated key-value pairs surrounded by braces (<code>{ }</code>).  In fact, our entire JSON document is one big object.</p>
-
-<pre><code>{
-    "name": "Jane Doe",
-    "age": 20,
-    "female": true,
-    "male": false,
-    "occupation": "student",
-    "school": {
-        "fullname": "The Fu Foundation School of Engineering &amp; Applied Science",
-        "university": "Columbia University",
-        "undergrad": true
+<pre><code class="javascript">{
+    &quot;name&quot;: &quot;Jane Doe&quot;,
+    &quot;age&quot;: 20,
+    &quot;female&quot;: true,
+    &quot;male&quot;: false,
+    &quot;occupation&quot;: &quot;student&quot;,
+    &quot;school&quot;: {
+        &quot;fullname&quot;: &quot;The Fu Foundation School of Engineering &amp; Applied Science&quot;,
+        &quot;university&quot;: &quot;Columbia University&quot;,
+        &quot;undergrad&quot;: true
     },
-    "children": null,
-    "hobbies": [
-        "programming",
-        "cello",
-        "painting",
-        "basketball",
-        "REST APIs"
+    &quot;children&quot;: null,
+    &quot;hobbies&quot;: [
+        &quot;programming&quot;,
+        &quot;cello&quot;,
+        &quot;painting&quot;,
+        &quot;basketball&quot;,
+        &quot;REST APIs&quot;
     ],
-    "luckynumbers" : [
+    &quot;luckynumbers&quot; : [
         10, 25.3, 404
     ]
 }
 </code></pre>
 
-<blockquote><p>Most JSON documents are one big object, but they can also be one big array:</p>
-
-<pre><code>[
+<blockquote>
+<p>Most JSON documents are one big object, but they can also be one big array:</p>
+<p><!--!!!javascript-->
+<!--!!!-->
+<code>[
     "This",
     "Is",
     {
         "valid": JSON
     }
-]
-</code></pre></blockquote>
-
+]</code></p>
+</blockquote>
 <p>JSON can represent a wide variety of data, just using the simple types:</p>
-
 <ul>
 <li>Objects</li>
 <li>Arrays</li>
@@ -851,210 +669,231 @@ def search(search_query):
 <li>Booleans</li>
 <li><code>null</code></li>
 </ul>
-
-
 <p><a id="viewing-json-in-the-browser"></a></p>
-
-<h3>2.1.4 Viewing JSON in the Browser</h3>
-
+<h3 id="214-viewing-json-in-the-browser">2.1.4 Viewing JSON in the Browser</h3>
 <p>JSON is the most common data format returned by RESTful APIs.  For example, <a href="http://colr.org">colr.org</a>'s <a href="http://colr.org/api.html">API</a> returns it's responses in JSON format.  Try it: point your browser to <a href="http://www.colr.org/json/color/e0d1dd">http://www.colr.org/json/color/e0d1dd</a>.  You'll probably see some unreadable mess like this:</p>
-
-<pre><code>{"colors": [{"timestamp": 1187574833, "hex": "e0d1dd", 
-"id": 19425, "tags":    [{"timestamp": 1111913422, "id": 
-11257, "name": "joyful"}, {"timestamp": 1108110854, 
-"id": 2798, "name": "lilac"}]}], "schemes": [], 
-"schemes_history": {}, "success": true, "colors_history": 
-{"e0d1dd": [{"d_count": 0, "id": "11257", "a_count": 1,
- "name": "joyful"}, {"d_count": 0, "id": "2798", 
- "a_count": 1, "name": "lilac"}]}, "messages": [], 
- "new_color": "e0d1dd"}
+<pre><code class="javascript">{&quot;colors&quot;: [{&quot;timestamp&quot;: 1187574833, &quot;hex&quot;: &quot;e0d1dd&quot;,
+&quot;id&quot;: 19425, &quot;tags&quot;:    [{&quot;timestamp&quot;: 1111913422, &quot;id&quot;:
+11257, &quot;name&quot;: &quot;joyful&quot;}, {&quot;timestamp&quot;: 1108110854,
+&quot;id&quot;: 2798, &quot;name&quot;: &quot;lilac&quot;}]}], &quot;schemes&quot;: [],
+&quot;schemes_history&quot;: {}, &quot;success&quot;: true, &quot;colors_history&quot;:
+{&quot;e0d1dd&quot;: [{&quot;d_count&quot;: 0, &quot;id&quot;: &quot;11257&quot;, &quot;a_count&quot;: 1,
+ &quot;name&quot;: &quot;joyful&quot;}, {&quot;d_count&quot;: 0, &quot;id&quot;: &quot;2798&quot;,
+ &quot;a_count&quot;: 1, &quot;name&quot;: &quot;lilac&quot;}]}, &quot;messages&quot;: [],
+ &quot;new_color&quot;: &quot;e0d1dd&quot;}
 </code></pre>
 
 <p>To view JSON in the browser, use a browser extension like JSONView (<a href="https://chrome.google.com/webstore/detail/jsonview/chklaanhfefbnpoihckbnefhakgolnmc?hl=en">Chrome</a>, <a href="https://addons.mozilla.org/en-us/firefox/addon/jsonview/">Firefox</a>) or JSON Formatter (<a href="https://github.com/rfletcher/safari-json-formatter">Safari</a>).  Install the appropriate extension and reload <a href="http://www.colr.org/json/color/e0d1dd">that url</a>.  You should now see the JSON with the proper indentation that we like.  If that didn't work for you or you're using another browser, copy the mess into <a href="http://jsonprettyprint.com/">jsonprettyprint.com</a> to see it nicely formatted.</p>
-
 <p>It should look like this:</p>
-
-<pre><code>{
-  "colors": [
+<pre><code class="javascript">{
+  &quot;colors&quot;: [
     {
-      "timestamp": 1187574833,
-      "hex": "e0d1dd",
-      "id": 19425,
-      "tags": [
+      &quot;timestamp&quot;: 1187574833,
+      &quot;hex&quot;: &quot;e0d1dd&quot;,
+      &quot;id&quot;: 19425,
+      &quot;tags&quot;: [
         {
-          "timestamp": 1111913422,
-          "id": 11257,
-          "name": "joyful"
+          &quot;timestamp&quot;: 1111913422,
+          &quot;id&quot;: 11257,
+          &quot;name&quot;: &quot;joyful&quot;
         },
         {
-          "timestamp": 1108110854,
-          "id": 2798,
-          "name": "lilac"
+          &quot;timestamp&quot;: 1108110854,
+          &quot;id&quot;: 2798,
+          &quot;name&quot;: &quot;lilac&quot;
         }
       ]
     }
   ],
-  "schemes": [],
-  "schemes_history": {},
-  "success": true,
-  "colors_history": {
-    "e0d1dd": [
+  &quot;schemes&quot;: [],
+  &quot;schemes_history&quot;: {},
+  &quot;success&quot;: true,
+  &quot;colors_history&quot;: {
+    &quot;e0d1dd&quot;: [
       {
-        "d_count": 0,
-        "id": "11257",
-        "a_count": 1,
-        "name": "joyful"
+        &quot;d_count&quot;: 0,
+        &quot;id&quot;: &quot;11257&quot;,
+        &quot;a_count&quot;: 1,
+        &quot;name&quot;: &quot;joyful&quot;
       },
       {
-        "d_count": 0,
-        "id": "2798",
-        "a_count": 1,
-        "name": "lilac"
+        &quot;d_count&quot;: 0,
+        &quot;id&quot;: &quot;2798&quot;,
+        &quot;a_count&quot;: 1,
+        &quot;name&quot;: &quot;lilac&quot;
       }
     ]
   },
-  "messages": [],
-  "new_color": "e0d1dd"
+  &quot;messages&quot;: [],
+  &quot;new_color&quot;: &quot;e0d1dd&quot;
 }
 </code></pre>
 
 <p>So now that we see it nicely formatted, what are we seeing here?</p>
-
 <p>The document is one big object, with keys   <code>colors</code>, <code>schemes</code>, <code>schemes_history</code>, <code>success</code>, <code>colors_history</code>, <code>messages</code>, and <code>new_color</code>.  The value associated with the key <code>colors</code> is an array containing one color object, which has the keys <code>timestamp</code>, <code>hex</code>, <code>id</code>, and <code>tags</code>.  The value associated with the key <code>tags</code> is also an array of objects, where each of these objects is a tag.</p>
-
 <p>So how did we know that the array for <code>colors</code> held color objects and the array for <code>tags</code> holds tag objects?  We don't.  With JSON, we don't have strictly defined object types like many programming languages do.  We have to trust the creator of the JSON document to store their data in a consistent way.  Because the JSON we are reading is written well, the <code>tags</code> key has an array value that holds objects that look very similar and have the attributes of a tag.  The API call we are making is for one specific color, so it makes sense that array associated with the <code>colors</code> key has only color object in it.</p>
-
 <p>Try out these other API calls (<code>http://colr.org&lt;path&gt;</code>) to see how colr.org used this JSON structure to return different types of results:</p>
-
 <table>
 <thead>
 <tr>
-<th>Path </th>
-<th> Description</th>
+<th>Path</th>
+<th>Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><a href="http://www.colr.org/json/color/e0d1dd"><code>/json/color/e0d1dd</code></a> </td>
-<td> data for the color with hex value <code>e0d1dd</code></td>
+<td><a href="http://www.colr.org/json/color/e0d1dd"><code>/json/color/e0d1dd</code></a></td>
+<td>data for the color with hex value <code>e0d1dd</code></td>
 </tr>
 <tr>
-<td><a href="http://www.colr.org/json/colors/e0d1dd,95604a"><code>/json/colors/e0d1dd,95604a</code></a> </td>
-<td> data for the colors <code>e0d1dd</code> and <code>95604a</code></td>
+<td><a href="http://www.colr.org/json/colors/e0d1dd,95604a"><code>/json/colors/e0d1dd,95604a</code></a></td>
+<td>data for the colors <code>e0d1dd</code> and <code>95604a</code></td>
 </tr>
 <tr>
-<td><a href="http://www.colr.org/json/color/random"><code>/json/color/random</code></a> </td>
-<td> data for random color</td>
+<td><a href="http://www.colr.org/json/color/random"><code>/json/color/random</code></a></td>
+<td>data for random color</td>
 </tr>
 <tr>
-<td><a href="http://www.colr.org/json/color/random/3"><code>/json/colors/random/3</code></a> </td>
-<td> data for three random colors</td>
+<td><a href="http://www.colr.org/json/color/random/3"><code>/json/colors/random/3</code></a></td>
+<td>data for three random colors</td>
 </tr>
 </tbody>
 </table>
-
-
 <p><a id="http"></a></p>
+<h3 id="215-extension-http">2.1.5 Extension: HTTP</h3>
+<p><em>If you don't remember the <a href="http://en.wikipedia.org/wiki/Client%E2%80%93server_model">client-server model</a>, you should review it before reading this section.</em></p>
+<p>By now, you've seen "HTTP" in every URL in this document. Let's look a little at what "HTTP" actually means.</p>
+<p>"HyperText Transfer Protocol" is the protocol by which your browser asks for and receives web sites (and lots of other
+data). A web server sits around and listens for an <em>HTTP request</em>, which is when a web browser or other client asks for
+a particular item (ex. web page or image) that the server has. An HTTP request looks something like this:</p>
+<pre><code>GET /index.html HTTP/1.1
+Host: www.google.com
+User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:26.0) Gecko/20100101 Firefox/26.0
+</code></pre>
+<p>There's a lot going on here, but you only need to pay attention to a few parts:</p>
+<ul>
+<li>
+<p><code>GET</code>: this is what we call an <em>HTTP verb</em>. This tells the web server what the client wants it to do. <code>GET</code> means
+  "give me a resource"; <code>POST</code> means "here is some data"; <code>DELETE</code> means "get rid of this resource".</p>
+</li>
+<li>
+<p><code>/index.html</code>: this indicates the resource that should be acted upon (using the given verb).</p>
+</li>
+<li>
+<p><code>HTTP/1.1</code>: this is the HTTP version; it's almost always 1.1 (which has been
+  around since 1999).</p>
+</li>
+<li>
+<p>The lines that begin with a word or phrase followed by a colon are called <em>headers</em>. They convey additional
+  information. <code>Host</code> is the header that indicates what site the client wanted to access. <code>User-Agent</code> is the program
+  that you're using as a client; here, it's Firefox.</p>
+</li>
+</ul>
+<p>Then, the server processes the request and sends back an <em>HTTP response</em>:</p>
+<pre><code>HTTP/1.1 200 OK
+Date: Mon, 23 May 2005 22:38:34 GMT
+Server: Apache/1.3.3.7 (Unix) (Red-Hat/Linux)
+Last-Modified: Wed, 08 Jan 2003 23:11:55 GMT
+ETag: "3f80f-1b6-3e1cb03b"
+Content-Type: text/html; charset=UTF-8
+Content-Length: 131
+Connection: close
 
-<h3>2.1.5 Extension: HTTP</h3>
-
+&lt;html&gt;
+&lt;head&gt;
+  &lt;title&gt;An Example Page&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  Hello World, this is a very simple HTML document.
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p>The first line includes the HTTP version that the server is using, followed by an <em>HTTP status code</em> and reason. Here,
+the status is <code>200</code> and the reason is <code>OK</code>. This means that all went well.</p>
+<ul>
+<li>Status codes in the 100s are informational messages; you don't need to worry about them most of the time.</li>
+<li>Status codes in the 200s mean that the request was processed successfully.</li>
+<li>Status codes in the 300s mean that the client must do something else in order to complete the request successfully; an
+  example is a redirect message (301).</li>
+<li>Status codes in the 400s mean that the client did something wrong; for example, code 404 means that the resource the
+  client asked for could not be found by the server.</li>
+<li>Status codes in the 500s mean that something is wrong with the server; code 500 is a generic error message.</li>
+</ul>
+<p>Then, there are a bunch of headers. After that is a blank line, then the <em>body</em> of the response (that is, the actual
+data requested).</p>
+<p>After the body of the response, the server closes the connection. To request another resource, the client must begin the
+whole process again.</p>
+<p>Check out the HTTP requests your browser makes! In Firefox, hit <code>Ctrl-Shift-Q</code> to open the network tool, or in Chrome,
+hit <code>Ctrl-Shift-I</code> to open Developer tools and navigate to the "Network" tab (Mac users should use <code>Cmd</code> instead). Then,
+browse the internet a little. Check out <a href="http://www.example.com">here</a> for an example of a successful request, and
+<a href="http://www.adicu.com/notfound">here</a> for an example of an unsuccessful request.</p>
 <p><a id="the-github-search-api"></a></p>
-
-<h2>2.2 The GitHub Search API</h2>
-
+<h2 id="22-the-github-search-api">2.2 The GitHub Search API</h2>
 <p>In order to figure out whether or not someone has made the app that was searched for using the our search route (started in <a href="#dynamic-routes">1.3.2</a>), we'll use the Github Search API.  The first step for using any API is to familiarize yourself with its documentation, and so our first stop is <a href="http://developer.github.com/v3/search/">developer.github.com/v3/search</a>.  We know that we want to search for repositories, so we'll focus on the <a href="http://developer.github.com/v3/search/#search-repositories">"Search repositories" section</a>.</p>
-
 <p><a id="determining-the-request-url"></a></p>
-
-<h3>2.2.1 Determining the Request URL</h3>
-
+<h3 id="221-determining-the-request-url">2.2.1 Determining the Request URL</h3>
 <p>Before we can try to parse Github search data, we need to determine the correct request URL, including the correct query string.  We know the protocol, domain, and path.  Don't forget the <code>https</code>!</p>
-
 <pre><code>https://api.github.com/search/repositories
 </code></pre>
-
 <p>Now let's examine the query string piece by piece.</p>
-
 <p>For the <code>q</code> key, we want the search query.   For our testing we'll use <code>Space Invaders HTML5</code>.  We have to encode that string to be URL safe, so we'll use <code>Space%20Invaders%20HTML5</code> (The space character needs to be encoded to <code>%20</code>).</p>
-
 <pre><code>https://api.github.com/search/repositories?q=Space%20Invaders%20HTML5
 </code></pre>
-
 <p>Sorting by best match makes sense, so we'll leave the <code>sort</code> key alone.  Descending order also seems fine, so we can leave the <code>order</code> key alone as well.</p>
-
 <p>Github also provides search qualifiers, which can be added on to the <code>q</code> value.  It makes sense to limit our results to JavaScript projects, given that we're searching for HTML5 projects:</p>
-
 <pre><code>https://api.github.com/search/repositories?q=Space%20Invaders%20HTML5+language:JavaScript
 </code></pre>
-
 <p>If you put that URL into your browser, you should see the JSON response!</p>
-
 <p><a id="using-curl"></a></p>
-
-<h3>2.2.2 Using cURL</h3>
-
+<h3 id="222-using-curl">2.2.2 Using cURL</h3>
 <p><em>If you are using Windows, you may have to skip this section.  We will be using the cURL program, which is pre-installed on Mac and Linux machines.  It is possible to <a href="http://curl.haxx.se/download.html">install it on Windows</a>, but we won't walk through that process here.</em></p>
-
-<p>The most basic way of interaction with an API call programmatically is through the command line.  The <a href="curl">cURL</a> program runs in Terminal, and is used (most simply) to copy the content at a URL and print it to the screen.  First, open Terminal.  If you are on a Mac, open Finder, click <code>Applications</code> on the sidebar, open the <code>Utilities</code> folder, and then double click <code>Terminal</code>.</p>
-
+<p>The most basic way of interaction with an API call programmatically is through the command line.  The <a href="file:///Users/dan/working/devfest-webdev/curriculum/curl">cURL</a> program runs in Terminal, and is used (most simply) to copy the content at a URL and print it to the screen.  First, open Terminal.  If you are on a Mac, open Finder, click <code>Applications</code> on the sidebar, open the <code>Utilities</code> folder, and then double click <code>Terminal</code>.</p>
 <p>Change directory into your <em>working directory</em>, or the directory where <code>app.py</code> is.</p>
-
 <p>Type the following command:</p>
-
-<pre><code>$ curl https://api.github.com/search/repositories?q=Space%20Invaders%20HTML5+language:JavaScript
+<pre><code class="bash">$ curl https://api.github.com/search/repositories?q=Space%20Invaders%20HTML5+language:JavaScript
 </code></pre>
 
 <p>You should see the entire JSON response (probably pretty long!) print to the console.  Now lets write that response to a file:</p>
-
-<pre><code>$ curl https://api.github.com/search/repositories?q=Space%20Invaders%20HTML5+language:JavaScript &gt; response.json
+<pre><code class="bash">$ curl https://api.github.com/search/repositories?q=Space%20Invaders%20HTML5+language:JavaScript &gt; response.json
 </code></pre>
 
-<blockquote><p>The <code>&gt; response.json</code> section redirects all the output that would normally be sent to the console into the <code>response.josn</code> file.</p></blockquote>
-
+<blockquote>
+<p>The <code>&gt; response.json</code> section redirects all the output that would normally be sent to the console into the <code>response.json</code> file.</p>
+</blockquote>
 <p>You should now have a new file in your current directory named <code>response.json</code>.  If you open that file in your text editor, you'll see the response!</p>
-
 <p><a id="using-python"></a></p>
-
-<h3>2.2.3 Using Python</h3>
-
+<h3 id="223-using-python">2.2.3 Using Python</h3>
 <p>Python has several built in libraries for handling REST APIs, but the external library <a href="http://docs.python-requests.org/en/latest/">Requests</a>.  To install it, use <a href="http://www.pip-installer.org/en/latest/">Pip</a>:</p>
-
-<pre><code>$ pip install requests
+<pre><code class="bash">$ pip install requests
 </code></pre>
 
 <p>Don't forget to update your <code>requirements.txt</code> file to reflect this change!</p>
-
 <p>Create a new python file:</p>
-
-<pre><code>$ touch github.py
+<pre><code class="bash">$ touch github.py
 </code></pre>
 
 <p>Editing <code>github.py</code>, start by importing requests.</p>
-
-<pre><code>import requests
+<pre><code class="python">import requests
 </code></pre>
 
 <p>Now all we need to to is call <code>requests.get()</code> on the API url we developed in <a href="#determining-the-request-url">section 2.2.1</a>.  This method returns a <a href="http://docs.python-requests.org/en/latest/api/#requests.Response">Response object</a>. Add a print statement to see what the object is.</p>
+<pre><code class="python">import requests
 
-<pre><code>import requests
-
-url = "https://api.github.com/search/repositories?q=Space%20Invaders%20HTML5+language:JavaScript"
+url = &quot;https://api.github.com/search/repositories?q=Space%20Invaders%20HTML5+language:JavaScript&quot;
 response = requests.get(url)
 
 print response
 </code></pre>
 
 <p>If you run this script, you should just see the Response object, represented by it's status code (hopefully <code>200</code>, or "OK").</p>
-
-<pre><code>`$ python github.py`
+<pre><code class="bash">$ python github.py
 &lt;Response [200]&gt;
 </code></pre>
 
 <p>The only other thing we need is to get usable data is to convert the response object into a Python dictionary, using the Response object's <code>.json()</code> method.  To show that it worked, print it to stdout.</p>
+<pre><code class="python">import requests
 
-<pre><code>import requests
-
-url = "https://api.github.com/search/repositories?q=Space%20Invaders%20HTML5+language:JavaScript"
+url = &quot;https://api.github.com/search/repositories?q=Space%20Invaders%20HTML5+language:JavaScript&quot;
 response = requests.get(url)
 response_dict = response.json()
 
@@ -1062,173 +901,370 @@ print response_dict
 </code></pre>
 
 <p>This gives us, again a very large dictionary, printed to the screen.</p>
-
-<blockquote><p>Try exploring the dictionary!  JSON has analogous structures in Python: objects become dictionaries, arrays become lists, and everything else converts as you expected.  For example, if you modify the print statement like so:</p>
-
+<blockquote>
+<p>Try exploring the dictionary!  JSON has analogous structures in Python: objects become dictionaries, arrays become lists, and everything else converts as you expected.  For example, if you modify the print statement like so:</p>
 <pre><code> print response_dict["items"][0]["language"]
 </code></pre>
-
-<p>You should see it print "JavaScript", the language of the first repository returned from the API call.</p></blockquote>
-
+<p>You should see it print "JavaScript", the language of the first repository returned from the API call.</p>
+</blockquote>
 <p><a id="using-flask-extending-the-search-route"></a></p>
-
-<h3>2.2.4 Using Flask: Extending the Search Route</h3>
-
+<h3 id="224-using-flask-extending-the-search-route">2.2.4 Using Flask: Extending the Search Route</h3>
 <p>Adapting our Python code to work in our search route will be pretty simple, but there are a few constraints:</p>
-
 <ul>
 <li>We want to search Github for the search query that the client sends, not our test string "Space Invaders HTML5"</li>
 <li>We need to return valid HTML in our route, not a Python dictionary or a Response object.</li>
 </ul>
-
-
 <p>Addressing the first issue is simple.  We'll let the <code>url</code> string be the base search URL concatenated with the <code>search_query</code> variable.</p>
-
-<pre><code>from flask import Flask
+<pre><code class="python">from flask import Flask
 import requests
 ...
-@app.route("/search/&lt;search_query&gt;")
+@app.route(&quot;/search/&lt;search_query&gt;&quot;)
 def search(search_query):
-    url = "https://api.github.com/search/repositories?q=" + search_query
+  url = &quot;https://api.github.com/search/repositories?q=&quot; + search_query
 ...
 </code></pre>
 
 <p>Then we know how to make a Response object from that url, but how do we make valid HTML?  Enter Flask's <a href="http://flask.pocoo.org/docs/api/#flask.json.jsonify"><code>jsonify()</code></a> method.  First, import it.</p>
-
-<pre><code>from flask import Flask, jsonify
+<pre><code class="python">from flask import Flask, jsonify
 import requests
 ...
 </code></pre>
 
-<p><code>josnify</code> takes in a tree of dictionaries and arrays and converts it into JSON text (which is valid HTML).  Make <code>response_dict</code>, and return it jsonified.</p>
-
-<pre><code>...
-@app.route("/search/&lt;search_query&gt;")
+<p><code>jsonify</code> takes in a tree of dictionaries and arrays and converts it into JSON text (which is valid HTML).  Make <code>response_dict</code>, and return it jsonified.</p>
+<pre><code class="python">...
+@app.route(&quot;/search/&lt;search_query&gt;&quot;)
 def search(search_query):
-    url = "https://api.github.com/search/repositories?q=" + search_query
-    response_dict = requests.get(url).json()
-    return jsonify(response_dict)
+  url = &quot;https://api.github.com/search/repositories?q=&quot; + search_query
+  response_dict = requests.get(url).json()
+  return jsonify(response_dict)
 ...
 </code></pre>
 
 <p>With your Flask server running, navigate to <code>localhost:5000/search/Space%20Invaders%20HTML5</code> and see all the results right in your browser (full circle!).</p>
-
 <p>Try changing what comes after the <code>/search/</code> and see the results change.  Note that Github limits us to five requests per minute because of their <a href="http://developer.github.com/v3/#rate-limiting">rate limiting</a>, but we will increase that number when we implement Authentication in <a href="#authentication">section 2.3</a>.</p>
-
 <p><a id="parsing-json"></a></p>
-
-<h3>2.2.5 Extension: Parsing JSON</h3>
-
+<h3 id="225-extension-parsing-json">2.2.5 Extension: Parsing JSON</h3>
 <p>The JSON response that Github sends us is extremely long, and full of URLs that we don't need for our app.  We can't do anything about what they send us, but we it would be good practice to minimize the amount of data being sent to the client.</p>
-
 <p>All we real need from each repo item in the <code>items</code> array is:</p>
-
 <ul>
 <li><code>name</code>,</li>
 <li><code>owner</code> (with <code>login</code>, <code>avatar_url</code>, and <code>html_url</code>),</li>
 <li><code>html_url</code>, and</li>
 <li><code>description</code></li>
 </ul>
-
-
-<p>And we should also keep the <code>total_count</code> key-value pair.</p>
-
+<p>We should also keep the <code>total_count</code> key-value pair.</p>
+<blockquote>
+<p>Have you noticed that the <code>total_count</code> is higher than the size of the <code>items</code> array?  That's because there are actually more results that are returned, but Github <em>paginates</em> their results, offering 30 results at a time by default to reduce the amount of data being sent per-request.  You can access all the results by passing in some extra information in the query string of the request, a process which is detailed in the <a href="http://developer.github.com/v3/#pagination">"pagination" section</a> of the Github API documentation.</p>
+</blockquote>
 <p>With just this data we can display an attractive list of the Github repos for the user's search query in <a href="#templating-in-flask">section 3.2</a>.</p>
-
 <p>Write a function that takes in <code>response_dict</code> and returns a cleaned up dictionary that maintains the structure of <code>response_dict</code> but only has the keys enumerated above.  Pass this <code>response_dict</code> through this function before calling <code>jsonify()</code> on it.</p>
-
 <p><a id="using-javascript"></a></p>
+<h3 id="226-extension-using-javascript">2.2.6 Extension: Using JavaScript</h3>
+<p><em>If you're familiar with JavaScript and would prefer to interact with the GitHub API using JavaScript, we'll go over how
+to do that in this section. If you don't know JavaScript, feel free to skip it.</em></p>
+<p>Vanilla JavaScript has a way to interact with external APIs, but <a href="http://jquery.com/">jQuery</a>, a library of common
+functions that simplifies your JavaScript, makes everything much easier. To include it, put the following line on your
+HTML page:</p>
+<pre><code>&lt;script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"&gt;&lt;/script&gt;
+</code></pre>
+<p>After this is run, jQuery will be bound to the <code>$</code> object. All calls beginning with <code>$</code> are jQuery-related.</p>
+<p>jQuery makes selecting DOM elements (that is, the HTML elements on your web page) incredibly simple using
+<a href="http://api.jquery.com/category/selectors/">selectors</a>: to "select" all of the <code>img</code> elements on your page, do
+<code>$("img")</code>; to select an element with id <code>example-id</code>, do <code>$("#example-id")</code>. Once an element is selected, you can
+perform a number of actions with it; a fun one is <code>.fadeOut()</code>. See more at the
+<a href="http://api.jquery.com/">jQuery API Documentation</a>.</p>
+<p>jQuery also lets you perform <em>AJAX</em> (Asynchronous JavaScript and XML) requests easily. This is a mechanism that your
+JavaScript can use to fetch new data without loading a new page (it's how your GMail inbox knows you have a new message
+without you refreshing the page). That looks like this:</p>
+<pre><code class="javascript">$.getJSON(&quot;https://api.github.com/search/repositories?q=Space%20Invaders%20HTML5+language:JavaScript&amp;callback=?&quot;, function(data) {
+    console.log(data);
+});
+</code></pre>
 
-<h3>2.2.6 Extension: Using JavaScript</h3>
-
+<p>Here (as before), we fetch all repositories that match the string "Space Invaders" and are written in JavaScript; we
+then print it out to the JavaScript console (which can be accessed in the "Developer Tools" for Firefox (<code>Ctrl-Shift-K</code>)
+or Chrome (<code>Ctrl-Shift-J</code>) (or <code>Cmd</code> for OS X).</p>
+<p>A couple of gotchas here:</p>
+<ul>
+<li>
+<p>We add the parameter <code>callback=?</code>; this is a <a href="https://en.wikipedia.org/wiki/JSONP">JSONP</a> callback to get around the
+  <a href="https://en.wikipedia.org/wiki/Same-origin_policy">same-origin policy</a>. It's necessary for security reasons; for more
+  information, see those links.</p>
+</li>
+<li>
+<p>We process the data in a <em>callback</em> (that's the <code>function(data) { ... }</code> bit). This is because loading data over the
+  internet takes time; rather than stop everything up while we're waiting for that to finish, JavaScript moves on and
+  executes the next statement. We tell JavaScript what we want it to do once it's finished loading the data; that's the
+  body of the function we pass to <code>getJSON</code>.</p>
+</li>
+</ul>
+<p>That's it! You've successfully queried GitHub's API using JavaScript and jQuery.</p>
 <p><a id="authentication"></a></p>
-
-<h2>2.3 Authentication</h2>
-
-<p>If you refresh your web browser enough times, you may see the expected JSON disappear and be replaced by an error message</p>
-
+<h2 id="23-authentication">2.3 Authentication</h2>
+<p>If you refresh your web browser enough times, you may see the expected JSON disappear and be replaced by an error message.
+After about 5 requests you should get a rate limiting error.
+Included is <a href="http://developer.github.com/v3/#rate-limiting">this link</a> which details how github does rate limiting.
+For the <a href="http://developer.github.com/v3/search/#rate-limit">search-api</a> we're locked out after 5 requests/minute because we have not authenticated with GitHub.
+Once we authenticate we'll be able to do 20 requests/minute.</p>
 <p><a id="basic-authentication"></a></p>
+<h3 id="231-basic-authentication">2.3.1 Basic Authentication</h3>
+<p>To authenticate with GitHub, we'll check out <a href="http://developer.github.com/v3/oauth/#create-a-new-authorization">their documentation</a> on creating a reusable token.
+Getting a token allows us to have reusable credentials to GitHub's API without saving our credentials in plain-text.
+The endpoint given is <code>https://api.github.com/authorizations</code>, it implements <a href="http://en.wikipedia.org/wiki/Basic_access_authentication">Basic HTTP Authentication</a>. 
+We can test the request using <a href="http://curl.haxx.se/docs/manpage.html">curl</a>.
+We won't give the token any <a href="http://developer.github.com/v3/oauth/#scopes">scopes</a> since we will be using it for the search API.</p>
+<pre><code class="bash">$ curl -X POST \        # the -X flag declares what kind of HTTP request we are making
+  -u &lt;username&gt; \       # the -u flag allows us to pass our username for the Basic HTTP Auth
+  -d '{&quot;scopes&quot;: []}' \ # the -d flag passes data for the post request
+  https://api.github.com/authorizations
+Enter host password for user '&lt;username&gt;'
 
-<h3>2.3.1 Basic Authentication</h3>
+{
+  &quot;id&quot;: 5188246,
+  &quot;url&quot;: &quot;https://api.github.com/authorizations/5188246&quot;,
+  &quot;app&quot;: {
+    &quot;name&quot;: &quot;GitHub API&quot;,
+    &quot;url&quot;: &quot;http://developer.github.com/v3/oauth/#oauth-authorizations-api&quot;,
+    &quot;client_id&quot;: &quot;00000000000000000000&quot;
+  },
+  &quot;token&quot;: &quot;&lt;YOUR TOKEN HERE&gt;&quot;,
+  &quot;note&quot;: null,
+  &quot;note_url&quot;: null,
+  &quot;created_at&quot;: &quot;2014-01-10T08:02:44Z&quot;,
+  &quot;updated_at&quot;: &quot;2014-01-10T08:02:44Z&quot;,
+  &quot;scopes&quot;: [
+  ]
+}
+# the second step can be skipped
+$ curl -X POST -u &lt;username&gt;:&lt;password&gt; -d '{&quot;scopes&quot;: []}' https://api.github.com/authorizations
+{
+  ...
+}
+</code></pre>
 
+<p>Now we'll try to do this in Python.
+The <a href="http://docs.python-requests.org/en/latest/user/authentication/#basic-authentication">requests library makes HTTP Basic Auth</a> very straightforward.</p>
+<pre><code class="python">import requests
+import json
+
+gh_username = raw_input('GitHub username: ')
+gh_password = raw_input('GitHub password: ')
+payload = json.dumps({'scopes': []})
+
+gh_response = requests.post('https://api.github.com/user', auth=(gh_username, gh_password), data=payload)
+print gh_response.json()['token']
+</code></pre>
+
+<p>This example will return a new token linked to your account.
+Adding the token to your parameters will change the rate that GitHub imposes to 20 requests/minute.</p>
+<p>Try adding this authentication to your app.
+Generate a GitHub token using the script, add this token to a bash settings file.
+Add the token to your app config on startup.
+Pass the token <a href="http://developer.github.com/v3/#oauth2-token-sent-as-a-parameter">as a parameter</a> for each request.</p>
 <p><a id="oauth"></a></p>
-
-<h3>2.3.2 OAuth</h3>
-
+<h3 id="232-oauth">2.3.2 OAuth</h3>
 <hr />
-
 <p><a id="html-and-css"></a></p>
-
-<h1>3.0 HTML and Templating</h1>
-
+<h1 id="30-html-and-templating">3.0 HTML and Templating</h1>
+<p>We've done some really exciting work already, displaying JSON content in all sorts of different ways, and even creating dynamic routes in Flask that return different content based on what URL you visit.  </p>
+<p>For our web app, we want more than this, however.  We will display not just the raw JSON content, but a user-friendly search experience and an attractive results page.  To do this, we will use <a href="#html-basics">HTML</a> and <a href="#templating-in-flask">Flask's templates</a>.</p>
 <p><a id="html-basics"></a></p>
-
-<h2>3.1 HTML Basics</h2>
-
+<h2 id="31-html-basics">3.1 HTML Basics</h2>
 <p><a id="what-is-HTML"></a></p>
+<h3 id="311-what-is-html">3.1.1 What is HTML</h3>
+<p><a href="http://en.wikipedia.org/wiki/HTML/">HTML</a>, or HyperText Markup Language is the main lanugage we use for creating content that will be displayed by a browser.  So what is HTML?  Well, at the very core, it's text.  Create a file in your working directory, and call it <code>hello.html</code>.  Inside it, just type:</p>
+<pre><code class="html">Hello World!
+</code></pre>
 
-<h3>3.1.1 What is HTML</h3>
+<p>No funny business, just the two words.  If you open <code>hello.html</code> in your browser, you'll see it display <code>Hello World!</code>.  Congratulations on writing your first HTML document! Every text document can be interpreted as an HTML document (just add the <code>.html</code> extension!), but true HTML documents organize themselves in a structured way, using <em>elements</em>.</p>
+<h5 id="elements">Elements</h5>
+<p>Elements are made up of the <em>start tag</em>, the <em>content</em>, and the <em>end tag</em> (or <em>closing tag</em>). Both the start and end tags are wrapped in angle brackets (<code>&lt; &gt;</code>), and contain the element name inside them.  The end tag has slash (<code>/</code>) that immediately follows the open angle bracket.  Content of elements can be plain text, or even more HTML. Copy this example element into <code>hello.html</code>, and view it in your browser:</p>
+<pre><code class="html">Hello World!
 
+&lt;p&gt;This is a really cool paragraph&lt;/p&gt;
+</code></pre>
+
+<p>The start tag is <code>&lt;p&gt;</code>, the content is <code>This is a really cool paragraph</code>, and the end tag is <code>&lt;/p&gt;</code>.  The element name in this case is <code>p</code>, for paragraph.  Because the content of an element can be HTML, we can nest tags inside each other.  So for example, if we wanted to <strong>em</strong>phasize that the paragraph is cool, we could wrap the words "really cool" in <code>&lt;em&gt;</code> tags, like this:</p>
+<pre><code class="html">Hello World!
+&lt;p&gt;This is a &lt;em&gt;really cool&lt;/em&gt; paragraph&lt;/p&gt;
+</code></pre>
+
+<p>Reload <code>hello.html</code>.  You'll probably see the words "really cool" italics.  Now lets say we want to put even <strong>strong</strong>er emphasis on the word "really". We can use the <code>&lt;strong&gt;</code> tag for that.  Edit <code>hello.html</code>:</p>
+<pre><code class="html">Hello World!
+&lt;p&gt;This is a &lt;em&gt;&lt;strong&gt;really&lt;/strong&gt; cool&lt;/em&gt; paragraph&lt;/p&gt;
+</code></pre>
+
+<p>If you reaload <code>hello.html</code>, you should see that "really cool" is in italics, and "really" is also in bold.  Does that mean the the <code>&lt;em&gt;</code> is used to make words italic and <code>&lt;strong&gt;</code> is used to make them bold?  No.  Most web browsers have agreed that emphasis should be expressed using italics, and strong emphasis should be expressed with bold font, but as writers of HTML, we use tags to describe the purpose of the content, not to acheive the format that we see once they're applied.</p>
+<h5 id="headings">Headings</h5>
+<p>One rule of thumb for writing good HTML:  All text should be wrapped in tags, and the tags should be meaningful.  Right now, our <code>Hello World!</code> text has no tags around it, so let's figure out what tag makes the most sense.  "Hello World!" is the title of our <code>hello.html</code> web page, so we'll use the heading tags to indicate this.  The <code>&lt;h1&gt;</code>, <code>&lt;h2&gt;</code>, <code>&lt;h3&gt;</code>, <code>&lt;h4&gt;</code>, <code>&lt;h5&gt;</code>, and <code>&lt;h6&gt;</code> tags are used for headings and subheadings, <code>&lt;h1&gt;</code> being the highest level (and usually the largest), and <code>&lt;h6&gt;</code> being the lowest level (and usually the smallest).  Let's wrap our page title in <code>&lt;h1&gt;</code> tags.</p>
+<pre><code class="html">&lt;h1&gt;Hello World!&lt;/h1&gt;
+&lt;p&gt;This is a &lt;em&gt;&lt;strong&gt;really&lt;/strong&gt; cool&lt;/em&gt; paragraph&lt;/p&gt;
+</code></pre>
+
+<p>Reload <code>hello.html</code> and see the <code>&lt;h1&gt;</code> tag in action!  You might have an instinct to mess around with the different headings 1-6, and you should go ahead!  But remember this, we chose <code>&lt;h1&gt;</code> because "Hello World!" was the title of our webpage, not because we wanted it to be large.  So as you switch the <code>&lt;h1&gt;</code> tags to <code>&lt;h2&gt;</code>, remember that it wouldn't really make any sense to include an <code>&lt;h2&gt;</code> element in a website without an <code>&lt;h1&gt;</code> element, because that would mean a subheading without a heading.</p>
+<h5 id="attributes">Attributes</h5>
+<p>HTML elements can also have <a href="http://en.wikipedia.org/wiki/HTML_attribute">attributes</a>.  Attributes are key-value pairs that modify the contents of HTML elements, or provide additional information about the element itself.  For example, when we use the <code>&lt;a&gt;</code> tag to create an <strong>a</strong>nchor, or hyperlink, we have to provide the desitination in the <code>href</code> attribute.  Edit <code>hello.html</code>:</p>
+<pre><code class="html">&lt;h1&gt;Hello World!&lt;/h1&gt;
+&lt;p&gt;This is a &lt;em&gt;&lt;strong&gt;really&lt;/strong&gt; cool&lt;/em&gt; paragraph.  My favorite search engine is &lt;a href=&quot;http://www.google.com&quot;&gt;Google&lt;/a&gt;&lt;/p&gt;
+</code></pre>
+
+<p>The <code>href</code> is the key, and then we set it <code>=</code> to the value <code>"http://www.google.com"</code>.  If you reload <code>hello.html</code>, you'll see a blue (or maybe purple), underlined link to google.com on your page!</p>
+<blockquote>
+<p>Wondering what "href" stands for?  So do we.  It's extremely unclear in the community, and while there is some consensus that it <em>should</em> mean "<strong>H</strong>ypertext <strong>REF</strong>erence", there is still <a href="http://tomayko.com/writings/wtf-is-an-href-anyway">confusion</a>.</p>
+</blockquote>
 <p><a id="anatomy-of-an-html-document"></a></p>
+<h3 id="312-anatomy-of-an-html-document">3.1.2 Anatomy of an HTML Document</h3>
+<p>The purpose of HTML documents is to provide a semantic structure that represents the web page that is being displayed.  When talking about HTML, semantic means that all the tags are used for the appropriate purposes, and that all necessary information is included in the HTML source code.</p>
+<p>In this section, we'll dissect a boilerplate HTML document that follows HTML5 (the most modern) standards that help ensure that your HTML is rendered as best as possible by all devices and browsers. Here is the document:</p>
+<pre><code class="html">&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+    &lt;head&gt;
+        &lt;meta charset=&quot;utf-8&quot;&gt;
+        &lt;title&gt;My Website&lt;/title&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        &lt;!--Page content--&gt;
+    &lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
 
-<h3>3.1.2 Anatomy of an HTML Document</h3>
+<p>The first line is the our file's <a href="http://en.wikipedia.org/wiki/Doctype#HTML5_DTD-less_DOCTYPE">doctype</a>.  according to the HTML specification, the doctype is a "required preamble", but for our purposes, it's just something you should always include.  </p>
+<blockquote>
+<p>Wondering how we got away with writing an HTML document without a DOCTYPE, or think you're too cool for one?  Read this <a href="http://stackoverflow.com/a/7695075">stack overflow response</a> that summarizes it pretty well.  Use it, or be prepared to feel the pain that may or may not eventually result from such hubris. </p>
+</blockquote>
+<p>Older HTML standards include a much wordier DOCTYPE tag at the beginning of the document, but we only need:</p>
+<pre><code class="html">&lt;!DOCTYPE html&gt;
+</code></pre>
 
+<p>Note that this is not an element, and is just a tag.  There is an <code>!</code> at the beginning of it and there is no closing tag.  This is one of the only cases where this will be true.</p>
+<p>Next, we see the line:</p>
+<pre><code class="html">&lt;html lang=&quot;en&quot;&gt;
+</code></pre>
+
+<p>This the the opening tag of the <code>&lt;html&gt;</code> element.  You can see it's closing tag at the last line.  We use the <code>&lt;html&gt;</code> element as the root for all other elements, by convention.  The <code>lang</code> attribute is used to indicate that the primary language for this document will be English.</p>
+<p>Moving inwards to the <em>children</em> of the <code>&lt;html&gt;</code> element, or elements one level within it, we see the <code>&lt;head&gt;</code> and <code>&lt;body&gt;</code> elements.  </p>
+<p>The <code>&lt;head&gt;</code> element holds all the information about the web page that should not be displayed within the browser window.  The <code>&lt;body&gt;</code> tag holds all the elements that should be displayed.  </p>
+<p>Within the <code>&lt;head&gt;</code> element, we first have a <code>&lt;meta&gt;</code> element:</p>
+<pre><code class="html">&lt;meta charset=&quot;utf-8&quot;&gt;
+</code></pre>
+
+<p>The <code>&lt;meta&gt;</code> element does not have content or a closing tag, tells us extra information about this document.  By default, we indicate that our character set will be <code>utf-8</code>, or unicode.</p>
+<p>The next line is more straightforward.</p>
+<pre><code class="html">&lt;title&gt;My Website&lt;/title&gt;
+</code></pre>
+
+<p>The <code>&lt;title&gt;</code> element tells the browser the name of our website.  If you load this example in your browser, you'll see <code>My Website</code> show up as the title of the page (even though it will have no content in the browser window).</p>
+<p>Within the <code>&lt;body&gt;</code> element, all we have is the line:</p>
+<pre><code class="html">&lt;!--Page content--&gt;
+</code></pre>
+
+<p>Everything wrapped between the <code>&lt;!--</code> and the <code>--&gt;</code> is a comment, and won't show up in the page.  Edit <code>hello.html</code> to reflect the standard HTML5 template.  We can remove the comment.</p>
+<pre><code class="html">&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+    &lt;head&gt;
+        &lt;meta charset=&quot;utf-8&quot;&gt;
+        &lt;title&gt;Hello World!&lt;/title&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        &lt;h1&gt;Hello World!&lt;/h1&gt;
+        &lt;p&gt;This is a &lt;em&gt;&lt;strong&gt;really&lt;/strong&gt; cool&lt;/em&gt; paragraph.  My favorite search engine is &lt;a href=&quot;http://www.google.com&quot;&gt;Google&lt;/a&gt;&lt;/p&gt;
+    &lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+
+<p>When you reload <code>hello.html</code>, you may not notice any change.  However, constructing our document in this manner will make it more extensible and cross-device compatible.</p>
 <p><a id="an-overview-of-common-tags"></a></p>
+<h3 id="313-an-overview-of-common-tags">3.1.3 An Overview of Common Tags</h3>
+<p>There are many HTML elements that you will use for your website.  There are some basics you should know, before you dive into it, however.  Most of this section is summarized from the <a href="https://developer.mozilla.org/en-US/">Mozilla Developer Network (MDN)</a>, more specifically their <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element">HTML element reference</a>.  </p>
+<p><strong>DO NOT SKIM THIS NEXT PARAGRAPH</strong></p>
+<p>Please, please, please use MDN.  There is another site, called W3 schools (hyperlink intentionally excluded) that consitently turns up higher in Google search rankings, and consistently has incorrect, outdated, and more confusing information on the same topics.  If you have a question about web development (generally HTML, CSS, or JavaScript), just append "mdn" to the end of your search, to make sure that you get MDN as the top result.  The team at Mozilla has done an excellent job of making an excellent website that has the most up-to-date information about good web development practices. </p>
+<h5 id="structure">Structure</h5>
+<ul>
+<li><code>&lt;html&gt;</code> <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/html">(MDN)</a> - All HTML should be wrapped in the <code>&lt;html&gt;</code> element.  It should be the only element at the top level of an HTML document (except <code>&lt;DOCTYPE&gt;</code>).</li>
+<li><code>&lt;body&gt;</code> <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/body">(MDN)</a> - Represents the content of the HTML document.  All visible elements are descendant from the <code>&lt;body&gt;</code> tag.</li>
+<li><code>&lt;head&gt;</code> <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/head">(MDN)</a> - Holds all the metadata about the document.  This could include the title, charset, styling, and scripts</li>
+<li><code>&lt;div&gt;</code> <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/div">(MDN)</a> - A general purpose container, to be used when no other element has semantic meaning.  Using <a href="#css">CSS</a>, <code>&lt;div&gt;</code> elements can be made to server all sorts of stylistic purposes.  There are <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element">a lot of elements</a> to choose from, so be sure that nothing else fits before using a <code>&lt;div&gt;</code>.  That said, you will find that you end up using <code>&lt;div&gt;</code> elements with some frequency.</li>
+<li><code>&lt;span&gt;</code> <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/span">(MDN)</a> - Another general purpose container, but specifically for inline content.  For example, if you want to highlight misspelled words in a page, wrapping them in a span that has been configured to highlight its content would be the best solution.  Don't use a <code>&lt;div&gt;</code> when a <code>&lt;span&gt;</code> would be more appropriate.</li>
+</ul>
+<h5 id="text">Text</h5>
+<ul>
+<li><code>&lt;p&gt;</code> <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/p">(MDN)</a> - A paragraph of text.  </li>
+<li><code>&lt;a&gt;</code> <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a">(MDN)</a> - A link, or anchor.  Be sure to always include the <code>href</code> attribute when using <code>&lt;a&gt;</code> tags.  If a link doesn't go anywhere, set the <code>href</code> attribute equal to <code>"#"</code>.</li>
+<li><code>&lt;h1&gt; - &lt;h6&gt;</code> <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/h1">(MDN)</a> - Headers of various levels, <code>&lt;h1&gt;</code> being the highest level (like the title of an article or the title of the page), and <code>&lt;h6&gt;</code> being the most low level heading.  For [Search Engine Optimization (SEO)][seo] reasons, you should only include on <code>&lt;h1&gt;</code> tag on every page.</li>
+<li><code>&lt;em&gt;</code> <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/em">(MDN)</a> - Emphasis.  While on many browsers this will make text italic, do not use <code>&lt;em&gt;</code> elements for only this purpose.  Only use emphasis tags when words need emphasis.</li>
+<li><code>&lt;strong&gt;</code> <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/strong">(MDN)</a> - Strong emphasis.  Usage rules are similar for the <code>&lt;em&gt;</code> element.</li>
+<li><code>&lt;br&gt;</code> <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/br">(MDN)</a> - For line breaks.  Using <code>&lt;br&gt;</code> tags is only really appropriate when writing a poem, address, or something else where line breakage is important.  Don't use this for the space between two paragraphs (just use two <code>&lt;p&gt;</code> tags!).</li>
+</ul>
+<h5 id="lists">Lists</h5>
+<ul>
+<li><code>&lt;ol&gt;</code> <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/ol">(MDN)</a> - An ordered list.  Ordered lists should only contain list items (<code>&lt;li&gt;</code> elements).  Only use an <code>&lt;ol&gt;</code> when the order of the items in the list matters, like a recipe or instructions.</li>
+<li><code>&lt;ul&gt;</code> <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/ul">(MDN)</a> - An unordered list.  Unordered lists should also only contain list items (<code>&lt;li&gt;</code> elements).  Use this when you have a list of similar items, but the order does not matter.  </li>
+<li><code>&lt;li&gt;</code> <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/li">(MDN)</a> - An item in a <code>&lt;ul&gt;</code> or an <code>&lt;ol&gt;</code>.</li>
+</ul>
+<h5 id="meta-informational">Meta / Informational</h5>
+<p>Except the <code>&lt;DOCTYPE&gt;</code> tag, all of these elements should be children of the <code>&lt;head&gt;</code>.</p>
+<ul>
+<li><code>&lt;DOCTYPE&gt;</code> <a href="https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/HTML5/Introduction_to_HTML5#Declaring_that_the_document_contains_HTML5_mark-up_with_the_HTML5_doctype">(MDN)</a> - The declaration of the document type.</li>
+<li><code>&lt;meta&gt;</code> <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/meta">(MDN)</a> - Provides extra information about the document.  The <code>&lt;meta</code>&gt; tag may serve a bunch of different purposes depending on its attributes.</li>
+<li><code>&lt;link&gt;</code> <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/link">(MDN)</a> - Linking this document to an external resource.  For the most part, the <code>&lt;link&gt;</code> tag is only used for linking to an external CSS file.  We'll learn more about this syntax in <a href="#css-basics">section 4.1</a>.  Be sure to always include the <code>href</code>, <code>rel</code>, <code>type</code>, and <code>media</code> attributes, as follows: </li>
+</ul>
+<pre><code class="html">&lt;link href=&quot;style.css&quot; rel=&quot;stylesheet&quot; type=&quot;text/css&quot; media=&quot;all&quot;&gt;
+</code></pre>
 
-<h3>3.1.3 An Overview of Common Tags</h3>
+<ul>
+<li><code>&lt;style&gt;</code> <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/style">(MDN)</a> - Embedded CSS style.  While it is better practice to use <code>&lt;link&gt;</code> to an external CSS file, it is also possible to include CSS content in a <code>&lt;style&gt;</code> element.</li>
+<li><code>&lt;title&gt;</code> <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/title">(MDN)</a> - The title of your page.</li>
+</ul>
+<h5 id="other">Other</h5>
+<ul>
+<li><code>&lt;img&gt;</code> <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img">(MDN)</a> - Used to include an image on the page.  Always include the <code>src</code> attribute, the URL of the image resource, and the <code>alt</code> attribute to describe the image if for some reason the image cannot or should not be loaded.  The <code>&lt;img&gt;</code> element is one of the only elements that can be used in the without a closing tag, using the <code>&lt; /&gt;</code> format.  Because an image tag would never have content, we write it as one tag with a slash at the end. For example:</li>
+</ul>
+<pre><code class="html">&lt;img src=&quot;https://developer.cdn.mozilla.net/media/img/mdn-logo-sm.png&quot; alt=&quot;MD Logo&quot; /&gt;
+</code></pre>
+
+<ul>
+<li><code>&lt;script&gt;</code> <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script">(MDN)</a> - Use to either embed JavaScript (in rare occasions) or link to external JavaScript file (more common).  Always include the <code>type</code> attribute, and include the <code>src</code> attribute if the file is external.  Here is an example of the two different styles of using the <code>&lt;script&gt;</code> element:</li>
+</ul>
+<pre><code class="html">&lt;script type=&quot;text/javascript&quot; src=&quot;my_script.js&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+    console.log('Hello Console!');
+    alert('Hello World!');
+&lt;/script&gt;
+</code></pre>
 
 <p><a id="templating-in-flask"></a></p>
-
-<h2>3.2 Templating in Flask</h2>
-
+<h2 id="32-templating-in-flask">3.2 Templating in Flask</h2>
 <p><a id="a-simple-example-index-html"></a></p>
-
-<h3>3.2.1 A Simple Example: index.html</h3>
-
+<h3 id="321-a-simple-example-indexhtml">3.2.1 A Simple Example: index.html</h3>
 <p><a id="extending-templates"></a></p>
-
-<h3>3.2.2 Extending Templates</h3>
-
+<h3 id="322-extending-templates">3.2.2 Extending Templates</h3>
 <p><a id="template-variables"></a></p>
-
-<h3>3.2.2 Template Variables</h3>
-
+<h3 id="322-template-variables">3.2.2 Template Variables</h3>
 <hr />
-
 <p><a id="css"></a></p>
-
-<h1>4.0 CSS</h1>
-
+<h1 id="40-css">4.0 CSS</h1>
 <p><a id="css-basics"></a></p>
-
-<h2>4.1 CSS Basics</h2>
-
+<h2 id="41-css-basics">4.1 CSS Basics</h2>
 <p><a id="selectors"></a></p>
-
-<h3>4.1.1 Selectors</h3>
-
+<h3 id="411-selectors">4.1.1 Selectors</h3>
 <p><a id="css-best-practices"></a></p>
-
-<h3>4.1.2 CSS Best Practices</h3>
-
+<h3 id="412-css-best-practices">4.1.2 CSS Best Practices</h3>
 <p><a id="external-libraries"></a></p>
-
-<h2>4.2 External Libraries</h2>
-
+<h2 id="42-external-libraries">4.2 External Libraries</h2>
 <p><a id="installation-and-template-setup"></a></p>
-
-<h3>4.2.1 Installation and Template Setup</h3>
-
+<h3 id="421-installation-and-template-setup">4.2.1 Installation and Template Setup</h3>
 <p><a id="using-foundation"></a></p>
-
-<h3>4.2.2 Using Foundation</h3>
-
+<h3 id="422-using-foundation">4.2.2 Using Foundation</h3>
 <p><a id="rewriting-templates"></a></p>
-
-<h3>4.2.3 Rewriting Templates</h3>
-
+<h3 id="423-rewriting-templates">4.2.3 Rewriting Templates</h3>
 <p><a id="using-icon-fonts"></a></p>
+<h3 id="424-extension-using-icon-fonts">4.2.4 Extension: Using Icon Fonts</h3>
+<!-- python/flask -->
 
-<h3>4.2.4 Extension: Using Icon Fonts</h3>
-</body>
-</html>
+<!-- github -->
+
+<!-- networking -->
+
+<!--HTML-->
+
+<!-- tools --></body></html>
