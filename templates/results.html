@@ -1,11 +1,15 @@
 {% extends "search.html" %}
 {% block results %}
-<ul>
-{% for repo in api_data["items"] %}
-	<li>
-		<h3>{{ repo.name }} by {{ repo.owner.login }}</h3>
-		<p>{{ repo.description }}</p>
-	</li>
-{% endfor %}
-</ul>
+{% if api_data["items"] %}
+	<ul>
+	{% for repo in api_data["items"] %}
+		<li>
+			<h3>{{ repo.name }} by {{ repo.owner.login }}</h3>
+			<p>{{ repo.description }}</p>
+		</li>
+		{% endfor %}
+	</ul>
+{% else %}
+<p>There are no results found on Github.  Your idea is original!</p>
+{% endif %}
 {% endblock %}

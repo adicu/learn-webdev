@@ -321,6 +321,7 @@ pre .chunk {
 <li><a href="#the-search-page">3.2.2 The Search Page</a></li>
 <li><a href="#template-variables-using-jinja">3.2.3 Template Variables</a></li>
 <li><a href="#extending-templates">3.2.4 Extending Templates</a></li>
+<li><a href="#templating-best-practices">3.2.5 Extension: Templating Best-Practices</a></li>
 </ul>
 </li>
 </ul>
@@ -1247,14 +1248,14 @@ Pass the token <a href="http://developer.github.com/v3/#oauth2-token-sent-as-a-p
 <p>At the most basic level, templates in Flask are HTML documents in the <code>templates</code> folder of our project directory.  These HTML documents can have some added features, however.</p>
 <p><a id="a-simple-example-hello-html"></a></p>
 <h3 id="321-a-simple-example-hellohtml">3.2.1 A Simple Example: hello.html</h3>
-<p>Let's make our Flask app return <code>hello.html</code> as a template.  First,  move <code>hello.html</code> into the <code>templates</code> folder.  Then, in <code>app.py</code>, import <code>render_template</code>:</p>
+<p>Let's make our Flask app return <code>hello.html</code> as a template.  First,  move <code>hello.html</code> into the <code>templates</code> folder.  Then, in <code>app.py</code>, import <code>render_template</code> from the <code>flask</code> package:</p>
 <pre><code class="python">from flask import Flask, jsonify, render_template
 import requests
 ...
 </code></pre>
 
-<p>The function <code>render_template</code> turns templates in your <code>templates</code> folder into HTML that can be sent to the client.  For simple templates like <code>hello.html</code>, this method won't do more than just copy it into one big unicode string.</p>
-<p>Now for our <code>/</code> route, we'll return the string that is created by calling <code>render_template</code> on the name of the template file.</p>
+<p>The function <code>render_template()</code> turns templates in your <code>templates</code> folder into HTML that can be sent to the client.  For simple templates like <code>hello.html</code>, this method won't do more than just copy it into one big unicode string.</p>
+<p>Now for our <code>/</code> route, we'll return the string that is created by calling <code>render_template()</code> on the name of the template file.</p>
 <pre><code class="python">...
 @app.route(&quot;/hello&quot;)
 def hello():
@@ -1382,7 +1383,7 @@ def search():
 &lt;/html&gt;
 </code></pre>
 
-<p>Before we can start designing our template, we have to actually pass the variable into the template.  We do this in the <code>render_template</code> function, where (<a href="http://flask.pocoo.org/docs/quickstart/#rendering-templates">as the documentation indicates</a>) we can pass variables as keyword arguments.  Edit <code>app.py</code>:</p>
+<p>Before we can start designing our template, we have to actually pass the variable into the template.  We do this in the <code>render_template()</code> function, where (<a href="http://flask.pocoo.org/docs/quickstart/#rendering-templates">as the documentation indicates</a>) we can pass variables as keyword arguments.  Edit <code>app.py</code>:</p>
 <pre><code class="python">...
 response_dict = requests.get(url).json()
 return render_template(&quot;results.html&quot;, api_data=response_dict)
@@ -1402,7 +1403,7 @@ return render_template(&quot;results.html&quot;, api_data=response_dict)
 ...
 </code></pre>
 
-<p>Next, we'll iterate over all of the repositories in the <code>items</code> list using Jinja2's <a href="http://jinja.pocoo.org/docs/templates/#for">for loop syntax</a>, making a list item for each one.  We know to do this because of the JSON response structure we saw in section <a href="#viewing-json-in-the-browser">2.1.4</a>.  When <code>render_template</code> is called on this template, Flask will replace the for loop with mulitple instances of whatever is inside the <code>{%%}</code> tags.  </p>
+<p>Next, we'll iterate over all of the repositories in the <code>items</code> list using Jinja2's <a href="http://jinja.pocoo.org/docs/templates/#for">for loop syntax</a>, making a list item for each one.  We know to do this because of the JSON response structure we saw in section <a href="#viewing-json-in-the-browser">2.1.4</a>.  When <code>render_template()</code> is called on this template, Flask will replace the for loop with mulitple instances of whatever is inside the <code>{%%}</code> tags.  </p>
 <p>In general, Jinja2 code that contains <code>{%%}</code> is for control flow, and will not be displayed literally on the web page.</p>
 <pre><code class="html">...
 &lt;body&gt;
@@ -1494,8 +1495,39 @@ return render_template(&quot;results.html&quot;, api_data=response_dict)
 {% endblock %}
 </code></pre>
 
-<p>And that's it!  When <code>render_template</code> is called on <code>results.html</code>, Flask sees that <code>results.html</code> extends <code>search.html</code>, so it renders <code>search.html</code> filling in any <code>{% block %}</code>s that were define in <code>results.html</code>.  When <code>search.html</code> is rendered, the empty <code>{% block %}</code> is ignored.  </p>
+<p>And that's it!  When <code>render_template()</code> is called on <code>results.html</code>, Flask sees that <code>results.html</code> extends <code>search.html</code>, so it renders <code>search.html</code> filling in any <code>{% block %}</code>s that were define in <code>results.html</code>.  When <code>search.html</code> is rendered, the empty <code>{% block %}</code> is ignored.  </p>
 <p>View it live!  You'll see the form persist into the results page, even though <code>results.html</code> doesn't have the form HTML in it.</p>
+<p><a id="templating-best-practices"></a></p>
+<h3 id="325-extension-templating-best-practices">3.2.5 Extension: Templating Best-Practices</h3>
+<p>Our <code>results.html</code> template works, but there are some corner cases that we'd be good to cover.  We'll be addressing some issues with the user experience of our app.  Figuring out that you have user experience problems can be hard to do, but as a rule of thumb, give your app to a few friends and see what they think after using it.</p>
+<h5 id="empty-search-results">Empty search results</h5>
+<p>What if there are no results from the search?  The <code>items</code> list will be empty, and no <code>&lt;li&gt;</code> elements will be rendered.  Lets have a fall back.  Using the <code>{% if %}</code> control statement, we can check if the <code>items</code> list exists and isn't empty, and display a message indicating a lack of results otherwise.</p>
+<pre><code class="html">{% extends &quot;search.html&quot; %}
+{% block results %}
+{% if api_data[&quot;items&quot;] %}
+    &lt;ul&gt;
+    {% for repo in api_data[&quot;items&quot;] %}
+        &lt;li&gt;
+            &lt;h3&gt;{{ repo.name }} by {{ repo.owner.login }}&lt;/h3&gt;
+            &lt;p&gt;{{ repo.description }}&lt;/p&gt;
+        &lt;/li&gt;
+    {% endfor %}
+    &lt;/ul&gt;
+{% else %}
+&lt;p&gt;There are no results found on Github.  Your idea is original!&lt;/p&gt;
+{% endif %}
+{% endblock %}
+</code></pre>
+
+<h5 id="missing-data-memebers">Missing Data Memebers</h5>
+<p>What if a project doesn't have a description?  Or the name / creator data is corrupted?  Whenever we use template variables, we should be sure that they exist first, lest the user see some ugly template error instead of your app.</p>
+<p>Wrap each <code>{{ }}</code> statement in a Jinja2 <code>{% if %}</code>, checking if the variable exists before using it.  Here are some general rules for our case:</p>
+<ul>
+<li>The entire list item should be omitted if there is no <code>repo.name</code>.</li>
+<li>The <code>by</code> and the owner should be omitted if there is no <code>repo.owner.login</code>.</li>
+<li>The entire <code>&lt;p&gt;</code> element should be omitted if there is no <code>repo.description</code>.</li>
+</ul>
+<p>Make these fixes.</p>
 <hr />
 <p><a id="css"></a></p>
 <h1 id="40-css">4.0 CSS</h1>

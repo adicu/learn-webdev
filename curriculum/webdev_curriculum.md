@@ -60,6 +60,7 @@ We will be building a web application throughout this series, called "Has it Bee
 		-	[3.2.2 The Search Page](#the-search-page)
 		-	[3.2.3 Template Variables](#template-variables-using-jinja)
 		-	[3.2.4 Extending Templates](#extending-templates)
+		-	[3.2.5 Extension: Templating Best-Practices](#templating-best-practices)
 -	[4.0 CSS](#css)
 	-	[4.1 CSS Basics](#css-basics)
 		-	[4.1.1 Selectors](#selectors)
@@ -1424,6 +1425,45 @@ Now, we can delete everything that is in `search.html` from `results.html`, and 
 And that's it!  When `render_template()` is called on `results.html`, Flask sees that `results.html` extends `search.html`, so it renders `search.html` filling in any `{% block %}`s that were define in `results.html`.  When `search.html` is rendered, the empty `{% block %}` is ignored.  
 
 View it live!  You'll see the form persist into the results page, even though `results.html` doesn't have the form HTML in it.
+
+<a id="templating-best-practices"></a>
+### 3.2.5 Extension: Templating Best-Practices
+
+Our `results.html` template works, but there are some corner cases that we'd be good to cover.  We'll be addressing some issues with the user experience of our app.  Figuring out that you have user experience problems can be hard to do, but as a rule of thumb, give your app to a few friends and see what they think after using it.
+
+##### Empty search results
+
+What if there are no results from the search?  The `items` list will be empty, and no `<li>` elements will be rendered.  Lets have a fall back.  Using the `{% if %}` control statement, we can check if the `items` list exists and isn't empty, and display a message indicating a lack of results otherwise.
+
+```html
+{% extends "search.html" %}
+{% block results %}
+{% if api_data["items"] %}
+	<ul>
+	{% for repo in api_data["items"] %}
+		<li>
+			<h3>{{ repo.name }} by {{ repo.owner.login }}</h3>
+			<p>{{ repo.description }}</p>
+		</li>
+	{% endfor %}
+	</ul>
+{% else %}
+<p>There are no results found on Github.  Your idea is original!</p>
+{% endif %}
+{% endblock %}
+```
+
+##### Missing Data Memebers
+
+What if a project doesn't have a description?  Or the name / creator data is corrupted?  Whenever we use template variables, we should be sure that they exist first, lest the user see some ugly template error instead of your app.
+
+Wrap each `{{ }}` statement in a Jinja2 `{% if %}`, checking if the variable exists before using it.  Here are some general rules for our case:
+
+-   The entire list item should be omitted if there is no `repo.name`.
+-   The ` by ` and the owner should be omitted if there is no `repo.owner.login`.
+-   The entire `<p>` element should be omitted if there is no `repo.description`.
+
+Make these fixes.
 
 ------------------------
 
