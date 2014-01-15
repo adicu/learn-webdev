@@ -1,0 +1,23 @@
+{
+	"name": "Jane Doe",
+	"age": 20,
+	"female": true,
+	"male": false,
+	"occupation": "student",
+	"school": {
+		"fullname": "The Fu Foundation School of Engineering & Applied Science",
+		"university": "Columbia University",
+		"undergrad": true
+	},
+	"children": null,
+	"hobbies": [
+		"programming",
+		"cello",
+		"painting",
+		"basketball",
+		"REST APIs"
+	],
+	"luckynumbers" : [
+		10, 25.3, 404
+	]
+}

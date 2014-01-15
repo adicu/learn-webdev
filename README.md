@@ -1,18 +1,10 @@
-devfest-webdev
-==============
+DevFest Web Development Curriculum
+==================================
 
-The intro to web development curriculum for DevFest
+#### How to use
 
-Set up
-------
+Read through `webdev_curriculum.md` or `webdev_curriculum.html`
 
-(in the top level directory)
+#### Solutions
 
-    virtualenv --no-site-packages .
-    source bin/activate
-    pip install -r requirements.txt
-
-Running
--------
-
-    python app.py  # runs on localhost:5000
+All solutions are available by section in the `solutions/` folder.

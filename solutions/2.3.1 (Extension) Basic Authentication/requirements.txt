@@ -1,0 +1,4 @@
+Flask==0.10.1
+Flask-BasicAuth==0.2.0
+Jinja2==2.7.1
+MarkupSafe==0.18
