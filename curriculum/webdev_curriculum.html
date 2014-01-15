@@ -252,7 +252,7 @@ pre .chunk {
 </script><script>hljs.initHighlightingOnLoad();</script><title>webdev_curriculum</title></head><body><p><a id="top"></a></p>
 <h1 id="an-accelerated-introduction-to-web-development">An Accelerated Introduction to Web Development</h1>
 <p><em>Building a webapp in Flask.</em></p>
-<p>Much of this tutorial is adapted from the <a href="http://flask.pocoo.org/">Flask website</a>.  Written and developed by <a href="file:///Users/dan/working/devfest-webdev/curriculum/mailto:dan@adicu.com">Dan Schlosser</a> and <a href="http://adicu.com">ADI</a>.</p>
+<p>Written and developed by <a href="file:///Users/dan/working/devfest-webdev/curriculum/mailto:dan@adicu.com">Dan Schlosser</a> and <a href="http://adicu.com">ADI</a>.</p>
 <p><a id="about-this-document"></a></p>
 <h2 id="about-this-document">About This Document</h2>
 <p><a id="methodology"></a></p>
@@ -317,9 +317,10 @@ pre .chunk {
 </ul>
 </li>
 <li><a href="#templating-in-flask">3.2 Templating in Flask</a><ul>
-<li><a href="#a-simple-example-index-html">3.2.1 A Simple Example: index.html</a></li>
-<li><a href="#extending-templates">3.2.2 Extending Templates</a></li>
-<li><a href="#template-variables">3.2.2 Template Variables</a></li>
+<li><a href="#a-simple-example-hello-html">3.2.1 A Simple Example: hello.html</a></li>
+<li><a href="#the-search-page">3.2.2 The Search Page</a></li>
+<li><a href="#template-variables-using-jinja">3.2.3 Template Variables</a></li>
+<li><a href="#extending-templates">3.2.4 Extending Templates</a></li>
 </ul>
 </li>
 </ul>
@@ -343,9 +344,10 @@ pre .chunk {
 <hr />
 <p><a id="flask"></a></p>
 <h1 id="10-flask">1.0 Flask</h1>
+<p>Much of this tutorial is adapted from the <a href="http://flask.pocoo.org/">Flask website</a>.</p>
 <p><a id="what-is-flask"></a></p>
 <h2 id="11-what-is-flask">1.1 What is Flask</h2>
-<p><a href="http://flask.pocoo.org/">Flask</a> is a microframework for Python.  It lets you build web apps using Python.  It is very easy to setup and has excellent documentation on its <a href="http://flask.pocoo.org/">website</a>.</p>
+<p><a href="http://flask.pocoo.org/">Flask</a> is a microframework; it lets you build web apps using Python.  It is very easy to setup and has excellent documentation on its <a href="http://flask.pocoo.org/">website</a>.</p>
 <p><a id="how-a-flask-app-works"></a></p>
 <h3 id="111-how-a-flask-app-works">1.1.1 How a Flask App Works</h3>
 <p>Flask works with a <a href="http://en.wikipedia.org/wiki/Client%E2%80%93server_model">client-server model</a>.  The server, written in Python, has functions that take requests from clients (i.e. your web browser) and return web content to be displayed by the client.  Flask servers have the ability of serving <a href="http://en.wikipedia.org/wiki/Dynamic_content">dynamic web pages</a>, or pages that are generated every time you load the page.  For example, dynamic content could be of such pages include information stored in a database or a user account.</p>
@@ -1101,7 +1103,7 @@ Pass the token <a href="http://developer.github.com/v3/#oauth2-token-sent-as-a-p
 &lt;p&gt;This is a &lt;em&gt;&lt;strong&gt;really&lt;/strong&gt; cool&lt;/em&gt; paragraph&lt;/p&gt;
 </code></pre>
 
-<p>Reload <code>hello.html</code> and see the <code>&lt;h1&gt;</code> tag in action!  You might have an instinct to mess around with the different headings 1-6, and you should go ahead!  But remember this, we chose <code>&lt;h1&gt;</code> because "Hello World!" was the title of our webpage, not because we wanted it to be large.  So as you switch the <code>&lt;h1&gt;</code> tags to <code>&lt;h2&gt;</code>, remember that it wouldn't really make any sense to include an <code>&lt;h2&gt;</code> element in a website without an <code>&lt;h1&gt;</code> element, because that would mean a subheading without a heading.</p>
+<p>Reload <code>hello.html</code> and see the <code>&lt;h1&gt;</code> tag in action!  You might have an instinct to mess around with the different headings 1-6, and you should go ahead!  But remember this, we chose <code>&lt;h1&gt;</code> because "Hello World!" was the title of our webpage, not because we wanted it to be large.  So as you switch the <code>&lt;h1&gt;</code> tags to <code>&lt;h2&gt;</code>, remember that it wouldn't really make any sense to include an <code>&lt;h2&gt;</code> element in a website without an <code>&lt;h1&gt;</code> element, because that would mean a subheading without a heading.  From <code>&lt;h2&gt;</code> and down, headings should be interchanged depending on their importance.</p>
 <h5 id="attributes">Attributes</h5>
 <p>HTML elements can also have <a href="http://en.wikipedia.org/wiki/HTML_attribute">attributes</a>.  Attributes are key-value pairs that modify the contents of HTML elements, or provide additional information about the element itself.  For example, when we use the <code>&lt;a&gt;</code> tag to create an <strong>a</strong>nchor, or hyperlink, we have to provide the desitination in the <code>href</code> attribute.  Edit <code>hello.html</code>:</p>
 <pre><code class="html">&lt;h1&gt;Hello World!&lt;/h1&gt;
@@ -1201,6 +1203,14 @@ Pass the token <a href="http://developer.github.com/v3/#oauth2-token-sent-as-a-p
 <li><code>&lt;ul&gt;</code> <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/ul">(MDN)</a> - An unordered list.  Unordered lists should also only contain list items (<code>&lt;li&gt;</code> elements).  Use this when you have a list of similar items, but the order does not matter.  </li>
 <li><code>&lt;li&gt;</code> <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/li">(MDN)</a> - An item in a <code>&lt;ul&gt;</code> or an <code>&lt;ol&gt;</code>.</li>
 </ul>
+<h5 id="forms">Forms</h5>
+<ul>
+<li><code>&lt;form&gt;</code> <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form">(MDN)</a> - A wrapper for any form that the user will fill out on the page. If you are making a web form, check out <a href="https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/Forms/My_first_HTML_form?redirectlocale=en-US&amp;redirectslug=HTML%2FForms%2FMy_first_HTML_form">this instructional guide</a> from MDN on how to build a basic form.</li>
+<li><code>&lt;input&gt;</code> <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input">(MDN)</a> - An element that is used to input data into a form.  This could be a text-box, radio button, or an email address box depending on the attributes used.  Input tags are self closing, meaning that they don't have content or an end tag, and just take the form <code>&lt;input /&gt;</code>.</li>
+<li><code>&lt;label&gt;</code> <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/label">(MDN)</a> - A piece of text that labels an input.</li>
+<li><code>&lt;textarea&gt;</code> <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea">(MDN)</a> - A large, multiline text box that is part of a form.</li>
+<li><code>&lt;button&gt;</code> <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button">(MDN)</a> - Used for a button that submits or resets the form.</li>
+</ul>
 <h5 id="meta-informational">Meta / Informational</h5>
 <p>Except the <code>&lt;DOCTYPE&gt;</code> tag, all of these elements should be children of the <code>&lt;head&gt;</code>.</p>
 <ul>
@@ -1217,7 +1227,7 @@ Pass the token <a href="http://developer.github.com/v3/#oauth2-token-sent-as-a-p
 </ul>
 <h5 id="other">Other</h5>
 <ul>
-<li><code>&lt;img&gt;</code> <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img">(MDN)</a> - Used to include an image on the page.  Always include the <code>src</code> attribute, the URL of the image resource, and the <code>alt</code> attribute to describe the image if for some reason the image cannot or should not be loaded.  The <code>&lt;img&gt;</code> element is one of the only elements that can be used in the without a closing tag, using the <code>&lt; /&gt;</code> format.  Because an image tag would never have content, we write it as one tag with a slash at the end. For example:</li>
+<li><code>&lt;img&gt;</code> <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img">(MDN)</a> - Used to include an image on the page.  Always include the <code>src</code> attribute, the URL of the image resource, and the <code>alt</code> attribute to describe the image if for some reason the image cannot or should not be loaded.  The <code>&lt;img&gt;</code> element is self closing, like the <code>&lt;input&gt;</code> element.  We write it in the form <code>&lt;img /&gt;</code>.  For example:</li>
 </ul>
 <pre><code class="html">&lt;img src=&quot;https://developer.cdn.mozilla.net/media/img/mdn-logo-sm.png&quot; alt=&quot;MD Logo&quot; /&gt;
 </code></pre>
@@ -1234,12 +1244,258 @@ Pass the token <a href="http://developer.github.com/v3/#oauth2-token-sent-as-a-p
 
 <p><a id="templating-in-flask"></a></p>
 <h2 id="32-templating-in-flask">3.2 Templating in Flask</h2>
-<p><a id="a-simple-example-index-html"></a></p>
-<h3 id="321-a-simple-example-indexhtml">3.2.1 A Simple Example: index.html</h3>
+<p>At the most basic level, templates in Flask are HTML documents in the <code>templates</code> folder of our project directory.  These HTML documents can have some added features, however.</p>
+<p><a id="a-simple-example-hello-html"></a></p>
+<h3 id="321-a-simple-example-hellohtml">3.2.1 A Simple Example: hello.html</h3>
+<p>Let's make our Flask app return <code>hello.html</code> as a template.  First,  move <code>hello.html</code> into the <code>templates</code> folder.  Then, in <code>app.py</code>, import <code>render_template</code>:</p>
+<pre><code class="python">from flask import Flask, jsonify, render_template
+import requests
+...
+</code></pre>
+
+<p>The function <code>render_template</code> turns templates in your <code>templates</code> folder into HTML that can be sent to the client.  For simple templates like <code>hello.html</code>, this method won't do more than just copy it into one big unicode string.</p>
+<p>Now for our <code>/</code> route, we'll return the string that is created by calling <code>render_template</code> on the name of the template file.</p>
+<pre><code class="python">...
+@app.route(&quot;/hello&quot;)
+def hello():
+    return render_template(&quot;hello.html&quot;)
+...
+</code></pre>
+
+<p>Reload the server and visit <code>localhost:5000</code>.  You'll see <code>hello.html</code>, but this time rendered by Flask!</p>
+<p><a id="the-search-page"></a></p>
+<h3 id="322-the-search-page">3.2.2 The Search Page</h3>
+<p>Let's write an interface for users to search in HTML.</p>
+<p>First start by creating a template called <code>search.html</code> in the <code>templates</code> folder.  Copy in the boilerplate from <a href="#anatomy-of-an-html-document">section 3.1.2</a> into this file, changing the title of the page to <code>Search</code>.</p>
+<pre><code class="html">&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+    &lt;head&gt;
+        &lt;meta charset=&quot;utf-8&quot;&gt;
+        &lt;title&gt;Search&lt;/title&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        &lt;!--Page content--&gt;
+    &lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+
+<p>The first thing we should do is add a title to the search page. We'll use <code>&lt;h1&gt;</code> because this will be the top level heading.</p>
+<pre><code class="html">...
+&lt;body&gt;
+    &lt;h1&gt;Search&lt;/h1&gt;
+&lt;/body&gt;
+...
+</code></pre>
+
+<p>Now, lets create a web form, that allows users to enter a search query and click search.  We'll make a very simple search form (following guidelines from <a href="https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/Forms/My_first_HTML_form?redirectlocale=en-US&amp;redirectslug=HTML%2FForms%2FMy_first_HTML_form">MDN</a>).  Start with a <code>&lt;form&gt;</code> element.  We fill out the <code>action</code> and <code>method</code> attributes in accordance with HTML5 standards.</p>
+<pre><code class="html">...
+&lt;h1&gt;Search&lt;/h1&gt;
+&lt;form action=&quot;/search&quot; method=&quot;post&quot;&gt;
+&lt;/form&gt;
+...
+</code></pre>
+
+<p>Next we'll add an <code>&lt;input&gt;</code> method with <code>type</code> attribute equal to <code>text</code>, in order to make a text field.  We'll add placeholder text using the <code>placeholder</code> attribute, to cue in users as to how to use the form.  We also include the <code>name</code> attribute, which lets us standardize how the data from the form will be sent to our Flask server.  Finally, add the attribute <code>required</code> (it does not take a value).  This ensures that we don't submit the form when the text box is empty.</p>
+<pre><code class="html">...
+&lt;form action=&quot;/search&quot; method=&quot;post&quot;&gt;
+    &lt;input type=&quot;text&quot; placeholder=&quot;Search for your idea&quot; name=&quot;user_search&quot; required/&gt;
+&lt;/form&gt;
+...
+</code></pre>
+
+<p>Then we'll add a search <code>&lt;button&gt;</code>:</p>
+<pre><code class="html">...
+&lt;form action=&quot;/search&quot; method=&quot;post&quot;&gt;
+    &lt;input type=&quot;text&quot; placeholder=&quot;Search for your idea&quot; name=&quot;user_search&quot; required/&gt;
+    &lt;button type=&quot;submit&quot;&gt;Search&lt;/button&gt;
+&lt;/form&gt;
+...
+</code></pre>
+
+<p>Now we have our completed <code>search.html</code>:</p>
+<pre><code class="html">&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+    &lt;head&gt;
+        &lt;meta charset=&quot;utf-8&quot;&gt;
+        &lt;title&gt;Search&lt;/title&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        &lt;h1&gt;Search&lt;/h1&gt;
+        &lt;form action=&quot;/search&quot; method=&quot;post&quot;&gt;
+            &lt;input type=&quot;text&quot; placeholder=&quot;Search for your idea&quot; name=&quot;user_search&quot; required/&gt;
+            &lt;button type=&quot;submit&quot;&gt;Search&lt;/button&gt;
+        &lt;/form&gt;
+    &lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+
+<p>When the user clicks our <code>&lt;button&gt;</code>, a <a href="#http">POST request</a> will be sent to our <code>/search</code> route, with the data from the form being passed in the query string (it will probably look something like <code>?user_search=my-idea</code>).  We will have to <em>refactor</em>, or rewrite our <code>search()</code> method to take data this way, and to display the template if no data is provided.</p>
+<p>Because we will be passing data through the query string instead of the path, we'll change the route from <code>/search/&lt;search-query&gt;</code> to <code>/search</code> and remove the parameter from the method.  Edit <code>app.py</code>:</p>
+<pre><code class="python">...
+@app.route(&quot;/search&quot;)
+def search():
+...
+</code></pre>
+
+<p>Now we'll either return <code>search.html</code> or the JSON data depending on the method that was used: <code>GET</code> if the user visits <code>localhost:5000/search</code> in their browser, and <code>POST</code> if they click submit on the form.  </p>
+<p>By default, Flask routes only accept <code>GET</code> requests, but we can change this by modifiing the <code>route()</code> decorator:</p>
+<pre><code class="python">...
+@app.route(&quot;/search&quot;, methods=[&quot;GET&quot;, &quot;POST&quot;])
+...
+</code></pre>
+
+<p>In order to figure out which method was used, we need to import <code>request</code> from the <code>flask</code> package (not to be confused with the external library <code>requests</code> that we imported in <a href="#using-python">section 2.2.3</a>):</p>
+<pre><code class="python">from flask import Flask, jsonify, render_template, request
+import requests
+...
+</code></pre>
+
+<p>Now, in every route there is an associated <code>request</code> that has lots of data from the HTTP request that was sent to the server, including the method and the args (from the query string!).  Edit the <code>search()</code> method:</p>
+<pre><code class="python">...
+@app.route(&quot;/search&quot;)
+def search():
+    if request.method == &quot;POST&quot;:
+        url = &quot;https://api.github.com/search/repositories?q=&quot; + request.form[&quot;user_search&quot;]
+        response_dict = requests.get(url).json()
+        return jsonify(response_dict)
+    else # request.method == &quot;GET&quot;
+        return render_template(&quot;search.html&quot;)
+...
+</code></pre>
+
+<p>Note that <code>request.form</code> is a <a href="http://werkzeug.pocoo.org/docs/datastructures/#werkzeug.datastructures.MultiDict">multidict</a>, and we can get the search data from the <code>user_search</code> key, because <code>user_search</code> is the <code>name</code> attribute of the <code>&lt;input&gt;</code> element in our HTML form.  </p>
+<p>Now if you go to <code>localhost:5000/search</code> you will see the form, and if you submit data with the form, you will see the JSON data.  All with one <code>/search</code> route!</p>
+<p><a id="template-variables-using-jinja2"></a></p>
+<h3 id="323-template-variables-using-jinja2">3.2.3 Template Variables Using Jinja2</h3>
+<p>Now displaying data as JSON is all well and good, but it would be great to display the content as HTML.  The problem is, we can't know at the point of writing our HTML what the response will be, so we'll use the more advanced templating features of Flask to dynamically create HTML.</p>
+<p>We'll be using the <a href="http://jinja.pocoo.org/docs/templates/">Jinja2 templating engine</a> built into Flask. Using it, we can pass variables from our Python code into templates, essentially allowing us to incorporate variables in our HTML.</p>
+<p>First, create a boilerplate HTML5 document called <code>results.html</code>:</p>
+<pre><code class="html">&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+    &lt;head&gt;
+        &lt;meta charset=&quot;utf-8&quot;&gt;
+        &lt;title&gt;Search&lt;/title&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+
+    &lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+
+<p>Before we can start designing our template, we have to actually pass the variable into the template.  We do this in the <code>render_template</code> function, where (<a href="http://flask.pocoo.org/docs/quickstart/#rendering-templates">as the documentation indicates</a>) we can pass variables as keyword arguments.  Edit <code>app.py</code>:</p>
+<pre><code class="python">...
+response_dict = requests.get(url).json()
+return render_template(&quot;results.html&quot;, api_data=response_dict)
+...
+</code></pre>
+
+<blockquote>
+<p>Here the variable <code>api_data</code> has an arbitrary name chosen to be used from within the template.  Inside the template, we will refer the the data as <code>api_data</code>, not <code>response_dict</code>.  Often these two names will be the same, i.e. <code>response_dict=response_dict</code>, but we'll leave them different for clarity.</p>
+</blockquote>
+<p>We've passed our data into the HTML document, so now we'll turn <code>results.html</code> into a dynamic template.  As a concept, lets have an unordered list of all the results, where each item represents a repository with its name, description, and author's username. </p>
+<p>First, create an unordered list for the results.</p>
+<pre><code class="html">...
+&lt;body&gt;
+    &lt;ul&gt;
+    &lt;/ul&gt;
+&lt;/body&gt;
+...
+</code></pre>
+
+<p>Next, we'll iterate over all of the repositories in the <code>items</code> list using Jinja2's <a href="http://jinja.pocoo.org/docs/templates/#for">for loop syntax</a>, making a list item for each one.  We know to do this because of the JSON response structure we saw in section <a href="#viewing-json-in-the-browser">2.1.4</a>.  When <code>render_template</code> is called on this template, Flask will replace the for loop with mulitple instances of whatever is inside the <code>{%%}</code> tags.  </p>
+<p>In general, Jinja2 code that contains <code>{%%}</code> is for control flow, and will not be displayed literally on the web page.</p>
+<pre><code class="html">...
+&lt;body&gt;
+    &lt;ul&gt;
+    {% for repo in api_data[&quot;items&quot;] %}
+        &lt;li&gt;&lt;/li&gt;
+    {% endfor %}
+    &lt;/ul&gt;
+&lt;/body&gt;
+...
+</code></pre>
+
+<p>Now lets populate the dynamic list item.  We can insert variables into Flask using the <code>{{ variable }}</code> syntax.</p>
+<pre><code class="html">...
+&lt;ul&gt;
+{% for repo in api_data[&quot;items&quot;] %}
+    &lt;li&gt;
+        &lt;h3&gt;{{ repo.name }} by {{ repo.owner.login }}&lt;/h3&gt;
+        &lt;p&gt;{{ repo.description }}&lt;/p&gt;
+    &lt;/li&gt;
+{% endfor %}
+&lt;/ul&gt;
+...
+</code></pre>
+
+<p>Now, visting <code>localhost:5000/search</code> again and submit a search. You should see a bulleted list of results for your search!</p>
 <p><a id="extending-templates"></a></p>
-<h3 id="322-extending-templates">3.2.2 Extending Templates</h3>
-<p><a id="template-variables"></a></p>
-<h3 id="322-template-variables">3.2.2 Template Variables</h3>
+<h3 id="324-extending-templates">3.2.4 Extending Templates</h3>
+<p>Our results page looks great, but what if we want to do another search?  Let's put the search form and header at the top of <code>results.html</code> as well.</p>
+<pre><code class="html">&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+    &lt;head&gt;
+        &lt;meta charset=&quot;utf-8&quot;&gt;
+        &lt;title&gt;Search&lt;/title&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        &lt;h1&gt;Search&lt;/h1&gt;
+        &lt;form action=&quot;/search&quot; method=&quot;POST&quot;&gt;
+            &lt;input type=&quot;text&quot; placeholder=&quot;Search for your idea&quot; id=&quot;user_search&quot; name=&quot;user_search&quot; required/&gt;
+            &lt;button type=&quot;submit&quot;&gt;Search&lt;/button&gt;
+        &lt;/form&gt;
+        &lt;ul&gt;
+        {% for repo in api_data[&quot;items&quot;] %}
+            &lt;li&gt;
+                &lt;h3&gt;{{ repo.name }} by {{ repo.owner.login }}&lt;/h3&gt;
+                &lt;p&gt;{{ repo.description }}&lt;/p&gt;
+            &lt;/li&gt;
+        {% endfor %}
+        &lt;/ul&gt;
+    &lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+
+<p>Noticing a lot of repeated code? You should.  <code>search.html</code> and <code>results.html</code> look very similar, and it would be great if we didn't have to reuse code.  </p>
+<p>We can use <em>template inheritance</em> to reuse one template with another.  It's easy!  The <em>parent template</em> will be <code>search.html</code>, because it is more simple, and all of the code from it shows up in <code>results.html</code>.  In <code>search.html</code>, add a <a href="http://jinja.pocoo.org/docs/templates/#template-inheritance">Jinja2 block</a> that the child (<code>results.html</code>) will fill in:</p>
+<pre><code class="html">&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+    &lt;head&gt;
+        &lt;meta charset=&quot;utf-8&quot;&gt;
+        &lt;title&gt;Search&lt;/title&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        &lt;h1&gt;Search&lt;/h1&gt;
+        &lt;form action=&quot;/search&quot; method=&quot;POST&quot;&gt;
+            &lt;input type=&quot;text&quot; placeholder=&quot;Search for your idea&quot; id=&quot;user_search&quot; name=&quot;user_search&quot; required/&gt;
+            &lt;button type=&quot;submit&quot;&gt;Search&lt;/button&gt;
+        &lt;/form&gt;
+        {% block results %}{% endblock %}
+    &lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+
+<p>Next, we'll make <code>results.html</code> <em>extend</em>, or be a child of <code>search.html</code>.  To do this, add the following line at the beginning of <code>results.html</code>:</p>
+<pre><code class="html">{% extends search.html %}
+&lt;!DOCTYPE html&gt;
+</code></pre>
+
+<p>Now, we can delete everything that is in <code>search.html</code> from <code>results.html</code>, and just include the contents of our <code>{% block %}</code>.  Edit <code>results.html</code>:</p>
+<pre><code class="html">{% extends search.html %}
+{% block results %}
+&lt;ul&gt;
+{% for repo in api_data[&quot;items&quot;] %}
+    &lt;li&gt;
+        &lt;h3&gt;{{ repo.name }} by {{ repo.owner.login }}&lt;/h3&gt;
+        &lt;p&gt;{{ repo.description }}&lt;/p&gt;
+    &lt;/li&gt;
+{% endfor %}
+&lt;/ul&gt;
+{% endblock %}
+</code></pre>
+
+<p>And that's it!  When <code>render_template</code> is called on <code>results.html</code>, Flask sees that <code>results.html</code> extends <code>search.html</code>, so it renders <code>search.html</code> filling in any <code>{% block %}</code>s that were define in <code>results.html</code>.  When <code>search.html</code> is rendered, the empty <code>{% block %}</code> is ignored.  </p>
+<p>View it live!  You'll see the form persist into the results page, even though <code>results.html</code> doesn't have the form HTML in it.</p>
 <hr />
 <p><a id="css"></a></p>
 <h1 id="40-css">4.0 CSS</h1>

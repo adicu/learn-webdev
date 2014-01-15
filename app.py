@@ -1,4 +1,4 @@
-from flask import Flask, jsonify
+from flask import Flask, jsonify, render_template, request
 from os import environ
 from sys import exit
 import requests
@@ -6,15 +6,15 @@ import requests
 app = Flask(__name__)
 app.config["DEBUG"] = True
 
-try:
-    app.config['gh_token'] = environ['gh_token']
-except KeyError:
-    print 'GitHub token missing from environment variables.'
-    exit(1)
+# try:
+#     app.config['gh_token'] = environ['gh_token']
+# except KeyError:
+#     print 'GitHub token missing from environment variables.'
+#     exit(1)
 
 @app.route("/")
 def hello():
-    return "Hello World!"
+    return render_template("hello.html")
 
 @app.route("/name")
 def name():
@@ -24,18 +24,22 @@ def name():
 def website():
     return "http://adicu.com"
 
-@app.route("/search/<search_query>")
-def search(search_query):
-    url = "https://api.github.com/search/repositories"
-    data = {
-        'q': search_query,
-        'access_token': app.config['gh_token']
-    }
-    response_dict = requests.get(url, params=data).json()
-    if "items" not in response_dict:
-        return jsonify(response_dict)
-    else:
-        return jsonify(parse_response(response_dict))
+@app.route("/search", methods=["POST", "GET"])
+def search():
+    if request.method == "POST":
+        print request.form
+        url = "https://api.github.com/search/repositories"
+        data = {
+            'q': request.form["user_search"]#,
+            # 'access_token': app.config['gh_token']
+        }
+        response_dict = requests.get(url, params=data).json()
+        if "items" not in response_dict:
+            return jsonify(response_dict)
+        else:
+            return render_template("results.html", api_data=response_dict)
+    else: # request.method == "GET"
+        return render_template("search.html")
 
 def parse_response(response_dict):
     clean_dict = {
@@ -57,6 +61,5 @@ def parse_response(response_dict):
     return clean_dict
 
 if __name__ == "__main__":
-
     app.run()
 

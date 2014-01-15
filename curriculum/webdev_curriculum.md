@@ -3,7 +3,7 @@
 
 *Building a webapp in Flask.*
 
-Much of this tutorial is adapted from the [Flask website][flask].  Written and developed by [Dan Schlosser](mailto:dan@adicu.com) and [ADI](http://adicu.com).
+Written and developed by [Dan Schlosser](mailto:dan@adicu.com) and [ADI](http://adicu.com).
 
 <a id="about-this-document"></a>
 ## About This Document
@@ -56,9 +56,10 @@ We will be building a web application throughout this series, called "Has it Bee
 		-	[3.1.2 Anatomy of an HTML Document](#anatomy-of-an-html-document)
 		-	[3.1.3 An Overview of Common Tags](#an-overview-of-common-tags)
 	-	[3.2 Templating in Flask](#templating-in-flask)
-		-	[3.2.1 A Simple Example: index.html](#a-simple-example-index-html)
-		-	[3.2.2 Extending Templates](#extending-templates)
-		-	[3.2.2 Template Variables](#template-variables)
+		-	[3.2.1 A Simple Example: hello.html](#a-simple-example-hello-html)
+		-	[3.2.2 The Search Page](#the-search-page)
+		-	[3.2.3 Template Variables](#template-variables-using-jinja)
+		-	[3.2.4 Extending Templates](#extending-templates)
 -	[4.0 CSS](#css)
 	-	[4.1 CSS Basics](#css-basics)
 		-	[4.1.1 Selectors](#selectors)
@@ -74,10 +75,12 @@ We will be building a web application throughout this series, called "Has it Bee
 <a id="flask"></a>
 # 1.0 Flask
 
+Much of this tutorial is adapted from the [Flask website][flask].
+
 <a id="what-is-flask"></a>
 ## 1.1 What is Flask
 
-[Flask][flask] is a microframework for Python.  It lets you build web apps using Python.  It is very easy to setup and has excellent documentation on its [website][flask].
+[Flask][flask] is a microframework; it lets you build web apps using Python.  It is very easy to setup and has excellent documentation on its [website][flask].
 
 <a id="how-a-flask-app-works"></a>
 ### 1.1.1 How a Flask App Works
@@ -943,7 +946,7 @@ One rule of thumb for writing good HTML:  All text should be wrapped in tags, an
 <p>This is a <em><strong>really</strong> cool</em> paragraph</p>
 ```
 
-Reload `hello.html` and see the `<h1>` tag in action!  You might have an instinct to mess around with the different headings 1-6, and you should go ahead!  But remember this, we chose `<h1>` because "Hello World!" was the title of our webpage, not because we wanted it to be large.  So as you switch the `<h1>` tags to `<h2>`, remember that it wouldn't really make any sense to include an `<h2>` element in a website without an `<h1>` element, because that would mean a subheading without a heading.
+Reload `hello.html` and see the `<h1>` tag in action!  You might have an instinct to mess around with the different headings 1-6, and you should go ahead!  But remember this, we chose `<h1>` because "Hello World!" was the title of our webpage, not because we wanted it to be large.  So as you switch the `<h1>` tags to `<h2>`, remember that it wouldn't really make any sense to include an `<h2>` element in a website without an `<h1>` element, because that would mean a subheading without a heading.  From `<h2>` and down, headings should be interchanged depending on their importance.
 
 ##### Attributes
 
@@ -1071,6 +1074,13 @@ Please, please, please use MDN.  There is another site, called W3 schools (hyper
 -   `<ul>` [(MDN)][mdn-ul] - An unordered list.  Unordered lists should also only contain list items (`<li>` elements).  Use this when you have a list of similar items, but the order does not matter.  
 -   `<li>` [(MDN)][mdn-li] - An item in a `<ul>` or an `<ol>`.
 
+##### Forms
+-   `<form>` [(MDN)][mdn-form] - A wrapper for any form that the user will fill out on the page. If you are making a web form, check out [this instructional guide][mdn-form-usage] from MDN on how to build a basic form.
+-   `<input>` [(MDN)][mdn-input] - An element that is used to input data into a form.  This could be a text-box, radio button, or an email address box depending on the attributes used.  Input tags are self closing, meaning that they don't have content or an end tag, and just take the form `<input />`.
+-   `<label>` [(MDN)][mdn-label] - A piece of text that labels an input.
+-   `<textarea>` [(MDN)][mdn-textarea] - A large, multiline text box that is part of a form.
+-   `<button>` [(MDN)][mdn-button] - Used for a button that submits or resets the form.
+
 ##### Meta / Informational
 
 Except the `<DOCTYPE>` tag, all of these elements should be children of the `<head>`.
@@ -1085,7 +1095,8 @@ Except the `<DOCTYPE>` tag, all of these elements should be children of the `<he
 -   `<title>` [(MDN)][mdn-title] - The title of your page.
 
 ##### Other
--   `<img>` [(MDN)][mdn-img] - Used to include an image on the page.  Always include the `src` attribute, the URL of the image resource, and the `alt` attribute to describe the image if for some reason the image cannot or should not be loaded.  The `<img>` element is one of the only elements that can be used in the without a closing tag, using the `< />` format.  Because an image tag would never have content, we write it as one tag with a slash at the end. For example:
+
+-   `<img>` [(MDN)][mdn-img] - Used to include an image on the page.  Always include the `src` attribute, the URL of the image resource, and the `alt` attribute to describe the image if for some reason the image cannot or should not be loaded.  The `<img>` element is self closing, like the `<input>` element.  We write it in the form `<img />`.  For example:
 ```html
 <img src="https://developer.cdn.mozilla.net/media/img/mdn-logo-sm.png" alt="MD Logo" />
 ```
@@ -1101,14 +1112,318 @@ Except the `<DOCTYPE>` tag, all of these elements should be children of the `<he
 <a id="templating-in-flask"></a>
 ## 3.2 Templating in Flask
 
-<a id="a-simple-example-index-html"></a>
-### 3.2.1 A Simple Example: index.html
+At the most basic level, templates in Flask are HTML documents in the `templates` folder of our project directory.  These HTML documents can have some added features, however.
+
+<a id="a-simple-example-hello-html"></a>
+### 3.2.1 A Simple Example: hello.html
+
+Let's make our Flask app return `hello.html` as a template.  First,  move `hello.html` into the `templates` folder.  Then, in `app.py`, import `render_template` from the `flask` package:
+
+```python
+from flask import Flask, jsonify, render_template
+import requests
+...
+```
+
+The function `render_template()` turns templates in your `templates` folder into HTML that can be sent to the client.  For simple templates like `hello.html`, this method won't do more than just copy it into one big unicode string.
+
+Now for our `/` route, we'll return the string that is created by calling `render_template()` on the name of the template file.
+
+```python
+...
+@app.route("/hello")
+def hello():
+    return render_template("hello.html")
+...
+```
+
+Reload the server and visit `localhost:5000`.  You'll see `hello.html`, but this time rendered by Flask!
+
+<a id="the-search-page"></a>
+### 3.2.2 The Search Page
+
+Let's write an interface for users to search in HTML.
+
+First start by creating a template called `search.html` in the `templates` folder.  Copy in the boilerplate from [section 3.1.2](#anatomy-of-an-html-document) into this file, changing the title of the page to `Search`.
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>Search</title>
+	</head>
+	<body>
+		<!--Page content-->
+	</body>
+</html>
+```
+
+The first thing we should do is add a title to the search page. We'll use `<h1>` because this will be the top level heading.
+
+```html
+...
+<body>
+	<h1>Search</h1>
+</body>
+...
+```
+
+Now, lets create a web form, that allows users to enter a search query and click search.  We'll make a very simple search form (following guidelines from [MDN][mdn-form-usage]).  Start with a `<form>` element.  We fill out the `action` and `method` attributes in accordance with HTML5 standards.
+
+```html
+...
+<h1>Search</h1>
+<form action="/search" method="post">
+</form>
+...
+```
+
+Next we'll add an `<input>` method with `type` attribute equal to `text`, in order to make a text field.  We'll add placeholder text using the `placeholder` attribute, to cue in users as to how to use the form.  We also include the `name` attribute, which lets us standardize how the data from the form will be sent to our Flask server.  Finally, add the attribute `required` (it does not take a value).  This ensures that we don't submit the form when the text box is empty.
+
+```html
+...
+<form action="/search" method="post">
+	<input type="text" placeholder="Search for your idea" name="user_search" required/>
+</form>
+...
+```
+
+Then we'll add a search `<button>`:
+
+```html
+...
+<form action="/search" method="post">
+	<input type="text" placeholder="Search for your idea" name="user_search" required/>
+	<button type="submit">Search</button>
+</form>
+...
+```
+
+Now we have our completed `search.html`:
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>Search</title>
+	</head>
+	<body>
+		<h1>Search</h1>
+		<form action="/search" method="post">
+			<input type="text" placeholder="Search for your idea" name="user_search" required/>
+			<button type="submit">Search</button>
+		</form>
+	</body>
+</html>
+```
+
+When the user clicks our `<button>`, a [POST request](#http) will be sent to our `/search` route, with the data from the form being passed in the query string (it will probably look something like `?user_search=my-idea`).  We will have to *refactor*, or rewrite our `search()` method to take data this way, and to display the template if no data is provided.
+
+Because we will be passing data through the query string instead of the path, we'll change the route from `/search/<search-query>` to `/search` and remove the parameter from the method.  Edit `app.py`:
+
+```python
+...
+@app.route("/search")
+def search():
+...
+```
+
+Now we'll either return `search.html` or the JSON data depending on the method that was used: `GET` if the user visits `localhost:5000/search` in their browser, and `POST` if they click submit on the form.  
+
+By default, Flask routes only accept `GET` requests, but we can change this by modifiing the `route()` decorator:
+
+```python
+...
+@app.route("/search", methods=["GET", "POST"])
+...
+```
+
+In order to figure out which method was used, we need to import `request` from the `flask` package (not to be confused with the external library `requests` that we imported in [section 2.2.3](#using-python)):
+
+```python
+from flask import Flask, jsonify, render_template, request
+import requests
+...
+```
+
+Now, in every route there is an associated `request` that has lots of data from the HTTP request that was sent to the server, including the method and the args (from the query string!).  Edit the `search()` method:
+
+```python
+...
+@app.route("/search")
+def search():
+    if request.method == "POST":
+        url = "https://api.github.com/search/repositories?q=" + request.form["user_search"]
+		response_dict = requests.get(url).json()
+		return jsonify(response_dict)
+    else # request.method == "GET"
+        return render_template("search.html")
+...
+```
+
+Note that `request.form` is a [multidict][multidict], and we can get the search data from the `user_search` key, because `user_search` is the `name` attribute of the `<input>` element in our HTML form.  
+
+Now if you go to `localhost:5000/search` you will see the form, and if you submit data with the form, you will see the JSON data.  All with one `/search` route!
+
+<a id="template-variables-using-jinja2"></a>
+### 3.2.3 Template Variables Using Jinja2
+
+Now displaying data as JSON is all well and good, but it would be great to display the content as HTML.  The problem is, we can't know at the point of writing our HTML what the response will be, so we'll use the more advanced templating features of Flask to dynamically create HTML.
+
+We'll be using the [Jinja2 templating engine][jinja2] built into Flask. Using it, we can pass variables from our Python code into templates, essentially allowing us to incorporate variables in our HTML.
+
+First, create a boilerplate HTML5 document called `results.html`:
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>Search</title>
+	</head>
+	<body>
+		
+	</body>
+</html>
+```
+
+Before we can start designing our template, we have to actually pass the variable into the template.  We do this in the `render_template()` function, where ([as the documentation indicates][render-template]) we can pass variables as keyword arguments.  Edit `app.py`:
+
+```python
+...
+response_dict = requests.get(url).json()
+return render_template("results.html", api_data=response_dict)
+...
+```
+
+> Here the variable `api_data` has an arbitrary name chosen to be used from within the template.  Inside the template, we will refer the the data as `api_data`, not `response_dict`.  Often these two names will be the same, i.e. `response_dict=response_dict`, but we'll leave them different for clarity.
+
+We've passed our data into the HTML document, so now we'll turn `results.html` into a dynamic template.  As a concept, lets have an unordered list of all the results, where each item represents a repository with its name, description, and author's username. 
+
+First, create an unordered list for the results.
+
+```html
+...
+<body>
+	<ul>
+	</ul>
+</body>
+...
+```
+
+Next, we'll iterate over all of the repositories in the `items` list using Jinja2's [for loop syntax][jinja2-for], making a list item for each one.  We know to do this because of the JSON response structure we saw in section [2.1.4](#viewing-json-in-the-browser).  When `render_template()` is called on this template, Flask will replace the for loop with mulitple instances of whatever is inside the `{%%}` tags.  
+
+In general, Jinja2 code that contains `{%%}` is for control flow, and will not be displayed literally on the web page.
+
+```html
+...
+<body>
+	<ul>
+	{% for repo in api_data["items"] %}
+		<li></li>
+	{% endfor %}
+	</ul>
+</body>
+...
+```
+
+Now lets populate the dynamic list item.  We can insert variables into Flask using the `{{ variable }}` syntax.
+
+```html
+...
+<ul>
+{% for repo in api_data["items"] %}
+	<li>
+		<h3>{{ repo.name }} by {{ repo.owner.login }}</h3>
+		<p>{{ repo.description }}</p>
+	</li>
+{% endfor %}
+</ul>
+...
+```
+
+Now, visting `localhost:5000/search` again and submit a search. You should see a bulleted list of results for your search!
 
 <a id="extending-templates"></a>
-### 3.2.2 Extending Templates
+### 3.2.4 Extending Templates
 
-<a id="template-variables"></a>
-### 3.2.2 Template Variables
+Our results page looks great, but what if we want to do another search?  Let's put the search form and header at the top of `results.html` as well.
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>Search</title>
+	</head>
+	<body>
+		<h1>Search</h1>
+		<form action="/search" method="POST">
+			<input type="text" placeholder="Search for your idea" id="user_search" name="user_search" required/>
+			<button type="submit">Search</button>
+		</form>
+		<ul>
+		{% for repo in api_data["items"] %}
+			<li>
+				<h3>{{ repo.name }} by {{ repo.owner.login }}</h3>
+				<p>{{ repo.description }}</p>
+			</li>
+		{% endfor %}
+		</ul>
+	</body>
+</html>
+```
+
+Noticing a lot of repeated code? You should.  `search.html` and `results.html` look very similar, and it would be great if we didn't have to reuse code.  
+
+We can use *template inheritance* to reuse one template with another.  It's easy!  The *parent template* will be `search.html`, because it is more simple, and all of the code from it shows up in `results.html`.  In `search.html`, add a [Jinja2 block][jinja2-block] that the child (`results.html`) will fill in:
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>Search</title>
+	</head>
+	<body>
+		<h1>Search</h1>
+		<form action="/search" method="POST">
+			<input type="text" placeholder="Search for your idea" id="user_search" name="user_search" required/>
+			<button type="submit">Search</button>
+		</form>
+		{% block results %}{% endblock %}
+	</body>
+</html>
+```
+
+Next, we'll make `results.html` *extend*, or be a child of `search.html`.  To do this, add the following line at the beginning of `results.html`:
+
+```html
+{% extends search.html %}
+<!DOCTYPE html>
+```
+
+Now, we can delete everything that is in `search.html` from `results.html`, and just include the contents of our `{% block %}`.  Edit `results.html`:
+
+```html
+{% extends search.html %}
+{% block results %}
+<ul>
+{% for repo in api_data["items"] %}
+	<li>
+		<h3>{{ repo.name }} by {{ repo.owner.login }}</h3>
+		<p>{{ repo.description }}</p>
+	</li>
+{% endfor %}
+</ul>
+{% endblock %}
+```
+
+And that's it!  When `render_template()` is called on `results.html`, Flask sees that `results.html` extends `search.html`, so it renders `search.html` filling in any `{% block %}`s that were define in `results.html`.  When `search.html` is rendered, the empty `{% block %}` is ignored.  
+
+View it live!  You'll see the form persist into the results page, even though `results.html` doesn't have the form HTML in it.
 
 ------------------------
 
@@ -1149,6 +1464,11 @@ Except the `<DOCTYPE>` tag, all of these elements should be children of the `<he
 [pip]: http://www.pip-installer.org/en/latest/
 [py-response-obj]: http://docs.python-requests.org/en/latest/api/#requests.Response
 [flask-jsonify]: http://flask.pocoo.org/docs/api/#flask.json.jsonify
+[multidict]: http://werkzeug.pocoo.org/docs/datastructures/#werkzeug.datastructures.MultiDict
+[render-template]: http://flask.pocoo.org/docs/quickstart/#rendering-templates
+[jinja2]: http://jinja.pocoo.org/docs/templates/
+[jinja2-for]: http://jinja.pocoo.org/docs/templates/#for
+[jinja2-block]: http://jinja.pocoo.org/docs/templates/#template-inheritance
 
 <!-- github -->
 [github]: http://github.com
@@ -1205,6 +1525,12 @@ Except the `<DOCTYPE>` tag, all of these elements should be children of the `<he
 [mdn-title]: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/title
 [mdn-img]: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img
 [mdn-script]: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script
+[mdn-form]: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form
+[mdn-form-usage]: https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/Forms/My_first_HTML_form?redirectlocale=en-US&redirectslug=HTML%2FForms%2FMy_first_HTML_form
+[mdn-input]: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input
+[mdn-label]: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/label
+[mdn-textarea]: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea
+[mdn-button]: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button
 
 <!-- tools -->
 [curl-win]: http://curl.haxx.se/download.html
@@ -1212,8 +1538,3 @@ Except the `<DOCTYPE>` tag, all of these elements should be children of the `<he
 [json-chrome]: https://chrome.google.com/webstore/detail/jsonview/chklaanhfefbnpoihckbnefhakgolnmc?hl=en
 [json-firefox]: https://addons.mozilla.org/en-us/firefox/addon/jsonview/
 [json-safari]: https://github.com/rfletcher/safari-json-formatter
-
-
-
-
-
