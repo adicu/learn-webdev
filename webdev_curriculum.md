@@ -62,7 +62,8 @@ We will be building a web application throughout this series, called "Has it Bee
 		-	[3.2.5 Extension: Templating Best-Practices](#templating-best-practices)
 -	[4.0 CSS](#css)
 	-	[4.1 CSS Basics](#css-basics)
-		-	[4.1.1 Selectors](#selectors)
+		-	[4.1.1 Applying CSS Styles](#applying-css-styles)
+		-	[4.1.2 Selectors](#selectors)
 		-	[4.1.2 CSS Best Practices](#css-best-practices)
 	-	[4.2 External Libraries](#external-libraries)
 		-	[4.2.1 Installation and Template Setup](#installation-and-template-setup)
@@ -1474,14 +1475,274 @@ Make these fixes.
 <a id="css"></a>
 # 4.0 CSS
 
+[CSS][css], or Cascading Style Sheets, is a styling language that is used to arrange and stylize HTML elements.  CSS is extremely powerful, but also fairly hard to learn.  Every different browser interprets CSS slightly differently, and there are a lot of tricks and best practices that are hard to learn.  As such, CSS is best learned by lots and lots of practice.  The [ADI Resources][learn] page has links to a lot of different tutorials and walkthroughs, if you want more practice after styling your Flask app.
+
 <a id="css-basics"></a>
 ## 4.1 CSS Basics
 
+CSS is a very simple language.  At it's core, CSS is made up of three parts: *selectors*, *properties*, and *values*.  Selectors (explored in depth in [section 4.1.2](#advanced-selectors)) are used to select which elements are being styled.  For example:
+
+```css
+p { }
+```
+
+selects all `<p>` elements.
+
+Inside the braces `{ }` are the *properties* and *values* separated by colons `:`, with semicolons `;` at the end of each property / value pair.  For example:
+
+```css
+p { color: blue; }
+```
+
+would make all the `<p>` tags blue. Here, `color` is a property and `blue` is a value.  In terms of syntax, that's really it.  If we wanted to make all `<p>` tags blue and all `<strong>` tags red, here would be our CSS:
+
+```css
+p {
+	color: blue;
+}
+strong {
+	color: red;
+}
+```
+
+Notice that whitespace is not relevant to syntax.  Finally, comments should be surrounded in `/* */`.
+
+```css
+/* this is a comment */
+```
+
+There is an extremely large collection of CSS properties and values, all of which are documented excellently at (surprise) the [Mozilla Developer Network][mdn].  Again, avoid incorrect or out of date information by appending `mdn` to any Google searches related to CSS you might have!
+
+<a id=""></a>
+### 4.1.1 Applying CSS Styles
+
+There are three ways to apply CSS to HTML elements.  The first is called *inline styling*.  Every element can be given a `style` attribute that can take CSS styles that apply to this element.  Doing this, we can avoid selectors entirely because all of our styling effects only the element that we are adding the `style` attribute to.  For example, this `<p>` tag will have blue text:
+
+```html
+<p style="color: blue">This text is blue.</p>
+```
+
+Inline styles are problematic, however.  Not only do we clutter the text that is being displayed, but also we would have to duplicate our styling for every paragraph we have!
+
+```html
+<p style="color: blue">This text is blue.</p>
+<p style="color: blue">An so is this text.</p>
+<p style="color: blue">And this text.</p>
+```
+
+Because of this, inline styles should be *absolutely avoided* unless you are writing for mail clients that ignore CSS that isn't inline.
+
+We can also apply CSS in a `<style>` element, in the `<head>`, like so:
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>CSS Demo</title>
+		<style>
+p {
+	color: blue;
+}
+		</style>
+	</head>
+	<body>
+		<p>This text is blue.</p>
+		<p>An so is this text.</p>
+		<p>And this text.</p>
+	</body>
+</html>
+```
+
+This is great, because the body of the document is a lot less cluttered.  As you can imagine, this is only relocates the problem.  now the head of the document is messy and full of CSS styles.  As your HTML gets longer so does your CSS, and now documents can reach unmanageable length.
+
+For the same reason we might break up a large programming project into classes and functions, we want to get our CSS out of our `.html` document entirely.  Enter the `<link>` tag, which lets us reference external `.css` stylesheets!  Link tags only need an open tag, and have no content or end tag.  Also, be sure to always include the `rel` attribute as 'stylesheet' and the `type` attribute as `text/css` alongside the `src` attribute pointing to the `.css` file.
+
+<h1 class="join"></h1>
+```html
+<!-- demo.html -->
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>CSS Demo</title>
+		<link src="demo.css" 
+			rel="stylesheet"
+			type="text/css">
+	</head>
+	<body>
+		<p>This text is blue.</p>
+		<p>An so is this text.</p>
+		<p>And this text.</p>
+	</body>
+</html>
+```
+```css
+/* demo.css */
+p {
+	color: blue;
+}
+```
+<h1 class="clear"></h1>
+
+Using an external CSS file is the best practice, barring special circumstances.  You can even include multiple CSS files to keep things organized.
+
+```html
+<!-- demo.html -->
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>CSS Demo</title>
+		<link src="blue.css" rel="stylesheet" type="text/css">
+		<link src="red.css" rel="stylesheet" type="text/css">
+	</head>
+	<body>
+		<p>This text is blue.</p>
+		<strong>And this text is red.</strong>
+	</body>
+</html>
+```
+
+<h1 class="join"></h1>
+```css
+/* blue.css */
+p {
+	color: blue;
+}
+```
+```css
+/* red.css */
+strong {
+	color: red;
+}
+```
+<h1 class="clear"></h1>
+
 <a id="selectors"></a>
-### 4.1.1 Selectors
+### 4.1.2 Selectors
+
+In the above examples `p` and `strong` in the `.css` files are *selectors*.  Selection can be done in a variety of different ways.  The most basic selection is by element name.
+
+<h1 class="join"></h1>
+```html
+<!-- demo.html -->
+<p>This text is blue</p>
+```
+```css
+/* demo.css */
+p {
+	color: blue;
+}
+```
+<h1 class="clear"></h1>
+
+If you provide a `class` attribute, the `.classname` syntax will select all elements with `class="classname"`.
+
+<h1 class="join"></h1>
+```html
+<!-- demo.html -->
+<p class="blue">This text is blue</p>
+<p>This text is not blue</p>
+<em class="blue">This text is blue</em>
+```
+```css
+/* demo.css */
+.blue {
+	color: blue;
+}
+```
+<h1 class="clear"></h1>
+
+You can also give an element a unique `id` and it can be selected with the `#idname` syntax.  Do not give two elements the same id.
+
+<h1 class="join"></h1>
+```html
+<!-- demo.html -->
+<p id="blue">This text is blue</p>
+<p>This text is not blue</p>
+```
+```css
+/* demo.css */
+#blue {
+	color: blue;
+}
+```
+<h1 class="clear"></h1>
+
+There are also *relational selectors* for finding elements in the HTML document.  
+
+Using the `selector1 selector2` syntax, you can restrict `selector2` to only elements that are within an element selected by `selector1`. For example:
+
+<h1 class="join"></h1>
+```html
+<!-- demo.html -->
+<div class="blue">
+	<h1>This text is not blue</h1>
+	<p>This text is blue</p>
+	<span>
+		<p>This text is also blue</p>
+	</span>
+</div>
+<p>This text is not blue</p>
+```
+```css
+/* demo.css */
+.blue p {
+	color: blue;
+}
+```
+<h1 class="clear"></h1>
+
+Similarly, the `selector1 > selector2` will restrict `selector2` to only children (not grandchildren) of elements selected by `selector1`.  For example:
+
+<h1 class="join"></h1>
+```html
+<!-- demo.html -->
+<div class="blue">
+	<h1>This text is not blue</h1>
+	<p>This text is blue</p>
+	<span>
+		<p>This text is NOT blue,
+			because its parent is the 
+			span tag, which does not 
+			have the "blue" class.
+		</p>
+	</span>
+</div>
+<p>This text is not blue</p>
+```
+```css
+/* demo.css */
+.blue > p {
+	color: blue;
+}
+```
+<h1 class="clear"></h1>
+
+Finally, you can combine two selectors with a comma (`,`).  These two CSS files are the same:
+
+<h1 class="join"></h1>
+```css
+/* demo.css */
+p {
+	color: blue;
+}
+.blue {
+	color: blue;
+}
+```
+```css
+/* demo.css */
+.blue, p {
+	color: blue;
+}
+```
+<h1 class="clear"></h1>
+
 
 <a id="css-best-practices"></a>
-### 4.1.2 CSS Best Practices
+### 4.1.3 CSS Best Practices
 
 <a id="external-libraries"></a>
 ## 4.2 External Libraries
@@ -1575,6 +1836,9 @@ Make these fixes.
 [mdn-label]: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/label
 [mdn-textarea]: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea
 [mdn-button]: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button
+
+<!-- CSS -->
+[css]: http://en.wikipedia.org/wiki/Css
 
 <!-- tools -->
 [curl-win]: http://curl.haxx.se/download.html

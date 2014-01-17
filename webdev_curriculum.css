@@ -1,0 +1,26 @@
+.join {
+	height: 0;
+	margin: 0;
+}
+.join + pre {
+	width: 45%;
+	display: inline-block;
+	margin-top: 0;
+	margin-bottom: 0;
+}
+pre + pre {
+	display: inline-block;
+	width: 45%;
+	float: right;
+	margin-top: 0;
+	margin-bottom: 0;
+}
+pre + .clear {
+	margin: 0;
+	height: 0;
+	clear: both;
+}
+ul ul {
+	margin-top: 0;
+	margin-bottom: 0;
+}

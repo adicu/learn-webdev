@@ -120,7 +120,32 @@ body{font-size:16px;}
   p, h2, h3 { orphans: 3; widows: 3; }
   h2, h3 { page-break-after: avoid; }
 }
-</style><style>/*
+</style><style>.join {
+	height: 0;
+	margin: 0;
+}
+.join + pre {
+	width: 45%;
+	display: inline-block;
+	margin-top: 0;
+	margin-bottom: 0;
+}
+pre + pre {
+	display: inline-block;
+	width: 45%;
+	float: right;
+	margin-top: 0;
+	margin-bottom: 0;
+}
+pre + .clear {
+	margin: 0;
+	height: 0;
+	clear: both;
+}
+ul ul {
+	margin-top: 0;
+	margin-bottom: 0;
+}</style><style>/*
 
 github.com style (c) Vasily Polovnyov <vast@whiteants.net>
 
@@ -327,7 +352,8 @@ pre .chunk {
 </li>
 <li><a href="#css">4.0 CSS</a><ul>
 <li><a href="#css-basics">4.1 CSS Basics</a><ul>
-<li><a href="#selectors">4.1.1 Selectors</a></li>
+<li><a href="#applying-css-styles">4.1.1 Applying CSS Styles</a></li>
+<li><a href="#selectors">4.1.2 Selectors</a></li>
 <li><a href="#css-best-practices">4.1.2 CSS Best Practices</a></li>
 </ul>
 </li>
@@ -1534,12 +1560,249 @@ import requests
 <hr />
 <p><a id="css"></a></p>
 <h1 id="40-css">4.0 CSS</h1>
+<p><a href="http://en.wikipedia.org/wiki/Css">CSS</a>, or Cascading Style Sheets, is a styling language that is used to arrange and stylize HTML elements.  CSS is extremely powerful, but also fairly hard to learn.  Every different browser interprets CSS slightly differently, and there are a lot of tricks and best practices that are hard to learn.  As such, CSS is best learned by lots and lots of practice.  The [ADI Resources][learn] page has links to a lot of different tutorials and walkthroughs, if you want more practice after styling your Flask app.</p>
 <p><a id="css-basics"></a></p>
 <h2 id="41-css-basics">4.1 CSS Basics</h2>
+<p>CSS is a very simple language.  At it's core, CSS is made up of three parts: <em>selectors</em>, <em>properties</em>, and <em>values</em>.  Selectors (explored in depth in <a href="#advanced-selectors">section 4.1.2</a>) are used to select which elements are being styled.  For example:</p>
+<pre><code class="css">p { }
+</code></pre>
+
+<p>selects all <code>&lt;p&gt;</code> elements.</p>
+<p>Inside the braces <code>{ }</code> are the <em>properties</em> and <em>values</em> separated by colons <code>:</code>, with semicolons <code>;</code> at the end of each property / value pair.  For example:</p>
+<pre><code class="css">p { color: blue; }
+</code></pre>
+
+<p>would make all the <code>&lt;p&gt;</code> tags blue. Here, <code>color</code> is a property and <code>blue</code> is a value.  In terms of syntax, that's really it.  If we wanted to make all <code>&lt;p&gt;</code> tags blue and all <code>&lt;strong&gt;</code> tags red, here would be our CSS:</p>
+<pre><code class="css">p {
+    color: blue;
+}
+strong {
+    color: red;
+}
+</code></pre>
+
+<p>Notice that whitespace is not relevant to syntax.  Finally, comments should be surrounded in <code>/* */</code>.</p>
+<pre><code class="css">/* this is a comment */
+</code></pre>
+
+<p>There is an extremely large collection of CSS properties and values, all of which are documented excellently at (surprise) the <a href="https://developer.mozilla.org/en-US/">Mozilla Developer Network</a>.  Again, avoid incorrect or out of date information by appending <code>mdn</code> to any Google searches related to CSS you might have!</p>
+<p><a id=""></a></p>
+<h3 id="411-applying-css-styles">4.1.1 Applying CSS Styles</h3>
+<p>There are three ways to apply CSS to HTML elements.  The first is called <em>inline styling</em>.  Every element can be given a <code>style</code> attribute that can take CSS styles that apply to this element.  Doing this, we can avoid selectors entirely because all of our styling effects only the element that we are adding the <code>style</code> attribute to.  For example, this <code>&lt;p&gt;</code> tag will have blue text:</p>
+<pre><code class="html">&lt;p style=&quot;color: blue&quot;&gt;This text is blue.&lt;/p&gt;
+</code></pre>
+
+<p>Inline styles are problematic, however.  Not only do we clutter the text that is being displayed, but also we would have to duplicate our styling for every paragraph we have!</p>
+<pre><code class="html">&lt;p style=&quot;color: blue&quot;&gt;This text is blue.&lt;/p&gt;
+&lt;p style=&quot;color: blue&quot;&gt;An so is this text.&lt;/p&gt;
+&lt;p style=&quot;color: blue&quot;&gt;And this text.&lt;/p&gt;
+</code></pre>
+
+<p>Because of this, inline styles should be <em>absolutely avoided</em> unless you are writing for mail clients that ignore CSS that isn't inline.</p>
+<p>We can also apply CSS in a <code>&lt;style&gt;</code> element, in the <code>&lt;head&gt;</code>, like so:</p>
+<pre><code class="html">&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+    &lt;head&gt;
+        &lt;meta charset=&quot;utf-8&quot;&gt;
+        &lt;title&gt;CSS Demo&lt;/title&gt;
+        &lt;style&gt;
+p {
+    color: blue;
+}
+        &lt;/style&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        &lt;p&gt;This text is blue.&lt;/p&gt;
+        &lt;p&gt;An so is this text.&lt;/p&gt;
+        &lt;p&gt;And this text.&lt;/p&gt;
+    &lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+
+<p>This is great, because the body of the document is a lot less cluttered.  As you can imagine, this is only relocates the problem.  now the head of the document is messy and full of CSS styles.  As your HTML gets longer so does your CSS, and now documents can reach unmanageable length.</p>
+<p>For the same reason we might break up a large programming project into classes and functions, we want to get our CSS out of our <code>.html</code> document entirely.  Enter the <code>&lt;link&gt;</code> tag, which lets us reference external <code>.css</code> stylesheets!  Link tags only need an open tag, and have no content or end tag.  Also, be sure to always include the <code>rel</code> attribute as 'stylesheet' and the <code>type</code> attribute as <code>text/css</code> alongside the <code>src</code> attribute pointing to the <code>.css</code> file.</p>
+<h1 class="join"></h1>
+
+<pre><code class="html">&lt;!-- demo.html --&gt;
+&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+    &lt;head&gt;
+        &lt;meta charset=&quot;utf-8&quot;&gt;
+        &lt;title&gt;CSS Demo&lt;/title&gt;
+        &lt;link src=&quot;demo.css&quot; 
+            rel=&quot;stylesheet&quot;
+            type=&quot;text/css&quot;&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        &lt;p&gt;This text is blue.&lt;/p&gt;
+        &lt;p&gt;An so is this text.&lt;/p&gt;
+        &lt;p&gt;And this text.&lt;/p&gt;
+    &lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+
+<pre><code class="css">/* demo.css */
+p {
+    color: blue;
+}
+</code></pre>
+
+<h1 class="clear"></h1>
+
+<p>Using an external CSS file is the best practice, barring special circumstances.  You can even include multiple CSS files to keep things organized.</p>
+<pre><code class="html">&lt;!-- demo.html --&gt;
+&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+    &lt;head&gt;
+        &lt;meta charset=&quot;utf-8&quot;&gt;
+        &lt;title&gt;CSS Demo&lt;/title&gt;
+        &lt;link src=&quot;blue.css&quot; rel=&quot;stylesheet&quot; type=&quot;text/css&quot;&gt;
+        &lt;link src=&quot;red.css&quot; rel=&quot;stylesheet&quot; type=&quot;text/css&quot;&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        &lt;p&gt;This text is blue.&lt;/p&gt;
+        &lt;strong&gt;And this text is red.&lt;/strong&gt;
+    &lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+
+<h1 class="join"></h1>
+
+<pre><code class="css">/* blue.css */
+p {
+    color: blue;
+}
+</code></pre>
+
+<pre><code class="css">/* red.css */
+strong {
+    color: red;
+}
+</code></pre>
+
+<h1 class="clear"></h1>
+
 <p><a id="selectors"></a></p>
-<h3 id="411-selectors">4.1.1 Selectors</h3>
+<h3 id="412-selectors">4.1.2 Selectors</h3>
+<p>In the above examples <code>p</code> and <code>strong</code> in the <code>.css</code> files are <em>selectors</em>.  Selection can be done in a variety of different ways.  The most basic selection is by element name.</p>
+<h1 class="join"></h1>
+
+<pre><code class="html">&lt;!-- demo.html --&gt;
+&lt;p&gt;This text is blue&lt;/p&gt;
+</code></pre>
+
+<pre><code class="css">/* demo.css */
+p {
+    color: blue;
+}
+</code></pre>
+
+<h1 class="clear"></h1>
+
+<p>If you provide a <code>class</code> attribute, the <code>.classname</code> syntax will select all elements with <code>class="classname"</code>.</p>
+<h1 class="join"></h1>
+
+<pre><code class="html">&lt;!-- demo.html --&gt;
+&lt;p class=&quot;blue&quot;&gt;This text is blue&lt;/p&gt;
+&lt;p&gt;This text is not blue&lt;/p&gt;
+&lt;em class=&quot;blue&quot;&gt;This text is blue&lt;/em&gt;
+</code></pre>
+
+<pre><code class="css">/* demo.css */
+.blue {
+    color: blue;
+}
+</code></pre>
+
+<h1 class="clear"></h1>
+
+<p>You can also give an element a unique <code>id</code> and it can be selected with the <code>#idname</code> syntax.  Do not give two elements the same id.</p>
+<h1 class="join"></h1>
+
+<pre><code class="html">&lt;!-- demo.html --&gt;
+&lt;p id=&quot;blue&quot;&gt;This text is blue&lt;/p&gt;
+&lt;p&gt;This text is not blue&lt;/p&gt;
+</code></pre>
+
+<pre><code class="css">/* demo.css */
+#blue {
+    color: blue;
+}
+</code></pre>
+
+<h1 class="clear"></h1>
+
+<p>There are also <em>relational selectors</em> for finding elements in the HTML document.  </p>
+<p>Using the <code>selector1 selector2</code> syntax, you can restrict <code>selector2</code> to only elements that are within an element selected by <code>selector1</code>. For example:</p>
+<h1 class="join"></h1>
+
+<pre><code class="html">&lt;!-- demo.html --&gt;
+&lt;div class=&quot;blue&quot;&gt;
+    &lt;h1&gt;This text is not blue&lt;/h1&gt;
+    &lt;p&gt;This text is blue&lt;/p&gt;
+    &lt;span&gt;
+        &lt;p&gt;This text is also blue&lt;/p&gt;
+    &lt;/span&gt;
+&lt;/div&gt;
+&lt;p&gt;This text is not blue&lt;/p&gt;
+</code></pre>
+
+<pre><code class="css">/* demo.css */
+.blue p {
+    color: blue;
+}
+</code></pre>
+
+<h1 class="clear"></h1>
+
+<p>Similarly, the <code>selector1 &gt; selector2</code> will restrict <code>selector2</code> to only children (not grandchildren) of elements selected by <code>selector1</code>.  For example:</p>
+<h1 class="join"></h1>
+
+<pre><code class="html">&lt;!-- demo.html --&gt;
+&lt;div class=&quot;blue&quot;&gt;
+    &lt;h1&gt;This text is not blue&lt;/h1&gt;
+    &lt;p&gt;This text is blue&lt;/p&gt;
+    &lt;span&gt;
+        &lt;p&gt;This text is NOT blue,
+            because its parent is the 
+            span tag, which does not 
+            have the &quot;blue&quot; class.
+        &lt;/p&gt;
+    &lt;/span&gt;
+&lt;/div&gt;
+&lt;p&gt;This text is not blue&lt;/p&gt;
+</code></pre>
+
+<pre><code class="css">/* demo.css */
+.blue &gt; p {
+    color: blue;
+}
+</code></pre>
+
+<h1 class="clear"></h1>
+
+<p>Finally, you can combine two selectors with a comma (<code>,</code>).  These two CSS files are the same:</p>
+<h1 class="join"></h1>
+
+<pre><code class="css">/* demo.css */
+p {
+    color: blue;
+}
+.blue {
+    color: blue;
+}
+</code></pre>
+
+<pre><code class="css">/* demo.css */
+.blue, p {
+    color: blue;
+}
+</code></pre>
+
+<h1 class="clear"></h1>
+
 <p><a id="css-best-practices"></a></p>
-<h3 id="412-css-best-practices">4.1.2 CSS Best Practices</h3>
+<h3 id="413-css-best-practices">4.1.3 CSS Best Practices</h3>
 <p><a id="external-libraries"></a></p>
 <h2 id="42-external-libraries">4.2 External Libraries</h2>
 <p><a id="installation-and-template-setup"></a></p>
@@ -1557,5 +1820,7 @@ import requests
 <!-- networking -->
 
 <!--HTML-->
+
+<!-- CSS -->
 
 <!-- tools --></body></html>
