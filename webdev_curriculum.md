@@ -1556,12 +1556,12 @@ p {
 
 This is great, because the body of the document is a lot less cluttered.  As you can imagine, this is only relocates the problem.  now the head of the document is messy and full of CSS styles.  As your HTML gets longer so does your CSS, and now documents can reach unmanageable length.
 
-For the same reason we might break up a large programming project into classes and functions, we want to get our CSS out of our `.html` document entirely.  Enter the `<link>` tag, which lets us reference external `.css` stylesheets!  Link tags only need an open tag, and have no content or end tag.  Also, be sure to always include the `rel` attribute as 'stylesheet' and the `type` attribute as `text/css` alongside the `src` attribute pointing to the `.css` file.
+For the same reason we might break up a large programming project into classes and functions, we want to get our CSS out of our `.html` document entirely.  Enter the `<link>` tag, which lets us reference external `.css` stylesheets!  Link tags only need an open tag, and have no content or end tag.  Also, be sure to always include the `rel` attribute as 'stylesheet' and the `type` attribute as `text/css` alongside the `href` attribute pointing to the `.css` file.
 
 <h1 class="join"></h1>
 ```html
-<!-- demo.html -->
 <!DOCTYPE html>
+<!-- demo.html -->
 <html lang="en">
 	<head>
 		<meta charset="utf-8">
@@ -1588,14 +1588,14 @@ p {
 Using an external CSS file is the best practice, barring special circumstances.  You can even include multiple CSS files to keep things organized.
 
 ```html
-<!-- demo.html -->
 <!DOCTYPE html>
+<!-- demo.html -->
 <html lang="en">
 	<head>
 		<meta charset="utf-8">
 		<title>CSS Demo</title>
-		<link src="blue.css" rel="stylesheet" type="text/css">
-		<link src="red.css" rel="stylesheet" type="text/css">
+		<link href="blue.css" rel="stylesheet" type="text/css">
+		<link href="red.css" rel="stylesheet" type="text/css">
 	</head>
 	<body>
 		<p>This text is blue.</p>
@@ -1626,30 +1626,38 @@ In the above examples `p` and `strong` in the `.css` files are *selectors*.  Sel
 
 <h1 class="join"></h1>
 ```html
-<!-- demo.html -->
+<!-- demo-name.html -->
 <p>This text is blue</p>
+<strong>This text is not</strong>
 ```
 ```css
-/* demo.css */
+/* demo-name.css */
 p {
 	color: blue;
 }
 ```
 <h1 class="clear"></h1>
 
-If you provide a `class` attribute, the `.classname` syntax will select all elements with `class="classname"`.
+If you provide a `class` attribute, the `.classname` syntax will select all elements with `class="classname"`.  Elements can have multiple classes using the syntax `class="classname1 classname2"`.
 
 <h1 class="join"></h1>
 ```html
-<!-- demo.html -->
+<!-- demo-class.html -->
 <p class="blue">This text is blue</p>
 <p>This text is not blue</p>
-<em class="blue">This text is blue</em>
+<p class="blue underline">
+	This text is blue and underlined.
+</p>
 ```
 ```css
-/* demo.css */
+/* demo-class.css */
 .blue {
 	color: blue;
+}
+.underline {
+	/* Use the "text-decoration"
+	property to underline text. */
+	text-decoration: underline;
 }
 ```
 <h1 class="clear"></h1>
@@ -1658,12 +1666,12 @@ You can also give an element a unique `id` and it can be selected with the `#idn
 
 <h1 class="join"></h1>
 ```html
-<!-- demo.html -->
+<!-- demo-id.html -->
 <p id="blue">This text is blue</p>
 <p>This text is not blue</p>
 ```
 ```css
-/* demo.css */
+/* demo-id.css */
 #blue {
 	color: blue;
 }
@@ -1672,11 +1680,11 @@ You can also give an element a unique `id` and it can be selected with the `#idn
 
 There are also *relational selectors* for finding elements in the HTML document.  
 
-Using the `selector1 selector2` syntax, you can restrict `selector2` to only elements that are within an element selected by `selector1`. For example:
+Using the *descendant* selector syntax, or `selector1 selector2`, you can restrict `selector2` to only elements that are descendants of an element selected by `selector1`. For example:
 
 <h1 class="join"></h1>
 ```html
-<!-- demo.html -->
+<!-- demo-descendant.html -->
 <div class="blue">
 	<h1>This text is not blue</h1>
 	<p>This text is blue</p>
@@ -1687,18 +1695,18 @@ Using the `selector1 selector2` syntax, you can restrict `selector2` to only ele
 <p>This text is not blue</p>
 ```
 ```css
-/* demo.css */
+/* demo-descendant.css */
 .blue p {
 	color: blue;
 }
 ```
 <h1 class="clear"></h1>
 
-Similarly, the `selector1 > selector2` will restrict `selector2` to only children (not grandchildren) of elements selected by `selector1`.  For example:
+Similarly, the child selector syntax (`selector1 > selector2`) will restrict `selector2` to only children (not grandchildren or other descendants) of elements selected by `selector1`.  For example:
 
 <h1 class="join"></h1>
 ```html
-<!-- demo.html -->
+<!-- demo-child.html -->
 <div class="blue">
 	<h1>This text is not blue</h1>
 	<p>This text is blue</p>
@@ -1713,7 +1721,7 @@ Similarly, the `selector1 > selector2` will restrict `selector2` to only childre
 <p>This text is not blue</p>
 ```
 ```css
-/* demo.css */
+/* demo-child.css */
 .blue > p {
 	color: blue;
 }
@@ -1740,9 +1748,204 @@ p {
 ```
 <h1 class="clear"></h1>
 
+### 4.1.3 Basic Properties and Values
 
-<a id="css-best-practices"></a>
-### 4.1.3 CSS Best Practices
+Learning CSS, for the most part, is about learning the knitty gritty details.  For an in-depth, comprehensive walkthrough of CSS properties and and how to apply them, check out [HTML Dog][htmldog]'s excellent [CSS tutorial series][htmldog-css]. In [section 4.2](#external-libraries), we will be applying CSS en-masse, using external libraries that provide shortcuts to a stylized webpage.  While using these libraries is good practice, these libraries always need to be accompanied by some extra CSS code for your own website.  For this reason, it's important to understand some basic CSS properties.
+
+#### Color and Background-Color
+
+You can change the background color of an element with the `background-color` attribute, just as you can change the text color with the `color` attribute.  There are many CSS properties that have colors as values, and for all of them colors can be represented in multiple ways ([detailed in-depth at MDN](mdn-colors)), the most simple (and limited) being *keywords* (like `blue`, `red`, etc.).
+
+<h1 class="join"></h1>
+```html
+<!-- demo-color.html -->
+<body>
+	<p class="blue">
+		This text is blue.
+	</p>
+	<p class="b-and-y">
+		This text is yellow on black.
+	</p>
+</body>
+```
+```css
+/* demo-color.css */
+.blue { 
+	color: blue;
+}
+.b-and-y {
+	color: yellow;
+	background-color: black;
+}
+```
+<h1 class="clear"></h1>
+
+![demo-color](img/demo-color.png)
+
+#### Height and Width
+
+The most basic CSS property is `height` and `width`.  They change the size of the *content area* of the selected element.  Height and weight take measurements of length ([detailed in depth at MDN][mdn-length]), the simplest being *pixels*, or *px*. 
+
+<h1 class="join"></h1>
+```html
+<!-- demo-height-width.html -->
+<body>
+	<div class="blue first"></div>
+	<div class="red second"></div>
+	<div class="blue third"></div>
+</body>
+```
+```css
+/* demo-height-width.css */
+.blue { background-color: blue; }
+.red { background-color: red; }
+.first {
+	height: 100px;
+	width: 200px;
+}
+.second {
+	height: 150px;
+	width: 150px;
+}
+.third {
+	height: 50px;
+	width: 300px;
+}
+```
+<h1 class="clear"></h1>
+
+![demo-height-width](img/demo-height-width.png)
+
+#### Borders
+
+You can also give your elements borders.  To create a visible border, you need to set three properties for the selected element: `border-width`, `border-style`, and `border-color`.  These three properties can be combined into one `border` attribute.  The values `width`, `style`, and `color` can be provided in any order.  The border will wrap around the box, not the text (note that the third resized `<p>` has a square border).
+
+<h1 class="join"></h1>
+```html
+<!-- demo-height-width.html -->
+<body>
+	<p class="first">
+		Black border, 3px wide.
+	</p>
+	<p class="second">
+		Same as above
+	</p>
+	<p class="third">
+		A thick, dashed blue border.
+	</p>
+</body>
+```
+```css
+/* demo-border.css */
+.first {
+	border-width: 3px;
+	border-style: solid;
+	border-color: black;
+}
+.second {
+	border: 3px solid black;
+}
+.third {
+	height: 100px;
+	width: 100px;
+	border: 10px dashed blue;
+}
+```
+<h1 class="clear"></h1>
+
+![demo-border](img/demo-border.png)
+
+#### Margin and Padding
+
+Setting the `margin` and `padding` attributes for an element creates space around it.  The content area (changed by the `height` and `width` properties) border, margin, and padding make up the *box model*.  
+
+![boxmodel](img/boxmodel.png)
+
+*Photo credit to the [MDN page on the box model][mdn-box-model].*
+
+For the most part, margin is used to create space outside of the element, and padding is used to make space inside the element.  The border sits just between the two.  
+
+You can set margins with the `margin-top`, `margin-right`, `margin-bottom`, and `margin-left` attributes, and you can set padding with the `padding-top`, `padding-right`, `padding-bottom`, and `padding-left` attributes.  Values for these attributes are in units of length, and can even be negative.
+
+The four margin and padding attributes can each be combined into `margin` and `padding`, and depending on how many arguments are provided, different of these properties will be set.  See the table for the details of how this works (`margin` is used, but the same goes for `padding`).
+
+CSS | Shorthand | `-top` | `-right` | `-bottom` | `-left`
+----|----|----|----|----|----
+`margin: 1px 2px 3px 4px` | `T R B L` | `1px` | `2px` | `3px` | `4px`
+`margin: 1px 2px 3px`     | `T R&L B` | `1px` | `2px` | `3px` | `2px`
+`margin: 1px 2px`         | `T&B R&L` | `1px` | `2px` | `1px` | `2px`
+`margin: 1px`             | `T&R&B&L` | `1px` | `1px` | `1px` | `1px`
+
+Here are a couple different examples of padding and margins in action:
+
+<h1 class="join"></h1>
+```html
+<!-- demo-height-width.html -->
+<body>
+	<div class="first">One</div>
+	<div class="second">Two</div>
+	<div class="third">Three</div>
+</body>
+```
+```css
+/* demo-margin-padding.css */
+body {
+	/* so that the effects of margins on the divs are easier to see. */
+	margin: 0;
+	padding: 0;
+	border: 50px solid green;
+}
+div {
+	/* Every div starts off as a yellow square with a black border. */
+	height: 50px;
+	width: 50px;
+	background-color: yellow;
+	border: 2px solid black;
+}
+.first {
+	/* Offset from the wall on the left. */
+	margin-left: 20px;
+}
+.second {
+	/* Offset from block one by 50px. */
+	margin-top: 50px;
+	/* And the wall by 5px. */
+	margin-left: 5px;
+	/* 20px larger in each dimension because padding is inside the border, but text is offset by 20px (that's why the text doesn't hug the border). */
+	padding:20px;
+}
+.third {
+	/* Offset from the bottom by 10px, and 25px higher and to the left than expected because of the negative values. */
+	margin: -25px 0 10px -25px;
+	/* Taller with the text separated from the top of the box. */
+	padding-top:20px;
+}
+```
+<h1 class="clear"></h1>
+
+![demo-margin-padding](img/demo-margin-padding.png)
+
+### 4.1.4 Using the Inspector
+
+One of the most important skills to learn as a web developer writing CSS is to learn how to use the inspector in your favorite browser (Internet Explorer not allowed).  The inspector lets you see the HTML, CSS, and JavaScript that your web browser is rendering, live!  You can inspect your own web page to find bugs or make tweaks to your code, or inspect other pages to learn how to imitate a desired HTML/CSS/JS effect.
+
+With a web page open in FireFox, there are [three ways to inspect the page][inspect-ff]:
+
+-   Choose the "Inspector" option from the "Web Developer" menu (which is a submenu in the "Tools" menu on the Mac).
+-   Press `Ctrl`+`Shift`+`C` (`Cmd`+`Option`+`C` on the Mac OS X and Linux).
+-   Right-click an element on a web page and select "Inspect Element".
+
+With a web page open in Chrome, there are [three ways to inspect the page][inspect-chrome]:
+
+-   Select the Chrome menu  at the top-right of your browser window, then select Tools > Developer tools.
+-   Use `Ctrl`+`Shift`+`I` (or `Cmd`+`Opt`+`I` on Mac) to open the DevTools.
+-   Right-click on any page element and select Inspect element.
+
+To [inspect a page in Safari][inspect-safari], you first have to enable the Develop menu. Go into Safari's preferences, and check the “Show Develop menu in menu bar” checkbox in the "Advanced" pane. Then, you open the inspector in three ways:
+
+-   Choose the "Show Web Inspector" option in the "Develop" menu.
+-   Press `Cmd`+`Option`+`I`.
+-   Right-click an element on a web page and select "Inspect Element".
 
 <a id="external-libraries"></a>
 ## 4.2 External Libraries
@@ -1758,6 +1961,73 @@ p {
 
 <a id="using-icon-fonts"></a>
 ### 4.2.4 Extension: Using Icon Fonts
+
+
+<a id="css-tips-and-tricks"></a>
+## 4.3 Extension: CSS Tips and Tricks
+
+<a id="centering-content"></a>
+### 4.3.1 Extension: Centering Content
+
+Many web pages have "gutters", or blank space on the side of the page, with the content of the page on a centered strip. Take the [ADI Resources][learn] page, for example:
+
+![The ADI Resources page](img/learn.png)
+
+The first step is to setup our HTML.  Let's say we start with some headings and paragraphs in an HTML file called `mylife.html`, linked to a stylesheet called `mylife.css`.
+
+<h1 class="join"></h1>
+```html
+<!DOCTYPE html>
+<!-- mylife.html -->
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>My Cool Site</title>
+		<link href="mylife.css" 
+			rel="stylesheet" 
+			type="text/css">
+	</head>
+	<body>
+		<h1>My Cool Site</h1>
+		<p>Check out my life story!</p>
+		<h2>My Life</h2>
+		<p>I grew up in a small town.</p>
+		<p>Now I live in the city!</p>
+	</body>
+</html>
+```
+```css
+/* mylife.css */
+
+```
+<h1 class="clear"></h1>
+
+![mylife-1](img/mylife-1.png)
+
+We might try to apply `text-align: center` on the `<body>`, centering all text within the `<body>`, but this does not have the desired effect (unless we were going for more of a poem).
+
+<h1 class="join"></h1>
+```html
+<!-- mylife.html -->
+<body>
+	<h1>My Cool Site</h1>
+	<p>Check out my life story!</p>
+	<h2>My Life</h2>
+	<p>I grew up in a small town.</p>
+	<p>Now I live in the city!</p>
+</body>
+```
+```css
+/* mylife.css */
+body {
+	text-align: center;
+}
+```
+<h1 class="clear"></h1>
+
+![mylife-2](img/mylife-2.png)
+
+What we want is a *container* to hold all of the content, where the container is centered, but the content is left-aligned as normal.  Because it makes the most semantic sense as a container, we'll use a `<div>`.  However, we can just make the `<div>` have `text-align:center`, because that only works for, well, *text*.  To center a block-level element like a `<div>`, we set it's margin to `auto` on the left and right
 
 
 <!-- python/flask -->
@@ -1839,6 +2109,11 @@ p {
 
 <!-- CSS -->
 [css]: http://en.wikipedia.org/wiki/Css
+[htmldog]: http://htmldog.com
+[htmldog-css]: http://htmldog.com/guides/css/
+[mdn-colors]: https://developer.mozilla.org/en-US/docs/Web/CSS/color_value
+[mdn-length]: https://developer.mozilla.org/en-US/docs/Web/CSS/length
+[mdn-box-model]: https://developer.mozilla.org/en-US/docs/Web/CSS/box_model
 
 <!-- tools -->
 [curl-win]: http://curl.haxx.se/download.html
@@ -1846,3 +2121,9 @@ p {
 [json-chrome]: https://chrome.google.com/webstore/detail/jsonview/chklaanhfefbnpoihckbnefhakgolnmc?hl=en
 [json-firefox]: https://addons.mozilla.org/en-us/firefox/addon/jsonview/
 [json-safari]: https://github.com/rfletcher/safari-json-formatter
+[inspect-ff]: https://developer.mozilla.org/en-US/docs/Tools/Page_Inspector
+[inspect-chrome]: https://developers.google.com/chrome-developer-tools/
+[inspect-safari]: 
+
+<!-- Other resources -->
+[learn]: http://adicu.com/learn

@@ -1,0 +1,32 @@
+/* demo-margin-padding.css */
+body {
+	/* so that the effects of margins on the divs are easier to see. */
+	margin: 0;
+	padding: 0;
+	border: 50px solid green;
+}
+div {
+	/* Every div starts off as a yellow square with a black border. */
+	height: 50px;
+	width: 50px;
+	background-color: yellow;
+	border: 2px solid black;
+}
+.first {
+	/* Offset from the wall on the left. */
+	margin-left: 20px;
+}
+.second {
+	/* Offset from block one by 50px. */
+	margin-top: 50px;
+	/* And the wall by 5px. */
+	margin-left: 5px;
+	/* 20px larger in each dimension because padding is inside the border, but text is offset by 20px (that's why the text doesn't hug the border). */
+	padding:20px;
+}
+.third {
+	/* Offset from the bottom by 10px, and 25px higher and to the left than expected because of the negative values. */
+	margin: -25px 0 10px -25px;
+	/* Taller with the text separated from the top of the box. */
+	padding-top:20px;
+}

@@ -120,7 +120,8 @@ body{font-size:16px;}
   p, h2, h3 { orphans: 3; widows: 3; }
   h2, h3 { page-break-after: avoid; }
 }
-</style><style>.join {
+</style><style>/* to allow side-by-side code blocks */
+.join {
 	height: 0;
 	margin: 0;
 }
@@ -145,7 +146,32 @@ pre + .clear {
 ul ul {
 	margin-top: 0;
 	margin-bottom: 0;
-}</style><style>/*
+}
+
+/* make tables pretty */
+table {
+  padding: 0;border-collapse: collapse; }
+  table tr {
+    border-top: 1px solid #cccccc;
+    background-color: white;
+    margin: 0;
+    padding: 0; }
+    table tr:nth-child(2n) {
+      background-color: #f8f8f8; }
+    table tr th {
+      font-weight: bold;
+      border: 1px solid #cccccc;
+      border-bottom-width: 3px;
+      margin: 0;
+      padding: 6px 13px; }
+    table tr td {
+      border: 1px solid #cccccc;
+      margin: 0;
+      padding: 6px 13px; }
+    table tr th :first-child, table tr td :first-child {
+      margin-top: 0; }
+    table tr th :last-child, table tr td :last-child {
+      margin-bottom: 0; }</style><style>/*
 
 github.com style (c) Vasily Polovnyov <vast@whiteants.net>
 
@@ -1560,7 +1586,7 @@ import requests
 <hr />
 <p><a id="css"></a></p>
 <h1 id="40-css">4.0 CSS</h1>
-<p><a href="http://en.wikipedia.org/wiki/Css">CSS</a>, or Cascading Style Sheets, is a styling language that is used to arrange and stylize HTML elements.  CSS is extremely powerful, but also fairly hard to learn.  Every different browser interprets CSS slightly differently, and there are a lot of tricks and best practices that are hard to learn.  As such, CSS is best learned by lots and lots of practice.  The [ADI Resources][learn] page has links to a lot of different tutorials and walkthroughs, if you want more practice after styling your Flask app.</p>
+<p><a href="http://en.wikipedia.org/wiki/Css">CSS</a>, or Cascading Style Sheets, is a styling language that is used to arrange and stylize HTML elements.  CSS is extremely powerful, but also fairly hard to learn.  Every different browser interprets CSS slightly differently, and there are a lot of tricks and best practices that are hard to learn.  As such, CSS is best learned by lots and lots of practice.  The <a href="http://adicu.com/learn">ADI Resources</a> page has links to a lot of different tutorials and walkthroughs, if you want more practice after styling your Flask app.</p>
 <p><a id="css-basics"></a></p>
 <h2 id="41-css-basics">4.1 CSS Basics</h2>
 <p>CSS is a very simple language.  At it's core, CSS is made up of three parts: <em>selectors</em>, <em>properties</em>, and <em>values</em>.  Selectors (explored in depth in <a href="#advanced-selectors">section 4.1.2</a>) are used to select which elements are being styled.  For example:</p>
@@ -1620,11 +1646,11 @@ p {
 </code></pre>
 
 <p>This is great, because the body of the document is a lot less cluttered.  As you can imagine, this is only relocates the problem.  now the head of the document is messy and full of CSS styles.  As your HTML gets longer so does your CSS, and now documents can reach unmanageable length.</p>
-<p>For the same reason we might break up a large programming project into classes and functions, we want to get our CSS out of our <code>.html</code> document entirely.  Enter the <code>&lt;link&gt;</code> tag, which lets us reference external <code>.css</code> stylesheets!  Link tags only need an open tag, and have no content or end tag.  Also, be sure to always include the <code>rel</code> attribute as 'stylesheet' and the <code>type</code> attribute as <code>text/css</code> alongside the <code>src</code> attribute pointing to the <code>.css</code> file.</p>
+<p>For the same reason we might break up a large programming project into classes and functions, we want to get our CSS out of our <code>.html</code> document entirely.  Enter the <code>&lt;link&gt;</code> tag, which lets us reference external <code>.css</code> stylesheets!  Link tags only need an open tag, and have no content or end tag.  Also, be sure to always include the <code>rel</code> attribute as 'stylesheet' and the <code>type</code> attribute as <code>text/css</code> alongside the <code>href</code> attribute pointing to the <code>.css</code> file.</p>
 <h1 class="join"></h1>
 
-<pre><code class="html">&lt;!-- demo.html --&gt;
-&lt;!DOCTYPE html&gt;
+<pre><code class="html">&lt;!DOCTYPE html&gt;
+&lt;!-- demo.html --&gt;
 &lt;html lang=&quot;en&quot;&gt;
     &lt;head&gt;
         &lt;meta charset=&quot;utf-8&quot;&gt;
@@ -1650,14 +1676,14 @@ p {
 <h1 class="clear"></h1>
 
 <p>Using an external CSS file is the best practice, barring special circumstances.  You can even include multiple CSS files to keep things organized.</p>
-<pre><code class="html">&lt;!-- demo.html --&gt;
-&lt;!DOCTYPE html&gt;
+<pre><code class="html">&lt;!DOCTYPE html&gt;
+&lt;!-- demo.html --&gt;
 &lt;html lang=&quot;en&quot;&gt;
     &lt;head&gt;
         &lt;meta charset=&quot;utf-8&quot;&gt;
         &lt;title&gt;CSS Demo&lt;/title&gt;
-        &lt;link src=&quot;blue.css&quot; rel=&quot;stylesheet&quot; type=&quot;text/css&quot;&gt;
-        &lt;link src=&quot;red.css&quot; rel=&quot;stylesheet&quot; type=&quot;text/css&quot;&gt;
+        &lt;link href=&quot;blue.css&quot; rel=&quot;stylesheet&quot; type=&quot;text/css&quot;&gt;
+        &lt;link href=&quot;red.css&quot; rel=&quot;stylesheet&quot; type=&quot;text/css&quot;&gt;
     &lt;/head&gt;
     &lt;body&gt;
         &lt;p&gt;This text is blue.&lt;/p&gt;
@@ -1687,11 +1713,12 @@ strong {
 <p>In the above examples <code>p</code> and <code>strong</code> in the <code>.css</code> files are <em>selectors</em>.  Selection can be done in a variety of different ways.  The most basic selection is by element name.</p>
 <h1 class="join"></h1>
 
-<pre><code class="html">&lt;!-- demo.html --&gt;
+<pre><code class="html">&lt;!-- demo-name.html --&gt;
 &lt;p&gt;This text is blue&lt;/p&gt;
+&lt;strong&gt;This text is not&lt;/strong&gt;
 </code></pre>
 
-<pre><code class="css">/* demo.css */
+<pre><code class="css">/* demo-name.css */
 p {
     color: blue;
 }
@@ -1699,18 +1726,25 @@ p {
 
 <h1 class="clear"></h1>
 
-<p>If you provide a <code>class</code> attribute, the <code>.classname</code> syntax will select all elements with <code>class="classname"</code>.</p>
+<p>If you provide a <code>class</code> attribute, the <code>.classname</code> syntax will select all elements with <code>class="classname"</code>.  Elements can have multiple classes using the syntax <code>class="classname1 classname2"</code>.</p>
 <h1 class="join"></h1>
 
-<pre><code class="html">&lt;!-- demo.html --&gt;
+<pre><code class="html">&lt;!-- demo-class.html --&gt;
 &lt;p class=&quot;blue&quot;&gt;This text is blue&lt;/p&gt;
 &lt;p&gt;This text is not blue&lt;/p&gt;
-&lt;em class=&quot;blue&quot;&gt;This text is blue&lt;/em&gt;
+&lt;p class=&quot;blue underline&quot;&gt;
+    This text is blue and underlined.
+&lt;/p&gt;
 </code></pre>
 
-<pre><code class="css">/* demo.css */
+<pre><code class="css">/* demo-class.css */
 .blue {
     color: blue;
+}
+.underline {
+    /* Use the &quot;text-decoration&quot;
+    property to underline text. */
+    text-decoration: underline;
 }
 </code></pre>
 
@@ -1801,8 +1835,226 @@ p {
 
 <h1 class="clear"></h1>
 
-<p><a id="css-best-practices"></a></p>
-<h3 id="413-css-best-practices">4.1.3 CSS Best Practices</h3>
+<h3 id="413-basic-properties-and-values">4.1.3 Basic Properties and Values</h3>
+<p>Learning CSS, for the most part, is about learning the knitty gritty details.  For an in-depth, comprehensive walkthrough of CSS properties and and how to apply them, check out <a href="http://htmldog.com">HTML Dog</a>'s excellent <a href="http://htmldog.com/guides/css/">CSS tutorial series</a>. In <a href="#external-libraries">section 4.2</a>, we will be applying CSS en-masse, using external libraries that provide shortcuts to a stylized webpage.  While using these libraries is good practice, these libraries always need to be accompanied by some extra CSS code for your own website.  For this reason, it's important to understand some basic CSS properties.</p>
+<h4 id="color-and-background-color">Color and Background-Color</h4>
+<p>You can change the background color of an element with the <code>background-color</code> attribute, just as you can change the text color with the <code>color</code> attribute.  There are many CSS properties that have colors as values, and for all of them colors can be represented in multiple ways (<a href="file:///Users/dan/working/devfest-webdev/mdn-colors">detailed in-depth at MDN</a>), the most simple (and limited) being <em>keywords</em> (like <code>blue</code>, <code>red</code>, etc.).</p>
+<h1 class="join"></h1>
+
+<pre><code class="html">&lt;!-- demo-color.html --&gt;
+&lt;body&gt;
+    &lt;p class=&quot;blue&quot;&gt;
+        This text is blue.
+    &lt;/p&gt;
+    &lt;p class=&quot;b-and-y&quot;&gt;
+        This text is yellow on black.
+    &lt;/p&gt;
+&lt;/body&gt;
+</code></pre>
+
+<pre><code class="css">/* demo-color.css */
+.blue { 
+    color: blue;
+}
+.b-and-y {
+    color: yellow;
+    background-color: black;
+}
+</code></pre>
+
+<h1 class="clear"></h1>
+
+<p><img alt="demo-color" src="file:///Users/dan/working/devfest-webdev/img/demo-color.png" /></p>
+<h4 id="height-and-width">Height and Width</h4>
+<p>The most basic CSS property is <code>height</code> and <code>width</code>.  They change the size of the <em>content area</em> of the selected element.  Height and weight take measurements of length (<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/length">detailed in depth at MDN</a>), the simplest being <em>pixels</em>, or <em>px</em>. </p>
+<h1 class="join"></h1>
+
+<pre><code class="html">&lt;!-- demo-height-width.html --&gt;
+&lt;body&gt;
+    &lt;div class=&quot;blue first&quot;&gt;&lt;/div&gt;
+    &lt;div class=&quot;red second&quot;&gt;&lt;/div&gt;
+    &lt;div class=&quot;blue third&quot;&gt;&lt;/div&gt;
+&lt;/body&gt;
+</code></pre>
+
+<pre><code class="css">/* demo-height-width.css */
+.blue { background-color: blue; }
+.red { background-color: red; }
+.first {
+    height: 100px;
+    width: 200px;
+}
+.second {
+    height: 150px;
+    width: 150px;
+}
+.third {
+    height: 50px;
+    width: 300px;
+}
+</code></pre>
+
+<h1 class="clear"></h1>
+
+<p><img alt="demo-height-width" src="file:///Users/dan/working/devfest-webdev/img/demo-height-width.png" /></p>
+<h4 id="borders">Borders</h4>
+<p>You can also give your elements borders.  To create a visible border, you need to set three properties for the selected element: <code>border-width</code>, <code>border-style</code>, and <code>border-color</code>.  These three properties can be combined into one <code>border</code> attribute.  The values <code>width</code>, <code>style</code>, and <code>color</code> can be provided in any order.  The border will wrap around the box, not the text (note that the third resized <code>&lt;p&gt;</code> has a square border).</p>
+<h1 class="join"></h1>
+
+<pre><code class="html">&lt;!-- demo-height-width.html --&gt;
+&lt;body&gt;
+    &lt;p class=&quot;first&quot;&gt;
+        Black border, 3px wide.
+    &lt;/p&gt;
+    &lt;p class=&quot;second&quot;&gt;
+        Same as above
+    &lt;/p&gt;
+    &lt;p class=&quot;third&quot;&gt;
+        A thick, dashed blue border.
+    &lt;/p&gt;
+&lt;/body&gt;
+</code></pre>
+
+<pre><code class="css">/* demo-border.css */
+.first {
+    border-width: 3px;
+    border-style: solid;
+    border-color: black;
+}
+.second {
+    border: 3px solid black;
+}
+.third {
+    height: 100px;
+    width: 100px;
+    border: 10px dashed blue;
+}
+</code></pre>
+
+<h1 class="clear"></h1>
+
+<p><img alt="demo-border" src="file:///Users/dan/working/devfest-webdev/img/demo-border.png" /></p>
+<h4 id="margin-and-padding">Margin and Padding</h4>
+<p>Setting the <code>margin</code> and <code>padding</code> attributes for an element creates space around it.  The content area (changed by the <code>height</code> and <code>width</code> properties) border, margin, and padding make up the <em>box model</em>.  </p>
+<p><img alt="boxmodel" src="file:///Users/dan/working/devfest-webdev/img/boxmodel.png" /></p>
+<p><em>Photo credit to the <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/box_model">MDN page on the box model</a>.</em></p>
+<p>For the most part, margin is used to create space outside of the element, and padding is used to make space inside the element.  The border sits just between the two.  </p>
+<p>You can set margins with the <code>margin-top</code>, <code>margin-right</code>, <code>margin-bottom</code>, and <code>margin-left</code> attributes, and you can set padding with the <code>padding-top</code>, <code>padding-right</code>, <code>padding-bottom</code>, and <code>padding-left</code> attributes.  Values for these attributes are in units of length, and can even be negative.</p>
+<p>The four margin and padding attributes can each be combined into <code>margin</code> and <code>padding</code>, and depending on how many arguments are provided, different of these properties will be set.  See the table for the details of how this works (<code>margin</code> is used, but the same goes for <code>padding</code>).</p>
+<table>
+<thead>
+<tr>
+<th>CSS</th>
+<th>Shorthand</th>
+<th><code>-top</code></th>
+<th><code>-right</code></th>
+<th><code>-bottom</code></th>
+<th><code>-left</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>margin: 1px 2px 3px 4px</code></td>
+<td><code>T R B L</code></td>
+<td><code>1px</code></td>
+<td><code>2px</code></td>
+<td><code>3px</code></td>
+<td><code>4px</code></td>
+</tr>
+<tr>
+<td><code>margin: 1px 2px 3px</code></td>
+<td><code>T R&amp;L B</code></td>
+<td><code>1px</code></td>
+<td><code>2px</code></td>
+<td><code>3px</code></td>
+<td><code>2px</code></td>
+</tr>
+<tr>
+<td><code>margin: 1px 2px</code></td>
+<td><code>T&amp;B R&amp;L</code></td>
+<td><code>1px</code></td>
+<td><code>2px</code></td>
+<td><code>1px</code></td>
+<td><code>2px</code></td>
+</tr>
+<tr>
+<td><code>margin: 1px</code></td>
+<td><code>T&amp;R&amp;B&amp;L</code></td>
+<td><code>1px</code></td>
+<td><code>1px</code></td>
+<td><code>1px</code></td>
+<td><code>1px</code></td>
+</tr>
+</tbody>
+</table>
+<p>Here are a couple different examples of padding and margins in action:</p>
+<h1 class="join"></h1>
+
+<pre><code class="html">&lt;!-- demo-height-width.html --&gt;
+&lt;body&gt;
+    &lt;div class=&quot;first&quot;&gt;One&lt;/div&gt;
+    &lt;div class=&quot;second&quot;&gt;Two&lt;/div&gt;
+    &lt;div class=&quot;third&quot;&gt;Three&lt;/div&gt;
+&lt;/body&gt;
+</code></pre>
+
+<pre><code class="css">/* demo-margin-padding.css */
+body {
+    /* so that the effects of margins on the divs are easier to see. */
+    margin: 0;
+    padding: 0;
+    border: 50px solid green;
+}
+div {
+    /* Every div starts off as a yellow square with a black border. */
+    height: 50px;
+    width: 50px;
+    background-color: yellow;
+    border: 2px solid black;
+}
+.first {
+    /* Offset from the wall on the left. */
+    margin-left: 20px;
+}
+.second {
+    /* Offset from block one by 50px. */
+    margin-top: 50px;
+    /* And the wall by 5px. */
+    margin-left: 5px;
+    /* 20px larger in each dimension because padding is inside the border, but text is offset by 20px (that's why the text doesn't hug the border). */
+    padding:20px;
+}
+.third {
+    /* Offset from the bottom by 10px, and 25px higher and to the left than expected because of the negative values. */
+    margin: -25px 0 10px -25px;
+    /* Taller with the text separated from the top of the box. */
+    padding-top:20px;
+}
+</code></pre>
+
+<h1 class="clear"></h1>
+
+<p><img alt="demo-margin-padding" src="file:///Users/dan/working/devfest-webdev/img/demo-margin-padding.png" /></p>
+<h3 id="414-using-the-inspector">4.1.4 Using the Inspector</h3>
+<p>One of the most important skills to learn as a web developer writing CSS is to learn how to use the inspector in your favorite browser (Internet Explorer not allowed).  The inspector lets you see the HTML, CSS, and JavaScript that your web browser is rendering, live!  You can inspect your own web page to find bugs or make tweaks to your code, or inspect other pages to learn how to imitate a desired HTML/CSS/JS effect.</p>
+<p>With a web page open in FireFox, there are <a href="https://developer.mozilla.org/en-US/docs/Tools/Page_Inspector">three ways to inspect the page</a>:</p>
+<ul>
+<li>Choose the "Inspector" option from the "Web Developer" menu (which is a submenu in the "Tools" menu on the Mac).</li>
+<li>Press <code>Ctrl</code>+<code>Shift</code>+<code>C</code> (<code>Cmd</code>+<code>Option</code>+<code>C</code> on the Mac OS X and Linux).</li>
+<li>Right-click an element on a web page and select "Inspect Element".</li>
+</ul>
+<p>With a web page open in Chrome, there are <a href="https://developers.google.com/chrome-developer-tools/">three ways to inspect the page</a>:</p>
+<ul>
+<li>Select the Chrome menu  at the top-right of your browser window, then select Tools &gt; Developer tools.</li>
+<li>Use <code>Ctrl</code>+<code>Shift</code>+<code>I</code> (or <code>Cmd</code>+<code>Opt</code>+<code>I</code> on Mac) to open the DevTools.</li>
+<li>Right-click on any page element and select Inspect element.</li>
+</ul>
+<p>To <a href="">inspect a page in Safari</a>, you first have to enable the Develop menu. Go into Safari's preferences, and check the “Show Develop menu in menu bar” checkbox in the "Advanced" pane. Then, you open the inspector in three ways:</p>
+<ul>
+<li>Choose the "Show Web Inspector" option in the "Develop" menu.</li>
+<li>Press <code>Cmd</code>+<code>Option</code>+<code>I</code>.</li>
+<li>Right-click an element on a web page and select "Inspect Element".</li>
+</ul>
 <p><a id="external-libraries"></a></p>
 <h2 id="42-external-libraries">4.2 External Libraries</h2>
 <p><a id="installation-and-template-setup"></a></p>
@@ -1813,6 +2065,65 @@ p {
 <h3 id="423-rewriting-templates">4.2.3 Rewriting Templates</h3>
 <p><a id="using-icon-fonts"></a></p>
 <h3 id="424-extension-using-icon-fonts">4.2.4 Extension: Using Icon Fonts</h3>
+<p><a id="css-tips-and-tricks"></a></p>
+<h2 id="43-extension-css-tips-and-tricks">4.3 Extension: CSS Tips and Tricks</h2>
+<p><a id="centering-content"></a></p>
+<h3 id="421-extension-centering-content">4.2.1 Extension: Centering Content</h3>
+<p>Many web pages have "gutters", or blank space on the side of the page, with the content of the page on a centered strip. Take the <a href="http://adicu.com/learn">ADI Resources</a> page, for example:</p>
+<p><img alt="The ADI Resources page" src="file:///Users/dan/working/devfest-webdev/img/learn.png" /></p>
+<p>The first step is to setup our HTML.  Let's say we start with some headings and paragraphs in an HTML file called <code>mylife.html</code>, linked to a stylesheet called <code>mylife.css</code>.</p>
+<h1 class="join"></h1>
+
+<pre><code class="html">&lt;!DOCTYPE html&gt;
+&lt;!-- mylife.html --&gt;
+&lt;html lang=&quot;en&quot;&gt;
+    &lt;head&gt;
+        &lt;meta charset=&quot;utf-8&quot;&gt;
+        &lt;title&gt;My Cool Site&lt;/title&gt;
+        &lt;link href=&quot;mylife.css&quot; 
+            rel=&quot;stylesheet&quot; 
+            type=&quot;text/css&quot;&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        &lt;h1&gt;My Cool Site&lt;/h1&gt;
+        &lt;p&gt;Check out my life story!&lt;/p&gt;
+        &lt;h2&gt;My Life&lt;/h2&gt;
+        &lt;p&gt;I grew up in a small town.&lt;/p&gt;
+        &lt;p&gt;Now I live in the city!&lt;/p&gt;
+    &lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+
+<pre><code class="css">/* mylife.css */
+
+</code></pre>
+
+<h1 class="clear"></h1>
+
+<p><img alt="mylife-1" src="file:///Users/dan/working/devfest-webdev/img/mylife-1.png" /></p>
+<p>We might try to apply <code>text-align: center</code> on the <code>&lt;body&gt;</code>, centering all text within the <code>&lt;body&gt;</code>, but this does not have the desired effect (unless we were going for more of a poem).</p>
+<h1 class="join"></h1>
+
+<pre><code class="html">&lt;!-- mylife.html --&gt;
+&lt;body&gt;
+    &lt;h1&gt;My Cool Site&lt;/h1&gt;
+    &lt;p&gt;Check out my life story!&lt;/p&gt;
+    &lt;h2&gt;My Life&lt;/h2&gt;
+    &lt;p&gt;I grew up in a small town.&lt;/p&gt;
+    &lt;p&gt;Now I live in the city!&lt;/p&gt;
+&lt;/body&gt;
+</code></pre>
+
+<pre><code class="css">/* mylife.css */
+body {
+    text-align: center;
+}
+</code></pre>
+
+<h1 class="clear"></h1>
+
+<p><img alt="mylife-2" src="file:///Users/dan/working/devfest-webdev/img/mylife-2.png" /></p>
+<p>What we want is a <em>container</em> to hold all of the content, where the container is centered, but the content is left-aligned as normal.  Because it makes the most semantic sense as a container, we'll use a <code>&lt;div&gt;</code>.  However, we can just make the <code>&lt;div&gt;</code> have <code>text-align:center</code>, because that only works for, well, <em>text</em>.  To center a block-level element like a <code>&lt;div&gt;</code>, we set it's margin to <code>auto</code> on the left and right</p>
 <!-- python/flask -->
 
 <!-- github -->
@@ -1823,4 +2134,6 @@ p {
 
 <!-- CSS -->
 
-<!-- tools --></body></html>
+<!-- tools -->
+
+<!-- Other resources --></body></html>

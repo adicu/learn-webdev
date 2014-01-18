@@ -1,0 +1,4 @@
+/* demo-child.css */
+.blue > p {
+	color: blue;
+}

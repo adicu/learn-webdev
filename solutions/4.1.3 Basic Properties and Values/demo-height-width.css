@@ -1,0 +1,15 @@
+/* demo-height-width.css */
+.blue { background-color: blue; }
+.red { background-color: red; }
+.first {
+	height: 100px;
+	width: 200px;
+}
+.second {
+	height: 150px;
+	width: 150px;
+}
+.third {
+	height: 50px;
+	width: 300px;
+}

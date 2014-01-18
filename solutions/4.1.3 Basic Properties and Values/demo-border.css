@@ -1,0 +1,14 @@
+/* demo-border.css */
+.first {
+	border-width: 3px;
+	border-style: solid;
+	border-color: black;
+}
+.second {
+	border: 3px solid black;
+}
+.third {
+	height: 100px;
+	width: 100px;
+	border: 10px dashed blue;
+}
