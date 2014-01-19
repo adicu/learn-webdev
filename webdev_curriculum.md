@@ -623,7 +623,7 @@ If you put that URL into your browser, you should see the JSON response!
 
 *If you are using Windows, you may have to skip this section.  We will be using the cURL program, which is pre-installed on Mac and Linux machines.  It is possible to [install it on Windows][curl-win], but we won't walk through that process here.*
 
-The most basic way of interaction with an API call programmatically is through the command line.  The [cURL](curl) program runs in Terminal, and is used (most simply) to copy the content at a URL and print it to the screen.  First, open Terminal.  If you are on a Mac, open Finder, click `Applications` on the sidebar, open the `Utilities` folder, and then double click `Terminal`.
+The most basic way of interaction with an API call programmatically is through the command line.  The [cURL][curl] program runs in Terminal, and is used (most simply) to copy the content at a URL and print it to the screen.  First, open Terminal.  If you are on a Mac, open Finder, click `Applications` on the sidebar, open the `Utilities` folder, and then double click `Terminal`.
 
 Change directory into your *working directory*, or the directory where `app.py` is.
 
