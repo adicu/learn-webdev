@@ -1,0 +1,19 @@
+/* app.css */
+
+body, html {
+	height: 100%;
+	width: 100%;
+}
+
+body {
+	padding-top: 20px;
+	background: black url(http://i0.wp.com/devleader.ca/wp-content/uploads/2014/01/php_code.jpg) no-repeat fixed center center;
+}
+
+.splash-page {
+	margin-top: 10%;
+}
+.splash-page .panel {
+	text-align: center;
+	background-color: rgba(242, 242, 242, 0.9);
+}

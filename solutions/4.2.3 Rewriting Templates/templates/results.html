@@ -1,0 +1,11 @@
+{% extends "search.html" %}
+{% block results %}
+<ul class="no-bullet">
+{% for repo in api_data["items"] %}
+    <li>
+        <h3>{{ repo.name }} <small>by {{ repo.owner.login }}</small></h3>
+        <p>{{ repo.description }}</p>
+    </li>
+{% endfor %}
+</ul>
+{% endblock %}

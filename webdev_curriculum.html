@@ -303,7 +303,7 @@ pre .chunk {
 </script><script>hljs.initHighlightingOnLoad();</script><title>webdev_curriculum</title></head><body><p><a id="top"></a></p>
 <h1 id="an-accelerated-introduction-to-web-development">An Accelerated Introduction to Web Development</h1>
 <p><em>Building a webapp in Flask.</em></p>
-<p>Written and developed by <a href="file:///Users/dan/working/devfest-webdev/mailto:dan@adicu.com">Dan Schlosser</a> and <a href="http://adicu.com">ADI</a>.</p>
+<p>Written and developed by <a href="http://danrs.ch">Dan Schlosser</a> and <a href="http://adicu.com">ADI</a>.</p>
 <p><a id="about-this-document"></a></p>
 <h2 id="about-this-document">About This Document</h2>
 <p><a id="methodology"></a></p>
@@ -352,9 +352,8 @@ pre .chunk {
 <li><a href="#using-javascript">2.2.6 Extension: Using JavaScript</a></li>
 </ul>
 </li>
-<li><a href="#authentication">2.3 Authentication</a><ul>
-<li><a href="#basic-authentication">2.3.1 Basic Authentication</a></li>
-<li><a href="#oauth">2.3.2 Extension: OAuth</a></li>
+<li><a href="#authentication">2.3 Extension: Authentication</a><ul>
+<li><a href="#basic-authentication">2.3.1 Extension: Basic Authentication</a></li>
 </ul>
 </li>
 </ul>
@@ -1117,8 +1116,6 @@ Adding the token to your parameters will change the rate that GitHub imposes to 
 Generate a GitHub token using the script, add this token to a bash settings file.
 Add the token to your app config on startup.
 Pass the token <a href="http://developer.github.com/v3/#oauth2-token-sent-as-a-parameter">as a parameter</a> for each request.</p>
-<p><a id="oauth"></a></p>
-<h3 id="232-extension-oauth">2.3.2 Extension: OAuth</h3>
 <hr />
 <p><a id="html-and-css"></a></p>
 <h1 id="30-html-and-templating">3.0 HTML and Templating</h1>
@@ -1753,12 +1750,12 @@ p {
 <p>You can also give an element a unique <code>id</code> and it can be selected with the <code>#idname</code> syntax.  Do not give two elements the same id.</p>
 <h1 class="join"></h1>
 
-<pre><code class="html">&lt;!-- demo.html --&gt;
+<pre><code class="html">&lt;!-- demo-id.html --&gt;
 &lt;p id=&quot;blue&quot;&gt;This text is blue&lt;/p&gt;
 &lt;p&gt;This text is not blue&lt;/p&gt;
 </code></pre>
 
-<pre><code class="css">/* demo.css */
+<pre><code class="css">/* demo-id.css */
 #blue {
     color: blue;
 }
@@ -1767,10 +1764,10 @@ p {
 <h1 class="clear"></h1>
 
 <p>There are also <em>relational selectors</em> for finding elements in the HTML document.  </p>
-<p>Using the <code>selector1 selector2</code> syntax, you can restrict <code>selector2</code> to only elements that are within an element selected by <code>selector1</code>. For example:</p>
+<p>Using the <em>descendant</em> selector syntax, or <code>selector1 selector2</code>, you can restrict <code>selector2</code> to only elements that are descendants of an element selected by <code>selector1</code>. For example:</p>
 <h1 class="join"></h1>
 
-<pre><code class="html">&lt;!-- demo.html --&gt;
+<pre><code class="html">&lt;!-- demo-descendant.html --&gt;
 &lt;div class=&quot;blue&quot;&gt;
     &lt;h1&gt;This text is not blue&lt;/h1&gt;
     &lt;p&gt;This text is blue&lt;/p&gt;
@@ -1781,7 +1778,7 @@ p {
 &lt;p&gt;This text is not blue&lt;/p&gt;
 </code></pre>
 
-<pre><code class="css">/* demo.css */
+<pre><code class="css">/* demo-descendant.css */
 .blue p {
     color: blue;
 }
@@ -1789,10 +1786,10 @@ p {
 
 <h1 class="clear"></h1>
 
-<p>Similarly, the <code>selector1 &gt; selector2</code> will restrict <code>selector2</code> to only children (not grandchildren) of elements selected by <code>selector1</code>.  For example:</p>
+<p>Similarly, the child selector syntax (<code>selector1 &gt; selector2</code>) will restrict <code>selector2</code> to only children (not grandchildren or other descendants) of elements selected by <code>selector1</code>.  For example:</p>
 <h1 class="join"></h1>
 
-<pre><code class="html">&lt;!-- demo.html --&gt;
+<pre><code class="html">&lt;!-- demo-child.html --&gt;
 &lt;div class=&quot;blue&quot;&gt;
     &lt;h1&gt;This text is not blue&lt;/h1&gt;
     &lt;p&gt;This text is blue&lt;/p&gt;
@@ -1807,7 +1804,7 @@ p {
 &lt;p&gt;This text is not blue&lt;/p&gt;
 </code></pre>
 
-<pre><code class="css">/* demo.css */
+<pre><code class="css">/* demo-child.css */
 .blue &gt; p {
     color: blue;
 }
@@ -2035,6 +2032,7 @@ div {
 <h1 class="clear"></h1>
 
 <p><img alt="demo-margin-padding" src="file:///Users/dan/working/devfest-webdev/img/demo-margin-padding.png" /></p>
+<p><a id="using-the-inspector"></a></p>
 <h3 id="414-using-the-inspector">4.1.4 Using the Inspector</h3>
 <p>One of the most important skills to learn as a web developer writing CSS is to learn how to use the inspector in your favorite browser (Internet Explorer not allowed).  The inspector lets you see the HTML, CSS, and JavaScript that your web browser is rendering, live!  You can inspect your own web page to find bugs or make tweaks to your code, or inspect other pages to learn how to imitate a desired HTML/CSS/JS effect.</p>
 <p>With a web page open in FireFox, there are <a href="https://developer.mozilla.org/en-US/docs/Tools/Page_Inspector">three ways to inspect the page</a>:</p>
@@ -2049,7 +2047,7 @@ div {
 <li>Use <code>Ctrl</code>+<code>Shift</code>+<code>I</code> (or <code>Cmd</code>+<code>Opt</code>+<code>I</code> on Mac) to open the DevTools.</li>
 <li>Right-click on any page element and select Inspect element.</li>
 </ul>
-<p>To <a href="">inspect a page in Safari</a>, you first have to enable the Develop menu. Go into Safari's preferences, and check the “Show Develop menu in menu bar” checkbox in the "Advanced" pane. Then, you open the inspector in three ways:</p>
+<p>To <a href="https://developer.apple.com/library/mac/documentation/AppleApplications/Conceptual/Safari_Developer_Guide/GettingStarted/GettingStarted.html">inspect a page in Safari</a>, you first have to enable the Develop menu. Go into Safari's preferences, and check the “Show Develop menu in menu bar” checkbox in the "Advanced" pane. Then, you open the inspector in three ways:</p>
 <ul>
 <li>Choose the "Show Web Inspector" option in the "Develop" menu.</li>
 <li>Press <code>Cmd</code>+<code>Option</code>+<code>I</code>.</li>
@@ -2057,73 +2055,361 @@ div {
 </ul>
 <p><a id="external-libraries"></a></p>
 <h2 id="42-external-libraries">4.2 External Libraries</h2>
+<p>Building an entire web app from scratch can be an undertaking.  In order to speed up the process, many web developers use <em>front-end frameworks</em>, which are packages of HTML, CSS, and JavaScript that can be included in your web app.</p>
+<p>The two most famous front-end frameworks are <a href="http://getbootstrap.com/getting-started/">Twitter Bootstrap</a> and <a href="http://foundation.zurb.com">Foundation by Zurb</a>.  Which one is better to use is up for debate, but if you believe <a href="https://medium.com/frontend-and-beyond/8b3812c7007c">this Medium post</a>, then the difference can be articulated fairly plainly:</p>
+<blockquote>
+<p>ZURB and Twitter made their objectives and intentions very clear when naming each CSS Frameworks: Bootstrap will have everything you’ll ever need to bootstrap your project. Foundation will have just the things you will ever need as the foundation for your project. </p>
+</blockquote>
+<p>We'll be using Foundation, because it's slimmer and simpler, and will provide a strong backbone for our app. You should keep <a href="http://foundation.zurb.com/docs/css.html">Foundation's newly revamped documentation</a> open at all times for this section &mdash; it's a great reference tool.  </p>
+<p>One other thing before we get started: on the Foundation website, you will continue to see references to "Sass" or "SCSS".  These are languages that extend the CSS syntax. They are more powerful, but harder to learn and develop in for the first time.  We are using "Foundation CSS", which is Foundation that uses raw CSS instead of Sass.  When we go onto the documentation page for different Foundation components you will see a section called "Customize with Sass" at the bottom.  For the purposes of our app, we can ignore this. </p>
 <p><a id="installation-and-template-setup"></a></p>
 <h3 id="421-installation-and-template-setup">4.2.1 Installation and Template Setup</h3>
-<p><a id="using-foundation"></a></p>
-<h3 id="422-using-foundation">4.2.2 Using Foundation</h3>
-<p><a id="rewriting-templates"></a></p>
-<h3 id="423-rewriting-templates">4.2.3 Rewriting Templates</h3>
-<p><a id="using-icon-fonts"></a></p>
-<h3 id="424-extension-using-icon-fonts">4.2.4 Extension: Using Icon Fonts</h3>
-<p><a id="css-tips-and-tricks"></a></p>
-<h2 id="43-extension-css-tips-and-tricks">4.3 Extension: CSS Tips and Tricks</h2>
-<p><a id="centering-content"></a></p>
-<h3 id="421-extension-centering-content">4.2.1 Extension: Centering Content</h3>
-<p>Many web pages have "gutters", or blank space on the side of the page, with the content of the page on a centered strip. Take the <a href="http://adicu.com/learn">ADI Resources</a> page, for example:</p>
-<p><img alt="The ADI Resources page" src="file:///Users/dan/working/devfest-webdev/img/learn.png" /></p>
-<p>The first step is to setup our HTML.  Let's say we start with some headings and paragraphs in an HTML file called <code>mylife.html</code>, linked to a stylesheet called <code>mylife.css</code>.</p>
-<h1 class="join"></h1>
+<p>Installing Foundation is as easy as 1 2 3.</p>
+<h4 id="1-download">1. Download</h4>
+<p>Go to [the Foundation download page][foundation-download] and click the blue "Download Foundation CSS" button.  It will download the latest version of Foundation 5 (5.0.3 at the time of writing) in a zip file called <code>foundation-5.0.3.zip</code>.</p>
+<h4 id="2-integrate">2. Integrate</h4>
+<p>Unzip <code>foundation-5.0.3.zip</code>.  Inside, you'll see a couple of files and folders, but the ones we care about are <code>css</code> and <code>js</code>.  Remember how we have a <code>css</code> and <code>js</code> folder under the <code>static</code> folder of our Flask app?  Copy all the files from <code>&lt;Download_Directory&gt;/foundation-5.0.3/css</code> into <code>&lt;Project_Directory&gt;/static/css</code> and all the files from <code>&lt;Download_Directory&gt;/foundation-5.0.3/js</code> into <code>&lt;Project_Directory&gt;/static/js</code>.</p>
+<blockquote>
+<p>Curious what Foundation looks like?  You could poke around the Foundation documentation, or open <code>index.html</code> with all the CSS and JS still in the <code>foundation-5.0.3</code> folder.  Pretty slick looking!</p>
+</blockquote>
+<h4 id="3-template">3. Template</h4>
+<p>On the bottom of the "Getting Started With Foundation CSS" page, Zurb includes a section called <a href="http://foundation.zurb.com/docs/css.html#html-page-markup">HTML Page Markup</a>, which has a boilerplate for a basic Foundation app, reproduced here:</p>
+<pre><code class="html">&lt;!DOCTYPE html&gt; 
+&lt;!--[if IE 9]&gt;&lt;html class=&quot;lt-ie10&quot; lang=&quot;en&quot; &gt; &lt;![endif]--&gt; 
+&lt;html class=&quot;no-js&quot; lang=&quot;en&quot; &gt; 
 
-<pre><code class="html">&lt;!DOCTYPE html&gt;
-&lt;!-- mylife.html --&gt;
-&lt;html lang=&quot;en&quot;&gt;
-    &lt;head&gt;
-        &lt;meta charset=&quot;utf-8&quot;&gt;
-        &lt;title&gt;My Cool Site&lt;/title&gt;
-        &lt;link href=&quot;mylife.css&quot; 
-            rel=&quot;stylesheet&quot; 
-            type=&quot;text/css&quot;&gt;
-    &lt;/head&gt;
-    &lt;body&gt;
-        &lt;h1&gt;My Cool Site&lt;/h1&gt;
-        &lt;p&gt;Check out my life story!&lt;/p&gt;
-        &lt;h2&gt;My Life&lt;/h2&gt;
-        &lt;p&gt;I grew up in a small town.&lt;/p&gt;
-        &lt;p&gt;Now I live in the city!&lt;/p&gt;
-    &lt;/body&gt;
+&lt;head&gt; 
+  &lt;meta charset=&quot;utf-8&quot;&gt; 
+  &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt; 
+  &lt;title&gt;Foundation 5&lt;/title&gt; 
+
+  &lt;!-- If you are using CSS version, only link these 2 files, you may add app.css to use for your overrides if you like. --&gt; 
+  &lt;link rel=&quot;stylesheet&quot; href=&quot;css/normalize.css&quot;&gt; 
+  &lt;link rel=&quot;stylesheet&quot; href=&quot;css/foundation.css&quot;&gt; 
+
+  &lt;!-- If you are using the gem version, you need this only --&gt; 
+  &lt;link rel=&quot;stylesheet&quot; href=&quot;css/app.css&quot;&gt; 
+  &lt;script src=&quot;js/vendor/modernizr.js&quot;&gt;&lt;/script&gt; 
+&lt;/head&gt; 
+&lt;body&gt; 
+
+  &lt;!-- body content here --&gt; 
+
+  &lt;script src=&quot;js/vendor/jquery.js&quot;&gt;&lt;/script&gt; 
+  &lt;script src=&quot;js/foundation.min.js&quot;&gt;&lt;/script&gt; 
+  &lt;script&gt; 
+    $(document).foundation(); 
+  &lt;/script&gt; 
+&lt;/body&gt; 
 &lt;/html&gt;
 </code></pre>
 
-<pre><code class="css">/* mylife.css */
+<p>Because we are building an app in Flask however, we are going to take advantage of the Jinja2 templating that we discovered in <a href="#templating-in-flask">section 3.2</a>.  Foundation recommends that all the pages for our app have this boilerplate, so we'll make a Flask Template out of it that all of the rest of our pages will inherit.</p>
+<p>Let's start with our base template.  Copy Foundation's boilerplate code (above) into a new file in the <code>templates</code> directory called <code>base.html</code>.  We'll make some modifications to make this template work with Flask.</p>
+<p>First, let's focus on the <code>&lt;head&gt;</code> element.  Feel free to remove their comments, and let's change the title to be more modular, by making it a Jinja2 <code>{% block %}</code> that we can extend with other templates:</p>
+<pre><code class="html">...
+&lt;head&gt; 
+  &lt;meta charset=&quot;utf-8&quot;&gt; 
+  &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt; 
+  &lt;title&gt;{% block title %}{% endblock %}&lt;/title&gt; 
 
+  &lt;link rel=&quot;stylesheet&quot; href=&quot;css/normalize.css&quot;&gt; 
+  &lt;link rel=&quot;stylesheet&quot; href=&quot;css/foundation.css&quot;&gt; 
+  &lt;link rel=&quot;stylesheet&quot; href=&quot;css/app.css&quot;&gt; 
+
+  &lt;script src=&quot;js/vendor/modernizr.js&quot;&gt;&lt;/script&gt; 
+&lt;/head&gt;
+...
+</code></pre>
+
+<p>Now whatever we put put in the <code>title</code> block in the child template will show up as the <code>&lt;title&gt;</code> of the page.  Note that we also link to <code>css/app.css</code>, which is for CSS code specific to our app (Never edit any of the foundation files!).  Create an empty file called <code>app.css</code> in the <code>css</code> folder, that we will add code to later:</p>
+<pre><code class="css">/* app.css */
+</code></pre>
+
+<p>We also should provide a <code>body</code> block, where the content of the child page will go:</p>
+<pre><code class="html">... 
+&lt;body&gt; 
+
+  {% block body %}{% endblock %}
+
+  &lt;script src=&quot;js/vendor/jquery.js&quot;&gt;&lt;/script&gt; 
+...
+</code></pre>
+
+<p>Finally, we need to modify the imports.  Because the Flask directory structure is more complicated, the path from the HTML document to the <code>css</code> directory is more complicated.  To deal with this,  Flask provides a shortcut to the <code>static</code> directory that we can embed in our HTML document, so that even if we rearrange where the <code>static</code> directory is, our templates will always find the CSS files.</p>
+<p>Everywhere we have <code>href</code> or <code>src</code> attributes <code>="&lt;filename&gt;"</code>, we'll replace it with <code>="{{ url_for('static', filename='&lt;filename&gt;') }}"</code>.   The <code>{{ }}</code> indicates a Jinja2 variable, and then the <code>url_for()</code> function provided by flask gets the URL of the file with path <code>'&lt;filename&gt;'</code> from the <code>'static'</code> folder.  Here is our completed <code>base.html</code>:</p>
+<pre><code class="html">&lt;!DOCTYPE html&gt;
+&lt;!--[if IE 9]&gt;&lt;html class=&quot;lt-ie10&quot; lang=&quot;en&quot; &gt; &lt;![endif]--&gt;
+&lt;html class=&quot;no-js&quot; lang=&quot;en&quot; &gt;
+
+&lt;head&gt;
+  &lt;meta charset=&quot;utf-8&quot;&gt;
+  &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+  &lt;title&gt;{% block title %}{% endblock %}&lt;/title&gt;
+
+  &lt;link rel=&quot;stylesheet&quot; href=&quot;{{ url_for('static', filename='css/normalize.css') }}&quot;&gt;
+  &lt;link rel=&quot;stylesheet&quot; href=&quot;{{ url_for('static', filename='css/foundation.css') }}&quot;&gt;
+  &lt;link rel=&quot;stylesheet&quot; href=&quot;{{ url_for('static', filename='css/app.css') }}&quot;&gt;
+
+  &lt;script src=&quot;{{ url_for('static', filename='js/vendor/modernizr.js') }}&quot;&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  {% block body %}{% endblock %}
+
+  &lt;script src=&quot;{{ url_for('static', filename='js/vendor/jquery.js') }}&quot;&gt;&lt;/script&gt;
+  &lt;script src=&quot;{{ url_for('static', filename='js/foundation.min.js') }}&quot;&gt;&lt;/script&gt;
+  &lt;script&gt;
+    $(document).foundation();
+  &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+
+<p>It's a bit messy, and definitely pretty long for a web page without any content, but that's why we'll relegate all our imports to this file.</p>
+<p>All that's left to do is modify <code>hello.html</code>, <code>search.html</code> to extend from <code>base.html</code> (using both the <code>body</code> and <code>title</code> blocks).  Why not <code>results.html</code>? Because it already extends from <code>search.html</code> so we have our bases covered there. <em>This is exactly why we use template inheritance &mdash; so that our templates are simple, short, and to make refactoring easy.</em></p>
+<h1 class="join"></h1>
+
+<pre><code class="html">{% extends &quot;base.html&quot; %}
+&lt;!-- hello.html --&gt;
+{% block title %}
+Hello World!
+{% endblock %}
+
+{% block body %}
+&lt;h1&gt;Hello World!&lt;/h1&gt;
+&lt;p&gt;This is a &lt;em&gt;&lt;strong&gt;really&lt;/strong&gt; cool&lt;/em&gt; paragraph.  My favorite search engine is &lt;a href=&quot;http://www.google.com&quot;&gt;Google&lt;/a&gt;&lt;/p&gt;
+{% endblock %}
+</code></pre>
+
+<pre><code class="html">{% extends &quot;base.html&quot; %}
+&lt;!-- search.html --&gt;
+{% block title %}
+Search | Has it Been Made Yet?
+{% endblock %}
+
+{% block body %}
+&lt;h1&gt;Search&lt;/h1&gt;
+&lt;form action=&quot;/search&quot; method=&quot;post&quot;&gt;
+  &lt;input type=&quot;text&quot; 
+    placeholder=&quot;Search for your idea&quot; 
+    name=&quot;user_search&quot; required/&gt;
+  &lt;button type=&quot;submit&quot;&gt;Search&lt;/button&gt;
+&lt;/form&gt;
+{% block results %}{% endblock %}
+{% endblock %}
 </code></pre>
 
 <h1 class="clear"></h1>
 
-<p><img alt="mylife-1" src="file:///Users/dan/working/devfest-webdev/img/mylife-1.png" /></p>
-<p>We might try to apply <code>text-align: center</code> on the <code>&lt;body&gt;</code>, centering all text within the <code>&lt;body&gt;</code>, but this does not have the desired effect (unless we were going for more of a poem).</p>
-<h1 class="join"></h1>
+<p>It also might be nice to update our <code>hello.html</code> to reflect the purpose of our web app. (We've moved far beyond "Hello World".) The link to <code>"/search"</code> will send users to <code>yourapp.com/search</code>, or in our local development case <code>localhost:5000/search</code>.</p>
+<pre><code class="html">{% extends &quot;base.html&quot; %}
+&lt;!-- hello.html --&gt;
+{% block title %}Welcome | Has it Been Made Yet?{% endblock %}
 
-<pre><code class="html">&lt;!-- mylife.html --&gt;
-&lt;body&gt;
-    &lt;h1&gt;My Cool Site&lt;/h1&gt;
-    &lt;p&gt;Check out my life story!&lt;/p&gt;
-    &lt;h2&gt;My Life&lt;/h2&gt;
-    &lt;p&gt;I grew up in a small town.&lt;/p&gt;
-    &lt;p&gt;Now I live in the city!&lt;/p&gt;
-&lt;/body&gt;
+{% block body %}
+&lt;h1&gt;Has it Been Made Yet?&lt;/h1&gt;
+&lt;h2&gt;A tool for hackers with &quot;unique&quot; ideas.&lt;/h2&gt;
+&lt;a href=&quot;/search&quot;&gt;Launch&lt;/a&gt;
+{% endblock %}
 </code></pre>
 
-<pre><code class="css">/* mylife.css */
-body {
-    text-align: center;
+<p><a id="using-foundation"></a></p>
+<h3 id="422-using-foundation">4.2.2 Using Foundation</h3>
+<p>Using Foundation can be as simple as applying some extra classes to HTML elements, applying the imported CSS.  For general purpose "style-based" changes this is fine. (The class <code>button</code> will make an <code>&lt;a&gt;</code> tag look like a button, and so on. Just look up the component your are styling in the <a href="http://foundation.zurb.com/docs/css.html">Foundation docs</a> and you'll be fine.) While Foundation offers many shortcuts to attractively styled pages, it also provide "layout-based" classes that are used for placing elements appropriately on the page.  Chief among these is Foundation's <a href="http://foundation.zurb.com/docs/components/grid.html">grid system</a>.</p>
+<p>The grid system makes layout easy.  A <code>&lt;div&gt;</code> with class <code>row</code> hold 12 columns, and then you can create <code>&lt;div&gt;</code>s that take up any number of those columns.  For example, the following would create three side-by-side columns:</p>
+<pre><code class="html">&lt;div class=&quot;row&quot;&gt;
+  &lt;div class=&quot;large-4 columns&quot;&gt;Left&lt;/div&gt;
+  &lt;div class=&quot;large-4 columns&quot;&gt;Middle&lt;/div&gt;
+  &lt;div class=&quot;large-4 columns&quot;&gt;Right&lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+
+<p>Foundation's grid system is <em>responsive</em>, meaning that it adapts to different screen sizes.  <code>small</code> is every screen from 0-640px, <code>medium</code> is 641-1024px, and <code>large</code> is 1025px and up.  The numbers after the <code>large-</code>, <code>medium-</code>, <code>small-</code> classes to be how many columns that <code>&lt;div&gt;</code> takes up at that range and up.  These numbers jump to 12 when you go below the size before the <code>-</code>.  So for our example, as soon as the screen is resized to less than 1025px all three of the <code>columns</code> become 12 columns wide (taking up the entire row, and thusly being stacked on top of each other.)  If we refactored like this:</p>
+<pre><code class="html">&lt;div class=&quot;row&quot;&gt;
+  &lt;div class=&quot;small-4 columns&quot;&gt;Left&lt;/div&gt;
+  &lt;div class=&quot;small-4 columns&quot;&gt;Middle&lt;/div&gt;
+  &lt;div class=&quot;small-4 columns&quot;&gt;Right&lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+
+<p>they would remain 4 columns no matter how small the screen was.  </p>
+<p>What about this code?: </p>
+<pre><code class="html">&lt;div class=&quot;row&quot;&gt;
+  &lt;div class=&quot;small-6 medium-4 large-3 columns&quot;&gt;Left&lt;/div&gt;
+  &lt;div class=&quot;small-6 medium-4 large-6 columns&quot;&gt;Middle&lt;/div&gt;
+  &lt;div class=&quot;medium-4 large-3 columns&quot;&gt;Right&lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+
+<p>Well, at screens wider than 1024px, we have 3,6,3, so the middle <code>&lt;div&gt;</code> will be twice as large as the ones on the sides.  Then, between 641-1024px, all three are the same size.  Finally, on screens 640px and narrower, the left and the right <code>&lt;div&gt;</code>s are half the screen, and the right columns overflows to be on it's next line. (The <code>small-#</code> class is not defined on the third <code>&lt;div&gt;</code>, so it becomes 12 columns wide.)</p>
+<p>The grid system can be a little daunting, but with practice and <a href="http://foundation.zurb.com/docs/components/grid.html">the documentation</a> at hand, it is manageable.</p>
+<p><a id="rewriting-templates"></a></p>
+<h3 id="423-rewriting-templates">4.2.3 Rewriting Templates</h3>
+<p>Let's rework our app to look good &mdash; with Foundation!</p>
+<h4 id="hellohtml">hello.html</h4>
+<p>We want this to be the landing page for our search app.  It could be a big, full page image with a box in the middle of the screen that has the name and tagline for our app. </p>
+<p>First, let's make the box.  Start by wrapping the content of the page in a <code>row</code> and <code>columns</code> <code>&lt;div&gt;</code>.  <code>medium-9</code> should suffice, we want it to be fairly large, but not the whole width of the screen.</p>
+<pre><code class="html">{% extends &quot;base.html&quot; %}
+&lt;!-- hello.html --&gt;
+{% block title %}Welcome | Has it Been Made Yet?{% endblock %}
+
+{% block body %}
+&lt;div class=&quot;row&quot;&gt;
+  &lt;div class=&quot;medium-9 columns&quot;&gt;
+    &lt;h1&gt;Has it Been Made Yet?&lt;/h1&gt;
+    &lt;h2&gt;A tool for hackers with &quot;unique&quot; ideas.&lt;/h2&gt;
+    &lt;a href=&quot;/search&quot;&gt;Launch&lt;/a&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+{% endblock %}
+</code></pre>
+
+<p>We could center the <code>columns</code> <code>&lt;div&gt;</code> ourselves, but Foundation coveniently let's us center any <code>columns</code> element with the <code>small-centered</code>, <code>medium-centered</code>, and <code>large-centered</code> classes.  Apply <code>medium-centered</code> to center our <code>&lt;div&gt;</code>.</p>
+<pre><code class="html">&lt;div class=&quot;medium-9 medium-centered columns&quot;&gt;
+</code></pre>
+
+<p>We can easily turn our "Launch" <code>&lt;a&gt;</code> tag into a button with just the <code>button</code> class. That was easy!</p>
+<pre><code class="html">&lt;a class=&quot;button&quot; href=&quot;/search&quot;&gt;Launch&lt;/a&gt;
+</code></pre>
+
+<p>Next, we'll make the background an image.  We can do this in pure CSS, no <code>&lt;img&gt;</code> tag necessary!  To make a background image, you must first make sure that the <code>&lt;html&gt;</code> and <code>&lt;body&gt;</code> tags are taking up the entire browser window.  Just as we can measure length in px, we can also measure in percent (<code>%</code>).  This is perfect for our purposes.  Edit <code>app.css</code>:</p>
+<pre><code class="css">body, html {
+    height: 100%;
+    width: 100%;
+}
+</code></pre>
+
+<p>To set the actual image, we'll be using the <code>background</code> property on the <code>body</code> element.  For a detailed description of it's usage, check out the <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/background">MDN page</a>.  We'll be setting  <code>background-color</code> (for fallback), <code>background-image</code>, <code>background-repeat</code>, <code>background-attachment</code>, and <code>background-position</code>.</p>
+<pre><code class="css">body {
+    background-color: black;
+    /* feel free to use any image you want.  The url() function will take local or internet images */
+    background-image: url(http://i0.wp.com/devleader.ca/wp-content/uploads/2014/01/php_code.jpg);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center center;
+}
+</code></pre>
+
+<p>or more succinctly:</p>
+<pre><code class="css">body {
+    background: black url(http://i0.wp.com/devleader.ca/wp-content/uploads/2014/01/php_code.jpg) no-repeat fixed center center;
+}
+</code></pre>
+
+<p>Refresh the page. It looks good, but not great; the text is too hard to read.  Let's put our text in a box, so it's easier to see off the background.  Conveniently, Foundation has a <code>panel</code> class that will work well for us.  Wrap the text in a <code>&lt;div&gt;</code> with the <code>panel</code> class and see how it looks.</p>
+<pre><code class="html">{% block body %}
+&lt;div class=&quot;row&quot;&gt;
+  &lt;div class=&quot;medium-9 medium-centered columns&quot;&gt;
+    &lt;div class=&quot;panel&quot;&gt;
+      &lt;h1&gt;Has it Been Made Yet?&lt;/h1&gt;
+      &lt;h2&gt;A tool for hackers with &quot;unique&quot; ideas.&lt;/h2&gt;
+      &lt;a class=&quot;button&quot; href=&quot;/search&quot;&gt;Launch&lt;/a&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+{% endblock %}
+</code></pre>
+
+<p>The panel looks good, but it's stuck to the top of the page, which doesn't look great.  Let's bring it down some by adding <code>margin</code> to the <code>row</code>.  We don't want <em>all</em> rows to have margin at the top (what if we make another <code>row</code> later?), so we should add a class.  <code>10%</code> margin should do.</p>
+<h1 class="join"></h1>
+
+<pre><code class="html">{% block body %}
+&lt;div class=&quot;row splash-page&quot;&gt;
+  &lt;div class=&quot;medium-9 medium-centered columns&quot;&gt;
+    &lt;div class=&quot;panel&quot;&gt;
+...
+</code></pre>
+
+<pre><code class="css">...
+.splash-page {
+    margin-top: 10%;
 }
 </code></pre>
 
 <h1 class="clear"></h1>
 
-<p><img alt="mylife-2" src="file:///Users/dan/working/devfest-webdev/img/mylife-2.png" /></p>
-<p>What we want is a <em>container</em> to hold all of the content, where the container is centered, but the content is left-aligned as normal.  Because it makes the most semantic sense as a container, we'll use a <code>&lt;div&gt;</code>.  However, we can just make the <code>&lt;div&gt;</code> have <code>text-align:center</code>, because that only works for, well, <em>text</em>.  To center a block-level element like a <code>&lt;div&gt;</code>, we set it's margin to <code>auto</code> on the left and right</p>
+<p>The panel would look much better if the text were center-aligned.  Use the descendant selector to select the panel, and then set it's <code>text-align</code> property to <code>center</code>.</p>
+<pre><code class="css">.splash-page .panel {
+    text-align: center;
+}
+</code></pre>
+
+<p>This is looking great!  The only other thing that might be nice is to add a little transparency to our panel.  Using the <code>rgba()</code> CSS function (Red, Green, Blue, Alpha), we can set this.  Use <a href="#using-the-inspector">your inspector</a> to figure out the RGB values on the background color of the <code>panel</code> <code>&lt;div&gt;</code>.  It should be <code>#f2f2f2</code>, or <code>rgb(242,242,242)</code>.  Let's set the alpha, or transparency to 0.9 (on a scale from 0.0 to 1.0 where 0.0 is clear and 1.0 is solid).</p>
+<pre><code class="css">.splash-page .panel {
+    text-align: center;
+    background-color: rgba(242, 242, 242, 0.9);
+}
+</code></pre>
+
+<p>And there we have it, a finished <code>hello.html</code>!</p>
+<p><img alt="madeyet-1" src="file:///Users/dan/working/devfest-webdev/img/madeyet-1.png" /></p>
+<h4 id="searchhtml">search.html</h4>
+<p>Our second refactor should go faster. Start by wrapping the form in a row, column, and panel same as before.  We don't want the actual app to take up three quarters of the page, so we can use <code>large-12 columns</code> instead of <code>medium-9 medium-centered columns</code>.</p>
+<pre><code class="html">{% extends &quot;base.html&quot; %}
+&lt;!-- search.html --&gt;
+{% block title %}Search | Has it Been Made Yet?{% endblock %}
+
+{% block body %}
+&lt;div class=&quot;row&quot;&gt;
+  &lt;div class=&quot;large-12 columns&quot;&gt;
+    &lt;div class=&quot;panel&quot;&gt;
+      &lt;h1&gt;Search&lt;/h1&gt;
+      &lt;form action=&quot;/search&quot; method=&quot;post&quot;&gt;
+        &lt;input type=&quot;text&quot; placeholder=&quot;Search for your idea&quot; name=&quot;user_search&quot; required/&gt;
+        &lt;button type=&quot;submit&quot;&gt;Search&lt;/button&gt;
+      &lt;/form&gt;
+      {% block results %}{% endblock %}
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+{% endblock %}
+</code></pre>
+
+<p>Let's put the search button on the same line as the search box, at a 10:2 ratio.  We can use the <code>collapse</code> class on the <code>row</code> so that the search box touches the search button.</p>
+<pre><code class="html">...
+&lt;form action=&quot;/search&quot; method=&quot;post&quot;&gt;
+  &lt;div class=&quot;row&quot;&gt;
+    &lt;div class=&quot;small-10 columns&quot;&gt;
+      &lt;input type=&quot;text&quot; placeholder=&quot;Search for your idea&quot; name=&quot;user_search&quot; required/&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;small-2 columns&quot;&gt;
+      &lt;button type=&quot;submit&quot;&gt;Search&lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/form&gt;
+...
+</code></pre>
+
+<p>This already looks all right, but it might be nice to attach the search button to the search box.  Exploring the <a href="http://foundation.zurb.com/docs/components/forms.html">"forms" page on Foundations documentation</a>, we see that if we just apply the <code>postfix</code> class to our button, it will change to be the same height as the the search box:</p>
+<pre><code class="html">&lt;button class=&quot;postfix&quot; type=&quot;submit&quot;&gt;Search&lt;/button&gt;
+</code></pre>
+
+<p>There's really only one more thing that would make this page look better, and it's to keep the search panel from sticking completely to the top.  Let's put 20 pixels of padding on the <code>&lt;body&gt;</code>, so that it looks uniform with the bottom.</p>
+<pre><code class="css">body {
+    padding-top: 20px;
+    background: black url(http://i0.wp.com/devleader.ca/wp-content/uploads/2014/01/php_code.jpg) no-repeat fixed center center;
+}
+</code></pre>
+
+<p>Nice!</p>
+<p><img alt="madeyet-2" src="file:///Users/dan/working/devfest-webdev/img/madeyet-2.png" /></p>
+<h4 id="resultshtml">results.html</h4>
+<p>Once again, our smart templating has done us a service; the results page looks pretty good!  We can make just a few adjustments to finish it off.</p>
+<p>Let's get rid of the dots on our unordered list.  Foundation <a href="http://foundation.zurb.com/docs/components/typography.html#lists">has a class for this</a>, just give our <code>&lt;ul&gt;</code> the <code>no-bullet</code> class and we're good to go.</p>
+<pre><code class="html">...
+&lt;ul class=&quot;no-bullet&quot;&gt;
+    {% for repo in api_data[&quot;items&quot;] %}
+...
+</code></pre>
+
+<p>We can also make the "by <username>" part of the header smaller with the <code>&lt;small&gt;</code> tag (that's a <a href="http://foundation.zurb.com/docs/components/typography.html#small-header-segments">Foundation feature</a>, so don't use it in other projects. In fact, the <code>&lt;small&gt;</code> tag is discouraged in HTML5).</p>
+<pre><code class="html">&lt;h3&gt;{{ repo.name }} &lt;small&gt;by {{ repo.owner.login }}&lt;/small&gt;&lt;/h3&gt;
+</code></pre>
+
+<p>And we're done!</p>
+<p><img alt="madeyet-3" src="file:///Users/dan/working/devfest-webdev/img/madeyet-3.png" /></p>
+<p>Congratulations!  You've built a complete web application in Flask!  The Flask server loads the templates for our different routes, and then makes calls to the Github search API and returns the data to the client.  Pretty impresive!</p>
+<p>Push yourself to try some of the extensions throughout this document, they offer some interesting challenges. </p>
 <!-- python/flask -->
 
 <!-- github -->
