@@ -24,7 +24,27 @@ We will use Python to develop a web application. We will do this using the Pytho
 This introduction is meant to teach only the basics of Python. It is not meant to replace ENGI1006 or any other formal introduction to the language. It is meant only to teach the features of the language most vital to developing webapps.
 
 -------------
+## Using this Document
 
+This document contains a series of six sections, each of which explains a concept of Python that will be valuable to us in building our web application. Each section will end with a short exercise that will ask you to write a little bit of code that ties together what was learned in the previous section. You are not required to type out and run the sample code that we provide, but it will definitely help you to learn Python much more quickly if you do.
+
+### Running the Sample Code
+
+All of the code in this document can be either of two ways. It can be typed in the Python shell, which can be opened by simply typing 'python' into your command line interface once you have installed the language:
+
+```
+$ python
+```
+
+Or, the code can be typed into a file with the ending '.py' and run from the command line like so:
+
+```
+$ python my_file.py
+```
+
+This is also the way you should write the code for the exercises. Perhaps individual files for each exercise will help you to separate your code based on the concepts it covers.
+
+------------------
 <a id="table-of-contents"></a>
 ## Table of Contents
 
@@ -74,11 +94,11 @@ This introduction is meant to teach only the basics of Python. It is not meant t
 # Preface: Comments
 Comments are like notes a programmer takes while writing code. Comments do not affect the code, and should be used liberally to ensure code can be easily understood later both by yourself and other developers.
 
-```
+```python
 # If you only need one line for your comment, use a hash.
 ```
 
-```
+```python
 """ 
 If you want a comment that spans multiple lines, 
 you can use triple quotes at the beginning and end.
@@ -94,7 +114,7 @@ Every programming language needs to store data and a way to work with this data.
 ## 1.1 Math and Numbers
 Numbers in Python are, well, numbers. They act like normal numbers. They can be added, subtracted, multiplied, and divided.
 
-```
+```python
 3 + 5 # = 8
 9 - 2 #  = 7
 4 * 5 # = 20
@@ -103,26 +123,26 @@ Numbers in Python are, well, numbers. They act like normal numbers. They can be 
 
 However, what happens if division isn't even? As in other programming languages, the result gets rounded down to the nearest whole number.
 
-```
+```python
 11 / 4 # = 2
 ```
 
 We can fix this with floating point numbers, or those with decimal points. (Ex. 12.4)
 
-```
+```python
 11.0 / 4.0 # = 2.75
 ```
 
 If you need to, order your operations using parentheses!
 
-```
+```python
 ((3 + 5) / 4) * 3 # = 6
 ```
 <a id="boolean"></a>
 ## 1.2 Booleans
 Booleans are used to store whether something is true or false. We represent these using two values:
 
-```
+```python
 # Notice the capital letters!
 True
 False
@@ -130,7 +150,7 @@ False
 
 We can negate these values using the word `not`:
 
-```
+```python
 not True # False
 not False # true
 ```
@@ -141,7 +161,7 @@ In addition, we have one more datatype, called `None`. It is similar to `null` i
 ## 1.3 Comparisons
 Channel your pre-algebra skills; remember all the mathematical comparisons available to us. These comparisons evaluate to boolean values, and can be used the same ways booleans can be.
 
-```
+```python
 # Greater/Less Than
 2 < 3 # True
 4 > 7 # False
@@ -160,7 +180,7 @@ Channel your pre-algebra skills; remember all the mathematical comparisons avail
 
 One more comparison can check the type of an object. This is with the keyword `is`. Use `is` when checking if an object is `None`.
 
-```
+```python
 "ADI" is None # False
 ```
 
@@ -168,7 +188,7 @@ One more comparison can check the type of an object. This is with the keyword `i
 ## 1.4 Strings
 We use strings to store text. Use either `'` or `"`, whichever you prefer.
 
-```
+```python
 'This is my string. I like it very much.'
 "This is my other string. It is even nicer than the first."
 
@@ -186,7 +206,7 @@ We use strings to store text. Use either `'` or `"`, whichever you prefer.
 ## 1.5 Printing
 We'll probably want to be able to print things to the screen. Python gives us two easy ways to do this.
 
-```
+```python
 print("Here is one way to print.")
 print "Here is a second way."
 ```
@@ -203,7 +223,7 @@ What happens if we want to use a value more than once? Or what happens if we wan
 ## 2.1 Variables
 Unlike in Java and other languages, we do not specify a type! Also, Python uses a different naming convention than Java, going for underscores instead of capital letters.
 
-```
+```python
 my_var = 5 + 4
 print my_var # 9
 ```
@@ -211,14 +231,14 @@ print my_var # 9
 ## 2.2 Lists
 Lists store collections of data indexed by a number, starting at 0. We can start with an empty list, or add some elements to start with:
 
-```
+```python
 my_list = []
 my_other_list = [1,5,9,6,7,8]
 ```
 
 We can add and remove from the end of the list:
 
-```
+```python
 # Add an element to the end
 my_other_list.append(6) # [1,5,9,6,7,8,6]
 
@@ -229,7 +249,7 @@ my_other_list.pop() # [1,5,9,6,7,8]
 
 Access and remove elements at certain positions, or even ranges:
 
-```
+```python
 # Access element at position 0
 my_num = my_other_list[0] # 1
 
@@ -248,20 +268,20 @@ my_other_list[9] # IndexError - there is no element at position 9
 
 Add lists together:
 
-```
+```python
 ["first", "second"] + ["third"] # ["first", "second", "third"]
 
 ```
 
 Check if an element is within a list:
 
-```
+```python
 4 in [1,2,5] # False
 ```
 
 And get how many items are in a list:
 
-```
+```python
 len([8,6,4,3]) # 4
 ```
 
@@ -269,7 +289,7 @@ len([8,6,4,3]) # 4
 ## 2.3 Tuples
 Tuples are just like lists, except they use parentheses instead of brackets. Also, they are immutable, which means you cannot change the elements in them.
 
-```
+```python
 my_tuple = (1,2,3) # Use parentheses instead!
 my_tuple[0] # 1
 my_tuple[0] = 3 # Illegal! You get a TypeError
@@ -277,7 +297,7 @@ my_tuple[0] = 3 # Illegal! You get a TypeError
 
 You can use all the same operations we saw for lists. In addition, you can unpack tubles into variables!
 
-```
+```python
 var_1, var_2, var_3, var_4 = (1, 2, 3, 4)
 print var_1 + " " + var_2 # "1 2"
 ```
@@ -286,35 +306,35 @@ print var_1 + " " + var_2 # "1 2"
 ## 2.4 Dictionaries
 Think of a dictionary as a key and value pair. Each value has a key, which, instead of a numeric index, is a string that helps to identify a value. We can start with an empty list or a full list, and add elements at any time using a key.
 
-```
+```python
 my_dict = {}
 my_other_dict = {"first" : 10, "second", 7}
-my_dict["my_key": "my_value"] # {"my_key" : "my_value"}
+my_dict["my_key"] = "my_value" # {"my_key" : "my_value"}
 ```
 
 If we want to access an element, we simply use its key:
 
-```
+```python
 var_1 = my_other_dict["first"] # = 10
 ```
 
 But using this method, if we don't find the key we pass, we will get an error! We have a solution though, the `get()` method:
 
-```
+```python
 my_other_dict["third"] # KeyError
 my_other_dict.get("third") # = None, no error!
 ```
 
 If we want all the keys or all the values in a dictionary, we can get these as lists:
 
-```
+```python
 my_other_dict.keys() # ["first", "second"]
 my_other_dict.values() # [10, 7]
 ```
 
 We can again use the `in` keyword to check to see if a key exists in a dictionary:
 
-```
+```python
 "first" in my_other_dict # True
 ```
 
@@ -322,7 +342,7 @@ We can again use the `in` keyword to check to see if a key exists in a dictionar
 ## 2.5 Sets
 For you mathy folks, we can also represent sets, which remove duplicate elements from lists. We can declare these two ways:
 
-```
+```python
 my_set = set([1,2,2,4,4,4,5]) # set([1,2,4,5])
 # OR
 my_set = {1,2,2,4,4,4,5} # {1,2,4,5}
@@ -330,26 +350,26 @@ my_set = {1,2,2,4,4,4,5} # {1,2,4,5}
 
 Adding to a set is simple:
 
-```
+```python
 my_set.add(6) # {1,2,4,5,6}
 ```
 
 We can find the intersection and the union of two sets:
 
-```
+```python
 my_intersection = {1,2,5} & {4,2,6} # {2}
 my_union = {1,2,5} | {4,2,6} # {1,2,4,6}
 ```
 
 We can find difference:
 
-```
+```python
 my_difference = {1,2,3} - {2,4} # {1,3}
 ```
 
 Or we can check if an element is in a set:
 
-```
+```python
 1 in my_set # True
 ```
 
@@ -365,7 +385,7 @@ What good is a program if we can't make decisions? Luckily, we have several tool
 ## 3.1 If/Else
 We probably want the ability to do something if another condition is met. For this, we have `if`. It is here our boolean values become important:
 
-```
+```python
 # Important: Use your tabs for whitespace! It matters!
 if 4 > 3: # True
 	print "Yay!" # Prints!
@@ -373,7 +393,7 @@ if 4 > 3: # True
 
 But what happens if our condition isn't true! You guessed it! `else`!
 
-```
+```python
 if 4 != 4:
 	print "This is true."
 else:
@@ -382,7 +402,7 @@ else:
 
 We can even add other conditions if our first one isn't met with `elif`. Notice this is different from the Java `else if`.
 
-```
+```python
 if 4 == 3:
 	print "First condition is true."
 elif 109 > 105:
@@ -393,7 +413,7 @@ else:
 
 Say we have more than one condition we want to check at the same time. We have two other words, `and` and `or`. Notice that these are different than the traditional `&&` and `||`.
 
-```
+```python
 if 4 == 4 or 8 < 4:
 	print "This is true." # Prints!
 if 4 == 4 and 8 < 4:
@@ -404,7 +424,7 @@ if 4 == 4 and 8 < 4:
 ## 3.2 For Loops
 If we want to iterate through all the elements in a list, a set, or a tuple, we can easily do this using a `for` loop.
 
-```
+```python
 # Prints each element in the list
 for i in ["Mom", "Dad", "Brother", "Sister"]:
 	print i
@@ -412,7 +432,7 @@ for i in ["Mom", "Dad", "Brother", "Sister"]:
 
 We can also use the `range()` function combined with `for` to do some interesting things:
 
-```
+```python
 # Range from 0 to 6
 for i in range(6):
 	print i # Prints 0, then 1, then 2, …, then 5
@@ -430,7 +450,7 @@ Note: The syntax `for (x = 0; x < 10; x = x + 1)` from Java is not valid in Pyth
 ## 3.3 While Loops
 While loops are similar to for loops, but instead execute until a condition is no longer true. We can do this with any boolean condition, but while loops are often used with mathematical comparisons.
 
-```
+```python
 x = 0
 while x < 4:
 	print(x) # Prints 0, then 1, then 2, then 3
@@ -446,7 +466,7 @@ while True:
 ## 3.4 Try/Except
 Sometimes you will run into errors in your code. We saw this when we tried to access an index in a list that didn't exist. For this, we can use a `try/except` clause, similar to a `try/catch` statement in Java. Let's see here:
 
-```
+```python
 my_list = [1,2,4]
 try:
 	print my_list[3] # Causes IndexError
@@ -456,7 +476,7 @@ except IndexError:
 
 This is just an example of one error that can be caught. Other common errors include `IOError`, `ValueError`, and `TypeError`. We can catch one or more using `except` statements, or catch any remaining exceptions as a default.
 
-```
+```python
 try:
 	# Some code
 except IndexError:
@@ -480,7 +500,7 @@ We've seen things like `len(my_list)` and `my_list.append(4)` that perform some 
 ## 4.1 Defining and Calling Functions
 To define a function, we simply use the reserved word `def`.
 
-```
+```python
 def multiply(a,b):
 	return a * b
 ```
@@ -489,7 +509,7 @@ Notice some syntactical measures. After the name of the function, we include a c
 
 To call a function, one simply passes the parameters.
 
-```
+```python
 var product = multiply(4,7) # = 28
 ```
 
@@ -497,7 +517,7 @@ var product = multiply(4,7) # = 28
 ## 4.2 Variable Arguments
 Imagine that we didn't know how many parameters we want to pass. Python allows us to handle this situation using asterisks. We can pass an arbitrary number of positional arguments (list elements) using a single asterisk, or an arbitrary number of keyword arguments (dictionary elements) using a double asterisk.
 
-```
+```python
 # Returns a list from a variable number of parameters
 def positional_args(*args):
 	return args
@@ -512,7 +532,7 @@ var my_dict = keyword_args(name="joe", age="17") # = {'name':'joe', 'age':'17}
 
 We could also do the opposite of `*args` and `**kwargs` by attaching asterisks to our parameters to unpack them. For example:
 
-```
+```python
 positional_args(*my_list) # = positional_args(1,2,3,4)
 keyword_args(**my_dict) # = keyword_args(name="joe", age="17")
 ```
@@ -523,7 +543,7 @@ keyword_args(**my_dict) # = keyword_args(name="joe", age="17")
 
 Interestingly, Python functions can themselves return functions. This is something JavaScript developers may be familiar with. These functions are called first-class functions.
 
-```
+```python
 def get_multiplier_function():
 	def multipler(a,b):
 		return a * b
@@ -535,7 +555,7 @@ product = multiplier(8,7) # = 56
 
 Also, what if you had a function that you only wanted to use once, and thus you didn't want to give it a name? These functions are called anonymous functions, and Python provides us with the word `lambda` to declare these:
 
-```
+```python
 g = lambda x: return x * x
 square = g(8) # = 64
 ```
@@ -552,9 +572,9 @@ You may have heard the term 'Object-Oriented Programming.' If you are unfamiliar
 
 ## 5.1 Defining a Class
 
-To define a class in python, we use the reserved word `class`:
+To define a class in Python, we use the reserved word `class`:
 
-```
+```python
 class Animal(object):
 ```
 
@@ -565,7 +585,7 @@ In the parentheses, we put the class from which we are subclassing. In most case
 
 Each object is going to have attributes, pieces of data that are stored along with it. Some will be shared by all objects of the class. For example, all Animals belong to the same kingdom, Animalia. We call these attributes class attributes.
 
-```
+```python
 class Animal(object):
 	kingdom = "Animalia"
 ```
@@ -577,7 +597,7 @@ However, classes will also have data that is specific to each instance of that c
 
 We write an initializer like this:
 
-```
+```python
 class Animal(object):
 	kingdom = "Animalia"
 	
@@ -593,7 +613,7 @@ In addition to `self`, we can pass any number of parameters, in this case the na
 To create a new Animal object, simply use the initializer as follows, passing each parameter in order:
 
 
-```
+```python
 # Sequentially uses positioning of parameters
 animal_1 = Animal("Bobo", "Monkey")
 
@@ -611,7 +631,7 @@ animal_1.name # = "Sugar"
 ## 5.4 Instance Methods
 Instance methods are functions defined within a class that deal specifically with the instance. They often modify or return instance attributes. They, like initializers, must take `self` as their first parameter.
 
-```
+```python
 class Animal(object):
 	# Class Attribute
 	kingdom = "Animalia"
@@ -636,7 +656,7 @@ animal.speak("woof") # = "Butch says woof"
 ##5.5 Class Methods
 Class methods, like class attributes, are shared for all instances of the class. Thus, they cannot access any instance attributes or methods. They always take the `cls`, the calling class, as their first argument.
 
-```
+```python
 class Animal(object):
     # Class Attribute
     kingdom = "Animalia"
@@ -664,7 +684,7 @@ animal.get_kingdom() # = "Animalia"
 ## 5.6 Static Methods
 Static methods, unlike class methods or instance methods, need neither a class or an instance. They are called using the class name.
 
-```
+```python
 class Animal(object):
     # Class Attribute
     kingdom = "Animalia"
