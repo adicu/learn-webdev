@@ -26,6 +26,12 @@ ul ul {
 	margin-bottom: 0;
 }
 
+/* "Responsive" */
+body {
+  width: 90%;
+  max-width: 50em;
+}
+
 /* make tables pretty */
 table {
   padding: 0;border-collapse: collapse; }
