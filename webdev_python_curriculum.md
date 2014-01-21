@@ -86,7 +86,8 @@ This is also the way you should write the code for the exercises. Perhaps indivi
 	- [6.1 Modules](#modules)
 	- [6.2 User Input](#input)
 	- [6.3 Decorator Functions](#decorator)
-	- [6.3 pip/requirements.txt](#pip)
+	- [6.4 pip/requirements.txt](#pip)
+	- [6.5 Exercise 6](#exercise6)
 
 
 ------------------------------
@@ -684,7 +685,7 @@ animal.get_kingdom() # = "Animalia"
 ## 5.6 Static Methods
 Static methods, unlike class methods or instance methods, need neither a class or an instance. They are called using the class name.
 
-```python
+```
 class Animal(object):
     # Class Attribute
     kingdom = "Animalia"
@@ -708,7 +709,6 @@ class Animal(object):
 
 # Call our static method
 Animal.boo() # = "BOO!"
-
 ```
 
 <a id="exercise5"></a>
@@ -716,6 +716,169 @@ Animal.boo() # = "BOO!"
 _______________
 <a id="goodies"></a>
 # 6.0 More Goodies
+While the previous five sections provide a very thorough introduction to the basics of Python, this section will provide you with some extra information about the language. You will find many of these features to be very helpful to you when you start developing your web application and as your Python programs become more complex.
+<a id="modules"></a>
+## 6.1 Modules
+As you start to write longer and more complex programs, you can imagine there will be lots of functions you want to be able to use. Along with that, your files will begin to get very long, to the point where you may lose control of your program. For this, we have modules.
+
+Modules are regular Python files that contain definitions of functions that can later be imported for use in another file. For example, say we want to write a class that stores some mathematical operations that we will use in one of our programs. Let's call it `my_math.py`:
+
+```
+# my_math.py
+def square(n):
+	return n*n
+def cube(n):
+	return n*n*n
+```
+
+If we wanted to use these functions in another class, say `your_math.py`, all you would need to do is import the entire module:
+
+```
+# your_math.py
+import my_math # Don't need the .py
+
+answer_1 = my_math.cube(4) # 64
+answer_2 = my_math.square(2) # 4
+```
+
+If you don't want to have to say `my_math` everytime you use a function, you could import the specific functions you want to use:
+
+```
+from my_math import square, cube
+
+answer_1 = square(4) # 16
+answer_2 = cube(5) # 125
+```
+
+You can even import all the functions from a module using an asterisk:
+
+```
+from my_math import *
+```
+Using these imports allows you to use many functions that are already built into Python.
+
+<a id="input"></a>
+## 6.2 User Input
+Nearly every useful program takes some kind of input from the user. Python gives us several ways to do this, the first of which is text from the command line.
+
+We do this using the function `raw_input()`, which takes a line of text typed in by a user on the command line interface and stores it into a variable. For example:
+
+```
+name = raw_input("What is your name? ")
+```
+
+In name will be stored whatever the user types in. Within the parentheses, you can put a prompt, which is meant to prompt the user to instruct them on what to input.
+
+We can also take command line arguments, which are arguments input on the command line when the file is run. For example, say we have the following Python file:
+
+```
+# Import needed for command line arguments
+from sys import argv
+
+my_script, my_name, my_age = argv
+
+print("Hello %s, you are %s years old." % (my_name, my_age))
+print("This file is called %s." % my_script)
+```
+
+`argv` always takes at least one argument, which is the name of the script. Others can be input and handled within the program, as shown here. This program could be run by typing this in the command line:
+
+```
+$ python my_script.py Matt 19
+
+"""
+"Hello Matt, you are 19 years old."
+"This file is called my_script.py."
+"""
+```
+
+We can also read from a file to get input from the user:
+
+```
+# Get the file name from the user
+file_name = raw_input("Enter a file name: ")
+# Open the file for reading
+file = open(file_name)
+# Print the contents of the file
+print file.read()
+```
+
+If we wanted to, we could even write to the file:
+
+```
+file_name = raw_input("Enter a file name: ")
+file = open(file_name)
+file.write("Hello File!")
+```
+<a id="decorator"></a>
+## 6.3 Decorator Functions
+As we covered previously, in Python, functions are known as first-class objects, which basically means they can be referred to be name and passed as parameters to a function. A [decorator function](#decorators), then, is a function that takes another function as a parameter and makes some kind of change to it. These changes can be small or large, but normally they can be very helpful. For example:
+
+```
+def mod_decorator(function):
+	def inner_wrapper();
+		inner_wrapper.mod_count += 1
+		print("I have modified this function " + inner_wrapper.mod_count + " times.")
+		function()
+	inner_wrapper.mod_count = 0
+	return inner_wrapper
+```
+
+As we can see, we take a function, then wrap that function with the added functionality to print how many times the modified function has been called, then simply call the function we have been passed. We can then call this modified function here.
+
+```
+def my_function():
+	print "This is MY function."
+
+decorated_function = mod_decorator(my_function)
+
+decorated_function() 
+# "I have modified this function 1 times."
+# "This is MY function."
+
+decorated_function()
+# "I have modified this function 2 times."
+# "This is MY function."
+```
+
+While writing it like this is perfectly legal, Python provides us some additional syntax to make this easier:
+
+```
+@mod_decorator
+def my_function():
+	"My decorator has been applied automatically!"
+```
+
+<a id="pip"></a>
+## 6.4 pip/requirements.txt
+When your developing a web application, there are certain packages that need to be installed to make up an environment. These packages that are needed for your project are called dependencies. We can install these dependencies easily using a built-in Python function called `pip`. First, we would need to make a file of all our requirements called `requirements.txt`:
+
+```
+pkg1
+pkg2
+pkg3
+```
+
+This file contains the names of all the packages needed for your application. For example, if we were writing a Flask application, we might need MySQL, a database program, followed by the required version number:
+
+```
+MySQL-python==1.2.3
+```
+
+Then, to install all of the packages in our `requirements.txt` folder, we would simply type in this command:
+
+```
+$ pip install -r requirements.txt
+```
+
+Then all of your required packages are installed.
+
+<a id="exercise6"></a>
+## 6.5 Exercise 6
+___________
+
+
+
 
 
 [python]: http://www.python.org
@@ -723,4 +886,5 @@ _______________
 [learn]: http://adicu.com/learn
 [xy]: http://learnxinyminutes.com/docs/python/
 [hardway]: http://learnpythonthehardway.org
+[decorators]: http://www.brianholdefehr.com/decorators-and-functional-python
 
