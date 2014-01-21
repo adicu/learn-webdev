@@ -3,9 +3,9 @@
 
 *Preparing you to build your first web application*
 
-Written and developed by [Matt Piccolella](mailto:matthew@adicu.com) and [ADI](http://adicu.com).
+Written and developed by [Matt Piccolella](mailto:matthew@adicu.com) and [ADI](adi).
 
-Credit to [Learn X in Y Minutes: X = Python](http://learnxinyminutes.com/docs/python/) and [Learn Python the Hardway](http://learnpythonthehardway.org).
+Credit to [Learn X in Y Minutes: X = Python][xy] and [Learn Python the Hardway][hardway].
 
 ----------
 
@@ -15,10 +15,10 @@ Credit to [Learn X in Y Minutes: X = Python](http://learnxinyminutes.com/docs/py
 Before we start building our first web application, we must become familiar with the Python programming language.
 
 ### What is Python?
-[Python](http://www.python.org) is a dynamic programming language that is similar to Perl, Ruby, and Java. It is known for its clear, readable syntax, its dynamic data types, and its usage in many different types of application development.
+[Python][python] is a dynamic programming language that is similar to Perl, Ruby, and Java. It is known for its clear, readable syntax, its dynamic data types, and its usage in many different types of application development.
 
 ### How will we use Python?
-We will use Python to develop a web application. We will do this using the Python web microframework called [Flask](http://flask.pocoo.org/), which allows developers to rapidly create fast and powerful webapps.
+We will use Python to develop a web application. We will do this using the Python web microframework called [Flask][flask], which allows developers to rapidly create fast and powerful webapps.
 
 ### What will this tutorial teach me?
 This introduction is meant to teach only the basics of Python. It is not meant to replace ENGI1006 or any other formal introduction to the language. It is meant only to teach the features of the language most vital to developing webapps.
@@ -881,25 +881,29 @@ ___________
 
 Along with this tutorial, there is a wealth of information available on Python all across the web. Below are some good places to start:
 
-[Learn X in Y Minutes: X=Python](http://learnxinyminutes.com/docs/python/)
+[Learn X in Y Minutes: X=Python][xy]
 
-[Learn Python the Hard Way](http://learnpythonthehardway.org)
+[Learn Python the Hard Way][learn]
 
-[Official Python Documentation](http://docs.python.org/3/)
+[Official Python Documentation][pydoc]
 
-[ADI Resources](http://adicu.com/learn/)
+[ADI Resources][learn]
 
-[Codecademy](http://www.codecademy.com/tracks/python)
+[Codecademy][codecademy]
 
-[TryPython](http://www.trypython.org)
+[TryPython][try]
 
 
 
 
 [python]: http://www.python.org
 [flask]: http://flask.pocoo.org/
+[pydoc]: http://docs.python.org/3/
 [learn]: http://adicu.com/learn
 [xy]: http://learnxinyminutes.com/docs/python/
 [hardway]: http://learnpythonthehardway.org
 [decorators]: http://www.brianholdefehr.com/decorators-and-functional-python
+[codecademy]: http://www.codecademy.com/tracks/python
+[try]: http://www.trypython.org
+[adi]: http://adicu.com
 
