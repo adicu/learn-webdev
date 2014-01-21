@@ -2381,7 +2381,7 @@ And we're done!
 
 ![madeyet-3](img/madeyet-3.png)
 
-Congratulations!  You've built a complete web application in Flask!  The Flask server loads the templates for our different routes, and then makes calls to the Github search API and returns the data to the client.  Pretty impresive!
+Congratulations!  You've built a complete web application in Flask!  The Flask server loads the templates for our different routes, and then makes calls to the Github search API and returns the data to the client.  Pretty impressive!
 
 Push yourself to try some of the extensions throughout this document, they offer some interesting challenges. 
 
