@@ -1,13 +1,9 @@
 DevFest Web Development Curriculum
 ==================================
 
-<<<<<<< HEAD
 http://adicu.com/intro-webdev
 
-#### How to use
-=======
 #### Building
->>>>>>> add build system for md->html
 
 Run the following in the root directory:
 
