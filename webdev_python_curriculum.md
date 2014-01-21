@@ -723,7 +723,7 @@ As you start to write longer and more complex programs, you can imagine there wi
 
 Modules are regular Python files that contain definitions of functions that can later be imported for use in another file. For example, say we want to write a class that stores some mathematical operations that we will use in one of our programs. Let's call it `my_math.py`:
 
-```
+```python
 # my_math.py
 def square(n):
 	return n*n
@@ -733,7 +733,7 @@ def cube(n):
 
 If we wanted to use these functions in another class, say `your_math.py`, all you would need to do is import the entire module:
 
-```
+```python
 # your_math.py
 import my_math # Don't need the .py
 
@@ -743,7 +743,7 @@ answer_2 = my_math.square(2) # 4
 
 If you don't want to have to say `my_math` everytime you use a function, you could import the specific functions you want to use:
 
-```
+```python
 from my_math import square, cube
 
 answer_1 = square(4) # 16
@@ -752,7 +752,7 @@ answer_2 = cube(5) # 125
 
 You can even import all the functions from a module using an asterisk:
 
-```
+```python
 from my_math import *
 ```
 Using these imports allows you to use many functions that are already built into Python.
@@ -763,7 +763,7 @@ Nearly every useful program takes some kind of input from the user. Python gives
 
 We do this using the function `raw_input()`, which takes a line of text typed in by a user on the command line interface and stores it into a variable. For example:
 
-```
+```python
 name = raw_input("What is your name? ")
 ```
 
@@ -771,7 +771,7 @@ In name will be stored whatever the user types in. Within the parentheses, you c
 
 We can also take command line arguments, which are arguments input on the command line when the file is run. For example, say we have the following Python file:
 
-```
+```python
 # Import needed for command line arguments
 from sys import argv
 
@@ -783,7 +783,7 @@ print("This file is called %s." % my_script)
 
 `argv` always takes at least one argument, which is the name of the script. Others can be input and handled within the program, as shown here. This program could be run by typing this in the command line:
 
-```
+```python
 $ python my_script.py Matt 19
 
 """
@@ -794,7 +794,7 @@ $ python my_script.py Matt 19
 
 We can also read from a file to get input from the user:
 
-```
+```python
 # Get the file name from the user
 file_name = raw_input("Enter a file name: ")
 # Open the file for reading
@@ -805,7 +805,7 @@ print file.read()
 
 If we wanted to, we could even write to the file:
 
-```
+```python
 file_name = raw_input("Enter a file name: ")
 file = open(file_name)
 file.write("Hello File!")
@@ -814,7 +814,7 @@ file.write("Hello File!")
 ## 6.3 Decorator Functions
 As we covered previously, in Python, functions are known as first-class objects, which basically means they can be referred to be name and passed as parameters to a function. A [decorator function](#decorators), then, is a function that takes another function as a parameter and makes some kind of change to it. These changes can be small or large, but normally they can be very helpful. For example:
 
-```
+```python
 def mod_decorator(function):
 	def inner_wrapper();
 		inner_wrapper.mod_count += 1
@@ -826,7 +826,7 @@ def mod_decorator(function):
 
 As we can see, we take a function, then wrap that function with the added functionality to print how many times the modified function has been called, then simply call the function we have been passed. We can then call this modified function here.
 
-```
+```python
 def my_function():
 	print "This is MY function."
 
@@ -843,7 +843,7 @@ decorated_function()
 
 While writing it like this is perfectly legal, Python provides us some additional syntax to make this easier:
 
-```
+```python
 @mod_decorator
 def my_function():
 	"My decorator has been applied automatically!"
@@ -853,7 +853,7 @@ def my_function():
 ## 6.4 pip/requirements.txt
 When your developing a web application, there are certain packages that need to be installed to make up an environment. These packages that are needed for your project are called dependencies. We can install these dependencies easily using a built-in Python function called `pip`. First, we would need to make a file of all our requirements called `requirements.txt`:
 
-```
+```python
 pkg1
 pkg2
 pkg3
@@ -861,13 +861,13 @@ pkg3
 
 This file contains the names of all the packages needed for your application. For example, if we were writing a Flask application, we might need MySQL, a database program, followed by the required version number:
 
-```
+```python
 MySQL-python==1.2.3
 ```
 
 Then, to install all of the packages in our `requirements.txt` folder, we would simply type in this command:
 
-```
+```python
 $ pip install -r requirements.txt
 ```
 
