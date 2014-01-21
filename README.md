@@ -1,11 +1,19 @@
 DevFest Web Development Curriculum
 ==================================
 
+<<<<<<< HEAD
 http://adicu.com/intro-webdev
 
 #### How to use
+=======
+#### Building
+>>>>>>> add build system for md->html
 
-Read through `webdev_curriculum.md` or `webdev_curriculum.html`
+Run the following in the root directory:
+
+    ./build.sh
+
+This generates `.html` files to be viewed in a browser.
 
 #### Solutions
 

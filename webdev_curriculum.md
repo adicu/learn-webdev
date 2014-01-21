@@ -1,8 +1,8 @@
 <a id="top"></a>
 # An Accelerated Introduction to Web Development
 
-<a href="https://github.com/adicu/devfest-webdev"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"></a>
-
+<a href="https://github.com/adicu/devfest-webdev"><img class="github" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"></a>
+ 
 *Building a webapp in Flask.*
 
 Written and developed by [Dan Schlosser](http://danrs.ch) and [ADI](http://adicu.com).

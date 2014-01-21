@@ -5,6 +5,7 @@
 }
 .join + pre {
 	width: 45%;
+  float:left;
 	display: inline-block;
 	margin-top: 0;
 	margin-bottom: 0;
@@ -24,6 +25,14 @@ pre + .clear {
 ul ul {
 	margin-top: 0;
 	margin-bottom: 0;
+}
+
+/* Fork me on Github*/
+img.github {
+  position: absolute;
+  top: 0;
+  right: 0;
+  border: 0;
 }
 
 /* "Responsive" */

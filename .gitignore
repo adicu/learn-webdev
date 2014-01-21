@@ -9,3 +9,5 @@ makeMD.py
 # credentials
 settings.dev
 
+# compiled files
+*.html
