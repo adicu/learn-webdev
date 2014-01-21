@@ -1219,9 +1219,9 @@ Now we have our completed `search.html`:
 </html>
 ```
 
-When the user clicks our `<button>`, a [POST request](#http) will be sent to our `/search` route, with the data from the form being passed in the query string (it will probably look something like `?user_search=my-idea`).  We will have to *refactor*, or rewrite our `search()` method to take data this way, and to display the template if no data is provided.
+When the user clicks our `<button>`, a [POST request](#http) will be sent to our `/search` route, with the data from the form being passed in the POST request body (user_search=my-idea). We will have to *refactor*, or rewrite our `search()` method to take data this way, and to display the template if no data is provided.
 
-Because we will be passing data through the query string instead of the path, we'll change the route from `/search/<search-query>` to `/search` and remove the parameter from the method.  Edit `app.py`:
+To account for the data coming in as a parameter in the request body, we'll change the route from `/search/<search-query>` to `/search` and remove the parameter from the method.  Edit `app.py`:
 
 ```python
 ...
