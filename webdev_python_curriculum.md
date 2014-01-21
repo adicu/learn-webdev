@@ -5,9 +5,9 @@
 
 Written and developed by [Matt Piccolella](mailto:matthew@adicu.com) and [ADI](http://adicu.com).
 
-Credit to [Learn X in Y Minutes: X = Python](#xy) and [Learn Python the Hardway](#hardway).
+Credit to [Learn X in Y Minutes: X = Python](http://learnxinyminutes.com/docs/python/) and [Learn Python the Hardway](http://learnpythonthehardway.org).
 
-------
+----------
 
 <a id="getting-started"></a>
 ## Getting Started
@@ -15,10 +15,10 @@ Credit to [Learn X in Y Minutes: X = Python](#xy) and [Learn Python the Hardway]
 Before we start building our first web application, we must become familiar with the Python programming language.
 
 ### What is Python?
-[Python](#python) is a dynamic programming language that is similar to Perl, Ruby, and Java. It is known for its clear, readable syntax, its dynamic data types, and its usage in many different types of application development.
+[Python](http://www.python.org) is a dynamic programming language that is similar to Perl, Ruby, and Java. It is known for its clear, readable syntax, its dynamic data types, and its usage in many different types of application development.
 
 ### How will we use Python?
-We will use Python to develop a web application. We will do this using the Python web microframework called [Flask](#flask), which allows developers to rapidly create fast and powerful webapps.
+We will use Python to develop a web application. We will do this using the Python web microframework called [Flask](http://flask.pocoo.org/), which allows developers to rapidly create fast and powerful webapps.
 
 ### What will this tutorial teach me?
 This introduction is meant to teach only the basics of Python. It is not meant to replace ENGI1006 or any other formal introduction to the language. It is meant only to teach the features of the language most vital to developing webapps.
@@ -861,13 +861,13 @@ pkg3
 
 This file contains the names of all the packages needed for your application. For example, if we were writing a Flask application, we might need MySQL, a database program, followed by the required version number:
 
-```python
+```
 MySQL-python==1.2.3
 ```
 
 Then, to install all of the packages in our `requirements.txt` folder, we would simply type in this command:
 
-```python
+```
 $ pip install -r requirements.txt
 ```
 
@@ -877,6 +877,21 @@ Then all of your required packages are installed.
 ## 6.5 Exercise 6
 ___________
 
+## Additional Resources
+
+Along with this tutorial, there is a wealth of information available on Python all across the web. Below are some good places to start:
+
+[Learn X in Y Minutes: X=Python](http://learnxinyminutes.com/docs/python/)
+
+[Learn Python the Hard Way](http://learnpythonthehardway.org)
+
+[Official Python Documentation](http://docs.python.org/3/)
+
+[ADI Resources](http://adicu.com/learn/)
+
+[Codecademy](http://www.codecademy.com/tracks/python)
+
+[TryPython](http://www.trypython.org)
 
 
 
