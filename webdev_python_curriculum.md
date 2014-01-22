@@ -3,11 +3,11 @@
 
 *Preparing you to build your first web application*
 
-Written and developed by [Matt Piccolella](mailto:matthew@adicu.com) and [ADI](http://adicu.com).
+Written and developed by [Matt Piccolella](mailto:matthew@adicu.com) and [ADI](adi).
 
-Credit to [Learn X in Y Minutes: X = Python](#xy) and [Learn Python the Hardway](#hardway).
+Credit to [Learn X in Y Minutes: X = Python][xy] and [Learn Python the Hardway][hardway].
 
-------
+----------
 
 <a id="getting-started"></a>
 ## Getting Started
@@ -15,10 +15,10 @@ Credit to [Learn X in Y Minutes: X = Python](#xy) and [Learn Python the Hardway]
 Before we start building our first web application, we must become familiar with the Python programming language.
 
 ### What is Python?
-[Python](#python) is a dynamic programming language that is similar to Perl, Ruby, and Java. It is known for its clear, readable syntax, its dynamic data types, and its usage in many different types of application development.
+[Python][python] is a dynamic programming language that is similar to Perl, Ruby, and Java. It is known for its clear, readable syntax, its dynamic data types, and its usage in many different types of application development.
 
 ### How will we use Python?
-We will use Python to develop a web application. We will do this using the Python web microframework called [Flask](#flask), which allows developers to rapidly create fast and powerful webapps.
+We will use Python to develop a web application. We will do this using the Python web microframework called [Flask][flask], which allows developers to rapidly create fast and powerful webapps.
 
 ### What will this tutorial teach me?
 This introduction is meant to teach only the basics of Python. It is not meant to replace ENGI1006 or any other formal introduction to the language. It is meant only to teach the features of the language most vital to developing webapps.
@@ -86,7 +86,8 @@ This is also the way you should write the code for the exercises. Perhaps indivi
 	- [6.1 Modules](#modules)
 	- [6.2 User Input](#input)
 	- [6.3 Decorator Functions](#decorator)
-	- [6.3 pip/requirements.txt](#pip)
+	- [6.4 pip/requirements.txt](#pip)
+	- [6.5 Exercise 6](#exercise6)
 
 
 ------------------------------
@@ -682,7 +683,7 @@ animal.get_kingdom() # = "Animalia"
 ## 5.6 Static Methods
 Static methods, unlike class methods or instance methods, need neither a class or an instance. They are called using the class name.
 
-```python
+```
 class Animal(object):
     # Class Attribute
     kingdom = "Animalia"
@@ -706,7 +707,6 @@ class Animal(object):
 
 # Call our static method
 Animal.boo() # = "BOO!"
-
 ```
 
 <a id="exercise5"></a>
@@ -714,11 +714,223 @@ Animal.boo() # = "BOO!"
 _______________
 <a id="goodies"></a>
 # 6.0 More Goodies
+While the previous five sections provide a very thorough introduction to the basics of Python, this section will provide you with some extra information about the language. You will find many of these features to be very helpful to you when you start developing your web application and as your Python programs become more complex.
+<a id="modules"></a>
+## 6.1 Modules
+As you start to write longer and more complex programs, you can imagine there will be lots of functions you want to be able to use. Along with that, your files will begin to get very long, to the point where you may lose control of your program. For this, we have modules.
+
+Modules are regular Python files that contain definitions of functions that can later be imported for use in another file. Many very important functions are given to us in the Python language, all we need to do is important them! For example, Python comes with a default module called `math`, which provides many important function for mathematical operations. If we wanted to use these functions, all we have to do is import it:
+
+```python
+# your_math.py
+import math
+
+answer_1 = math.factorial(4) # 24
+answer_2 = math.sqrt(4) # 2
+```
+
+If you don't want to have to say `math` everytime you use a function, you could import the specific functions you want to use:
+
+```python
+from math import pow, fabs 
+
+answer_1 = pow(4,2) # 16
+answer_2 = fabs(-5) # 5
+```
+
+You can even import all the functions from a module using an asterisk:
+
+```python
+from my_math import *
+```
+Though, remember that this is generally a bad idea, as you could run in to collisions with function names.
+
+Also, we can store constants in modules! We simply access them with the dot syntax.
+
+```python
+import math
+
+pi = math.pi #3.1415...
+```
+
+<a id="input"></a>
+## 6.2 User Input
+Nearly every useful program takes some kind of input from the user. Python gives us several ways to do this, the first of which is text from the command line.
+
+We do this using the function `raw_input()`, which takes a line of text typed in by a user on the command line interface and stores it into a variable. For example:
+
+```python
+name = raw_input("What is your name? ")
+```
+
+In name will be stored whatever the user types in. Within the parentheses, you can put a prompt, which is meant to prompt the user to instruct them on what to input.
+
+We can also take command line arguments, which are arguments input on the command line when the file is run. These arguments are stored as a [tuple](#tuples), which can then be packed or unpacked in the same way that we discussed before. For example, say we have the following Python file:
+
+```python
+# Import needed for command line arguments
+from sys import argv
+
+my_script, my_name, my_age = argv
+
+print("Hello %s, you are %s years old." % (my_name, my_age))
+print("This file is called %s." % my_script)
+```
+
+`argv` always takes at least one argument, which is the name of the script. Others can be input and handled within the program, as shown here. This program could be run by typing this in the command line:
+
+```python
+$ python my_script.py Matt 19
+
+"""
+"Hello Matt, you are 19 years old."
+"This file is called my_script.py."
+"""
+```
+
+We can also read from a file to get input from the user:
+
+```python
+# Get the file name from the user
+file_name = raw_input("Enter a file name: ")
+# Open the file for reading
+file = open(file_name)
+# Print the contents of the file
+print file.read()
+# Remember to close the file
+file.close()
+```
+
+If we wanted to, we could even write to the file:
+
+```python
+file_name = raw_input("Enter a file name: ")
+file = open(file_name)
+file.write("Hello File!")
+```
+
+However, there is another way to read files that prevents having to close the file after you finish. It is generally preferred to use this method:
+
+```python
+# 'r' stands for 'read'
+with open('my_file', 'r') as f:
+	data = f.read()
+```
+
+<a id="decorator"></a>
+## 6.3 Decorator Functions
+As we covered previously, in Python, functions are known as first-class objects, which basically means they can be referred to be name and passed as parameters to a function. A [decorator function](http://www.brianholdefehr.com/decorators-and-functional-python), then, is a function that takes another function as a parameter and makes some kind of change to it. These changes can be small or large, but normally they can be very helpful. For example:
+
+```python
+def mod_decorator(function):
+	def inner_wrapper();
+		inner_wrapper.mod_count += 1
+		print("I have modified this function " + inner_wrapper.mod_count + " times.")
+		function()
+	inner_wrapper.mod_count = 0
+	return inner_wrapper
+```
+
+As we can see, we take a function, then wrap that function with the added functionality to print how many times the modified function has been called, then simply call the function we have been passed. We can then call this modified function here.
+
+```python
+def my_function():
+	print "This is MY function."
+
+decorated_function = mod_decorator(my_function)
+
+decorated_function() 
+# "I have modified this function 1 times."
+# "This is MY function."
+
+decorated_function()
+# "I have modified this function 2 times."
+# "This is MY function."
+```
+
+While writing it like this is perfectly legal, Python provides us some additional syntax to make this easier:
+
+```python
+@mod_decorator
+def my_function():
+	"My decorator has been applied automatically!"
+```
+
+While this provides a basic introduction to decorator functions, they are a hard concept to understand from a very low level. Please refer to the [following link][stackflow].
+<a id="pip"></a>
+## 6.4 pip/requirements.txt
+When your developing a web application, there are certain packages that need to be installed to make up an environment. These packages that are needed for your project are called dependencies. We can install these dependencies easily using a built-in Python function called [`pip`][pip]. First, we would need to make a file of all our requirements called `requirements.txt`:
+
+```python
+pkg1
+pkg2
+pkg3
+```
+
+This file contains the names of all the packages needed for your application. For example, if we were writing a Flask application, we might need MySQL, a database program, followed by the required version number:
+
+```
+MySQL-python==1.2.3
+```
+
+Then, to install all of the packages in our `requirements.txt` folder, we would simply type in this command:
+
+```
+$ pip install -r requirements.txt
+```
+
+Then all of your required packages are installed.
+
+But what do you put in your `requirements.txt`? A useful command to help you build these files is `pip freeze`, which can be used to print a list of installed packages in the correct format for your `requirements.txt` file. This output can then be copied and pasted into your file:
+
+```
+$ pip freeze
+Jinja2==2.6
+Pygments==1.5
+Sphinx==1.1.3
+docutils==0.9.1
+```
+
+A useful command in unix that can be used to copy these to your `requirements.txt` file is called a redirect. A redirect, in Unix, redirects the output of a command to another location, usually a text file. This is done using the '>' character. To redirect our requirements to our `requirements.txt` file, we simply run this command:
+
+```
+$ pip freeze > requirements.txt
+```
+
+Once these requirements have been copied, we can then run our `pip install` command.
+
+<a id="exercise6"></a>
+## 6.5 Exercise 6
+___________
+
+## Additional Resources
+
+Along with this tutorial, there is a wealth of information available on Python all across the web. Below are some good places to start:
+
+[Learn X in Y Minutes: X=Python][xy]
+
+[Learn Python the Hard Way][learn]
+
+[Official Python Documentation][pydoc]
+
+[ADI Resources][learn]
+
+[Codecademy][codecademy]
+
+[TryPython][try]
+
+
 
 
 [python]: http://www.python.org
 [flask]: http://flask.pocoo.org/
+[pydoc]: http://docs.python.org/3/
 [learn]: http://adicu.com/learn
 [xy]: http://learnxinyminutes.com/docs/python/
 [hardway]: http://learnpythonthehardway.org
-
+[decorators]: http://www.brianholdefehr.com/decorators-and-functional-python
+[codecademy]: http://www.codecademy.com/tracks/python
+[try]: http://www.trypython.org
+[adi]: http://adicu.com
+[stackflow]: http://stackoverflow.com/questions/739654/how-can-i-make-a-chain-of-function-decorators-in-python/1594484#1594484
+[pip]: http://www.pip-installer.org
