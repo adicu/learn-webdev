@@ -883,7 +883,7 @@ $ pip install -r requirements.txt
 
 Then all of your required packages are installed.
 
-But what do you put in your `requirements.txt`?A useful command to help you build these files is `pip freeze`, which can be used to print a list of installed packages in the correct format for your `requirements.txt` file. This output can then be copied and pasted into your file:
+But what do you put in your `requirements.txt`? A useful command to help you build these files is `pip freeze`, which can be used to print a list of installed packages in the correct format for your `requirements.txt` file. This output can then be copied and pasted into your file:
 
 ```
 $ pip freeze
@@ -892,6 +892,13 @@ Pygments==1.5
 Sphinx==1.1.3
 docutils==0.9.1
 ```
+
+A useful command in unix that can be used to copy these to your `requirements.txt` file is called a redirect. A redirect, in Unix, redirects the output of a command to another location, usually a text file. This is done using the '>' character. To redirect our requirements to our `requirements.txt` file, we simply run this command:
+
+```
+$ pip freeze > requirements.txt
+```
+
 Once these requirements have been copied, we can then run our `pip install` command.
 
 <a id="exercise6"></a>
