@@ -15,6 +15,13 @@ Written and developed by [Dan Schlosser](http://danrs.ch) and [ADI](http://adicu
 
 For the purposes of learning to make a web application using [Flask](#flask), we will write an entire web application, taking time to dissect how each piece functions and fits.  Each section is intended to be modular, but working in order is recommended.
 
+This document teaches the CSS and HTML programming languages, as well as the Flask Python library.
+
+<a id="prerequisites"></a>
+### Prerequisites
+
+Basic knowledge of the Python programming language is suggested.  If you don't already know Python, checkout [this ADI-developed tutorial](http://adicu.com/intro-webdev/python).  No knowledge of HTML, CSS or Flask is expected or required.
+
 <a id="the-end-product"></a>
 ### The End Product
 
@@ -70,7 +77,6 @@ We will be building a web application throughout this series, called "Has it Bee
 		-	[4.2.1 Installation and Template Setup](#installation-and-template-setup)
 		-	[4.2.2 Using Foundation](#using-foundation)
 		-	[4.2.3 Rewriting Templates](#rewriting-templates)
-		-	[4.2.4 Extension: Using Icon Fonts](#using-icon-fonts)
 
 -------------------------
 
@@ -82,12 +88,16 @@ Much of this tutorial is adapted from the [Flask website][flask].
 <a id="what-is-flask"></a>
 ## 1.1 What is Flask
 
-[Flask][flask] is a microframework; it lets you build web apps using Python.  It is very easy to setup and has excellent documentation on its [website][flask].
+[Flask][flask] is a Python microframework.  Microframeworks are bare-bones, customizable tools that make it easy to build web apps, and Flask lets us do this in Python.  It is very easy to setup and has excellent documentation on its [website][flask].
 
 <a id="how-a-flask-app-works"></a>
 ### 1.1.1 How a Flask App Works
 
-Flask works with a [client-server model][client-server].  The server, written in Python, has functions that take requests from clients (i.e. your web browser) and return web content to be displayed by the client.  Flask servers have the ability of serving [dynamic web pages][dynamic-content], or pages that are generated every time you load the page.  For example, dynamic content could be of such pages include information stored in a database or a user account.
+Flask works with a [client-server model][client-server].  The server, written in Python, has functions that take requests from clients (i.e. your web browser) and return web content to be displayed by the client.  
+
+Think about it like a restaurant:  The patron (the client, or web browser) gets their meal (the web page) by telling it to the waiter (the Flask server).  Then, depending on the order (the request), the waiter gives it to the cook (back-end functions, optional) and then the server returns the cooked meal to the patron. 
+
+In addition to serving static pages (meals off the menu), Flask servers have the ability of serving [dynamic web pages][dynamic-content], or pages that are generated every time you load the page (made to order).  For example, dynamic content could be of such pages include information stored in a database or a user account.
 
 <a id="the-anatomy-of-a-flask-app"></a>
 ### 1.1.2 The Anatomy of a Flask App
@@ -105,17 +115,17 @@ This is a very basic directory structure for a Flask webapp.
 
 -	`ProjectDirectory/` - Everything for your app goes in this folder.  Rename this to the name of your app.
 -	`app.py` - All of the Python/Flask code and server logic gets written in this file.
--	`requirements.txt` - A list of all of the dependancies for your project.  See more about dependancies and installing them in [SOME UNDETERMINED SECTION](#dependancies-in-python).
+-	`requirements.txt` - A list of all of the dependencies for your project.  See more about dependencies and installing them in [section 6.3 of our Python tutorial](http://adicu.com/intro-webdev/python/#pip).
 -	`static/` - This folder holds all your static files.  Static files include:
-	-	`js/` - Javascript files.
-	-	`css/` - CSS files.
-	-	`img/` - Image fls.
+	-	`js/` - Javascript files, which allow interactive web content. We'll talk about these [later](#installation-and-template-setup).
+	-	`css/` - CSS files, which style our app.  We'll talk about these [later](#css) too.
+	-	`img/` - Image files.
 -	`templates/` - This folder holds all your Flask templates.  Our HTML files will go here.  There are special features offered by Flask that make templates different than basic HTML files, explored in [Section 3.2](#templating-in-flask).
 
 <a id="hello-world-in-flask"></a>
 ## 1.2 Hello World in Flask
 
-In order to write the Hello World app, we only need to edit one file: `app.py`.  It's that easy!
+In order to write our first Flask app, we only need to edit one file: `app.py`.  It's that easy!
 
 <a id="editing-app-py"></a>
 ### 1.2.1 Editing app.py
@@ -190,7 +200,7 @@ Flask is great for development.  It offers very helpful error messages and print
 from flask import Flask
 
 app = Flask(__name__)
-app.config["DEBUG"] = True  # Disable this for deployment
+app.config["DEBUG"] = True  # Only include this while you are testing your app
 
 @app.route("/")
 def hello():
@@ -251,7 +261,7 @@ To make our route dynamic, first we will modify the url to take a variable param
 @app.route("/search/<search_query>")
 ```
 
-Then, modify the `search` function to take a string parameter `search_query`, and return that.
+Then, modify the `search` function to take a string variable `search_query`, and return that.
 
 ```python
 @app.route("/search/<search_query>")
