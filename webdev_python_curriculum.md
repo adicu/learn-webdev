@@ -721,33 +721,23 @@ While the previous five sections provide a very thorough introduction to the bas
 ## 6.1 Modules
 As you start to write longer and more complex programs, you can imagine there will be lots of functions you want to be able to use. Along with that, your files will begin to get very long, to the point where you may lose control of your program. For this, we have modules.
 
-Modules are regular Python files that contain definitions of functions that can later be imported for use in another file. For example, say we want to write a class that stores some mathematical operations that we will use in one of our programs. Let's call it `my_math.py`:
-
-```python
-# my_math.py
-def square(n):
-	return n*n
-def cube(n):
-	return n*n*n
-```
-
-If we wanted to use these functions in another class, say `your_math.py`, all you would need to do is import the entire module:
+Modules are regular Python files that contain definitions of functions that can later be imported for use in another file. Many very important functions are given to us in the Python language, all we need to do is important them! For example, Python comes with a default module called `math`, which provides many important function for mathematical operations. If we wanted to use these functions, all we have to do is import it:
 
 ```python
 # your_math.py
-import my_math # Don't need the .py
+import math
 
-answer_1 = my_math.cube(4) # 64
-answer_2 = my_math.square(2) # 4
+answer_1 = math.factorial(4) # 24
+answer_2 = math.sqrt(4) # 2
 ```
 
-If you don't want to have to say `my_math` everytime you use a function, you could import the specific functions you want to use:
+If you don't want to have to say `math` everytime you use a function, you could import the specific functions you want to use:
 
 ```python
-from my_math import square, cube
+from math import pow, fabs 
 
-answer_1 = square(4) # 16
-answer_2 = cube(5) # 125
+answer_1 = pow(4,2) # 16
+answer_2 = fabs(-5) # 5
 ```
 
 You can even import all the functions from a module using an asterisk:
@@ -755,7 +745,15 @@ You can even import all the functions from a module using an asterisk:
 ```python
 from my_math import *
 ```
-Using these imports allows you to use many functions that are already built into Python.
+Though, remember that this is generally a bad idea, as you could run in to collisions with function names.
+
+Also, we can store constants in modules! We simply access them with the dot syntax.
+
+```python
+import math
+
+pi = math.pi #3.1415...
+```
 
 <a id="input"></a>
 ## 6.2 User Input
@@ -769,7 +767,7 @@ name = raw_input("What is your name? ")
 
 In name will be stored whatever the user types in. Within the parentheses, you can put a prompt, which is meant to prompt the user to instruct them on what to input.
 
-We can also take command line arguments, which are arguments input on the command line when the file is run. For example, say we have the following Python file:
+We can also take command line arguments, which are arguments input on the command line when the file is run. These arguments are stored as a [tuple](#tuples), which can then be packed or unpacked in the same way that we discussed before. For example, say we have the following Python file:
 
 ```python
 # Import needed for command line arguments
@@ -801,6 +799,8 @@ file_name = raw_input("Enter a file name: ")
 file = open(file_name)
 # Print the contents of the file
 print file.read()
+# Remember to close the file
+file.close()
 ```
 
 If we wanted to, we could even write to the file:
@@ -810,6 +810,15 @@ file_name = raw_input("Enter a file name: ")
 file = open(file_name)
 file.write("Hello File!")
 ```
+
+However, there is another way to read files that prevents having to close the file after you finish. It is generally preferred to use this method:
+
+```python
+# 'r' stands for 'read'
+with open('my_file', 'r') as f:
+	data = f.read()
+```
+
 <a id="decorator"></a>
 ## 6.3 Decorator Functions
 As we covered previously, in Python, functions are known as first-class objects, which basically means they can be referred to be name and passed as parameters to a function. A [decorator function](http://www.brianholdefehr.com/decorators-and-functional-python), then, is a function that takes another function as a parameter and makes some kind of change to it. These changes can be small or large, but normally they can be very helpful. For example:
@@ -849,9 +858,10 @@ def my_function():
 	"My decorator has been applied automatically!"
 ```
 
+While this provides a basic introduction to decorator functions, they are a hard concept to understand from a very low level. Please refer to the [following link][stackflow].
 <a id="pip"></a>
 ## 6.4 pip/requirements.txt
-When your developing a web application, there are certain packages that need to be installed to make up an environment. These packages that are needed for your project are called dependencies. We can install these dependencies easily using a built-in Python function called `pip`. First, we would need to make a file of all our requirements called `requirements.txt`:
+When your developing a web application, there are certain packages that need to be installed to make up an environment. These packages that are needed for your project are called dependencies. We can install these dependencies easily using a built-in Python function called [`pip`][pip]. First, we would need to make a file of all our requirements called `requirements.txt`:
 
 ```python
 pkg1
@@ -872,6 +882,17 @@ $ pip install -r requirements.txt
 ```
 
 Then all of your required packages are installed.
+
+But what do you put in your `requirements.txt`?A useful command to help you build these files is `pip freeze`, which can be used to print a list of installed packages in the correct format for your `requirements.txt` file. This output can then be copied and pasted into your file:
+
+```
+$ pip freeze
+Jinja2==2.6
+Pygments==1.5
+Sphinx==1.1.3
+docutils==0.9.1
+```
+Once these requirements have been copied, we can then run our `pip install` command.
 
 <a id="exercise6"></a>
 ## 6.5 Exercise 6
@@ -906,4 +927,5 @@ Along with this tutorial, there is a wealth of information available on Python a
 [codecademy]: http://www.codecademy.com/tracks/python
 [try]: http://www.trypython.org
 [adi]: http://adicu.com
-
+[stackflow]: http://stackoverflow.com/questions/739654/how-can-i-make-a-chain-of-function-decorators-in-python/1594484#1594484
+[pip]: http://www.pip-installer.org
