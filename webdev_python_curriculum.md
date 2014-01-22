@@ -96,9 +96,7 @@ Comments are like notes a programmer takes while writing code. Comments do not a
 
 ```python
 # If you only need one line for your comment, use a hash.
-```
 
-```python
 """ 
 If you want a comment that spans multiple lines, 
 you can use triple quotes at the beginning and end.
