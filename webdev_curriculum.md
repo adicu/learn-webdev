@@ -528,7 +528,7 @@ Path | Description
 [`/json/color/e0d1dd`](http://www.colr.org/json/color/e0d1dd) | data for the color with hex value `e0d1dd`
 [`/json/colors/e0d1dd,95604a`](http://www.colr.org/json/colors/e0d1dd,95604a) | data for the colors `e0d1dd` and `95604a`
 [`/json/color/random`](http://www.colr.org/json/color/random) | data for random color
-[`/json/colors/random/3`](http://www.colr.org/json/color/random/3) | data for three random colors
+[`/json/colors/random/3`](http://www.colr.org/json/colors/random/3) | data for three random colors
 
 <a id="http"></a>
 ### 2.1.5 Extension: HTTP
@@ -604,7 +604,7 @@ browse the internet a little. Check out [here](http://www.example.com) for an ex
 <a href="#top" class="top" id="the-github-search-api">Top</a>
 ## 2.2 The GitHub Search API
 
-In order to figure out whether or not someone has made the app that was searched for using the our search route (started in [1.3.2](#dynamic-routes)), we'll use the Github Search API.  The first step for using any API is to familiarize yourself with its documentation, and so our first stop is [developer.github.com/v3/search][github-search-docs].  We know that we want to search for repositories, so we'll focus on the ["Search repositories" section][github-search-docs-repos].
+In order to figure out whether or not someone has made the app that was searched for using our search route (started in [1.3.2](#dynamic-routes)), we'll use the Github Search API.  The first step for using any API is to familiarize yourself with its documentation, and so our first stop is [developer.github.com/v3/search][github-search-docs].  We know that we want to search for repositories, so we'll focus on the ["Search repositories" section][github-search-docs-repos].
 
 <a id="determining-the-request-url"></a>
 ### 2.2.1 Determining the Request URL
@@ -656,7 +656,7 @@ You should now have a new file in your current directory named `response.json`. 
 <a id="using-python"></a>
 ### 2.2.3 Using Python
 
-Python has several built in libraries for handling REST APIs, but the external library [Requests][py-requests].  To install it, use [Pip][pip]:
+Python has several built-in libraries for handling REST APIs, but the external library [Requests][py-requests].  To install it, use [Pip][pip]:
 
 ```bash
 $ pip install requests
