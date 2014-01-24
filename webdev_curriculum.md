@@ -398,7 +398,7 @@ Values can also be arrays.  Arrays are comma-separated values surrounded by brac
 }
 ```
 
-The final value type is objects.  Objects are a comma-separated key-value pairs surrounded by braces (`{ }`).  In fact, our entire JSON document is one big object.
+The final value type is the object.  An object is a set of comma-separated key-value pairs surrounded by braces (`{ }`).  In fact, our entire JSON document is one big object.
 
 ```javascript
 {
