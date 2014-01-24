@@ -264,6 +264,12 @@ class MarkdownCompiler():
             title = 'untitled' if not fn else os.path.splitext(os.path.basename(fn))[0]
         return '<title>%s</title>' % title
 
+    def modify_body(self, body):
+        ''' make ammendments to the body before adding it to the html'''
+        from tweaks import fork
+        body = fork.pre_body + body
+        return body
+
     def run(self, mdfile, parser, wholefile=False):
         ''' return full html and body html for view. '''
         self.mdfile = mdfile
@@ -279,7 +285,7 @@ class MarkdownCompiler():
         html += self.get_highlight()
         html += self.get_title()
         html += '</head><body>'
-        html += body
+        html += self.modify_body(body)
         html += '</body>'
         html += '</html>'
         return html, body

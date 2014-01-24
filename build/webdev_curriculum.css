@@ -35,6 +35,18 @@ img.github {
   border: 0;
 }
 
+/* headers and top links*/
+
+#top {
+  position: absolute;
+  top:0;
+}
+
+.top {
+  float:right;
+  margin-top: 20px;
+}
+
 /* "Responsive" */
 body {
   width: 90%;

@@ -1,13 +1,11 @@
 <a id="top"></a>
 # An Accelerated Introduction to Web Development
-
-<a href="https://github.com/adicu/devfest-webdev"><img class="github" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"></a>
  
 *Building a webapp in Flask.*
 
 Written and developed by [Dan Schlosser](http://danrs.ch) and [ADI](http://adicu.com).
 
-<a id="about-this-document"></a>
+<a href="#top" class="top" id="about-this-document">Top</a>
 ## About This Document
 
 <a id="methodology"></a>
@@ -27,7 +25,7 @@ Basic knowledge of the Python programming language is suggested.  If you don't a
 
 We will be building a web application throughout this series, called "Has it Been Made Yet?".  It should let users type in a few keywords for a hackathon idea, and then it will tell them whether or not someone has made that idea and hosted it on [GitHub][github].  GitHub is a social network for [open-source][open-source] code, and is the most popular place for programmers to host their projects (and therefore, a great place to check for our app).
 
-<a id="table-of-contents"></a>
+<a href="#top" class="top" id="table-of-contents">Top</a>
 ## Table of Contents
 
 -	[1.0 Flask](#flask)
@@ -85,7 +83,7 @@ We will be building a web application throughout this series, called "Has it Bee
 
 Much of this tutorial is adapted from the [Flask website][flask].
 
-<a id="what-is-flask"></a>
+<a href="#top" class="top" id="what-is-flask">Top</a>
 ## 1.1 What is Flask
 
 [Flask][flask] is a Python microframework.  Microframeworks are bare-bones, customizable tools that make it easy to build web apps, and Flask lets us do this in Python.  It is very easy to setup and has excellent documentation on its [website][flask].
@@ -122,7 +120,7 @@ This is a very basic directory structure for a Flask webapp.
 	-	`img/` - Image files.
 -	`templates/` - This folder holds all your Flask templates.  Our HTML files will go here.  There are special features offered by Flask that make templates different than basic HTML files, explored in [Section 3.2](#templating-in-flask).
 
-<a id="hello-world-in-flask"></a>
+<a href="#top" class="top" id="hello-world-in-flask">Top</a>
 ## 1.2 Hello World in Flask
 
 In order to write our first Flask app, we only need to edit one file: `app.py`.  It's that easy!
@@ -214,7 +212,7 @@ With this modification, edit the string returned by the `hello()` function and r
 
 	* Restarting on reloader
 
-<a id="working-with-routes"></a>
+<a href="#top" class="top" id="working-with-routes">Top</a>
 ## 1.3 Working with Routes
 
 Let's define a few more routes for our app. Again, [routes][route] are URLs that are supported by the server. We use the [decorator][decorators] `app.route()` to tie the decorated function to the URL given in the parenthesis.
@@ -276,10 +274,10 @@ Save and reload your server as needed, and navigate to `http://localhost:5000/se
 <a id="apis"></a>
 # 2.0 APIs
 
-<a id="api-basics"></a>
-## 2.1 API Basics
-
 At this point, our server can handle searches to our system, but it doesn't do anything with them (it just spits them back out).  What we need next is to search Github for projects with the same keywords and return them to the client.  To do this, we will use Github's [API][api], or Application Programmer Interface.
+
+<a href="#top" class="top" id="api-basics">Top</a>
+## 2.1 API Basics
 
 This section will take a step aside from our Flask project to build a foundation of knowledge around APIs and how they are used.  We will return to our app in [section 2.2](#the-github-search-api).
 
@@ -603,7 +601,7 @@ hit `Ctrl-Shift-I` to open Developer tools and navigate to the "Network" tab (Ma
 browse the internet a little. Check out [here](http://www.example.com) for an example of a successful request, and
 [here](http://www.adicu.com/notfound) for an example of an unsuccessful request.
 
-<a id="the-github-search-api"></a>
+<a href="#top" class="top" id="the-github-search-api">Top</a>
 ## 2.2 The GitHub Search API
 
 In order to figure out whether or not someone has made the app that was searched for using the our search route (started in [1.3.2](#dynamic-routes)), we'll use the Github Search API.  The first step for using any API is to familiarize yourself with its documentation, and so our first stop is [developer.github.com/v3/search][github-search-docs].  We know that we want to search for repositories, so we'll focus on the ["Search repositories" section][github-search-docs-repos].
@@ -829,7 +827,7 @@ A couple of gotchas here:
 
 That's it! You've successfully queried GitHub's API using JavaScript and jQuery.
 
-<a id="authentication"></a>
+<a href="#top" class="top" id="authentication">Top</a>
 ## 2.3 Extension: Authentication
 
 If you refresh your web browser enough times, you may see the expected JSON disappear and be replaced by an error message.
@@ -909,7 +907,7 @@ We've done some really exciting work already, displaying JSON content in all sor
 
 For our web app, we want more than this, however.  We will display not just the raw JSON content, but a user-friendly search experience and an attractive results page.  To do this, we will use [HTML](#html-basics) and [Flask's templates](#templating-in-flask).
 
-<a id="html-basics"></a>
+<a href="#top" class="top" id="html-basics">Top</a>
 ## 3.1 HTML Basics
 
 <a id="what-is-HTML"></a>
@@ -1121,7 +1119,7 @@ Except the `<DOCTYPE>` tag, all of these elements should be children of the `<he
 </script>
 ```
 
-<a id="templating-in-flask"></a>
+<a href="#top" class="top" id="templating-in-flask">Top</a>
 ## 3.2 Templating in Flask
 
 At the most basic level, templates in Flask are HTML documents in the `templates` folder of our project directory.  These HTML documents can have some added features, however.
@@ -1485,7 +1483,7 @@ Make these fixes.
 
 [CSS][css], or Cascading Style Sheets, is a styling language that is used to arrange and stylize HTML elements.  CSS is extremely powerful, but also fairly hard to learn.  Every different browser interprets CSS slightly differently, and there are a lot of tricks and best practices that are hard to learn.  As such, CSS is best learned by lots and lots of practice.  The [ADI Resources][learn] page has links to a lot of different tutorials and walkthroughs, if you want more practice after styling your Flask app.
 
-<a id="css-basics"></a>
+<a href="#top" class="top" id="css-basics">Top</a>
 ## 4.1 CSS Basics
 
 CSS is a very simple language.  At it's core, CSS is made up of three parts: *selectors*, *properties*, and *values*.  Selectors (explored in depth in [section 4.1.2](#advanced-selectors)) are used to select which elements are being styled.  For example:
@@ -1788,7 +1786,6 @@ You can change the background color of an element with the `background-color` at
 ```
 <h1 class="clear"></h1>
 
-![demo-color](img/demo-color.png)
 
 #### Height and Width
 
@@ -1956,7 +1953,7 @@ To [inspect a page in Safari][inspect-safari], you first have to enable the Deve
 -   Press `Cmd`+`Option`+`I`.
 -   Right-click an element on a web page and select "Inspect Element".
 
-<a id="external-libraries"></a>
+<a href="#top" class="top" id="external-libraries">Top</a>
 ## 4.2 External Libraries
 
 Building an entire web app from scratch can be an undertaking.  In order to speed up the process, many web developers use *front-end frameworks*, which are packages of HTML, CSS, and JavaScript that can be included in your web app.

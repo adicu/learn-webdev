@@ -7,9 +7,7 @@ Written and developed by [Matt Piccolella](mailto:matthew@adicu.com) and [ADI](a
 
 Credit to [Learn X in Y Minutes: X = Python][xy] and [Learn Python the Hardway][hardway].
 
-----------
-
-<a id="getting-started"></a>
+<a href="#top" class="top" id="getting-started">Top</a>
 ## Getting Started
 
 Before we start building our first web application, we must become familiar with the Python programming language.
@@ -23,7 +21,6 @@ We will use Python to develop a web application. We will do this using the Pytho
 ### What will this tutorial teach me?
 This introduction is meant to teach only the basics of Python. It is not meant to replace ENGI1006 or any other formal introduction to the language. It is meant only to teach the features of the language most vital to developing webapps.
 
--------------
 ## Using this Document
 
 This document contains a series of six sections, each of which explains a concept of Python that will be valuable to us in building our web application. Each section will end with a short exercise that will ask you to write a little bit of code that ties together what was learned in the previous section. You are not required to type out and run the sample code that we provide, but it will definitely help you to learn Python much more quickly if you do.
@@ -44,8 +41,7 @@ $ python my_file.py
 
 This is also the way you should write the code for the exercises. Perhaps individual files for each exercise will help you to separate your code based on the concepts it covers.
 
-------------------
-<a id="table-of-contents"></a>
+<a href="#top" class="top" id="table-of-contents">Top</a>
 ## Table of Contents
 
 -	[Preface: Comments](#comments)
@@ -88,11 +84,12 @@ This is also the way you should write the code for the exercises. Perhaps indivi
 	- [6.3 Decorator Functions](#decorator)
 	- [6.4 pip/requirements.txt](#pip)
 	- [6.5 Exercise 6](#exercise6)
+-   [Additional Resources](#additionalresources)
 
 
 ------------------------------
-<a id="comments"></a>
-# Preface: Comments
+<a href="#top" class="top" id="comments">Top</a>
+## Preface: Comments
 Comments are like notes a programmer takes while writing code. Comments do not affect the code, and should be used liberally to ensure code can be easily understood later both by yourself and other developers.
 
 ```python
@@ -105,12 +102,13 @@ you can use triple quotes at the beginning and end.
 ```
 
 We will use these throughout this tutorial to make it easier to follow our code. You should do the same when writing your own code!
-<a id="datatypes"></a>
-# 1.0 Data Types and Operators
+
+<a href="#top" class="top" id="datatypes">Top</a>
+## 1.0 Data Types and Operators
 Every programming language needs to store data and a way to work with this data. Python, like other languages, breaks these data into types and provides different ways to interact with them.
 
 <a id="math"></a>
-## 1.1 Math and Numbers
+### 1.1 Math and Numbers
 Numbers in Python are, well, numbers. They act like normal numbers. They can be added, subtracted, multiplied, and divided.
 
 ```python
@@ -138,7 +136,7 @@ If you need to, order your operations using parentheses!
 ((3 + 5) / 4) * 3 # = 6
 ```
 <a id="boolean"></a>
-## 1.2 Booleans
+### 1.2 Booleans
 Booleans are used to store whether something is true or false. We represent these using two values:
 
 ```python
@@ -157,7 +155,7 @@ not False # true
 In addition, we have one more datatype, called `None`. It is similar to `null` in Java, and can be used to check whether an object contains anything. It is seen as being equal to `False`.
 
 <a id="comparisons"></a>
-## 1.3 Comparisons
+### 1.3 Comparisons
 Channel your pre-algebra skills; remember all the mathematical comparisons available to us. These comparisons evaluate to boolean values, and can be used the same ways booleans can be.
 
 ```python
@@ -184,7 +182,7 @@ One more comparison can check the type of an object. This is with the keyword `i
 ```
 
 <a id="strings"></a>
-## 1.4 Strings
+### 1.4 Strings
 We use strings to store text. Use either `'` or `"`, whichever you prefer.
 
 ```python
@@ -202,7 +200,7 @@ We use strings to store text. Use either `'` or `"`, whichever you prefer.
 
 ```
 <a id="print"></a>
-## 1.5 Printing
+### 1.5 Printing
 We'll probably want to be able to print things to the screen. Python gives us two easy ways to do this.
 
 ```python
@@ -211,15 +209,14 @@ print "Here is a second way."
 ```
 
 <a id="exercise1"></a>
-## 1.6 Exercise 1
+### 1.6 Exercise 1
 
--------
-<a id="variablescolls"></a>
-#2.0 Variables and Collections
+<a href="#top" class="top" id="variablescolls">Top</a>
+## 2.0 Variables and Collections
 What happens if we want to use a value more than once? Or what happens if we want to store the result of, say, a comparison or an operation? Or, even better, what if we have the results of several operations that we want to store together? For these things, we use variables and collections.
 
 <a id="variables"></a>
-## 2.1 Variables
+### 2.1 Variables
 Unlike in Java and other languages, we do not specify a type! Also, Python uses a different naming convention than Java, going for underscores instead of capital letters.
 
 ```python
@@ -227,7 +224,7 @@ my_var = 5 + 4
 print my_var # 9
 ```
 <a id="lists"></a>
-## 2.2 Lists
+### 2.2 Lists
 Lists store collections of data indexed by a number, starting at 0. We can start with an empty list, or add some elements to start with:
 
 ```python
@@ -285,7 +282,7 @@ len([8,6,4,3]) # 4
 ```
 
 <a id="tuples"></a>
-## 2.3 Tuples
+### 2.3 Tuples
 Tuples are just like lists, except they use parentheses instead of brackets. Also, they are immutable, which means you cannot change the elements in them.
 
 ```python
@@ -302,7 +299,7 @@ print var_1 + " " + var_2 # "1 2"
 ```
 
 <a id="dictionaries"></a>
-## 2.4 Dictionaries
+### 2.4 Dictionaries
 Think of a dictionary as a key and value pair. Each value has a key, which, instead of a numeric index, is a string that helps to identify a value. We can start with an empty list or a full list, and add elements at any time using a key.
 
 ```python
@@ -338,7 +335,7 @@ We can again use the `in` keyword to check to see if a key exists in a dictionar
 ```
 
 <a id="sets"></a>
-## 2.5 Sets
+### 2.5 Sets
 For you mathy folks, we can also represent sets, which remove duplicate elements from lists. We can declare these two ways:
 
 ```python
@@ -373,15 +370,14 @@ Or we can check if an element is in a set:
 ```
 
 <a id="exercise2"></a>
-## 2.6 Exercise 2
---------
+### 2.6 Exercise 2
 
-<a id="controlflow"></a>
-# 3.0 Control Flow
+<a href="#top" class="top" id="controlflow">Top</a>
+## 3.0 Control Flow
 What good is a program if we can't make decisions? Luckily, we have several tools are our disposal that allow us to make these decisions, which direct the way our program executes in such a way to make it meaningful.
 
 <a id="ifelse"></a>
-## 3.1 If/Else
+### 3.1 If/Else
 We probably want the ability to do something if another condition is met. For this, we have `if`. It is here our boolean values become important:
 
 ```python
@@ -420,7 +416,7 @@ if 4 == 4 and 8 < 4:
 ```
 
 <a id="forloop"></a>
-## 3.2 For Loops
+### 3.2 For Loops
 If we want to iterate through all the elements in a list, a set, or a tuple, we can easily do this using a `for` loop.
 
 ```python
@@ -446,7 +442,7 @@ for i in range(1,100,3):
 Note: The syntax `for (x = 0; x < 10; x = x + 1)` from Java is not valid in Python.
 
 <a id="whileloop"></a>
-## 3.3 While Loops
+### 3.3 While Loops
 While loops are similar to for loops, but instead execute until a condition is no longer true. We can do this with any boolean condition, but while loops are often used with mathematical comparisons.
 
 ```python
@@ -462,7 +458,7 @@ while True:
 ```
 
 <a id="tryexcept"></a>
-## 3.4 Try/Except
+### 3.4 Try/Except
 Sometimes you will run into errors in your code. We saw this when we tried to access an index in a list that didn't exist. For this, we can use a `try/except` clause, similar to a `try/catch` statement in Java. Let's see here:
 
 ```python
@@ -490,13 +486,14 @@ except:
 This can be vital to creating robust programs that DO NOT BREAK. They should be used whenever you are doing 'risky' manipulations, such as dealing with files or user input.
 
 <a id="exercise3"></a>
-## 3.5 Exercise 3
----------------
-<a id="functions"></a>
-# 4.0 Functions
+### 3.5 Exercise 3
+
+<a href="#top" class="top" id="functions">Top</a>
+## 4.0 Functions
 We've seen things like `len(my_list)` and `my_list.append(4)` that perform some action on a piece of data. In Python, we call these things functions.
+
 <a id="definecall"></a>
-## 4.1 Defining and Calling Functions
+### 4.1 Defining and Calling Functions
 To define a function, we simply use the reserved word `def`.
 
 ```python
@@ -513,7 +510,7 @@ var product = multiply(4,7) # = 28
 ```
 
 <a id="arguments"></a>
-## 4.2 Variable Arguments
+### 4.2 Variable Arguments
 Imagine that we didn't know how many parameters we want to pass. Python allows us to handle this situation using asterisks. We can pass an arbitrary number of positional arguments (list elements) using a single asterisk, or an arbitrary number of keyword arguments (dictionary elements) using a double asterisk.
 
 ```python
@@ -537,8 +534,7 @@ keyword_args(**my_dict) # = keyword_args(name="joe", age="17")
 ```
 
 <a id="firstclass"></a>
-
-## 4.3 First Class and Anonymous Functions
+### 4.3 First Class and Anonymous Functions
 
 Interestingly, Python functions can themselves return functions. This is something JavaScript developers may be familiar with. These functions are called first-class functions.
 
@@ -560,16 +556,15 @@ square = g(8) # = 64
 ```
 
 <a id="exercise4"></a>
-## 4.4 Exercise 4
----------
-<a id="classes"></a>
-# 5.0 Classes
+### 4.4 Exercise 4
+
+<a href="#top" class="top" id="classes">Top</a>
+## 5.0 Classes
 
 You may have heard the term 'Object-Oriented Programming.' If you are unfamiliar, this basically means that things should be represented as 'objects,' each of which stores data, called fields, and associated operations, called methods. In Python and other object-oriented programming languages, we instantiate objects by defining classes.
 
 <a id="defineclass"></a>
-
-## 5.1 Defining a Class
+### 5.1 Defining a Class
 
 To define a class in Python, we use the reserved word `class`:
 
@@ -580,7 +575,7 @@ class Animal(object):
 In the parentheses, we put the class from which we are subclassing. In most cases, this will be the object class.
 
 <a id="attributes"></a>
-## 5.2 Class Attributes
+### 5.2 Class Attributes
 
 Each object is going to have attributes, pieces of data that are stored along with it. Some will be shared by all objects of the class. For example, all Animals belong to the same kingdom, Animalia. We call these attributes class attributes.
 
@@ -589,8 +584,7 @@ class Animal(object):
 	kingdom = "Animalia"
 ```
 <a id="initializer"></a>
-
-## 5.3 Initializer
+### 5.3 Initializer
 
 However, classes will also have data that is specific to each instance of that class. For example, each Animal will have its own species or its own name. These attributes are called instance attributes, or sometimes instance variables. We handle these in what is called an initializer, which provides a way for us to create new objects.
 
@@ -627,7 +621,7 @@ animal_1.name # = "Sugar"
 ```
 
 <a id="instance"></a>
-## 5.4 Instance Methods
+### 5.4 Instance Methods
 Instance methods are functions defined within a class that deal specifically with the instance. They often modify or return instance attributes. They, like initializers, must take `self` as their first parameter.
 
 ```python
@@ -652,7 +646,7 @@ animal.speak("woof") # = "Butch says woof"
 ```
 
 <a id="class"></a>
-##5.5 Class Methods
+###5.5 Class Methods
 Class methods, like class attributes, are shared for all instances of the class. Thus, they cannot access any instance attributes or methods. They always take the `cls`, the calling class, as their first argument.
 
 ```python
@@ -680,7 +674,7 @@ animal.get_kingdom() # = "Animalia"
 
 ```
 <a id="static"></a>
-## 5.6 Static Methods
+### 5.6 Static Methods
 Static methods, unlike class methods or instance methods, need neither a class or an instance. They are called using the class name.
 
 ```
@@ -710,13 +704,13 @@ Animal.boo() # = "BOO!"
 ```
 
 <a id="exercise5"></a>
-## 5.7 Exercise 5
-_______________
-<a id="goodies"></a>
-# 6.0 More Goodies
+### 5.7 Exercise 5
+
+<a href="#top" class="top" id="goodies">Top</a>
+## 6.0 More Goodies
 While the previous five sections provide a very thorough introduction to the basics of Python, this section will provide you with some extra information about the language. You will find many of these features to be very helpful to you when you start developing your web application and as your Python programs become more complex.
 <a id="modules"></a>
-## 6.1 Modules
+### 6.1 Modules
 As you start to write longer and more complex programs, you can imagine there will be lots of functions you want to be able to use. Along with that, your files will begin to get very long, to the point where you may lose control of your program. For this, we have modules.
 
 Modules are regular Python files that contain definitions of functions that can later be imported for use in another file. Many very important functions are given to us in the Python language, all we need to do is important them! For example, Python comes with a default module called `math`, which provides many important function for mathematical operations. If we wanted to use these functions, all we have to do is import it:
@@ -754,7 +748,7 @@ pi = math.pi #3.1415...
 ```
 
 <a id="input"></a>
-## 6.2 User Input
+### 6.2 User Input
 Nearly every useful program takes some kind of input from the user. Python gives us several ways to do this, the first of which is text from the command line.
 
 We do this using the function `raw_input()`, which takes a line of text typed in by a user on the command line interface and stores it into a variable. For example:
@@ -818,7 +812,7 @@ with open('my_file', 'r') as f:
 ```
 
 <a id="decorator"></a>
-## 6.3 Decorator Functions
+### 6.3 Decorator Functions
 As we covered previously, in Python, functions are known as first-class objects, which basically means they can be referred to be name and passed as parameters to a function. A [decorator function](http://www.brianholdefehr.com/decorators-and-functional-python), then, is a function that takes another function as a parameter and makes some kind of change to it. These changes can be small or large, but normally they can be very helpful. For example:
 
 ```python
@@ -858,7 +852,7 @@ def my_function():
 
 While this provides a basic introduction to decorator functions, they are a hard concept to understand from a very low level. Please refer to the [following link][stackflow].
 <a id="pip"></a>
-## 6.4 pip/requirements.txt
+### 6.4 pip/requirements.txt
 When your developing a web application, there are certain packages that need to be installed to make up an environment. These packages that are needed for your project are called dependencies. We can install these dependencies easily using a built-in Python function called [`pip`][pip]. First, we would need to make a file of all our requirements called `requirements.txt`:
 
 ```python
@@ -900,9 +894,10 @@ $ pip freeze > requirements.txt
 Once these requirements have been copied, we can then run our `pip install` command.
 
 <a id="exercise6"></a>
-## 6.5 Exercise 6
+### 6.5 Exercise 6
 ___________
 
+<a href="#top" class="top" id="additionalresources">Top</a>
 ## Additional Resources
 
 Along with this tutorial, there is a wealth of information available on Python all across the web. Below are some good places to start:
