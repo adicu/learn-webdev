@@ -656,7 +656,7 @@ You should now have a new file in your current directory named `response.json`. 
 <a id="using-python"></a>
 ### 2.2.3 Using Python
 
-Python has several built-in libraries for handling REST APIs, but the external library [Requests][py-requests].  To install it, use [Pip][pip]:
+Python has several built-in libraries for handling REST APIs, but we will be using the external library [Requests][py-requests].  To install it, use [Pip][pip]:
 
 ```bash
 $ pip install requests
