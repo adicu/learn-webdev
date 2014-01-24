@@ -228,7 +228,7 @@ def name():
   return "Your Name"
 ```
 
-Now we'll apply the decorator `route()`.  inside the parenthesis for the decorator, include the path `"/name"`.  Paths in Flask always start with a `/`.
+Now we'll apply the decorator `route()`.  Inside the parenthesis for the decorator, include the path `"/name"`.  Paths in Flask always start with a `/`.
 
 ```python
 @app.route("/name")
