@@ -228,7 +228,7 @@ def name():
   return "Your Name"
 ```
 
-Now we'll apply the decorator `route()`.  inside the parenthesis for the decorator, include the path `"/name"`.  Paths in Flask always start with a `/`.
+Now we'll apply the decorator `route()`.  Inside the parenthesis for the decorator, include the path `"/name"`.  Paths in Flask always start with a `/`.
 
 ```python
 @app.route("/name")
@@ -284,7 +284,7 @@ This section will take a step aside from our Flask project to build a foundation
 <a id="rest-apis"></a>
 ### 2.1.1 REST APIs
 
-API's let us access external data in an easy, standardized way.  In the webapp world, when we say API we usually mean [REST (or RESTful) API][rest-api], which can be effectively thought of as an API that is accessible at a series of URL addresses. An extremely simple example of a REST API is [placekitten.com](http://placekitten.com), an API that serves images of kitten.  Here's how it works.  If you point your browser to `http://placekitten.com/<width>/<height>`, it returns an picture of kittens with that width and height. If you go to `/g/<width>/<height>` the image will be grayscale.  Go to these urls to see a very basic REST API in action.
+API's let us access external data in an easy, standardized way.  In the webapp world, when we say API we usually mean [REST (or RESTful) API][rest-api], which can be effectively thought of as an API that is accessible at a series of URL addresses. An extremely simple example of a REST API is [placekitten.com](http://placekitten.com), an API that serves images of kitten.  Here's how it works.  If you point your browser to `http://placekitten.com/<width>/<height>`, it returns a picture of a kitten with that width and height. If you go to `/g/<width>/<height>` the image will be grayscale.  Go to these urls to see a very basic REST API in action.
 
 URL | Image
 ------|-----
@@ -306,7 +306,7 @@ From here out we will be using some increasingly complex [URLs][urls], and it is
 This URL breaks up into five parts:
 
 1.	The protocol (`https`): We are using the [HTTPS][https] protocol, which is a secure version of HTTP, detailed in [section 2.1.5](#http).
-2.	The separator (`://`): A colon and two slashes always follow the protocol is used to separate the protocol and the host.
+2.	The separator (`://`): A colon and two slashes always follow the protocol and are used to separate the protocol and the host.
 3.	The host (`api.github.com`): A host is usually a domain name (this is the case for our url), but it could also be an IP Address.
 4.	The path (`/search/repositories`): Everything from the first `/` up to the `?` that starts the query string is the path. When accessing a web page, often these paths will be hierarchical and include a filename at the end, like `/blog/2014/02/post.html`.  When making API calls, these paths are the API method that is being called.  Here, we are searching repositories.
 5.	The query string (`?q=tetris+language:assembly&sort=stars&order=desc`): is a series of key-value pairs of the form `<key>=<value>`. The query string starts with a `?` and each key-value pair is separated by `&`.  The key value pairs here are:
@@ -398,7 +398,7 @@ Values can also be arrays.  Arrays are comma-separated values surrounded by brac
 }
 ```
 
-The final value type is objects.  Objects are a comma-separated key-value pairs surrounded by braces (`{ }`).  In fact, our entire JSON document is one big object.
+The final value type is the object.  An object is a set of comma-separated key-value pairs surrounded by braces (`{ }`).  In fact, our entire JSON document is one big object.
 
 ```javascript
 {
@@ -528,7 +528,7 @@ Path | Description
 [`/json/color/e0d1dd`](http://www.colr.org/json/color/e0d1dd) | data for the color with hex value `e0d1dd`
 [`/json/colors/e0d1dd,95604a`](http://www.colr.org/json/colors/e0d1dd,95604a) | data for the colors `e0d1dd` and `95604a`
 [`/json/color/random`](http://www.colr.org/json/color/random) | data for random color
-[`/json/colors/random/3`](http://www.colr.org/json/color/random/3) | data for three random colors
+[`/json/colors/random/3`](http://www.colr.org/json/colors/random/3) | data for three random colors
 
 <a id="http"></a>
 ### 2.1.5 Extension: HTTP
@@ -604,7 +604,7 @@ browse the internet a little. Check out [here](http://www.example.com) for an ex
 <a href="#top" class="top" id="the-github-search-api">Top</a>
 ## 2.2 The GitHub Search API
 
-In order to figure out whether or not someone has made the app that was searched for using the our search route (started in [1.3.2](#dynamic-routes)), we'll use the Github Search API.  The first step for using any API is to familiarize yourself with its documentation, and so our first stop is [developer.github.com/v3/search][github-search-docs].  We know that we want to search for repositories, so we'll focus on the ["Search repositories" section][github-search-docs-repos].
+In order to figure out whether or not someone has made the app that was searched for using our search route (started in [1.3.2](#dynamic-routes)), we'll use the Github Search API.  The first step for using any API is to familiarize yourself with its documentation, and so our first stop is [developer.github.com/v3/search][github-search-docs].  We know that we want to search for repositories, so we'll focus on the ["Search repositories" section][github-search-docs-repos].
 
 <a id="determining-the-request-url"></a>
 ### 2.2.1 Determining the Request URL
@@ -656,7 +656,7 @@ You should now have a new file in your current directory named `response.json`. 
 <a id="using-python"></a>
 ### 2.2.3 Using Python
 
-Python has several built in libraries for handling REST APIs, but the external library [Requests][py-requests].  To install it, use [Pip][pip]:
+Python has several built-in libraries for handling REST APIs, but we will be using the external library [Requests][py-requests].  To install it, use [Pip][pip]:
 
 ```bash
 $ pip install requests
