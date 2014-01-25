@@ -29,17 +29,21 @@ This document contains a series of six sections, each of which explains a concep
 
 All of the code in this document can be either of two ways. It can be typed in the Python shell, which can be opened by simply typing 'python' into your command line interface once you have installed the language:
 
-```
+``` bash
 $ python
 ```
 
 Or, the code can be typed into a file with the ending '.py' and run from the command line like so:
 
-```
+``` bash
 $ python my_file.py
 ```
 
 This is also the way you should write the code for the exercises. Perhaps individual files for each exercise will help you to separate your code based on the concepts it covers.
+
+### Exercises
+
+There are Exercises at the end of each section, that attempt to summarize the important parts of the section in a programming challenge.  Solutions are available on [Github][github].
 
 <a href="#top" class="top" id="table-of-contents">Top</a>
 ## Table of Contents
@@ -172,7 +176,6 @@ Channel your pre-algebra skills; remember all the mathematical comparisons avail
 
 # Don't forget about chaining!
 1 < 5 < 10 # True
-
 ```
 
 One more comparison can check the type of an object. This is with the keyword `is`. Use `is` when checking if an object is `None`.
@@ -197,7 +200,6 @@ We use strings to store text. Use either `'` or `"`, whichever you prefer.
 
 # Format them too!
 "I like to eat %s and %s" % ("peas", "carrots") # "I like to eat peas and carrots"
-
 ```
 <a id="print"></a>
 ### 1.5 Printing
@@ -210,6 +212,27 @@ print "Here is a second way."
 
 <a id="exercise1"></a>
 ### 1.6 Exercise 1
+
+Start with the following template code. Modify the print statements so that they print appropriately.  Use only the following: 
+
+-   Numbers `3` and `5`
+-   Math symbols `+`, `-`, `*`, `/`
+-   The comparison symbol `<`
+-   No string longer than 10 characters
+
+```python
+# 7
+print 
+
+# 122
+print
+
+# ADI is Awesome
+print 
+
+# True
+print 
+```
 
 <a href="#top" class="top" id="variablescolls">Top</a>
 ## 2.0 Variables and Collections
@@ -239,8 +262,7 @@ We can add and remove from the end of the list:
 my_other_list.append(6) # [1,5,9,6,7,8,6]
 
 # Remove an element from the end
-my_other_list.pop() # [1,5,9,6,7,8]
-
+my_other_list.pop() # 6
 ```
 
 Access and remove elements at certain positions, or even ranges:
@@ -266,7 +288,6 @@ Add lists together:
 
 ```python
 ["first", "second"] + ["third"] # ["first", "second", "third"]
-
 ```
 
 Check if an element is within a list:
@@ -304,7 +325,7 @@ Think of a dictionary as a key and value pair. Each value has a key, which, inst
 
 ```python
 my_dict = {}
-my_other_dict = {"first" : 10, "second", 7}
+my_other_dict = {"first" : 10, "second": 7}
 my_dict["my_key"] = "my_value" # {"my_key" : "my_value"}
 ```
 
@@ -326,6 +347,12 @@ If we want all the keys or all the values in a dictionary, we can get these as l
 ```python
 my_other_dict.keys() # ["first", "second"]
 my_other_dict.values() # [10, 7]
+```
+
+We can find the length of a dictionary (the number of keys) using the `len()` function.
+
+```python
+len(my_other_dict) # 2
 ```
 
 We can again use the `in` keyword to check to see if a key exists in a dictionary:
@@ -363,6 +390,12 @@ We can find difference:
 my_difference = {1,2,3} - {2,4} # {1,3}
 ```
 
+And find the length of a set
+
+```python
+len(my_difference) # 2
+```
+
 Or we can check if an element is in a set:
 
 ```python
@@ -371,6 +404,51 @@ Or we can check if an element is in a set:
 
 <a id="exercise2"></a>
 ### 2.6 Exercise 2
+
+Modify the variables above the line so that all of the print statements print out `True`.
+
+```python
+a =
+b =
+c =
+d =
+e = 
+f =
+
+# Don't edit anything below this comment
+# --------------------------------------
+
+# Prints "True" if a is an int
+print type(a) is int
+print a < 15
+
+# Prints "True" if b is a string
+print type(b) is str
+print b[5] == 'm' and b[0] == "A"
+
+# Prints "True" if c is a list
+print type(c) is list 
+print len(c) == 5
+print 5 in c
+
+# Prints "True" if d is a tuple
+print type(d) is tuple
+print d[2] == "Python!"
+
+# Prints "True" if e is a dictionary
+print type(e) is dict
+print "star" in e
+print 7 in e.values()
+print e.get("fish") == "chips"
+print len(e) == 3
+e["house"] = "cards"
+print len(e) == 3
+
+# Prints "True" if f is a set
+print type(f) is set
+print len(f) == 4
+print len(f & {2,5,7}) == 2
+```
 
 <a href="#top" class="top" id="controlflow">Top</a>
 ## 3.0 Control Flow
@@ -454,7 +532,6 @@ while x < 4:
 # Infinite Loop, must make sure inner loop changes condition
 while True:
 	print("This is an infinite loop.")
-
 ```
 
 <a id="tryexcept"></a>
@@ -487,6 +564,43 @@ This can be vital to creating robust programs that DO NOT BREAK. They should be 
 
 <a id="exercise3"></a>
 ### 3.5 Exercise 3
+
+Find a value for `a` such that all the print statements are `True`.
+
+```python
+a =
+
+# Will your "a" variable pass my evil tests?
+
+# Let's start off simple.  Is it the right type?
+# Muhahahahaha!
+if type(a) is list:
+	print True
+else:
+	print False
+
+# Didn't see this coming, did you?
+for x in a:
+	if not type(x) is int:
+		print False
+	else:
+		print True
+
+# And now, my evil for loop of evil testingness!
+for y in range(a[3]):
+	if y in a:
+		print False
+
+# Don't fall for my "Python Infinite Pit"!!!
+try:
+	a[5] = "Trap!"
+	while True:
+		print False
+except IndexError:
+	print True
+
+# Rats!  Foiled again!
+```
 
 <a href="#top" class="top" id="functions">Top</a>
 ## 4.0 Functions
@@ -558,6 +672,23 @@ square = g(8) # = 64
 <a id="exercise4"></a>
 ### 4.4 Exercise 4
 
+Write the `square` function, which takes in a number and returns its square, and the `squarify` function which uses the `square` function to square all the numbers in a list.  All `print` statements
+
+```python
+# Write the "square" function here
+
+
+# Write the "squarify" function here
+
+
+# Don't edit anything below this comment
+# --------------------------------------
+
+print square(4) == 16
+print square(square(3)) == 81
+print squarify([3,4,9]) == [9, 16, 81]
+```
+
 <a href="#top" class="top" id="classes">Top</a>
 ## 5.0 Classes
 
@@ -617,7 +748,6 @@ animal_1.species # = "Monkey"
 # Change attributes
 animal_1.name = "Sugar"
 animal_1.name # = "Sugar"
-
 ```
 
 <a id="instance"></a>
@@ -671,13 +801,12 @@ class Animal(object):
 animal = Animal("Polly", "Parrot")
 # Call our class method
 animal.get_kingdom() # = "Animalia"
-
 ```
 <a id="static"></a>
 ### 5.6 Static Methods
 Static methods, unlike class methods or instance methods, need neither a class or an instance. They are called using the class name.
 
-```
+```python
 class Animal(object):
     # Class Attribute
     kingdom = "Animalia"
@@ -706,9 +835,29 @@ Animal.boo() # = "BOO!"
 <a id="exercise5"></a>
 ### 5.7 Exercise 5
 
+Write a class called `Human`.  It should have a constructor that takes in a height and weight (in inches and pounds respectively), and they should be stored in instance variables.
+
+Write an instance method called `get_bmi` that returns the BMI of the human.  Note that BMI is `weight/(height^2) * 703`.
+
+> Having a problem with division?  If you divide two integers in Python, the result will be rounded down to the nearest integer.  Try making the numerator a decimal using the float() function before dividing.
+
+```python
+# Write the "Human" class here
+
+
+# Don't edit anything below this comment
+# --------------------------------------
+
+my_human = Human(120, 67)
+print "my_human's height and weight is %s and %s respectively, and it's BMI is %s." % (my_human.height, my_human.weight, my_human.get_bmi())
+
+# Should print "my_human's height and weight is 120 and 67 respectively, and it's BMI is 3.27090277778."
+```
+
 <a href="#top" class="top" id="goodies">Top</a>
 ## 6.0 More Goodies
 While the previous five sections provide a very thorough introduction to the basics of Python, this section will provide you with some extra information about the language. You will find many of these features to be very helpful to you when you start developing your web application and as your Python programs become more complex.
+
 <a id="modules"></a>
 ### 6.1 Modules
 As you start to write longer and more complex programs, you can imagine there will be lots of functions you want to be able to use. Along with that, your files will begin to get very long, to the point where you may lose control of your program. For this, we have modules.
@@ -863,13 +1012,13 @@ pkg3
 
 This file contains the names of all the packages needed for your application. For example, if we were writing a Flask application, we might need MySQL, a database program, followed by the required version number:
 
-```
+```bash
 MySQL-python==1.2.3
 ```
 
 Then, to install all of the packages in our `requirements.txt` folder, we would simply type in this command:
 
-```
+```bash
 $ pip install -r requirements.txt
 ```
 
@@ -877,7 +1026,7 @@ Then all of your required packages are installed.
 
 But what do you put in your `requirements.txt`? A useful command to help you build these files is `pip freeze`, which can be used to print a list of installed packages in the correct format for your `requirements.txt` file. This output can then be copied and pasted into your file:
 
-```
+```bash
 $ pip freeze
 Jinja2==2.6
 Pygments==1.5
@@ -887,7 +1036,7 @@ docutils==0.9.1
 
 A useful command in unix that can be used to copy these to your `requirements.txt` file is called a redirect. A redirect, in Unix, redirects the output of a command to another location, usually a text file. This is done using the '>' character. To redirect our requirements to our `requirements.txt` file, we simply run this command:
 
-```
+```bash
 $ pip freeze > requirements.txt
 ```
 
@@ -895,6 +1044,32 @@ Once these requirements have been copied, we can then run our `pip install` comm
 
 <a id="exercise6"></a>
 ### 6.5 Exercise 6
+
+Write a program called `sort.py` that takes in a string of numbers (like `36427478554`), and then prints the string out in the same format, but sorted.
+
+You can sort a list by calling `.sort()` on it: 
+
+```python
+my_array = [3,1,2]
+my_array.sort() # [1,2,3]``
+```
+
+Also, the `int()` and `str()` functions convert to and from strings and ints:
+
+```python
+x = 7
+x_as_string = str(x)
+x == int(x_as_string) # True
+```
+
+Example terminal usage:
+
+```bash
+$ python sort.py 
+Enter the string of numbers: 555987654321
+123455556789
+```
+
 ___________
 
 <a href="#top" class="top" id="additionalresources">Top</a>
@@ -916,7 +1091,7 @@ Along with this tutorial, there is a wealth of information available on Python a
 
 
 
-
+[github]: https://github.com/adicu/devfest-webdev
 [python]: http://www.python.org
 [flask]: http://flask.pocoo.org/
 [pydoc]: http://docs.python.org/3/
