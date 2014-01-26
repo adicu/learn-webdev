@@ -267,7 +267,8 @@ class MarkdownCompiler():
     def modify_body(self, body):
         ''' make ammendments to the body before adding it to the html'''
         from tweaks import fork
-        body = fork.pre_body + body
+        from tweaks import analytics
+        body = fork.pre_body + body + analytics.script
         return body
 
     def run(self, mdfile, parser, wholefile=False):
