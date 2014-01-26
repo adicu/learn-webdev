@@ -18,9 +18,9 @@ def website():
 
 @app.route("/search/<search_query>")
 def search(search_query):
-  url = "https://api.github.com/search/repositories?q=" + search_query
-  response_dict = requests.get(url).json()
-  return jsonify(response_dict)
+    url = "https://api.github.com/search/repositories?q=" + search_query
+    response_dict = requests.get(url).json()
+    return jsonify(response_dict)
 
 def parse_response(response_dict):
     clean_dict = {

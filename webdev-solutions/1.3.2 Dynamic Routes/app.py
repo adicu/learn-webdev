@@ -17,7 +17,7 @@ def website():
 
 @app.route("/search/<search_query>")
 def search(search_query):
-  return search_query
+	return search_query
 
 if __name__ == "__main__":
     app.run()
