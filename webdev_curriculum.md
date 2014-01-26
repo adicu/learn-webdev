@@ -39,6 +39,8 @@ We will be building a web application throughout this series, called "Has it Bee
 	-	[1.3 Working with Routes](#working-with-routes)
 		-	[1.3.1 Static Routes](#static-routes)
 		-	[1.3.2 Dynamic Routes](#dynamic-routes)
+		-	[1.3.3 Extension: The Add Route](#the-add-route)
+		-	[1.3.4 Extension: Custom Error Messages](#custom-error-messages)
 -	[2.0 APIs](#apis)
 	-	[2.1 API Basics](#api-basics)
 		-	[2.1.1 REST APIs](#rest-apis)
@@ -215,7 +217,7 @@ With this modification, edit the string returned by the `hello()` function and r
 <a href="#top" class="top" id="working-with-routes">Top</a>
 ## 1.3 Working with Routes
 
-Let's define a few more routes for our app. Again, [routes][route] are URLs that are supported by the server. We use the [decorator][decorators] `app.route()` to tie the decorated function to the URL given in the parenthesis.
+Let's define a few more routes for our app. Again, [routes][route] are paths that can be visited by the user of the app. We use the [decorator][decorators] `app.route("/somepath")` to tie the decorated function to the path given in the parenthesis.
 
 <a id="static-routes"></a>
 ### 1.3.1 Static Routes
@@ -228,7 +230,7 @@ def name():
   return "Your Name"
 ```
 
-Now we'll apply the decorator `route()`.  Inside the parenthesis for the decorator, include the path `"/name"`.  Paths in Flask always start with a `/`.
+Now we'll apply the decorator `app.route()`.  Inside the parenthesis for the decorator, include the path `"/name"`.  Paths in Flask always start with a `/`.
 
 ```python
 @app.route("/name")
@@ -268,6 +270,76 @@ def search(search_query):
 ```
 
 Save and reload your server as needed, and navigate to `http://localhost:5000/search/test` and see `test` appear as the returned page.  If you change what comes after the `/search/` in the URL, it will be displayed in the browser.  We will soon modify this route to return actual search results.
+
+<a id="the-add-route"></a>
+### 1.3.3 Extension: The Add Route
+
+Let's make a dynamic route that adds two numbers (just for practice).  Just like with all the other routes, we'll start by writing the associated function.
+
+```python
+def add(x, y):
+	return x + y
+```
+
+Now, we'll apply our decorator.  What goes inside the parenthesis? We'll start with `"/add"`, and then we add `/<varname>` for each variable, like so:
+
+```python
+@app.route("/add/<x>/<y>")
+def add(x, y):
+	return x + y
+```
+
+This might look good, but if you try and visit `localhost:5000/add/3/4`, you'll see `34` displayed!  Why is this? Flask treats all variables as strings, so we were performing string concatenation, not integer addition!
+
+Let's change our function so it adds `x` and `y` as integers:
+
+```python
+@app.route("/add/<x>/<y>")
+def add(x, y):
+	return int(x) + int(y)
+```
+
+Great!  Or maybe not.  If we run our server and visit `localhost:5000/add/3/4`, we'll see `TypeError: 'int' object is not callable`.  This is because we can *only return strings*.  Convert our sum back to string after summing and we're done.
+
+```python
+@app.route("/add/<x>/<y>")
+def add(x, y):
+	return str(int(x) + int(y))
+```
+
+<a id="custom-error-messages"></a>
+### 1.3.4 Extension: Custom Error Messages
+
+We now have a good deal of paths that users of our app can visit: `/`, `/name`, `/website`, `/search/<search_query>`, and `/add/<x>/<y>`.  But what happens if the user navigates to a path other than these?
+
+With your server reloaded, point your browser to `localhost:5000/test` (which we don't have a route for).  You'll see an error message that says "Not Found".  This error is called a *404 error* (we'll go into why it's called "404" in [section 2.1.5](#http)).  A 404 error is shown whenever the client requests a path that the server doesn't support.  
+
+With Flask, we can create custom 404 error pages.  To do this, we use the `app.errorhandler(code)` decorator instead of `app.route(path)`, and modify what we return slightly.
+
+First, create a function to handle the 404 error.
+
+```python
+def page_not_found():
+	return "Sorry, this page was not found."
+```
+
+Next, apply the decorator, passing in the error code `404`. We'll also need to add a function parameter into the `page_not_found` function as well; let's call this `error`.
+
+```python
+@app.errorhandler(404)
+def page_not_found(error):
+	return "Sorry, this page was not found."
+```
+
+When we implement error pages in Flask, we also have to indicate to the client's browser that we are returning an error message.  To do this, we return a [tuple](python/#tuples) containing the message and the error code:
+
+```python
+@app.errorhandler(404)
+def page_not_found(error):
+	return "Sorry, this page was not found.", 404
+```
+
+Again, the 404 error code tells the browser that the page was "Not Found".  Visit `localhost:5000/test` to see our custom message in action!
 
 ------------------------
 
