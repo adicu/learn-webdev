@@ -15,4 +15,4 @@ This generates `.html` files to be viewed in a browser.
 
 #### Solutions
 
-All solutions are available by section in the `solutions/` folder.
+All solutions are available by section in the `webdev-solutions/` and `python-solutions` folders.
