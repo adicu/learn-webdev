@@ -654,7 +654,7 @@ Interestingly, Python functions can themselves return functions. This is somethi
 
 ```python
 def get_multiplier_function():
-	def multipler(a,b):
+	def multiplier(a,b):
 		return a * b
 	return multiplier
 
@@ -1089,6 +1089,8 @@ Along with this tutorial, there is a wealth of information available on Python a
 
 [TryPython][try]
 
+[Real Python][real]
+
 
 
 [github]: https://github.com/adicu/devfest-webdev
@@ -1104,3 +1106,4 @@ Along with this tutorial, there is a wealth of information available on Python a
 [adi]: http://adicu.com
 [stackflow]: http://stackoverflow.com/questions/739654/how-can-i-make-a-chain-of-function-decorators-in-python/1594484#1594484
 [pip]: http://www.pip-installer.org
+[real]: http://realpython.com
