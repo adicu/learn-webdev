@@ -1,4 +1,4 @@
-DevFest Web Development Curriculum
+ADI Intro Web Development Curriculum
 ==================================
 
 http://adicu.com/intro-webdev
