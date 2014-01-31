@@ -17,6 +17,17 @@ This generates `.html` files to be viewed in a browser.
 
 All solutions are available by section in the `webdev-solutions/` and `python-solutions/` folders.
 
+#### Using Vagrant
+
+We support running with vagrant!  [Install and setup Vagrant], and then:
+
+    $ vagrant up # launches the box
+    $ vagrant ssh # ssh into the box
+    # You are now in the vagrant instance
+    $ cd /vagrant # go to the code
+    $ cd <solutions folder> # Ex: cd webdev-solutions/1.3.2\ Dynamic\ Routes
+    # Run the solution # Ex: python app.py
+
 #### Directory Structure
 
 ##### build/
