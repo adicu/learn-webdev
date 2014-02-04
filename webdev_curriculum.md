@@ -150,11 +150,11 @@ def hello():
     return "Hello World!"
 ```
 
-Finally, call `app.run()` when the file is executed.  Once `app.run()` is called, the server will start accepting requests from the client.
+Finally, call `app.run(host="0.0.0.0")` when the file is executed.  Once `app.run(host="0.0.0.0")` is called, the server will start accepting requests from the client.
 
 ```python
 if __name__ == "__main__":
-    app.run()
+    app.run(host="0.0.0.0")
 ```
 
 This leaves us with a completed Hello World program in Flask:
@@ -169,7 +169,7 @@ def hello():
     return "Hello World!"
 
 if __name__ == "__main__":
-    app.run()
+    app.run(host="0.0.0.0")
 ```
 
 <a id="running-a-flask-app"></a>
@@ -207,7 +207,7 @@ def hello():
     return "Hello World!"
 
 if __name__ == "__main__":
-    app.run()
+    app.run(host="0.0.0.0")
 ```
 
 With this modification, edit the string returned by the `hello()` function and refresh your browser to watch it change!  When you run the server now, it should also print:
