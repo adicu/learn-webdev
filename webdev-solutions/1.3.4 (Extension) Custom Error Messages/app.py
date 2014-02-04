@@ -28,4 +28,4 @@ def page_not_found(error):
 	return "Sorry, this page was not found.", 404
 
 if __name__ == "__main__":
-    app.run()
+    app.run(host="0.0.0.0")

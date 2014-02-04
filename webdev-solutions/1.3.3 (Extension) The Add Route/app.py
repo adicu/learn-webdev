@@ -24,4 +24,4 @@ def add(x, y):
 	return str(int(x) + int(y))
 
 if __name__ == "__main__":
-    app.run()
+    app.run(host="0.0.0.0")

@@ -20,4 +20,4 @@ def search(search_query):
 	return search_query
 
 if __name__ == "__main__":
-    app.run()
+    app.run(host="0.0.0.0")
