@@ -665,7 +665,7 @@ product = multiplier(8,7) # = 56
 Also, what if you had a function that you only wanted to use once, and thus you didn't want to give it a name? These functions are called anonymous functions, and Python provides us with the word `lambda` to declare these:
 
 ```python
-g = lambda x: return x * x
+g = lambda x: x * x
 square = g(8) # = 64
 ```
 
@@ -794,13 +794,14 @@ class Animal(object):
         return "%s says %s" % (self.name, msg)
         
     # Class Method
-    def get_kingdom(cls):
+    @classmethod
+    def get_kingdom(cls):   # "cls" refers to the class that calls get_kingdom
     	return cls.kingdom
 
 # Instantiate an Animal object
 animal = Animal("Polly", "Parrot")
-# Call our class method
-animal.get_kingdom() # = "Animalia"
+# Call our class method w/ the class
+Animal.get_kingdom() # = "Animalia"
 ```
 <a id="static"></a>
 ### 5.6 Static Methods
@@ -821,10 +822,12 @@ class Animal(object):
         return "%s says %s" % (self.name, msg)
 
     # Class Method
+    @classmethod
     def get_kingdom(cls):
         return cls.kingdom
         
     # Static Method
+    @staticmethod
     def boo():
     	return "BOO!"
 
@@ -1079,17 +1082,13 @@ Along with this tutorial, there is a wealth of information available on Python a
 
 [Learn X in Y Minutes: X=Python][xy]
 
-[Learn Python the Hard Way][learn]
+[Learn Python the Hard Way][hardway]
 
 [Official Python Documentation][pydoc]
 
 [ADI Resources][learn]
 
 [Codecademy][codecademy]
-
-[TryPython][try]
-
-[Real Python][real]
 
 
 
@@ -1102,8 +1101,6 @@ Along with this tutorial, there is a wealth of information available on Python a
 [hardway]: http://learnpythonthehardway.org
 [decorators]: http://www.brianholdefehr.com/decorators-and-functional-python
 [codecademy]: http://www.codecademy.com/tracks/python
-[try]: http://www.trypython.org
 [adi]: http://adicu.com
 [stackflow]: http://stackoverflow.com/questions/739654/how-can-i-make-a-chain-of-function-decorators-in-python/1594484#1594484
 [pip]: http://www.pip-installer.org
-[real]: http://realpython.com
