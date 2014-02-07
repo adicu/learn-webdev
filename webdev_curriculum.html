@@ -479,9 +479,9 @@ def hello():
     return &quot;Hello World!&quot;
 </code></pre>
 
-<p>Finally, call <code>app.run()</code> when the file is executed.  Once <code>app.run()</code> is called, the server will start accepting requests from the client.</p>
+<p>Finally, call <code>app.run(host="0.0.0.0")</code> when the file is executed.  Once <code>app.run(host="0.0.0.0")</code> is called, the server will start accepting requests from the client.</p>
 <pre><code class="python">if __name__ == &quot;__main__&quot;:
-    app.run()
+    app.run(host=&quot;0.0.0.0&quot;)
 </code></pre>
 
 <p>This leaves us with a completed Hello World program in Flask:</p>
@@ -494,7 +494,7 @@ def hello():
     return &quot;Hello World!&quot;
 
 if __name__ == &quot;__main__&quot;:
-    app.run()
+    app.run(host=&quot;0.0.0.0&quot;)
 </code></pre>
 
 <p><a id="running-a-flask-app"></a></p>
@@ -524,7 +524,7 @@ def hello():
     return &quot;Hello World!&quot;
 
 if __name__ == &quot;__main__&quot;:
-    app.run()
+    app.run(host=&quot;0.0.0.0&quot;)
 </code></pre>
 
 <p>With this modification, edit the string returned by the <code>hello()</code> function and refresh your browser to watch it change!  When you run the server now, it should also print:</p>
@@ -612,7 +612,7 @@ def page_not_found(error):
     return &quot;Sorry, this page was not found.&quot;
 </code></pre>
 
-<p>When we implement error pages in Flask, we also have to indicate to the client's browser that we are returning an error message.  To do this, we return a <a href="file:///Users/dan/working/devfest-webdev/python/#tuples">tuple</a> containing the message and the error code:</p>
+<p>When we implement error pages in Flask, we also have to indicate to the client's browser that we are returning an error message.  To do this, we return a <a href="file:///Users/nate/github/devfest-webdev/python/#tuples">tuple</a> containing the message and the error code:</p>
 <pre><code class="python">@app.errorhandler(404)
 def page_not_found(error):
     return &quot;Sorry, this page was not found.&quot;, 404
@@ -1189,7 +1189,7 @@ gh_username = raw_input('GitHub username: ')
 gh_password = raw_input('GitHub password: ')
 payload = json.dumps({'scopes': []})
 
-gh_response = requests.post('https://api.github.com/user', auth=(gh_username, gh_password), data=payload)
+gh_response = requests.post('https://api.github.com/authorizations', auth=(gh_username, gh_password), data=payload)
 print gh_response.json()['token']
 </code></pre>
 
@@ -1918,7 +1918,7 @@ p {
 <h3 id="413-basic-properties-and-values">4.1.3 Basic Properties and Values</h3>
 <p>Learning CSS, for the most part, is about learning the knitty gritty details.  For an in-depth, comprehensive walkthrough of CSS properties and and how to apply them, check out <a href="http://htmldog.com">HTML Dog</a>'s excellent <a href="http://htmldog.com/guides/css/">CSS tutorial series</a>. In <a href="#external-libraries">section 4.2</a>, we will be applying CSS en-masse, using external libraries that provide shortcuts to a stylized webpage.  While using these libraries is good practice, these libraries always need to be accompanied by some extra CSS code for your own website.  For this reason, it's important to understand some basic CSS properties.</p>
 <h4 id="color-and-background-color">Color and Background-Color</h4>
-<p>You can change the background color of an element with the <code>background-color</code> attribute, just as you can change the text color with the <code>color</code> attribute.  There are many CSS properties that have colors as values, and for all of them colors can be represented in multiple ways (<a href="file:///Users/dan/working/devfest-webdev/mdn-colors">detailed in-depth at MDN</a>), the most simple (and limited) being <em>keywords</em> (like <code>blue</code>, <code>red</code>, etc.).</p>
+<p>You can change the background color of an element with the <code>background-color</code> attribute, just as you can change the text color with the <code>color</code> attribute.  There are many CSS properties that have colors as values, and for all of them colors can be represented in multiple ways (<a href="file:///Users/nate/github/devfest-webdev/mdn-colors">detailed in-depth at MDN</a>), the most simple (and limited) being <em>keywords</em> (like <code>blue</code>, <code>red</code>, etc.).</p>
 <h1 class="join"></h1>
 
 <pre><code class="html">&lt;!-- demo-color.html --&gt;
@@ -1975,7 +1975,7 @@ p {
 
 <h1 class="clear"></h1>
 
-<p><img alt="demo-height-width" src="file:///Users/dan/working/devfest-webdev/img/demo-height-width.png" /></p>
+<p><img alt="demo-height-width" src="file:///Users/nate/github/devfest-webdev/img/demo-height-width.png" /></p>
 <h4 id="borders">Borders</h4>
 <p>You can also give your elements borders.  To create a visible border, you need to set three properties for the selected element: <code>border-width</code>, <code>border-style</code>, and <code>border-color</code>.  These three properties can be combined into one <code>border</code> attribute.  The values <code>width</code>, <code>style</code>, and <code>color</code> can be provided in any order.  The border will wrap around the box, not the text (note that the third resized <code>&lt;p&gt;</code> has a square border).</p>
 <h1 class="join"></h1>
@@ -2012,10 +2012,10 @@ p {
 
 <h1 class="clear"></h1>
 
-<p><img alt="demo-border" src="file:///Users/dan/working/devfest-webdev/img/demo-border.png" /></p>
+<p><img alt="demo-border" src="file:///Users/nate/github/devfest-webdev/img/demo-border.png" /></p>
 <h4 id="margin-and-padding">Margin and Padding</h4>
 <p>Setting the <code>margin</code> and <code>padding</code> attributes for an element creates space around it.  The content area (changed by the <code>height</code> and <code>width</code> properties) border, margin, and padding make up the <em>box model</em>.  </p>
-<p><img alt="boxmodel" src="file:///Users/dan/working/devfest-webdev/img/boxmodel.png" /></p>
+<p><img alt="boxmodel" src="file:///Users/nate/github/devfest-webdev/img/boxmodel.png" /></p>
 <p><em>Photo credit to the <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/box_model">MDN page on the box model</a>.</em></p>
 <p>For the most part, margin is used to create space outside of the element, and padding is used to make space inside the element.  The border sits just between the two.  </p>
 <p>You can set margins with the <code>margin-top</code>, <code>margin-right</code>, <code>margin-bottom</code>, and <code>margin-left</code> attributes, and you can set padding with the <code>padding-top</code>, <code>padding-right</code>, <code>padding-bottom</code>, and <code>padding-left</code> attributes.  Values for these attributes are in units of length, and can even be negative.</p>
@@ -2113,7 +2113,7 @@ div {
 
 <h1 class="clear"></h1>
 
-<p><img alt="demo-margin-padding" src="file:///Users/dan/working/devfest-webdev/img/demo-margin-padding.png" /></p>
+<p><img alt="demo-margin-padding" src="file:///Users/nate/github/devfest-webdev/img/demo-margin-padding.png" /></p>
 <p><a id="using-the-inspector"></a></p>
 <h3 id="414-using-the-inspector">4.1.4 Using the Inspector</h3>
 <p>One of the most important skills to learn as a web developer writing CSS is to learn how to use the inspector in your favorite browser (Internet Explorer not allowed).  The inspector lets you see the HTML, CSS, and JavaScript that your web browser is rendering, live!  You can inspect your own web page to find bugs or make tweaks to your code, or inspect other pages to learn how to imitate a desired HTML/CSS/JS effect.</p>
@@ -2424,7 +2424,7 @@ Search | Has it Been Made Yet?
 </code></pre>
 
 <p>And there we have it, a finished <code>hello.html</code>!</p>
-<p><img alt="madeyet-1" src="file:///Users/dan/working/devfest-webdev/img/madeyet-1.png" /></p>
+<p><img alt="madeyet-1" src="file:///Users/nate/github/devfest-webdev/img/madeyet-1.png" /></p>
 <h4 id="searchhtml">search.html</h4>
 <p>Our second refactor should go faster. Start by wrapping the form in a row, column, and panel same as before.  We don't want the actual app to take up three quarters of the page, so we can use <code>large-12 columns</code> instead of <code>medium-9 medium-centered columns</code>.</p>
 <pre><code class="html">{% extends &quot;base.html&quot; %}
@@ -2474,7 +2474,7 @@ Search | Has it Been Made Yet?
 </code></pre>
 
 <p>Nice!</p>
-<p><img alt="madeyet-2" src="file:///Users/dan/working/devfest-webdev/img/madeyet-2.png" /></p>
+<p><img alt="madeyet-2" src="file:///Users/nate/github/devfest-webdev/img/madeyet-2.png" /></p>
 <h4 id="resultshtml">results.html</h4>
 <p>Once again, our smart templating has done us a service; the results page looks pretty good!  We can make just a few adjustments to finish it off.</p>
 <p>Let's get rid of the dots on our unordered list.  Foundation <a href="http://foundation.zurb.com/docs/components/typography.html#lists">has a class for this</a>, just give our <code>&lt;ul&gt;</code> the <code>no-bullet</code> class and we're good to go.</p>
@@ -2489,7 +2489,7 @@ Search | Has it Been Made Yet?
 </code></pre>
 
 <p>And we're done!</p>
-<p><img alt="madeyet-3" src="file:///Users/dan/working/devfest-webdev/img/madeyet-3.png" /></p>
+<p><img alt="madeyet-3" src="file:///Users/nate/github/devfest-webdev/img/madeyet-3.png" /></p>
 <p>Congratulations!  You've built a complete web application in Flask!  The Flask server loads the templates for our different routes, and then makes calls to the Github search API and returns the data to the client.  Pretty impressive!</p>
 <p>Push yourself to try some of the extensions throughout this document, they offer some interesting challenges. </p>
 <!-- python/flask -->
@@ -2504,4 +2504,19 @@ Search | Has it Been Made Yet?
 
 <!-- tools -->
 
-<!-- Other resources --></body></html>
+<!-- Other resources -->
+<!-- Asynchronous Google Analytics snippet -->
+<script>
+    var _gaq = _gaq || [];
+    var pluginUrl = '//www.google-analytics.com/plugins/ga/inpage_linkid.js';
+    _gaq.push(['_require', 'inpage_linkid', pluginUrl]);
+    _gaq.push(['_setAccount', 'UA-18504951-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+</script>
+</body></html>

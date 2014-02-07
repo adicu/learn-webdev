@@ -330,7 +330,7 @@ pre .chunk {
 </script><script>hljs.initHighlightingOnLoad();</script><title>webdev_python_curriculum.md</title></head><body><a href="https://github.com/adicu/devfest-webdev"><img class="github" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"></a><p><a id="top"></a></p>
 <h1 id="an-introduction-to-python-programming">An Introduction to Python Programming</h1>
 <p><em>Preparing you to build your first web application</em></p>
-<p>Written and developed by <a href="file:///Users/dan/working/devfest-webdev/mailto:matthew@adicu.com">Matt Piccolella</a> and <a href="file:///Users/dan/working/devfest-webdev/adi">ADI</a>.</p>
+<p>Written and developed by <a href="file:///Users/nate/github/devfest-webdev/mailto:matthew@adicu.com">Matt Piccolella</a> and <a href="file:///Users/nate/github/devfest-webdev/adi">ADI</a>.</p>
 <p>Credit to <a href="http://learnxinyminutes.com/docs/python/">Learn X in Y Minutes: X = Python</a> and <a href="http://learnpythonthehardway.org">Learn Python the Hardway</a>.</p>
 <p><a href="#top" class="top" id="getting-started">Top</a></p>
 <h2 id="getting-started">Getting Started</h2>
@@ -870,7 +870,7 @@ keyword_args(**my_dict) # = keyword_args(name=&quot;joe&quot;, age=&quot;17&quot
 <h3 id="43-first-class-and-anonymous-functions">4.3 First Class and Anonymous Functions</h3>
 <p>Interestingly, Python functions can themselves return functions. This is something JavaScript developers may be familiar with. These functions are called first-class functions.</p>
 <pre><code class="python">def get_multiplier_function():
-    def multipler(a,b):
+    def multiplier(a,b):
         return a * b
     return multiplier
 
@@ -879,7 +879,7 @@ product = multiplier(8,7) # = 56
 </code></pre>
 
 <p>Also, what if you had a function that you only wanted to use once, and thus you didn't want to give it a name? These functions are called anonymous functions, and Python provides us with the word <code>lambda</code> to declare these:</p>
-<pre><code class="python">g = lambda x: return x * x
+<pre><code class="python">g = lambda x: x * x
 square = g(8) # = 64
 </code></pre>
 
@@ -984,13 +984,14 @@ animal.speak(&quot;woof&quot;) # = &quot;Butch says woof&quot;
         return &quot;%s says %s&quot; % (self.name, msg)
 
     # Class Method
-    def get_kingdom(cls):
+    @classmethod
+    def get_kingdom(cls):   # &quot;cls&quot; refers to the class that calls get_kingdom
         return cls.kingdom
 
 # Instantiate an Animal object
 animal = Animal(&quot;Polly&quot;, &quot;Parrot&quot;)
-# Call our class method
-animal.get_kingdom() # = &quot;Animalia&quot;
+# Call our class method w/ the class
+Animal.get_kingdom() # = &quot;Animalia&quot;
 </code></pre>
 
 <p><a id="static"></a></p>
@@ -1010,10 +1011,12 @@ animal.get_kingdom() # = &quot;Animalia&quot;
         return &quot;%s says %s&quot; % (self.name, msg)
 
     # Class Method
+    @classmethod
     def get_kingdom(cls):
         return cls.kingdom
 
     # Static Method
+    @staticmethod
     def boo():
         return &quot;BOO!&quot;
 
@@ -1211,8 +1214,22 @@ Enter the string of numbers: 555987654321
 <h2 id="additional-resources">Additional Resources</h2>
 <p>Along with this tutorial, there is a wealth of information available on Python all across the web. Below are some good places to start:</p>
 <p><a href="http://learnxinyminutes.com/docs/python/">Learn X in Y Minutes: X=Python</a></p>
-<p><a href="http://adicu.com/learn">Learn Python the Hard Way</a></p>
+<p><a href="http://learnpythonthehardway.org">Learn Python the Hard Way</a></p>
 <p><a href="http://docs.python.org/3/">Official Python Documentation</a></p>
 <p><a href="http://adicu.com/learn">ADI Resources</a></p>
 <p><a href="http://www.codecademy.com/tracks/python">Codecademy</a></p>
-<p><a href="http://www.trypython.org">TryPython</a></p></body></html>
+<!-- Asynchronous Google Analytics snippet -->
+<script>
+    var _gaq = _gaq || [];
+    var pluginUrl = '//www.google-analytics.com/plugins/ga/inpage_linkid.js';
+    _gaq.push(['_require', 'inpage_linkid', pluginUrl]);
+    _gaq.push(['_setAccount', 'UA-18504951-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+</script>
+</body></html>
