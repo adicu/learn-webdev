@@ -452,7 +452,7 @@ print len(f & {2,5,7}) == 2
 
 <a href="#top" class="top" id="controlflow">Top</a>
 ## 3.0 Control Flow
-What good is a program if we can't make decisions? Luckily, we have several tools are our disposal that allow us to make these decisions, which direct the way our program executes in such a way to make it meaningful.
+What good is a program if we can't make decisions? Luckily, we have several tools at our disposal that allow us to make these decisions, which direct the way our program executes in such a way to make it meaningful.
 
 <a id="ifelse"></a>
 ### 3.1 If/Else
