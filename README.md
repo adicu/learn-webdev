@@ -19,7 +19,7 @@ All solutions are available by section in the `webdev-solutions/` and `python-so
 
 #### Using Vagrant
 
-We support running with vagrant!  [Install and setup Vagrant], and then:
+We support running with vagrant!  [Install and setup Vagrant](https://docs.vagrantup.com/v2/installation/index.html), and then:
 
     $ vagrant up # launches the box
     $ vagrant ssh # ssh into the box
