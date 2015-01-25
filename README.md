@@ -1,9 +1,9 @@
-ADI Intro Web Development Curriculum
-==================================
+An Accelerated Introduction to Web Development
+==============================================
 
-http://adicu.com/intro-webdev
+http://learn.adicu.com/webdev
 
-http://adicu.com/intro-webdev/python
+Learn to build a basic web app!  This covers the process of learning to build a web app in Flask.
 
 #### Building
 
@@ -13,9 +13,15 @@ Run the following in the root directory:
 
 This generates `.html` files to be viewed in a browser.
 
+### Deploying
+
+Run the following command to deploy to [learn.adicu.com/webdev](http://learn.adicu.com/webdev) (requires SCP and access to adi-website on SSH):
+
+    ./deploy.sh
+
 #### Solutions
 
-All solutions are available by section in the `webdev-solutions/` and `python-solutions/` folders.
+All solutions are available by section in the `solutions/` folder.
 
 #### Using Vagrant
 
@@ -37,5 +43,3 @@ This is where all the extra files needed to convert from markdown to HTML go. `b
 ##### img/ 
 
 All images for the project should be put in here.
-
-##### 

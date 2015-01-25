@@ -2540,6 +2540,7 @@ Push yourself to try some of the extensions throughout this document, they offer
 [mdn-label]: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/label
 [mdn-textarea]: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea
 [mdn-button]: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button
+[seo]: https://en.wikipedia.org/wiki/Search_engine_optimization
 
 <!-- CSS -->
 [css]: http://en.wikipedia.org/wiki/Css
@@ -2555,6 +2556,7 @@ Push yourself to try some of the extensions throughout this document, they offer
 [foundation-html]: http://foundation.zurb.com/docs/css.html#html-page-markup
 [foundation-grid]: http://foundation.zurb.com/docs/components/grid.html
 [mdn-background]: https://developer.mozilla.org/en-US/docs/Web/CSS/background
+[foundation-download]: http://foundation.zurb.com/docs/css.html
 [foundation-forms]: http://foundation.zurb.com/docs/components/forms.html
 [foundation-lists]: http://foundation.zurb.com/docs/components/typography.html#lists
 [foundation-small]: http://foundation.zurb.com/docs/components/typography.html#small-header-segments

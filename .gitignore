@@ -10,5 +10,4 @@ makeMD.py
 settings.dev
 
 # compiled files
-webdev_curriculum.html
-webdev_python_curriculum.html
+curriculum.html
