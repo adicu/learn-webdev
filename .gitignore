@@ -10,4 +10,4 @@ makeMD.py
 settings.dev
 
 # compiled files
-curriculum.html
+*.html
