@@ -1,5 +1,3 @@
-import re
-
 replacements = [
-(r"file:///Users/dan/","")
+("file:///Users/dan/working/learn-webdev/","")
 ]
