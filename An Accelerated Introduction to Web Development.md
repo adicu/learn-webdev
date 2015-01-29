@@ -72,7 +72,7 @@ We will be building a web application throughout this series, called "Has it Bee
 	-	[4.1 CSS Basics](#css-basics)
 		-	[4.1.1 Applying CSS Styles](#applying-css-styles)
 		-	[4.1.2 Selectors](#selectors)
-		-	[4.1.2 CSS Best Practices](#css-best-practices)
+		-	[4.1.3 Basic Properties and Values](#basic-properties-and-values)
 	-	[4.2 External Libraries](#external-libraries)
 		-	[4.2.1 Installation and Template Setup](#installation-and-template-setup)
 		-	[4.2.2 Using Foundation](#using-foundation)
@@ -1644,7 +1644,7 @@ For the same reason we might break up a large programming project into classes a
 	<head>
 		<meta charset="utf-8">
 		<title>CSS Demo</title>
-		<link src="demo.css" 
+		<link href="demo.css" 
 			rel="stylesheet"
 			type="text/css">
 	</head>
@@ -1697,7 +1697,7 @@ strong {
 ```
 <h1 class="clear"></h1>
 
-<a id="selectors"></a>
+
 ### 4.1.2 Selectors
 
 In the above examples `p` and `strong` in the `.css` files are *selectors*.  Selection can be done in a variety of different ways.  The most basic selection is by element name.
@@ -1826,6 +1826,7 @@ p {
 ```
 <h1 class="clear"></h1>
 
+<a id="basic-properties-and-values"></a>
 ### 4.1.3 Basic Properties and Values
 
 Learning CSS, for the most part, is about learning the knitty gritty details.  For an in-depth, comprehensive walkthrough of CSS properties and and how to apply them, check out [HTML Dog][htmldog]'s excellent [CSS tutorial series][htmldog-css]. In [section 4.2](#external-libraries), we will be applying CSS en-masse, using external libraries that provide shortcuts to a stylized webpage.  While using these libraries is good practice, these libraries always need to be accompanied by some extra CSS code for your own website.  For this reason, it's important to understand some basic CSS properties.
