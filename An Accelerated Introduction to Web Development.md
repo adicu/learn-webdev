@@ -67,7 +67,7 @@ We will be building a web application throughout this series, called "Has it Bee
 	-	[3.2 Templating in Flask](#templating-in-flask)
 		-	[3.2.1 A Simple Example: hello.html](#a-simple-example-hello-html)
 		-	[3.2.2 The Search Page](#the-search-page)
-		-	[3.2.3 Template Variables](#template-variables-using-jinja)
+		-	[3.2.3 Template Variables](#template-variables-using-jinja2)
 		-	[3.2.4 Extending Templates](#extending-templates)
 		-	[3.2.5 Extension: Templating Best-Practices](#templating-best-practices)
 -	[4.0 CSS](#css)
