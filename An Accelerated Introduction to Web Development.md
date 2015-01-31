@@ -18,7 +18,9 @@ This document teaches the CSS and HTML programming languages, as well as the Fla
 <a id="prerequisites"></a>
 ### Prerequisites
 
-Basic knowledge of the Python programming language is suggested.  If you don't already know Python, checkout [this ADI-developed tutorial](http://adicu.com/intro-webdev/python).  No knowledge of HTML, CSS or Flask is expected or required.
+Basic knowledge of the Python programming language is suggested.  If you don't already know Python, checkout [this ADI-developed tutorial](http://learn.adicu.com/python).  No knowledge of HTML, CSS or Flask is expected or required.
+
+You should also go through our [environment setup workshop](http://learn.adicu.com/setup) in order to ensure that all installations go properly.
 
 <a id="the-end-product"></a>
 ### The End Product
