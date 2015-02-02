@@ -85,6 +85,8 @@ We will be building a web application throughout this series, called "Has it Bee
 <a id="flask"></a>
 # 1.0 Flask
 
+#### [Download Prerequisite Code](http://learn.adicu.com/webdev/saturday.zip)
+
 Much of this tutorial is adapted from the [Flask website][flask].
 
 <a href="#top" class="top" id="what-is-flask">Top</a>
@@ -343,7 +345,7 @@ def page_not_found(error):
 
 Again, the 404 error code tells the browser that the page was "Not Found".  Visit `localhost:5000/test` to see our custom message in action!
 
-### [Give us feedback on this Flask workshop!](http://tinyurl.com/CUDevfestFlask)
+#### [Give us feedback on this Flask workshop!](http://tinyurl.com/CUDevfestFlask)
 
 ------------------------
 
@@ -974,7 +976,7 @@ Generate a GitHub token using the script, add this token to a bash settings file
 Add the token to your app config on startup.
 Pass the token [as a parameter][github-token-auth] for each request.
 
-### [Give us feedback on this APIs workshop!]( http://tinyurl.com/CUDevfestAPI)
+#### [Give us feedback on this APIs workshop!]( http://tinyurl.com/CUDevfestAPI)
 
 -------------------------
 
@@ -1554,7 +1556,7 @@ Wrap each `{{ }}` statement in a Jinja2 `{% if %}`, checking if the variable exi
 
 Make these fixes.
 
-### [Give us feedback on this HTML workshop!](http://tinyurl.com/CUDevfestHTML)
+#### [Give us feedback on this HTML workshop!](http://tinyurl.com/CUDevfestHTML)
 
 ------------------------
 
@@ -2473,7 +2475,7 @@ Congratulations!  You've built a complete web application in Flask!  The Flask s
 
 Push yourself to try some of the extensions throughout this document, they offer some interesting challenges. 
 
-### [Give us feedback on this CSS workshop!](http://tinyurl.com/CUDevfestCSS)
+#### [Give us feedback on this CSS workshop!](http://tinyurl.com/CUDevfestCSS)
 
 <!-- python/flask -->
 [flask]: http://flask.pocoo.org/
