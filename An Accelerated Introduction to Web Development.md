@@ -343,6 +343,8 @@ def page_not_found(error):
 
 Again, the 404 error code tells the browser that the page was "Not Found".  Visit `localhost:5000/test` to see our custom message in action!
 
+### [Give us feedback on this Flask workshop!](http://tinyurl.com/CUDevfestFlask)
+
 ------------------------
 
 <a id="apis"></a>
@@ -362,7 +364,7 @@ API's let us access external data in an easy, standardized way.  In the webapp w
 
 URL | Image
 ------|-----
-[`http://placekitten.com/200/100`](http://placekitten.com/200/100) | ![http://placekitten.com/200/100](http://placekitten.com/200/100)
+[`http://placekitten.com/200/150`](http://placekitten.com/200/150) | ![http://placekitten.com/200/150](http://placekitten.com/200/150)
 [`http://placekitten.com/300/250`](http://placekitten.com/300/250) | ![http://placekitten.com/200/300](http://placekitten.com/300/250)
 [`http://placekitten.com/g/300/250`](http://placekitten.com/g/300/250) | ![http://placekitten.com/g/200/300](http://placekitten.com/g/300/250)
 
@@ -972,6 +974,8 @@ Generate a GitHub token using the script, add this token to a bash settings file
 Add the token to your app config on startup.
 Pass the token [as a parameter][github-token-auth] for each request.
 
+### [Give us feedback on this APIs workshop!]( http://tinyurl.com/CUDevfestAPI)
+
 -------------------------
 
 <a id="html-and-css"></a>
@@ -1549,6 +1553,8 @@ Wrap each `{{ }}` statement in a Jinja2 `{% if %}`, checking if the variable exi
 -   The entire `<p>` element should be omitted if there is no `repo.description`.
 
 Make these fixes.
+
+### [Give us feedback on this HTML workshop!](http://tinyurl.com/CUDevfestHTML)
 
 ------------------------
 
@@ -2466,6 +2472,8 @@ And we're done!
 Congratulations!  You've built a complete web application in Flask!  The Flask server loads the templates for our different routes, and then makes calls to the Github search API and returns the data to the client.  Pretty impressive!
 
 Push yourself to try some of the extensions throughout this document, they offer some interesting challenges. 
+
+### [Give us feedback on this CSS workshop!](http://tinyurl.com/CUDevfestCSS)
 
 <!-- python/flask -->
 [flask]: http://flask.pocoo.org/
