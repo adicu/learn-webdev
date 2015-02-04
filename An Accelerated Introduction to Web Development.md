@@ -985,6 +985,8 @@ Pass the token [as a parameter][github-token-auth] for each request.
 <a id="html-and-css"></a>
 # 3.0 HTML and Templating
 
+#### [Download Prerequisite Code](http://learn.adicu.com/webdev/tuesday.zip)
+
 We've done some really exciting work already, displaying JSON content in all sorts of different ways, and even creating dynamic routes in Flask that return different content based on what URL you visit.  
 
 For our web app, we want more than this, however.  We will display not just the raw JSON content, but a user-friendly search experience and an attractive results page.  To do this, we will use [HTML](#html-basics) and [Flask's templates](#templating-in-flask).
