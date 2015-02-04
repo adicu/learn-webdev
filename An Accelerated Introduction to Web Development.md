@@ -739,7 +739,7 @@ You should now have a new file in your current directory named `response.json`. 
 Python has several built-in libraries for handling REST APIs, but we will be using the external library [Requests][py-requests].  To install it, use [Pip][pip]:
 
 ```bash
-$ pip install requests
+$ sudo pip install requests
 ```
 
 Don't forget to update your `requirements.txt` file to reflect this change!
