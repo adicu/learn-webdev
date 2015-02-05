@@ -1567,6 +1567,8 @@ Make these fixes.
 <a id="css"></a>
 # 4.0 CSS
 
+#### [Download Prerequisite Code](http://learn.adicu.com/webdev/wednesday.zip)
+
 [CSS][css], or Cascading Style Sheets, is a styling language that is used to arrange and stylize HTML elements.  CSS is extremely powerful, but also fairly hard to learn.  Every different browser interprets CSS slightly differently, and there are a lot of tricks and best practices that are hard to learn.  As such, CSS is best learned by lots and lots of practice.  The [ADI Resources][learn] page has links to a lot of different tutorials and walkthroughs, if you want more practice after styling your Flask app.
 
 <a href="#top" class="top" id="css-basics">Top</a>
