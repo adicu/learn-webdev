@@ -77,3 +77,32 @@ table {
       margin-top: 0; }
     table tr th :last-child, table tr td :last-child {
       margin-bottom: 0; }
+
+/* Responsive Youtube video */
+
+.videoWrapper {
+  position: relative;
+  padding-bottom: 56.25%; /* 16:9 */
+  padding-top: 25px;
+  height: 0;
+}
+.videoWrapper > iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.subscribeWrapper {
+  padding-left: 1rem;
+  float:right;
+}
+
+@media screen and (max-width: 768px) {
+  .subscribeWrapper {
+    float: none;
+    padding: 0;
+    display: block;
+  }
+}

@@ -89,6 +89,21 @@ We will be building a web application throughout this series, called "Has it Bee
 
 Much of this tutorial is adapted from the [Flask website][flask].
 
+## Follow Along 
+
+<script src="https://apis.google.com/js/platform.js"></script>
+<div class="subscribeWrapper">
+<div class="g-ytsubscribe" data-channelid="UC6JJMTy3pXJWX_bykS53NVQ" data-layout="full" data-count="hidden"></div>
+</div>
+
+At ADI's [DevFest 2015](http://devfe.st), we gave this workshop in person, and recorded it for you!  You're welcome to watch it below, or on [YouTube](https://www.youtube.com/watch?v=WVdzzVl0DgA).  Don't forget to subscribe!
+
+
+<div class="videoWrapper">
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/WVdzzVl0DgA" frameborder="0" allowfullscreen></iframe>
+</div>
+
+
 <a href="#top" class="top" id="what-is-flask">Top</a>
 ## 1.1 What is Flask
 
@@ -991,6 +1006,21 @@ We've done some really exciting work already, displaying JSON content in all sor
 
 For our web app, we want more than this, however.  We will display not just the raw JSON content, but a user-friendly search experience and an attractive results page.  To do this, we will use [HTML](#html-basics) and [Flask's templates](#templating-in-flask).
 
+## Follow Along 
+
+<script src="https://apis.google.com/js/platform.js"></script>
+<div class="subscribeWrapper">
+<div class="g-ytsubscribe" data-channelid="UC6JJMTy3pXJWX_bykS53NVQ" data-layout="full" data-count="hidden"></div>
+</div>
+
+At ADI's [DevFest 2015](http://devfe.st), we gave this workshop in person, and recorded it for you!  You're welcome to watch it below, or on [YouTube](https://www.youtube.com/watch?v=fxQtuPGi1e4).  Don't forget to subscribe!
+
+
+<div class="videoWrapper">
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/PBwTgyr5E3E" frameborder="0" allowfullscreen></iframe>
+</div>
+
+
 <a href="#top" class="top" id="html-basics">Top</a>
 ## 3.1 HTML Basics
 
@@ -1570,6 +1600,22 @@ Make these fixes.
 #### [Download Prerequisite Code](http://learn.adicu.com/webdev/wednesday.zip)
 
 [CSS][css], or Cascading Style Sheets, is a styling language that is used to arrange and stylize HTML elements.  CSS is extremely powerful, but also fairly hard to learn.  Every different browser interprets CSS slightly differently, and there are a lot of tricks and best practices that are hard to learn.  As such, CSS is best learned by lots and lots of practice.  The [ADI Resources][learn] page has links to a lot of different tutorials and walkthroughs, if you want more practice after styling your Flask app.
+
+## Follow Along 
+
+<script src="https://apis.google.com/js/platform.js"></script>
+<div class="subscribeWrapper">
+<div class="g-ytsubscribe" data-channelid="UC6JJMTy3pXJWX_bykS53NVQ" data-layout="full" data-count="hidden"></div>
+</div>
+
+At ADI's [DevFest 2015](http://devfe.st), we gave this workshop in person, and recorded it for you!  You're welcome to watch it below, or on [YouTube](https://www.youtube.com/watch?v=3ss_1dYLxJE).  Don't forget to subscribe!
+
+
+<div class="videoWrapper">
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/3ss_1dYLxJE" frameborder="0" allowfullscreen></iframe>
+</div>
+
+
 
 <a href="#top" class="top" id="css-basics">Top</a>
 ## 4.1 CSS Basics
