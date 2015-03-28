@@ -369,6 +369,20 @@ Again, the 404 error code tells the browser that the page was "Not Found".  Visi
 
 #### [Download Prerequisite Code](http://learn.adicu.com/webdev/monday.zip)
 
+## Follow Along 
+
+<script src="https://apis.google.com/js/platform.js"></script>
+<div class="subscribeWrapper">
+<div class="g-ytsubscribe" data-channelid="UC6JJMTy3pXJWX_bykS53NVQ" data-layout="full" data-count="hidden"></div>
+</div>
+
+At ADI's [DevFest 2015](http://devfe.st), we gave this workshop in person, and recorded it for you!  You're welcome to watch it below, or on [YouTube](https://www.youtube.com/watch?v=zUwo5iCguMU).  Don't forget to subscribe!
+
+
+<div class="videoWrapper">
+    <iframe width="560" height="315" src="https://www.youtube.com/watch?v=zUwo5iCguMU" frameborder="0" allowfullscreen></iframe>
+</div>
+
 At this point, our server can handle searches to our system, but it doesn't do anything with them (it just spits them back out).  What we need next is to search Github for projects with the same keywords and return them to the client.  To do this, we will use Github's [API][api], or Application Programmer Interface.
 
 <a href="#top" class="top" id="api-basics">Top</a>
