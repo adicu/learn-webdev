@@ -3,6 +3,8 @@
  
 *Building a webapp in Flask.*
 
+<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/"><img alt="Creative Commons License" style="border-width:0;float:right" src="https://i.creativecommons.org/l/by-nc/4.0/88x31.png" /></a>
+
 Written and developed by [Dan Schlosser](http://danrs.ch) and [ADI](http://adicu.com).
 
 <a href="#top" class="top" id="about-this-document">Top</a>
@@ -380,7 +382,7 @@ At ADI's [DevFest 2015](http://devfe.st), we gave this workshop in person, and r
 
 
 <div class="videoWrapper">
-    <iframe width="560" height="315" src="https://www.youtube.com/watch?v=zUwo5iCguMU" frameborder="0" allowfullscreen></iframe>
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/zUwo5iCguMU" frameborder="0" allowfullscreen></iframe>
 </div>
 
 At this point, our server can handle searches to our system, but it doesn't do anything with them (it just spits them back out).  What we need next is to search Github for projects with the same keywords and return them to the client.  To do this, we will use Github's [API][api], or Application Programmer Interface.
